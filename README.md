@@ -11,4 +11,6 @@ Plenty of man-hours have gone in to Mindcraft / Knowledgecraft / the Learning La
 
 As someone who adores order as well as already having a good grasp on the technical side of the workflow this quarter, I plan on making sure all of the code is accounted for.
 
+Do you want to add your own content or build on what we've built? You're in the right place.
+
 I'll have more thorough documentation written up some time in the future. (read: after ImagineRIT and we're not on deadlines)
