@@ -13,4 +13,6 @@ As someone who adores order as well as already having a good grasp on the techni
 
 Do you want to add your own content or build on what we've built? You're in the right place.
 
+Were you looking for the website? You'll want the other repository. (ADD LINK)
+
 I'll have more thorough documentation written up some time in the future. (read: after ImagineRIT and we're not on deadlines)
