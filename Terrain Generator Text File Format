@@ -1,0 +1,35 @@
+How to format a text file so it can be read by the Terrain Generator:
+
+The terrain generator requires a very specifically formatted text file as a read-in in order to generate your landscape and NPCs correctly. Follow below:
+
+
+
+Step 1: Find the subject you want to map on Khan Academy (or elsewhere).
+Step 2: Get the URL of that subject. It will look something like this: https://www.khanacademy.org/math/e/addition_2
+Step 3: Use that URL to create the formatted node like so:
+
+The file format has 5 lines per subject.
+
+DisplayName: This is the title of the subject in proper English. The player sees this. If you go to the URL, this is the visible title of the page. (In this case: "2-digit addition")
+FileName: This is the title of the subject in a language the computer can read better. Computers don't like spaces, they like underscores. You can find your filename at the end of the URL. (In this case: "addition_2")
+URL: The KhanAcademy URL in its entirety.
+PreReqs: The pre-requisite subjects that the user must pass to access this subject. Each pre-requisite subject is referenced by FileName, not DisplayName. If there are no pre-reqs, write N/A instead. (In this case: "number_line", "addition_1", and "representing_numbers")
+(vPos,hPos): The actual position of the subject on the entire knowledge map. *If your subject is not Math, write (0,0) in this field.
+
+*Be certain to include all colons, spaces, quotes, and other symbols as seen in the examples below*
+
+Create a 5-line node for each subject and save it as a text file to have the Terrain Generator read it!
+
+EXAMPLES:
+
+DisplayName: "2-digit addition"
+FileName: "addition_2"
+URL: "https://www.khanacademy.org/math/e/addition_2"
+PreReqs: ["number_line", "addition_1", "representing_numbers"]
+(vPos,hPos): (4,1)
+
+DisplayName: "Representing numbers"
+FileName: "representing_numbers"
+URL: "https://www.khanacademy.org/math/e/representing_numbers"
+PreReqs: [N/A]
+(vPos,hPos): (3,0)
