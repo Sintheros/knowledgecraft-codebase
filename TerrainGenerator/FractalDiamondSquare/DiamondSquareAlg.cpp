@@ -1583,6 +1583,11 @@ void initTerrain()
 		}
 
 		//Now make bridges
+		//NOTE: Bridges do not currently seem to work. For small maps, bridges are correct. As the size increases,
+		//so do the number of errors. Occasionally, it seems bridges all connect to the same X level as Keensley
+		//told me. Bridges sometimes seem to connect high up parents directly to lower children of children of
+		//children. I don't know if said child of child of child was actually an improperly placed regular child,
+		//and so is a node tree generation issue, or if it's a bridge issue.
 		for(i = 0; i < nodes.size(); ++i) {
 
             for(j = 0; j < nodes[i].children.size(); ++j) {
