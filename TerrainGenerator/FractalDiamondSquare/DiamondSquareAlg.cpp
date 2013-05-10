@@ -13,20 +13,23 @@
 
 using namespace std;
 
+//For generating a random number and for seeding the randon number generator
 #define random() rand()
 #define srandom(x) srand(x)
 
+//Used for turning the points from the Map Generator into 2D array coordinates for node locations
 struct Coord {
 	float x;
 	float y;
 	float z;
-	string url;
+	string url;//URL associated with this node
 	string disName;
-	string fileName;
+	string fileName;//Name of the node
 
 	Coord() : x(0.0f), y(0.0f), z(0.0f) { }
 };
 
+//The data structure used by the Map Generator, which we are given when using it
 struct Point {
 	float _x;
 	float _y;
@@ -66,14 +69,20 @@ static float randnum (float min, float max)
 #define DEF_HEIGHT_SCALE 1.f
 #define PI 3.1415926536
 
+//Level of detail of the map. The map will be a (2^detail) + 1 x (2^detail) + 1 sized grid
 static int detail = 10;
+//Convert detail into 2^detail + 1
 static int size = (1 << detail) + 1;
+//Initial distance that the OpenGL preview draws out to
 int sight = 300;
+//Rotations
 static float gamma = 0, beta =15 , alpha = 0;
+//Camera positions
 static float posX = 0, posZ = 0, posY = -2;
 
 const char filenm[100] = "Ignore.txt";
 
+//Constants for the IDs of certain block types in Minecraft
 const char BLOCK_NONE = 0;
 const char BLOCK_MOUNTAIN = 1;
 const char BLOCK_PLAINS = 2;
@@ -93,11 +102,11 @@ DiamondSquareAlg::~DiamondSquareAlg(void)
 {
 }
 
-float* fArray;
-float* fFractArray;
-bool* fIsNode;
-bool* fSet;
-char* fBlock;
+float* fArray; //Primary terrain storage
+float* fFractArray; //Same size as fArray, but filled with fractal variance to be applied to fArray
+bool* fIsNode; //Whether or not a particular point in fArray is a node or not
+bool* fSet; //Whether or not a particular point in fArray has been set already
+char* fBlock; //What Minecraft block ID is used for that location
 
 /*
  * avgEndpoints - Given the i location and a stride to the data
@@ -225,8 +234,7 @@ float *alloc2DArray (int size)
            *   *   *
 
            *   *   *
-
-       To account for this, increment 'size'. */
+		*/
 	int otherSize = size * size * sizeof(bool);
 	int charSize = size * size * sizeof(char);
 	fIsNode = ((bool *) malloc (otherSize));
@@ -406,6 +414,7 @@ void fill2DFractArray (float *fa, int size,
     }
 }
 
+//Set the value of a point if it isn't a node
 void fillCircleSetPoint(int px, int pz, int size, float y) {
 
 	if(fIsNode[px * size + pz])
@@ -421,6 +430,7 @@ void fillCircleSetPoint(int px, int pz, int size, float y) {
 	fSet[px * size + pz] = true;
 }
 
+//When making a new circle, make sure we define every point in that circle as not yet set
 void setCircleBaseVal(float *fa, int size, int cx1, int cx2, int cz1, int cz2, float y, float radius, float drop, float limit)
 {
 
@@ -522,60 +532,70 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 
 	do
 	{
+		//Setting circle points requires exactly 8 iterations
+			//x, y
+			//x, -y
+			//-x, y
+			//-x, -y
+			//y, x
+			//y, -x
+			//-y, x
+			//-y, -x
 		px = cx2 + x;
 		pz = cz2 + z;
+		//This is the x, y iteration
 		if(px < size && pz < size) {
 
 			fillCircleSetPoint(px, pz, size, y);
 		}
 
-		px = cx1 - x;
+		px = cx1 - x;//-x, y
 		if(px >= 0 && pz < size) {
 
 			fillCircleSetPoint(px, pz, size, y);
 		}
 
-		pz = cz1 - z;
+		pz = cz1 - z;//-x, -y
 		if(px >= 0 && pz >= 0) {
 
 			fillCircleSetPoint(px, pz, size, y);
 		}
 
-		px = cx2 + x;
+		px = cx2 + x;//x, -y
 		if(px < size && pz >= 0) {
 
 			fillCircleSetPoint(px, pz, size, y);
 		}
 
 		px = cx2 + z;
-		pz = cz2 + x;
+		pz = cz2 + x;//y, x
 		if(px < size && pz < size) {
 
 			fillCircleSetPoint(px, pz, size, y);
 		}
 
-		px = cx1 - z;
+		px = cx1 - z;//-y, x
 		if(px >= 0 && pz < size) {
 
 			fillCircleSetPoint(px, pz, size, y);
 		}
 
-		pz = cz1 - x;
+		pz = cz1 - x;//-y, -x
 		if(px >= 0 && pz >= 0) {
 
 			fillCircleSetPoint(px, pz, size, y);
 		}
 
-		px = cx2 + z;
+		px = cx2 + z;//y, -x
 		if(px < size && pz >= 0) {
 
 			fillCircleSetPoint(px, pz, size, y);
 		}
 
-		// midpoint is inside line, choose U
+		// midpoint is inside line, choose Upper
 		if (h < 0) {
 			h += x * 2 + 3;
-		// midpoint is on/outside line, choose L
+		// midpoint is on/outside line, choose Lower
 		} else {
 			h += 2 * (x-z) + 5;
 			z--;
@@ -587,7 +607,8 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 	z = radius;
 	h = 1 - radius;
 
-	if(radius == 5) {
+	//Set blocks as node values once we hit the correct radius
+	if(radius == 5) {//Nodes have a radius of 5 (the flat wooden plank top)
 
 		do
 		{
@@ -660,6 +681,7 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 			++x;
 		} while (z >= x);
 
+		//If we're "repairing" where nodes are, and not filling the first pass, end here
 		if(fixNodes)
 			return;
 	}
