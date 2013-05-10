@@ -431,6 +431,7 @@ void fillCircleSetPoint(int px, int pz, int size, float y) {
 }
 
 //When making a new circle, make sure we define every point in that circle as not yet set
+//When using values to average points, we want to use points from the new circle, not older ones if this circle overlaps
 void setCircleBaseVal(float *fa, int size, int cx1, int cx2, int cz1, int cz2, float y, float radius, float drop, float limit)
 {
 
@@ -690,14 +691,16 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 	z = radius;
 	h = 1 - radius;
 
+	//Once the circle is at its lowest allowed value, average all the points which failed to get set
 	if(y - (drop * 0.98) < limit) {
 
+		//There are no values to average if we're only fixing the nodes
 		if(fixNodes)
 			return;
 
 		do
 		{
-
+			//For each of the 4 circle filling directions...
 			pz = cz2 + x;
 			if(pz < size) {
 
@@ -708,6 +711,7 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 
 					if(i >= 0 && i < size) {
 
+						//First, set the block type. If it's a node, we won't average it
 						if(fIsNode[i * size + pz]) {
 
 							fBlock[i * size + pz] = BLOCK_WOOD;
@@ -720,6 +724,7 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 
 						float& v = fArray[i * size + pz];
 
+						//Count how many adjacent points have been set, add their values to the total
 						if(i > 0 && fSet[(i - 1) * size + pz]) {
 
 							total += fArray[(i - 1) * size + pz];
@@ -741,12 +746,14 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 							++numAdjacent;
 						}
 
+						//If we have at least 2 adjacent set nodes, do some averages
 						if(numAdjacent > 1)
 							v = total / (float)(numAdjacent);
 					}
 				}
 			}
 
+			//Same as above
 			pz = cz1 - x;
 			if(pz >= 0) {
 
@@ -914,6 +921,7 @@ void fillSquare (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 	if(y - (drop * radius) < limit)
 		return;
 
+	//This isn't used anymore, so probably don't worry about it. It's the circle one as above except a square
 	int i, j;
 	j = cz1 - radius;
 	if(j >= 0) {
@@ -996,6 +1004,7 @@ void fill2DArray (float *fa, int size, vector<Point>& nodes, vector<bool>& fixNo
 {
     int	i, j;
 	int index = -1;
+	//If we aren't fixing the nodes, "null out" the arrays - set everything to default values
 	if(!fixNodes) {
 
 		for(i = 0; i < size; ++i) {
@@ -1009,28 +1018,33 @@ void fill2DArray (float *fa, int size, vector<Point>& nodes, vector<bool>& fixNo
 		}
 	}
 
+	//One mountain per node
 	for(i = 0; i < nodes.size(); ++i) {
 
 		if((i + 1) % 100 == 0 && !fixNodes)
 			cout << "Creating mountain " << i + 1 << " of " << nodes.size() << endl;
 
+		//Node locations are in the range (-100, 100). Convert to array position
 		float x = nodes[i]._x + 100;
 		x = (x / 200.0f) * (float)(size - 1);
 		float z = nodes[i]._z + 100;
 		z = (z / 200.0f) * (float)(size - 1);
 		float y = nodes[i]._y;
 
+		//Each (-100, 100) point might not land exactly on one single array position. So, choose the 4 closest
 		int cx1 = (int)x;
 		int cx2 = cx1 + 1;
 		int cz1 = (int)z;
 		int cz2 = cz1 + 1;
 
 		float radius = 1;
+		//Bigger mountains start off dropping faster - steeper slope
 		double drop = 0.01 + (0.02 * y);
 		double dropLimit = 0.0001;
 		float limit = 0.1f;
 		float tempy;
 
+		//Both x and z are inside array bounds - use all 4 corners
 		if(cx2 < size && cz2 < size) {
 
 			float& c11 = fArray[cx1 * size + cz1];
@@ -1038,6 +1052,7 @@ void fill2DArray (float *fa, int size, vector<Point>& nodes, vector<bool>& fixNo
 			float& c21 = fArray[cx2 * size + cz1];
 			float& c22 = fArray[cx2 * size + cz2];
 			
+			//If we're making a node on top of another node... well, don't
 			if((fIsNode[cx1 * size + cz1] || fIsNode[cx1 * size + cz2] || fIsNode[cx2 * size + cz1] || fIsNode[cx2 * size + cz2]) && (!fixNodes || !fixNode[i])) {
 
 				fixNode[i] = false;
@@ -1051,7 +1066,7 @@ void fill2DArray (float *fa, int size, vector<Point>& nodes, vector<bool>& fixNo
 				c21 = y;
 				c22 = y;
 			}
-			else {
+			else { //Find largest corner if fixing nodes. All corners = y otherwise
 
 				if(c11 > c12 && c11 > c21 && c11 > c22)
 					y = c12 = c21 = c22 = c11;
@@ -1067,8 +1082,10 @@ void fill2DArray (float *fa, int size, vector<Point>& nodes, vector<bool>& fixNo
 			
 			while(tempy >= limit) {
 
+				//Fill the circle!
 				fillCircle(fa, size, cx1, cx2, cz1, cz2, tempy, radius, drop, limit, fixNodes);
 				
+				//Only slope down the mountain if we're done making the flat top part
 				if(radius > 5) {
 
 					tempy -= drop;
@@ -1085,6 +1102,7 @@ void fill2DArray (float *fa, int size, vector<Point>& nodes, vector<bool>& fixNo
 			radius = 1;
 			drop = 0.01 + (0.02 * y);
 
+			//Only set base values if we aren't fixing nodes
 			if(!fixNodes) {
 
 				while(tempy >= limit) {
@@ -1102,7 +1120,7 @@ void fill2DArray (float *fa, int size, vector<Point>& nodes, vector<bool>& fixNo
 				}
 			}
 		}
-		else if(cx2 < size) {
+		else if(cx2 < size) {//Z value goes beyond array bounds - only use the 2 corners which are in the array bounds
 
 			float& c11 = fArray[cx1 * size + cz1];
 			float& c21 = fArray[cx2 * size + cz1];
@@ -1155,7 +1173,7 @@ void fill2DArray (float *fa, int size, vector<Point>& nodes, vector<bool>& fixNo
 				}
 			}
 		}
-		else if(cz2 < size) {
+		else if(cz2 < size) {//X goes out of bounds
 
 			float& c11 = fArray[cx1 * size + cz1];
 			float& c12 = fArray[cx1 * size + cz2];
@@ -1208,7 +1226,7 @@ void fill2DArray (float *fa, int size, vector<Point>& nodes, vector<bool>& fixNo
 				}
 			}
 		}
-		else {
+		else {//Both X and Z out of bounds, so there's only 1 valid corner
 
 			float& c11 = fArray[cx1 * size + cz1];
 			
@@ -1262,7 +1280,9 @@ void fill2DArray (float *fa, int size, vector<Point>& nodes, vector<bool>& fixNo
 	}
 }
 
+//Write out a Minecraft schematic?
 bool writeSchematic = true;
+//How thick are those bridges that work so well
 double bridgeWidth = 2.0;
 bool sortNodes (Point i, Point j) {
 
@@ -1283,7 +1303,7 @@ void initTerrain()
 	//read in line, seperate by ','
 	char line[2000];
 
-	while(true)
+	while(true) //I didn't write this part, ask Keensley or something -- Jordan
 	{
 		dFile.getline(line, 2000);
 
@@ -1363,6 +1383,7 @@ void initTerrain()
 		}
 	}
 
+	//Could be higher or lower, but causes exponential file size increase/decrease
 	cout << "Enter Level of Detail (9, 10, or 11):\n";
 	int det;
 	cin >> det;
@@ -1419,6 +1440,7 @@ void initTerrain()
 	float maxz = -256;
 	float maxy = 0;
 	float miny = 3;
+	//Find the biggest and smallest X and Z and Y values in the node list we generated
 	for(i = 0; i < nodes.size(); ++i) {
 		fixNode.push_back(true);
 		if(nodes[i]._x < minx)
@@ -1435,6 +1457,7 @@ void initTerrain()
 			miny = nodes[i]._y;
 	}
 	
+	//Center them
 	float xshift = maxx - ((maxx - minx) / 2.0f);
 	float zshift = maxz - ((maxz - minz) / 2.0f);
 	maxx -= xshift;
@@ -1448,6 +1471,8 @@ void initTerrain()
 	float zIn;
 	cin >> zIn;
 
+	//Make the X and Z values take up Multiplier percent of the screen
+	//EX: an X Multiplier of 80 means the (-100, 100) range will be given at minimum -80 and at maximum 80
 	//float xmult = 80.0f / maxx;
 	//float zmult = 80.0f / maxz;
 	float xmult = xIn / maxx;
@@ -1457,6 +1482,7 @@ void initTerrain()
 	cout << "Miny = " << miny << endl;
 	cout << "Maxy = " << maxy << endl;
 
+	//Correct all node positions
 	for(i = 0; i < nodes.size(); ++i) {
 		nodes[i]._x -= xshift;
 		nodes[i]._x *= xmult;
@@ -1476,8 +1502,11 @@ void initTerrain()
 			nodes[i].children[j].z *= zmult;
 		}
 	}
+	//Create the mountains
 	fill2DArray (fArray, size, nodes, fixNode, false);
+	//Create a random fractal layout
 	fill2DFractArray (fFractArray, size, randomSeed, DEF_HEIGHT_SCALE, surfaceH, mountH);
+	//Apply fractal layout to mountains
 	for(i = 0; i < size; ++i) {
 		for(j = 0; j < size; ++j) {
 			fFractArray[i * size + j] = fFractArray[i * size + j] < 0 ? -fFractArray[i * size + j] : fFractArray[i * size + j];
@@ -1486,8 +1515,10 @@ void initTerrain()
 			fArray[i * size + j] -= 0.1;
 		}
 	}
+	//Fix the now randomized node chunk, which is supposed to be flat at the top of the mountain
 	fill2DArray (fArray, size, nodes, fixNode, true);
 
+	//Make the node list match the array layout
 	for(i = 0; i < nodes.size(); ++i) {
 
 		nodes[i]._x += 100;
@@ -1545,7 +1576,7 @@ void initTerrain()
 							schematic[y * size * size + z * size + x] = fBlock[x * size + z];
 					else if(y > 11)
 						schematic[y * size * size + z * size + x] = BLOCK_NONE;
-					else
+					else // Lower than 11? Water!
 						schematic[y * size * size + z * size + x] = BLOCK_WATER;
 				}
 			}
@@ -1556,6 +1587,7 @@ void initTerrain()
 
             for(j = 0; j < nodes[i].children.size(); ++j) {
 
+		//Get the change in x, y, z for the nodes
                 double x = nodes[i].children[j].x - nodes[i]._x;
                 double y = nodes[i].children[j].y - nodes[i]._y;
                 double z = nodes[i].children[j].z - nodes[i]._z;
@@ -1572,11 +1604,14 @@ void initTerrain()
                 double endy = nodes[i].children[j].y;
                 double startz = nodes[i]._z;
 
+		//How much the x/z vary to effectively make the bridge wide
                 double xmod = 0.0;
                 double zmod = 0.0;
+                //How much the x/z value should change per iteration
                 double dxmod = 0.0;
                 double dzmod = 0.0;
 
+		//If x changes the most, then it will be the main factor
                 if(abs(x) >= abs(z)) {
 
                     dxmod = -z / (2.0*abs(x));
@@ -1593,6 +1628,7 @@ void initTerrain()
                 }
 
                 double loopby;
+                //Loop by the largest one
                 if(abs(x) >= abs(y) && abs(x) >= abs(z))
                     loopby = x;
                 else if(abs(y) >= abs(z))
@@ -1600,18 +1636,21 @@ void initTerrain()
                 else
                     loopby = z;
 
+		//Amount to increment x/y/z by per step, to ensure the bridge doesn't get any holes in it
                 double dx = x / abs(loopby);
                 double dy = y / abs(loopby);
                 double dz = z / abs(loopby);
                 int steps = abs(loopby) + 1;
 
                 x = nodes[i]._x;
+                //Increase y to account for water
                 y = nodes[i]._y + 11;
                 z = nodes[i]._z;
                 double originalx = x;
                 double originaly = y;
                 double originalz = z;
 
+		//For each bridge width level, create a line from node A to node B
                 for(int l = 0; l < (int)(bridgeWidth * 4.0); ++l) {
 
                     for(int k = 0; k < steps; ++k) {
@@ -1623,6 +1662,8 @@ void initTerrain()
                         z += dz;
                     }
 
+			//Instead of updating X and Z at the same time, do them one at a time. Double the bridge drawing
+			//but removes chance of holes in bridge
                     xmod += dxmod;
                     x = originalx;
                     y = originaly;
@@ -1646,13 +1687,11 @@ void initTerrain()
         }
 
 		char fileName[50];
+		//Schematic files MUST be named in this format if they aren pure byte arrays
 		sprintf(fileName, "%d,%d,100.schematic", size, size);
 
 		ofstream mcEditFile(fileName, ios::out | ios::binary);
 		for(y = 0; y < 100; ++y) {
-
-			//if(y % 10 == 0)
-				//cout << y << endl;
 
 			for(z = 0; z < size; ++z) {
 
@@ -1667,7 +1706,7 @@ void initTerrain()
 	}
 
 	
-
+	//I also didn't do this chunk, so ask Keensley if it isn't obvious what it does -- Jordan
 	ofstream oFile;
 	oFile.open(filenm);
 
@@ -1746,6 +1785,7 @@ void fill1DFractArray (float *fa, int size,
     }
 }
 
+//Bigger means the map is stretched out; high-detail maps probably want higher map scale!
 int mapScale = 20;
 
 void display(void)
@@ -1763,6 +1803,7 @@ void display(void)
 	GLfloat* tempPt = new GLfloat;
 
 	int index = 0;
+	//Drawng math stuff. This is only used for the OpenGL preview, not the actual schematic. So you probably don't need it
 	int mapPosX = (size - 1) - ((posX * (size - 1) / (mapScale * 2)) + (size - 1) / 2);
 	int mapPosZ = (size - 1) - ((posZ * (size - 1) / (mapScale * 2)) + (size - 1) / 2);
 	for (GLfloat i = (mapPosX > sight ? mapPosX - sight : 0); i < (mapPosX < size - sight ? mapPosX + sight : size); i++)
@@ -1858,6 +1899,7 @@ void keyboard(unsigned char key, int x, int y)
 	case 27:
 		exit(0);
 		break;
+	//Rotate
 	case 'a':
 		alpha-=1;
 		glutPostRedisplay();
@@ -1866,20 +1908,24 @@ void keyboard(unsigned char key, int x, int y)
 		alpha+=1;
 		glutPostRedisplay();
 		break;
+	//Move forward
 	case 'w':
 		posZ+=(cos(alpha * PI / 180.0f) * 0.2f);
 		posX-=(sin(alpha * PI / 180.0f) * 0.2f);
 		glutPostRedisplay();
 		break;
+	//Move back
 	case 's':
 		posZ-=(cos(alpha * PI / 180.0f) * 0.2f);
 		posX+=(sin(alpha * PI / 180.0f) * 0.2f);
 		glutPostRedisplay();
 		break;
+	//'m'ore map shown
 	case 'm':
 		sight += 20;
 		glutPostRedisplay();
 		break;
+	//'l'ess map shown
 	case 'l':
 		sight -= 20;
 		glutPostRedisplay();
