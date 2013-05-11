@@ -1,4 +1,4 @@
-learninglandscape-codebase
+# learninglandscape-codebase
 =======================
 
 Repository for the technical portions of the Learning Landscape / That project from I&amp;I Spring 2013
@@ -13,6 +13,6 @@ As someone who adores order as well as already having a good grasp on the techni
 
 Do you want to add your own content or build on what we've built? You're in the right place.
 
-Were you looking for the website? You'll want the other repository. (ADD LINK)
+Were you looking for the website? You'll want [the other repository](https://github.com/aztec8/mindcraft-site).
 
 Wiki, tutorials, and other documentation forthcoming.
