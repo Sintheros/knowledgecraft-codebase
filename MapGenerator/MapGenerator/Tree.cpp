@@ -14,6 +14,7 @@ Tree::~Tree(void)
 {
 }
 
+//used to compare Nodes based on height (operator overloaded in Node.cpp)
 bool compareNodes2 (Node a, Node b) { return a.y > b.y; }
 bool compareNodes3 (Node a, Node b) { return a.y < b.y; }
 
@@ -22,7 +23,8 @@ int main(int argc, char** argv)
 	vector<Node> nodes;
 
 	srand (time(NULL));
-
+	
+	//get filename from user
 	cout << "Enter file name for input:\n";
 	char filename[100];
 	cin >> filename;
@@ -30,7 +32,7 @@ int main(int argc, char** argv)
 	ifstream dFile;
 	dFile.open(filename);
 
-	//read in line, seperate by ','
+	//char to store the lines
 	char line[2000];
 	int i = 0;
 
@@ -38,63 +40,84 @@ int main(int argc, char** argv)
 	{
 		dFile.getline(line, 2000);
 
+		//break when we achieve end of file
 		if(dFile.eof()) 
 			break;
+			
 		string temp(line);
-		//string re = temp.find("FileName");
+		
 		//read in and store info from txt file
+		//check if current line contains DisplayName, the starting point
 		if(temp.find("DisplayName") != temp.npos) {
+			//get the position of the first quotation mark
 			int pos = temp.find_first_of("\"") + 1;
+			//use that position to delimit the line and store it
 			string toPushName(temp.substr(pos, temp.find_first_of("\"", pos) - pos));
 
+			//go to next line, which should be the filename
 			dFile.getline(line, 2000);
 			string fileName(line);
 
+			//do the same as above to store it
 			int filePos = fileName.find_first_of("\"") + 1;
 			string toPushFile(fileName.substr(filePos, fileName.find_first_of("\"", filePos) - filePos));
 
+			//next line is the URL
 			dFile.getline(line, 2000);
 			string earl(line);
 
+			//done a little differently, but basically the same as above
+			//use positions in the string to delimit
 			int urlPos = earl.find_first_of("\"");
 			urlPos++;
 			int urlPos2 = earl.find_first_of("\"", urlPos);
 
+			//get the prereqs line for later
 			dFile.getline(line, 2000);
 			string prereqs(line);
+			
+			//get coordinates, not actually necessary anymore
+			//delete if you wish
+			/*
 			dFile.getline(line, 2000);
 			string coordinates(line);
 			int parenPos = coordinates.find_first_of("(", 11) + 1;
 			coordinates = coordinates.substr(parenPos, coordinates.find_first_of(")", parenPos) - parenPos);
-
+			*/
 			/*
 			int commaPos = coordinates.find_first_of(",");
 			float xp = atof(coordinates.substr(0, commaPos).c_str());
 			float zp = atof(coordinates.substr(commaPos + 1, 12).c_str());
 			*/
-
+			
+			//initialize a new Node with the displayname and filename
 			Node n(const_cast<char*>(toPushFile.c_str()), const_cast<char*>(toPushName.c_str()));
 			nodes.push_back(n);
 
-			//nodes[i].x = (xp + 7) * XMULTI;
-			//nodes[i].z = (zp - 30) * ZMULTI;
-
+			//initial position
 			nodes[i].x = 0;
 			nodes[i].z = 0;
 
+			//get and set the Node's URL
 			string url(earl.substr(urlPos, urlPos2 - urlPos));
 			nodes[i].setURL(url);
 
+			//use a loop to get all the prereqs separatly 
 			while(true) {
-
+				
+				//same as above, search for the first and then second set
+				//of quotation marks
 				int reqPos = prereqs.find_first_of("\"");
+				//break if there are no more
 				if(reqPos == prereqs.npos)
 					break;
 				++reqPos;
 				int reqPos2 = prereqs.find_first_of("\"", reqPos);
 				string child(prereqs.substr(reqPos, reqPos2 - reqPos));
-				//cout << child.c_str() << endl;
+				
+				//add the child's ID to the current Node
 				nodes[i].addChildIDS(child);
+				//start the prereqs string after this prereq so that we don't run into it again
 				prereqs = prereqs.substr(reqPos2 + 1, prereqs.npos);
 			}
 
@@ -161,7 +184,7 @@ int main(int argc, char** argv)
 	std::sort(nodes.begin(), nodes.end(), compareNodes2);
 
 
-
+	//the sort causes the child pointers to be wrong, so we have to re-do them
 	nodeIDs.clear();
 
 	//loop through the nodes and create an array of all their id's
@@ -246,6 +269,7 @@ int main(int argc, char** argv)
 	*/
 	cout << "File read!" << endl;
 
+	//get output filename from user
 	cout << "Enter file name for output:\n";
 	char filenm[100];
 	cin >> filenm;
@@ -255,6 +279,7 @@ int main(int argc, char** argv)
 
 	cout << "Writing..." << endl;
 
+	//more simple I/O, just writes out every Node's info into the output text file
 	for( int l = 0; l < nodes.size(); l++ )
 	{
 		oFile << "DisplayName: \"" << nodes[l].getName() << "\"" << endl;
