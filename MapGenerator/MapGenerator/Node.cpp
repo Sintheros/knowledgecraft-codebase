@@ -148,12 +148,15 @@ void Node::setChildStuff(float mHeight)
 	//set the min/max angles of the children based on new range
 	for(int i = 0; i < numChild; i++)
 	{
+		//check the difference in height, the child will only be modified next to
+		//a parent that it is close to in height
 		if(children[i]->getLevelDiff() > (getLevel() - children[i]->getLevel()))
 		{
 			children[i]->setLevelDiff(getLevel() - children[i]->getLevel());
 
 			float tempA = abs(children[i]->getAngleMax() - children[i]->getAngleMin());
-
+			
+			//will only change the child's angles if it can be put into a smaller range
 			if(tempA >= range)
 			{
 				if(i == 0)
@@ -181,13 +184,8 @@ void Node::setChildStuff(float mHeight)
 				}
 			}
 		
-
-			//int maxDist = children[i]->getLevel() * DISTANCE;
-			//int minDist = maxDist - DISTANCE;
-		
+			
 			//get distance from top node, every level is another 1
-			//children[i]->setDistance(rand() % (maxDist) + (minDist));
-			//children[i]->setDistance(rand() % 1);
 			float dist = (mHeight - children[i]->y) * DISTANCE;
 			children[i]->setDistance(dist);
 		}
@@ -201,18 +199,14 @@ void Node::setChildStuff(float mHeight)
 			children[i]->x = 0 + cos( (children[i]->getAngle()) * (3.14159265359 / 180) ) *  children[i]->getDistance();
 			children[i]->z = 0 - sin( (children[i]->getAngle()) * (3.14159265359 / 180) ) *  children[i]->getDistance();
 
-			//cout << children[i]-> x << ", " << children [i]->z << ", ";
 
 			children[i]->x = children[i]->x * XMULTI;
 			children[i]->z = children[i]->z * ZMULTI;
 		}
-
-		//cout << children[i]->getAngle() << ", " << children[i]-> x << ", " << children [i]->z << endl;
-
 	}
-	
 }
 
+//operator overload, to compare Nodes in Tree.cpp
 bool Node::operator<(Node& other)
 {
 	if(y >= other.y)
