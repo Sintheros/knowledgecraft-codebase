@@ -1302,8 +1302,10 @@ void initTerrain()
 
 	//read in line, seperate by ','
 	char line[2000];
-
-	while(true) //I didn't write this part, ask Keensley or something -- Jordan
+	
+	//Reads in the data from the text file created by the Map Generator or otherwise
+	//The input works the same as in that project in Tree.cpp, check those comments if need be
+	while(true) 
 	{
 		dFile.getline(line, 2000);
 
@@ -1337,6 +1339,7 @@ void initTerrain()
 			cout << "1" << endl;
 
 			int commaPos = coordinates.find_first_of(",");
+			//atof converts strings to floats
 			float xp = atof(coordinates.substr(0, commaPos).c_str());
 			
 			commaPos++;
@@ -1347,6 +1350,7 @@ void initTerrain()
 
 			string url(earl.substr(urlPos, urlPos2 - urlPos));
 			
+			//create a point with the node information
 			Point p(xp, yp, zp, url, toPushName, toPushFile);
 
 			while(true) 
@@ -1462,7 +1466,8 @@ void initTerrain()
 	float zshift = maxz - ((maxz - minz) / 2.0f);
 	maxx -= xshift;
 	maxz -= zshift;
-
+	
+	//get the x and z multipliers fromt he user to allow for easier trial and error and manipulation
 	cout << "Enter X Multiplier:\n";
 	float xIn;
 	cin >> xIn;
@@ -1711,7 +1716,8 @@ void initTerrain()
 	}
 
 	
-	//I also didn't do this chunk, so ask Keensley if it isn't obvious what it does -- Jordan
+	//Basic output, puts new node information into a text file that immediately gets used
+	//to create sentries in the ScriptGen class
 	ofstream oFile;
 	oFile.open(filenm);
 
@@ -1725,6 +1731,7 @@ void initTerrain()
 	cout << "Done writing..." << endl;
 	oFile.close();
 	
+	//call to make sentries
 	ScriptGen s;
 
 }
