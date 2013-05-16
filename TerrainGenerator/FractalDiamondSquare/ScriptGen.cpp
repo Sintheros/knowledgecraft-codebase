@@ -1,5 +1,5 @@
+//ScriptGen.cpp by Ian Siczewicz
 #include "ScriptGen.h"
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -32,7 +32,7 @@ void Scriptifier()
 	string buffer;
 	
 
-	bool isMath = false;
+	bool isMath = false; //Math sentires use Khan Academy to quiz and check for completion rather than through question scripts.
 
 	if(subject=="math" || subject=="Math" || subject=="MATH")
 		isMath = true;
@@ -67,7 +67,7 @@ void Scriptifier()
 		exit(1);
 	}
 
-	while(!input.eof())
+	while(!input.eof()) //Parse through the file created by the Terrain Generator and sort the data so it can be written into Sentires.
 	{
 		input >> buffer;
 		//cout << buffer << endl;
@@ -132,7 +132,7 @@ void Scriptifier()
 	cout << "Sentry Generation COMPLETE" << endl;
 
 }
-
+//Create standard sentries here. Some code is commented out temporarily until further Learning Landscape development occurs. This includes code such as preventing the player from leaving a node until they are done.
 void generateYML(string dispName, string fileName, string url, double x, double y, double z, string subject, bool isMath)
 {
 	ofstream output;
@@ -219,7 +219,7 @@ void generateYML(string dispName, string fileName, string url, double x, double 
 
 	output.close();
 }
-
+//Create the Master Sentry here.
 void generateMasterSentry(int entry, string fileNames[], string displayNames[], double highestX, double highestY, double highestZ, string subject)
 {
 	ofstream output;
