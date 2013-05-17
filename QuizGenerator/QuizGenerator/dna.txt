@@ -1,0 +1,22 @@
+>Filename: dna
+>Q: What is RNA?
+>I: ribosomal nuclear acid
+>C: Ribonucleic Acid
+>I: an amino acid
+>R: Correct! It simpy lacks the “deoxy” of DNA
+>H: https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/dna
+
+>Q: What replaces thymine in RNA?
+>I: Adenine 
+>C: Uracil
+>I: Cytosine
+>R: Correct! Uracil replaces thymine in RNA.
+>H: https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/dna
+
+>Q: Where are mRNAs transcribed into protein?
+>I: the nucleus
+>C: ribosomes
+>I: mitochondria
+>R: Correct! Ribosomes are where proteins are formed. 
+>H: https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/dna
+

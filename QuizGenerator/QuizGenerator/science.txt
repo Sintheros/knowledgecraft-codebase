@@ -1,0 +1,74 @@
+﻿>Filename: science
+>Q: Ultimately, all scientific knowledge comes from:
+>I: experimentation
+>I: observation
+>I: textbooks
+>C: Both experimentation and observation
+>H: Hmm. Not quite right.
+Check out these sources for more information:
+http://www.biologycorner.com/bio1/notes_ch1.html
+>R: Good job! Scientific knowledge comes from both observation and experimentation. As scientists, we would never learn anything new unless we TESTED things we SAW.
+
+>Q: A hypothesis must be:
+>C: testable
+>I: proven correct
+>I: observable
+>H: Close, but not quite right.
+Learn a little more about hypotheses here:
+http://www.livescience.com/21490-what-is-a-scientific-hypothesis-definition-of-hypothesis.html
+>R: Great! A hypothesis must be testable.
+
+>Q: A scientist testing the affects of a chemical on apple yeild sprays an orchard with the chemical. A second orchard does not receive the chemical. In the fall, the number of apples harvested from each forest is counted. Which of the following is the independent variable in the experiment?
+>I: the number of apples
+>I: the first orchard
+>C: the chemical
+>I: the second orchard
+>H: I think you should think about that some more.
+Visit this link for more information:
+http://www.sciencebuddies.org/science-fair-projects/project_variables.shtml
+>R: Perfect! The change between the first and the second orchard was the chemical.
+
+>Q: The orchard sprayed with chemical yields an average of 60 apples per tree while the orchard that was not sprayed with chemicals yields an average of 40 apples per tree. Based on the data the scientist would:
+>I: report his data
+>I: test the chemical on other plants
+>C: determine that the chemical increases apple yield
+>H: Hmm. Think about that a little bit more.
+>R: Right! According to his data, the orchard sprayed with chemicals yielded MUCH more fruit than the orchard that was not sprayed.
+
+>Q: Theories help scientists to:
+>C: explain large bodies of data
+>I: the theory is accepted, not the evidence
+>I: the evidence is wrong
+>H: No, Let’s look at this concept a little more.
+http://www.livescience.com/21491-what-is-a-scientific-theory-definition-of-theory.html
+>R: Great! Theories are used to help scientists explain large bodies of data!
+
+>Q: All living things must:
+>I: Move
+>I: Have two parents
+>I: Eat food
+>C: Maintain Homeostasis
+>H: Well, good try.
+http://chsweb.lr.k12.nj.us/mstanley/outlines/living2/living2.htm
+>R: Great! This is just one of the qualifications of life. To check out the other things,
+go here: http://chsweb.lr.k12.nj.us/mstanley/outlines/living2/living2.htm
+
+>Q: The mechanism by which evolution occurs is called:
+>C: natural selection
+>I: creationism
+>I: interpedendence
+>I: metabolism
+>H: I think you should look up that again.
+http://evolution.berkeley.edu/evolibrary/article/evo_02
+http://evolution.berkeley.edu/evosite/evo101/IIIENaturalSelection.shtml
+>R: Great! Darwin would be proud.
+
+>Q: The smallest unit capable of carrying out life functions is:
+>C: a cell
+>I: tissue
+>I: DNA
+>I: blood
+>H: Hmm. Check out this great resource to check yourself:
+http://www.biologycorner.com/bio1/notes_ch1.html
+>R: Great Work! Some living things are ONLY a single cell. (That’s really small!!)
+

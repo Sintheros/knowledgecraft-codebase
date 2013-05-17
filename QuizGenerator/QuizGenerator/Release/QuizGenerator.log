@@ -1,0 +1,33 @@
+﻿Build started 5/10/2013 12:28:43 PM.
+     1>Project "\\banner.main.ad.rit.edu\students\pxg1147\IGMProfile\Desktop\QuizGenerator\QuizGenerator\QuizGenerator\QuizGenerator.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Release\QuizGenerator.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D NDEBUG /D _UNICODE /D UNICODE /EHa /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\QuizGenerator.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt QuizGenerator.cpp /clr:nostdlib 
+         QuizGenerator.cpp
+         All outputs are up-to-date.
+       CoreResGen:
+         All outputs are up-to-date.
+       ResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\banner.main.ad.rit.edu\students\pxg1147\IGMProfile\Desktop\QuizGenerator\QuizGenerator\Release\QuizGenerator.exe" /INCREMENTAL:NO /NOLOGO /ASSEMBLYRESOURCE:Release\QuizGenerator.Form1.resources /MANIFEST /ManifestFile:"Release\QuizGenerator.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"\\banner.main.ad.rit.edu\students\pxg1147\IGMProfile\Desktop\QuizGenerator\QuizGenerator\Release\QuizGenerator.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Release\app.res
+         Release\AssemblyInfo.obj
+         Release\Question.obj
+         Release\QuizGenerator.obj
+         Release\stdafx.obj
+         "Release\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
+         QuizGenerator.vcxproj -> \\banner.main.ad.rit.edu\students\pxg1147\IGMProfile\Desktop\QuizGenerator\QuizGenerator\Release\QuizGenerator.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"\\banner.main.ad.rit.edu\students\pxg1147\IGMProfile\Desktop\QuizGenerator\QuizGenerator\Release\QuizGenerator.exe;#1" /manifest Release\QuizGenerator.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Release\QuizGenerator.unsuccessfulbuild".
+         Touching "Release\QuizGenerator.lastbuildstate".
+     1>Done Building Project "\\banner.main.ad.rit.edu\students\pxg1147\IGMProfile\Desktop\QuizGenerator\QuizGenerator\QuizGenerator\QuizGenerator.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.40
