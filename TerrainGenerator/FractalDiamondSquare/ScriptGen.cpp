@@ -183,7 +183,7 @@ void generateYML(string dispName, string fileName, string url, double x, double 
 	output << "               - CHAT \"Right click me for a question!\"" << endl;
 	}
 	output << "      Proximity Trigger:" << endl;
-	output << "        enter:" << endl;
+	output << "        entry:" << endl;
 	output << "          Script:" << endl;
 	output << "            - CHAT \"This peak is " << dispName << "!\"" << endl;
 	output << "            - WAIT 3" << endl;
