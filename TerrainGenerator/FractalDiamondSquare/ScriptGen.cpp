@@ -8,7 +8,8 @@
 using namespace std;
 
 void Scriptifier();
-void generateYML(string dispName, string fileName, string url, double x, double y, double z, string subject, bool isMath);
+string truncURL(string url, bool isMath, bool isReading);
+void generateYML(string dispName, string fileName, string url, double x, double y, double z, string subject, bool isMath, bool isReading);
 void generateMasterSentry(int entry, string fileNames[], string displayNames[], double highestX, double highestY, double highestZ, string subject);
 
 ScriptGen::ScriptGen(void)
@@ -30,12 +31,15 @@ void Scriptifier()
 	cin >> subject;
 
 	string buffer;
-	
+
 
 	bool isMath = false; //Math sentires use Khan Academy to quiz and check for completion rather than through question scripts.
+	bool isReading = false; //Reading sentries don't auto-check submissions or have traditional quizzes.
 
 	if(subject=="math" || subject=="Math" || subject=="MATH")
 		isMath = true;
+	if(subject=="reading" || subject=="Reading" || subject=="READING")
+		isReading = true;
 
 	string dispName;
 	string fileName;
@@ -45,7 +49,7 @@ void Scriptifier()
 	double x;
 	double y;
 	double z;
-	
+
 	double highestX;
 	double highestY;
 	double highestZ;
@@ -86,6 +90,8 @@ void Scriptifier()
 			displayNames[entry] = dispName;
 			buffer.replace(buffer.find(","), 1, "");
 			fileName = buffer;
+			while(fileName.find_first_of(".") != string::npos )
+				fileName.replace(fileName.find("."), 1, "");
 			fileNames[entry] = fileName;
 			ticker++;
 		}
@@ -94,7 +100,7 @@ void Scriptifier()
 			buffer.replace(buffer.find(","), 1, "");
 			x = atof(buffer.c_str());
 			ticker++;
-			
+
 			if(entry==0)
 				highestX = x;
 		}
@@ -119,8 +125,9 @@ void Scriptifier()
 		else if(ticker==6)
 		{
 			url = buffer;
-			generateYML(dispName,fileName,url,x,y,z,subject,isMath);
-
+			//url = truncURL(url,isMath,isReading);
+			generateYML(dispName,fileName,url,x,y,z,subject,isMath,isReading);
+			cout << fileName << " Sentry Generated." << endl;
 			ticker = 1;
 			dispName = "";
 			entry++;
@@ -132,8 +139,24 @@ void Scriptifier()
 	cout << "Sentry Generation COMPLETE" << endl;
 
 }
+
+//Truncate URLs to allow them to fit better into Minecraft
+string truncURL(string url, bool isMath, bool isReading)
+{
+	/*if(isMath)
+	{
+	}
+	else if(isReading)
+	{
+	}
+	else
+	{
+	}*/
+	return url;
+}
+
 //Create standard sentries here. Some code is commented out temporarily until further Learning Landscape development occurs. This includes code such as preventing the player from leaving a node until they are done.
-void generateYML(string dispName, string fileName, string url, double x, double y, double z, string subject, bool isMath)
+void generateYML(string dispName, string fileName, string url, double x, double y, double z, string subject, bool isMath, bool isReading)
 {
 	ofstream output;
 
@@ -166,15 +189,38 @@ void generateYML(string dispName, string fileName, string url, double x, double 
 	output << "        1:" << endl;
 	output << "            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?" << endl;
 	output << "            Script:" << endl;
-	output << "              - CHAT \"This peak is " << dispName << "!\"" << endl;
+	output << "              - CHAT \"This is the home of " << dispName << "!\"" << endl;
 	output << "              - WAIT 3" << endl;
 	if(isMath){
-	output << "              - CHAT \"Try some practice at " << url << "\"" << endl;
+	output << "              - RUNTASK \"Sentry_" << fileName << "_KA\"" << endl;
 	}
-	if(!isMath){
+	else if(isReading){
+	output << "              - CHAT \"Here you can...\"" << endl;
+	output << "              - WAIT 2" << endl;
+	output << "              - CHAT \"...read the story\"" << endl;
+	output << "              - WAIT 2" << endl;
+	output << "              - CHAT \"...record the story\"" << endl;
+	output << "              - WAIT 2" << endl;
+	output << "              - CHAT \"...or share your recording with me for a reward!\"" << endl;
+	output << "              - WAIT 3" << endl;
+	output << "              - CHAT \"If you want to give me a recording, say <Gold>submit<green> so I can hear it!\"" << endl;
+	output << "              - WAIT 3" << endl;
+	output << "              - CHAT \"Otherwise, <Gold>click<green> this link to the story! "<< url << "\"" << endl;
+	output << "        2:" << endl;
+	output << "            Trigger: I'm ready to /Regex:Submit|submit/ my reading!" << endl;
+	output << "            Script:" << endl;
+	output << "               - CHAT \"Great! Let's hear it! <Gold>[Paste your recording's URL!]<green>\"" << endl;
+	output << "        3:" << endl;             
+    output << "            Trigger: /REGEX:.+/" << endl;
+	output << "            Script:" << endl;
+    output << "               - FLAG NPC <player.name>:<player.chat_history>" << endl;
+	output << "               - TWEET \"Check it out! <player.name> reads " << dispName << "! <FLAG.N:<player.name>>\" learninglandscape"<< endl;
+	output << "               - CHAT \"Got it, thanks!\"" << endl;
+	}
+	else{
 	output << "              - CHAT \"You can learn more at " << url << "\"" << endl;
 	output << "              - WAIT 3" << endl;
-	output << "              - CHAT \"Say 'quiz' to begin!\"" << endl;
+	output << "              - CHAT \"Say <Gold>quiz<green> to begin!\"" << endl;
 	output << "        2:" << endl;
 	output << "            Trigger: /Regex:Quiz|quiz/ me!" << endl;
 	output << "            Script:" << endl;
@@ -185,15 +231,41 @@ void generateYML(string dispName, string fileName, string url, double x, double 
 	output << "      Proximity Trigger:" << endl;
 	output << "        entry:" << endl;
 	output << "          Script:" << endl;
-	output << "            - CHAT \"This peak is " << dispName << "!\"" << endl;
+	output << "            - CHAT \"This is the home of " << dispName << "!\"" << endl;
 	output << "            - WAIT 3" << endl;
 	if(isMath){
-	output << "            - CHAT \"Try some practice at " << url << "\"" << endl;
+	output << "            - RUNTASK \"Sentry_" << fileName << "_KA\"" << endl;
 	}
-	if(!isMath){
+	else if(isReading){
+	output << "            - CHAT \"Here you can...\"" << endl;
+	output << "            - WAIT 2" << endl;
+	output << "            - CHAT \"...read the story\"" << endl;
+	output << "            - WAIT 2" << endl;
+	output << "            - CHAT \"...record the story\"" << endl;
+	output << "            - WAIT 2" << endl;
+	output << "            - CHAT \"...or share your recording with me for a reward!\"" << endl;
+	output << "            - WAIT 3" << endl;
+	output << "            - CHAT \"If you want to give me a recording, say <Gold>submit<green> so I can hear it!\"" << endl;
+	output << "            - WAIT 3" << endl;
+	output << "            - CHAT \"Otherwise, <Gold>click<green> this link to the story! "<< url << "\"" << endl;
+	}
+	else{
 	output << "            - CHAT \"You can learn more at " << url << "\"" << endl;
 	output << "            - WAIT 3" << endl;
-	output << "            - CHAT \"Say 'quiz' to begin!\"" << endl;
+	output << "            - CHAT \"Say <Gold>quiz<green> to begin!\"" << endl;
+	}
+	if(isMath){
+	output << "'Sentry_" << fileName << "_KA':" << endl;
+	output << "  Type: Task" << endl;
+	output << "  Script:" << endl;
+	output << "    - FLAG NPC <player.name>:0" << endl;
+	//output << "    - URL \"https://www.tinyurl.com/llkalite/complete/" << fileName << "/<player.name>\" <player.name>" << endl;
+	output << "    - URL \"http://isitthursday.org/\" <player.name>" << endl;
+	output << "    - IF \"<FLAG.N:<player.name>>\" == \"0\" CHAT \"You have not finished this peak yet!\"" << endl;
+	output << "    - IF \"<FLAG.N:<player.name>>\" == \"0\" WAIT 2" << endl;
+	output << "    - IF \"<FLAG.N:<player.name>>\" == \"0\" CHAT \"Try some practice at " << url << "\"" << endl;
+	output << "    - IF \"<FLAG.N:<player.name>>\" == \"1\" CHAT \"You have completed this peak!\"" << endl;
+	output << "    - IF \"<FLAG.N:<player.name>>\" == \"1\" CHAT \"Congratulations!\"" << endl;
 	}
   /*output << "            - IF \"<flag:Correct_" << fileName << " || 0>\" == \"0\" FLAG \"Correct_" << fileName << ":0\"" << endl;
   /*output << "        exit:" << endl;
