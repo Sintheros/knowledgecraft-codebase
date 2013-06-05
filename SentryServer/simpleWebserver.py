@@ -44,11 +44,11 @@ def make_index( relpath ):
 # -----------------------------------------------------------------------
 from urlparse import urlparse, parse_qs
 from loginToKALITE import status
-TESTING = True
 
 class MyHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
+        TESTING = False
         try:
             
             if self.path.upper().startswith('/KALITE'):
@@ -68,18 +68,18 @@ class MyHandler(BaseHTTPRequestHandler):
                     self.wfile.write('parse_qs( parsedURL.query): ' +      str( parsedQuery) + '\n\n')
 
                 if 'userName' in parsedQuery and 'HREF' in parsedQuery:
-                    userName = parsedQuery['userName']
-                    HREF =  parsedQuery['HREF'][0] 
-                    self.wfile.write('<i>OK:')
-                    self.wfile.write('userName' + userName)
-                    self.wfile.write('HREF' + HREF)
-                    
+                    userName = parsedQuery['userName'][0]
+                    HREF =  parsedQuery['HREF'][0]                    
                 else:
                     self.wfile.write('<i>Get with the program:  I expect an URL like \n</i>')
                     self.wfile.write('http://localhost:8080/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/')
                     
                     
-                self.wfile.write(status( userName, HREF ) )
+                try:
+                    self.wfile.write(status( userName, HREF ) )
+                except KeyError as e:
+                    print 'ERROR:  KeyError:', e, 'userName', userName, 'HREF', HREF
+                    self.wfile.write('ERROR:  KeyError ' + str(e))
                 return
                 
             

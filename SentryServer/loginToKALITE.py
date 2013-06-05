@@ -153,11 +153,19 @@ def status(userName='test_user', href='/math/arithmetic/addition-subtraction/bas
 
 
 login()
+print 'This startup process will be a little tedious....'
 topics = getTopicsFromCoachReportsPage()
 memberAndTopics = createMemberAndTopicDict()
 #note usersStatuses shold 
 
 print
+print 'TEST QUERY'
 print "status('test_user', '/math/arithmetic/addition-subtraction/basic_addition/e/number_line/')",
 print status('test_user', '/math/arithmetic/addition-subtraction/basic_addition/e/number_line/')
 
+"""
+KALITE status querier. 
+When heavily used, this put an unnecessary load on the KALITE server:
+If some server instance  just checked less than a second ago, its uncessary to requery the KALITE server.
+Some kind of cacheing woudl be well-advised.
+"""
