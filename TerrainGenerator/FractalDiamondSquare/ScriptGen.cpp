@@ -221,7 +221,7 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output << "            Script:" << endl;
 	output << "               - CHAT \"Great! Let's hear it! <Gold>[Paste your recording's URL!]<green>\"" << endl;
 	output << "        3:" << endl;             
-    output << "            Trigger: /REGEX:.+/" << endl;
+    output << "            Trigger: /REGEX:www.astorybeforebed.+/" << endl;
 	output << "            Script:" << endl;
     output << "               - FLAG NPC <player.name>:<player.chat_history>" << endl;
 	output << "               - TWEET \"Check it out! <player.name> reads " << dispName << "! <FLAG.N:<player.name>>\" learninglandscape"<< endl;
