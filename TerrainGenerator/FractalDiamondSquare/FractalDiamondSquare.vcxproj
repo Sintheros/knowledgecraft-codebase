@@ -98,8 +98,16 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)GL\x86\bin" "$(SolutionDir)$(Configuration)" /y</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>curllib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\TerrainGenerator\FractalDiamondSquare\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\TerrainGenerator\FractalDiamondSquare\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PostBuildEvent>

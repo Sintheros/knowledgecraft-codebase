@@ -4,13 +4,15 @@
 #include <fstream>
 #include <string>
 #include <algorithm>
+#include "curl/curl.h"
 
 using namespace std;
 
 void Scriptifier();
-string truncURL(string url, bool isMath, bool isReading);
-void generateYML(string dispName, string fileName, string url, double x, double y, double z, string subject, bool isMath, bool isReading);
+string truncURL(string url);
+void generateYML(string dispName, string fileName, string url, string dispUrl, double x, double y, double z, string subject, bool isMath, bool isReading);
 void generateMasterSentry(int entry, string fileNames[], string displayNames[], double highestX, double highestY, double highestZ, string subject);
+
 
 ScriptGen::ScriptGen(void)
 {
@@ -125,8 +127,8 @@ void Scriptifier()
 		else if(ticker==6)
 		{
 			url = buffer;
-			//url = truncURL(url,isMath,isReading);
-			generateYML(dispName,fileName,url,x,y,z,subject,isMath,isReading);
+			string dispUrl = truncURL(url);
+			generateYML(dispName,fileName,url,dispUrl,x,y,z,subject,isMath,isReading);
 			cout << fileName << " Sentry Generated." << endl;
 			ticker = 1;
 			dispName = "";
@@ -141,22 +143,30 @@ void Scriptifier()
 }
 
 //Truncate URLs to allow them to fit better into Minecraft
-string truncURL(string url, bool isMath, bool isReading)
+string truncURL(string url)
 {
-	/*if(isMath)
-	{
-	}
-	else if(isReading)
-	{
-	}
-	else
-	{
-	}*/
-	return url;
+	ofstream output;
+
+	output.open("temp.txt");
+	output.close();
+
+	output.open("curlbat.bat");
+	output << "curl us.curlsh.me?url=" << url << " >> \"temp.txt\"";
+	output.close();
+	
+	system("curlbat.bat");
+	
+	ifstream input;
+	input.open("temp.txt");
+	string dispUrl;
+	input >> dispUrl;
+	input.close();
+	
+	return dispUrl;
 }
 
 //Create standard sentries here. Some code is commented out temporarily until further Learning Landscape development occurs. This includes code such as preventing the player from leaving a node until they are done.
-void generateYML(string dispName, string fileName, string url, double x, double y, double z, string subject, bool isMath, bool isReading)
+void generateYML(string dispName, string fileName, string url, string dispUrl, double x, double y, double z, string subject, bool isMath, bool isReading)
 {
 	ofstream output;
 
@@ -205,7 +215,7 @@ void generateYML(string dispName, string fileName, string url, double x, double 
 	output << "              - WAIT 3" << endl;
 	output << "              - CHAT \"If you want to give me a recording, say <Gold>submit<green> so I can hear it!\"" << endl;
 	output << "              - WAIT 3" << endl;
-	output << "              - CHAT \"Otherwise, <Gold>click<green> this link to the story! "<< url << "\"" << endl;
+	output << "              - CHAT \"Otherwise, <Gold>click<green> this link to the story! "<< dispUrl << "\"" << endl;
 	output << "        2:" << endl;
 	output << "            Trigger: I'm ready to /Regex:Submit|submit/ my reading!" << endl;
 	output << "            Script:" << endl;
@@ -218,7 +228,7 @@ void generateYML(string dispName, string fileName, string url, double x, double 
 	output << "               - CHAT \"Got it, thanks!\"" << endl;
 	}
 	else{
-	output << "              - CHAT \"You can learn more at " << url << "\"" << endl;
+	output << "              - CHAT \"You can learn more at " << dispUrl << "\"" << endl;
 	output << "              - WAIT 3" << endl;
 	output << "              - CHAT \"Say <Gold>quiz<green> to begin!\"" << endl;
 	output << "        2:" << endl;
@@ -247,10 +257,10 @@ void generateYML(string dispName, string fileName, string url, double x, double 
 	output << "            - WAIT 3" << endl;
 	output << "            - CHAT \"If you want to give me a recording, say <Gold>submit<green> so I can hear it!\"" << endl;
 	output << "            - WAIT 3" << endl;
-	output << "            - CHAT \"Otherwise, <Gold>click<green> this link to the story! "<< url << "\"" << endl;
+	output << "            - CHAT \"Otherwise, <Gold>click<green> this link to the story! "<< dispUrl << "\"" << endl;
 	}
 	else{
-	output << "            - CHAT \"You can learn more at " << url << "\"" << endl;
+	output << "            - CHAT \"You can learn more at " << dispUrl << "\"" << endl;
 	output << "            - WAIT 3" << endl;
 	output << "            - CHAT \"Say <Gold>quiz<green> to begin!\"" << endl;
 	}
@@ -259,11 +269,11 @@ void generateYML(string dispName, string fileName, string url, double x, double 
 	output << "  Type: Task" << endl;
 	output << "  Script:" << endl;
 	output << "    - FLAG NPC <player.name>:0" << endl;
-	//output << "    - URL \"https://www.tinyurl.com/llkalite/complete/" << fileName << "/<player.name>\" <player.name>" << endl;
+	//output << "    - URL \"https://www.tinyurl.com/llkalite/complete/" << url << "/<player.name>\" <player.name>" << endl;
 	output << "    - URL \"http://isitthursday.org/\" <player.name>" << endl;
 	output << "    - IF \"<FLAG.N:<player.name>>\" == \"0\" CHAT \"You have not finished this peak yet!\"" << endl;
 	output << "    - IF \"<FLAG.N:<player.name>>\" == \"0\" WAIT 2" << endl;
-	output << "    - IF \"<FLAG.N:<player.name>>\" == \"0\" CHAT \"Try some practice at " << url << "\"" << endl;
+	output << "    - IF \"<FLAG.N:<player.name>>\" == \"0\" CHAT \"Try some practice at " << dispUrl << "\"" << endl;
 	output << "    - IF \"<FLAG.N:<player.name>>\" == \"1\" CHAT \"You have completed this peak!\"" << endl;
 	output << "    - IF \"<FLAG.N:<player.name>>\" == \"1\" CHAT \"Congratulations!\"" << endl;
 	}
