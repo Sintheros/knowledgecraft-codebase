@@ -19,7 +19,7 @@ def login():
     username = 'knowledgecraft'
     password = 'knowledgecraft'
     facility = 'dbae7005f9b45ce082b5fe0a0985946a'
-     
+    print 'Logging In...' 
     go(page)
     print "Forms:"
     showforms()
@@ -32,7 +32,7 @@ def login():
         fv("1", "facility", facility)
         #fv("1", "csrfmiddlewaretoken", '3F1bMuIIM9ERzcp6ceEyFxlT51yJKsK6')
         submit('0')
-        content = show()
+        content = showSilently()
         print 'debug twill post content:', content
      
     except urllib2.HTTPError, e:
@@ -45,8 +45,8 @@ def login():
 def queryOnePage(topic='addition-subtraction'): #this is the reference tester.  looks specifically for addition-subtraction
     page = "http://129.21.142.118:8008/coachreports/?group=1535408fa1415e25a4c781b63e66068c&topic=" + topic
     #manually extracted from URL
-    go(page)
     print
+    go(page)
     print 'Retrieving data for topic', topic
     content = showSilently()
     #print 80*'\n'
@@ -95,22 +95,16 @@ def showData(coachingPageData):
             print userName, TAB, userStatuses[userName][i], TAB, exerciseHREFs[i]
 
 
-login()
-
-
 
 def getTopics( coachReportsPage ):
     go( "http://129.21.142.118:8008/coachreports/" )
-    soup = BeautifulSoup( show() )
+    soup = BeautifulSoup( showSilently() )
     #get all the topics (like 'addition-subtraction') from the select widget on the page 
     selectDivs = soup.findAll('div', {'class':'selection'}) 
     divWIthTopics = selectDivs[1]
     optionTags = divWIthTopics.findAll('option')[1:] #first one is empty
     return [option['value'] for option in optionTags]
 
-
-
-topics = getTopics("http://129.21.142.118:8008/coachreports/")
 
 def sanityCheck():
     #Sanity-check display addition-subtraction to test
@@ -133,11 +127,14 @@ def createMemberAndTopicDict():
         for href in D['exerciseHREFs']:
             shortName = getShortName( href)
             memberAndTopic[ shortName ] = topic
-            print shortName, '\t is in \t', topic   
+            print shortName, '\t\t is in \t', topic
     return memberAndTopic
 
+
+login()
+topics = getTopics("http://129.21.142.118:8008/coachreports/")
 memberAndTopics = createMemberAndTopicDict()
-    
+
         
     
 
