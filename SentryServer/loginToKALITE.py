@@ -1,4 +1,4 @@
-#!/usr/bin/env ipython 
+#!/usr/bin/env ipython -i
 from BeautifulSoup import BeautifulSoup
 from pprint import pprint as P
 
@@ -96,7 +96,7 @@ def showData(coachingPageData):
 
 
 
-def getTopics( coachReportsPage ):
+def getTopicsFromCoachReportsPage( ):
     go( "http://129.21.142.118:8008/coachreports/" )
     soup = BeautifulSoup( showSilently() )
     #get all the topics (like 'addition-subtraction') from the select widget on the page 
@@ -120,6 +120,8 @@ def createMemberAndTopicDict():
     """Use this dictionary later to look up the topic, given the member's short name:
        the shortName for the href, /math/arithmetic/addition-subtraction/basic_addition/e/number_line/ 
        is number_line
+       
+       NOTE: userStatuses will change.  Probably shouldn't be part returned here.
     """
     for topic in topics:
         D= queryOnePage( topic) 
@@ -129,13 +131,6 @@ def createMemberAndTopicDict():
             memberAndTopic[ shortName ] = topic
             print shortName, '\t\t is in \t', topic
     return memberAndTopic
-
-
-login()
-topics = getTopics("http://129.21.142.118:8008/coachreports/")
-memberAndTopics = createMemberAndTopicDict()
-
-        
     
 
 """ OK so at this point, given an exercise shortName, we need to  
@@ -145,11 +140,24 @@ memberAndTopics = createMemberAndTopicDict()
             finding the ordinal position P of that topic in the exerciseHREFs
             finding  userStatuses[P] for our user
             
-
-#def status(username, exerciseHREF ):
-shortName = getShortName( href)
-topic = memberAndTopics[ shortName ]
-D = queryOnePage(topic)
-
-
 """
+def status(userName='test_user', href='/math/arithmetic/addition-subtraction/basic_addition/e/number_line/' ):
+    shortName = getShortName( href)
+    topic = memberAndTopics[ shortName ]
+    print shortName, 'is in', topic
+    D = queryOnePage(topic)
+    userNames, userStatuses, exerciseHREFs = D['userNames'], D['userStatuses'], D['exerciseHREFs']
+    #userName = 'user'
+    status = userStatuses[ userName ][ exerciseHREFs.index( href ) ]
+    return status
+
+
+login()
+topics = getTopicsFromCoachReportsPage()
+memberAndTopics = createMemberAndTopicDict()
+#note usersStatuses shold 
+
+print
+print "status('test_user', '/math/arithmetic/addition-subtraction/basic_addition/e/number_line/')",
+print status('test_user', '/math/arithmetic/addition-subtraction/basic_addition/e/number_line/')
+
