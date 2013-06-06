@@ -13,7 +13,8 @@ import os # os. path
 CWD = os.path.abspath('.')
 ## print CWD
 
-# PORT = 8080     
+PORT = 29876
+
 UPLOAD_PAGE = 'upload.html' # must contain a valid link with address and port of the server     s
 
 
@@ -73,7 +74,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 else:
                     self.wfile.write('<i>Get with the program:\n</i>')
                     self.wfile.write('You are really expected to provide an URL like<br/>')
-                    self.wfile.write('<a href="http://localhost:8080/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/"> http://localhost:8080/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/</a><hr>')
+                    self.wfile.write('<a href="http://localhost:29876/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/"> http://localhost:29876/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/</a><hr>')
                     self.wfile.write(page)
                         
                     
@@ -102,7 +103,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write('here is a directory,  but file-serving has been disabled<hr>')
                 self.wfile.write('You are really expected to provide an URL like<br/>')
-                self.wfile.write('<a href="http://localhost:8080/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/"> http://localhost:8080/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/</a><hr>')
+                self.wfile.write('<a href="http://localhost:29876/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/"> http://localhost:29876/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/</a><hr>')
                 self.wfile.write(page)
                 return     
 
@@ -226,11 +227,11 @@ def timestamp():
 def main():
 
     try:
-        server = HTTPServer(('', 8080), MyHandler)
+        server = HTTPServer(('', 29876), MyHandler)
         print
         print 'OK: ready to respond.'
         print 'started httpserver',  timestamp()
-        print 'try http://localhost:8080/KALITE'
+        print 'try http://localhost:29876/KALITE'
         server.serve_forever()
     except KeyboardInterrupt:
         print '^C received, shutting down server'
