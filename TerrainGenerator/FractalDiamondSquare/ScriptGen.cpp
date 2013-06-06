@@ -11,8 +11,7 @@ using namespace std;
 void Scriptifier();
 string truncURL(string url);
 void generateYML(string dispName, string fileName, string url, string dispUrl, double x, double y, double z, string subject, bool isMath, bool isReading);
-void generateMasterSentry(int entry, string fileNames[], string displayNames[], double highestX, double highestY, double highestZ, string subject);
-
+void generateMasterSentry(int entry, string fileNames[], string displayNames[], string displayNamesSmall[], double highestX, double highestY, double highestZ, string subject);
 
 ScriptGen::ScriptGen(void)
 {
@@ -47,6 +46,7 @@ void Scriptifier()
 	string fileName;
 	string fileNames[1000];
 	string displayNames[1000];
+	string displayNamesSmall[1000];
 	string url = "PLACEHOLDER_URL";
 	double x;
 	double y;
@@ -90,6 +90,10 @@ void Scriptifier()
 		else if(ticker==2)
 		{
 			displayNames[entry] = dispName;
+			string dispNameSmall = dispName;
+			if(dispNameSmall.length()>16)
+				dispNameSmall.resize(16);
+			displayNamesSmall[entry] = dispNameSmall;
 			buffer.replace(buffer.find(","), 1, "");
 			fileName = buffer;
 			while(fileName.find_first_of(".") != string::npos )
@@ -128,6 +132,12 @@ void Scriptifier()
 		{
 			url = buffer;
 			string dispUrl = truncURL(url);
+			if(isMath)
+				if(url.find_first_of("http://129.21.142.218:8008/") != string::npos )
+				{
+					url.replace(url.find("http://129.21.142.218:8008/"), 27, ""); //GET RID OF THAT SLASH ON THE END when regen-ing
+					cout << url << endl;
+				}
 			generateYML(dispName,fileName,url,dispUrl,x,y,z,subject,isMath,isReading);
 			cout << fileName << " Sentry Generated." << endl;
 			ticker = 1;
@@ -137,7 +147,7 @@ void Scriptifier()
 	}
 
 	input.close();
-	generateMasterSentry(entry, fileNames, displayNames, highestX, highestY, highestZ, subject);
+	generateMasterSentry(entry, fileNames, displayNames, displayNamesSmall, highestX, highestY, highestZ, subject);
 	cout << "Sentry Generation COMPLETE" << endl;
 
 }
@@ -269,13 +279,12 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output << "  Type: Task" << endl;
 	output << "  Script:" << endl;
 	output << "    - FLAG NPC <player.name>:0" << endl;
-	//output << "    - URL \"https://www.tinyurl.com/llkalite/complete/" << url << "/<player.name>\" <player.name>" << endl;
-	output << "    - URL \"http://isitthursday.org/\" <player.name>" << endl;
+	output << "    - URL \"http://129.21.142.218:29876/KALITE?userName=<player.name>&HREF=" << url << "\" <player.name>" << endl;
+	output << "    - IF \"<FLAG.N:<player.name>>\" == \"Complete\" FLAG NPC <player.name>:1 ELSE FLAG NPC <player.name>:0" << endl;
 	output << "    - IF \"<FLAG.N:<player.name>>\" == \"0\" CHAT \"You have not finished this peak yet!\"" << endl;
 	output << "    - IF \"<FLAG.N:<player.name>>\" == \"0\" WAIT 2" << endl;
 	output << "    - IF \"<FLAG.N:<player.name>>\" == \"0\" CHAT \"Try some practice at " << dispUrl << "\"" << endl;
-	output << "    - IF \"<FLAG.N:<player.name>>\" == \"1\" CHAT \"You have completed this peak!\"" << endl;
-	output << "    - IF \"<FLAG.N:<player.name>>\" == \"1\" CHAT \"Congratulations!\"" << endl;
+	output << "    - IF \"<FLAG.N:<player.name>>\" == \"1\" CHAT \"I see you have completed this topic! Congratulations!\"" << endl;
 	}
   /*output << "            - IF \"<flag:Correct_" << fileName << " || 0>\" == \"0\" FLAG \"Correct_" << fileName << ":0\"" << endl;
   /*output << "        exit:" << endl;
@@ -302,7 +311,7 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output.close();
 }
 //Create the Master Sentry here.
-void generateMasterSentry(int entry, string fileNames[], string displayNames[], double highestX, double highestY, double highestZ, string subject)
+void generateMasterSentry(int entry, string fileNames[], string displayNames[], string displayNamesSmall[], double highestX, double highestY, double highestZ, string subject)
 {
 	ofstream output;
 
@@ -338,7 +347,16 @@ void generateMasterSentry(int entry, string fileNames[], string displayNames[], 
 			output << "                - execute as_npc \"npc create " << displayNames[i] << "\"" << endl;
 			output << "                - execute as_npc \"npc assignment --set AssignmentSentry_" << fileNames[i] << "\"" << endl;
 		}
-	output << "                - FINISH" << endl;
+	output << "            2:" << endl;
+	output << "                Trigger: /Delete/ the sentries on this landscape." << endl;
+	output << "                Script:" << endl;
+
+	for(int i=0; i<1000; i++)
+		if(fileNames[i]!="BLANK")
+		{
+			output << "                - execute as_npc \"npc select " << displayNamesSmall[i] << "\"" << endl;
+			output << "                - execute as_npc \"npc remove " << displayNamesSmall[i] << "\"" << endl;
+		}
 
 	output.close();
 }
