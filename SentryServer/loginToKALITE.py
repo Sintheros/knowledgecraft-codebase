@@ -3,7 +3,7 @@ from BeautifulSoup import BeautifulSoup
 from pprint import pprint as P
 
 from twill.commands import go, showforms, formclear, fv, show, submit
-
+import urllib2
 
 from twill import set_output
 from StringIO import StringIO
@@ -14,11 +14,19 @@ def showSilently( ):
     return ret
 
 
+s218 = False
 def login():
-    page = 'http://129.21.142.118:8008/securesync/login/'
-    username = 'knowledgecraft'
-    password = 'knowledgecraft'
-    facility = 'dbae7005f9b45ce082b5fe0a0985946a'
+    if s218:
+        page = 'http://129.21.142.218:8008/securesync/login/'
+        username = 'JSteacher'
+        password = 'poipoi99'
+        facility = 'dbae7005f9b45ce082b5fe0a0985946a'
+    else:
+        page = 'http://129.21.142.118:8008/securesync/login/'
+        username = 'knowledgecraft'
+        password = 'knowledgecraft'
+        facility = 'dbae7005f9b45ce082b5fe0a0985946a'
+
     print 'Logging In...' 
     go(page)
     print "Forms:"
@@ -40,10 +48,10 @@ def login():
     except IOError, e:
         print e
     except:
-        passexit
+        pass
 
 def queryOnePage(topic='addition-subtraction'): #this is the reference tester.  looks specifically for addition-subtraction
-    page = "http://129.21.142.118:8008/coachreports/?group=1535408fa1415e25a4c781b63e66068c&topic=" + topic
+    page = "http://129.21.142.118:8008/coachreports/?group=4e7558068ed856c0a4bc0b5661208863&topic=" + topic
     #manually extracted from URL
     print
     go(page)
