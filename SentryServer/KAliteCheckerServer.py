@@ -71,9 +71,11 @@ class MyHandler(BaseHTTPRequestHandler):
                     userName = parsedQuery['userName'][0]
                     HREF =  parsedQuery['HREF'][0]                    
                 else:
-                    self.wfile.write('<i>Get with the program:  I expect an URL like \n</i>')
-                    self.wfile.write('http://localhost:8080/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/')
-                    
+                    self.wfile.write('<i>Get with the program:\n</i>')
+                    self.wfile.write('You are really expected to provide an URL like<br/>')
+                    self.wfile.write('<a href="http://localhost:8080/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/"> http://localhost:8080/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/</a><hr>')
+                    self.wfile.write(page)
+                        
                     
                 try:
                     self.wfile.write(status( userName, HREF ) )
@@ -99,6 +101,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_header('Content-type',	'text/html')
                 self.end_headers()
                 self.wfile.write('here is a directory,  but file-serving has been disabled<hr>')
+                self.wfile.write('You are really expected to provide an URL like<br/>')
+                self.wfile.write('<a href="http://localhost:8080/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/"> http://localhost:8080/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/</a><hr>')
                 self.wfile.write(page)
                 return     
 
