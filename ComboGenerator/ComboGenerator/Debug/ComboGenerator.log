@@ -1,0 +1,24 @@
+﻿Build started 6/12/2013 11:33:47 AM.
+     1>Project "C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\ComboGenerator\ComboGenerator.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\ComboGenerator.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\ComboGenerator\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ScriptGen.cpp
+         ScriptGen.cpp
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\Debug\ComboGenerator.exe" /NOLOGO /LIBPATH:"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\ComboGenerator\lib\Release" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\ComboGenerator.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\Debug\ComboGenerator.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\Debug\ComboGenerator.lib" /MACHINE:X86 Debug\DiamondSquareAlg.obj
+         Debug\glfont2.obj
+         Debug\Node.obj
+         Debug\ScriptGen.obj
+         LINK : C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\Debug\ComboGenerator.exe not found or not built by the last incremental link; performing full link
+         ComboGenerator.vcxproj -> C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\Debug\ComboGenerator.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\Debug\ComboGenerator.exe;#1" /manifest Debug\ComboGenerator.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Deleting file "Debug\ComboGenerator.unsuccessfulbuild".
+         Touching "Debug\ComboGenerator.lastbuildstate".
+     1>Done Building Project "C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\ComboGenerator\ComboGenerator.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.27
