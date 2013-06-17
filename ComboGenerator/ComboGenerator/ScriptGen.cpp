@@ -12,6 +12,7 @@ void Scriptifier();
 void populate(bool isMath);
 string truncURL(string url);
 void generateYML(string dispName, string fileName, string url, string dispUrl, double x, double y, double z, string subject, bool isMath, bool isReading, int numPreReqs, string preReqs[], string associatedDispNames[], string associatedUrls[]);
+void generateGrad(double x, double y,double z, string subject, int numPreReqs, string preReqs[], string associatedDispNames[] , string associatedUrls[]);
 void generateMasterSentry(int entry, string displayNamesSmall[], double highestX, double highestY, double highestZ, string subject);
 
 string const KALITEURL = "http://129.21.142.218:8008";
@@ -204,9 +205,9 @@ void Scriptifier()
 				}
 			}
 
-			//if(fileName.find("graduation") != string::npos)
-			//	cout << "grad" << endl;
-			//else
+			if(fileName.find("graduation") != string::npos)
+				generateGrad(x,y,z,subject,numPreReqs,preReqs,associatedDispNames,associatedUrls);
+			else
 				generateYML(dispName,fileName,url,dispUrl,x,y,z,subject,isMath,isReading,numPreReqs,preReqs,associatedDispNames,associatedUrls);
 			cout << fileName << " Sentry Generated." << endl;
 
@@ -364,6 +365,8 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output << "      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8" << endl;
 	output << "      - execute as_server \"npc select <npc.id>\"" << endl;
 	output << "      - execute as_server \"npc lookclose\"" << endl;
+	output << "    On Unavailable:" << endl;
+	output << "      - CHAT \"I'm busy! Just a moment, please!\"" << endl;
 	output << "  Interact Scripts:" << endl;
 	output << "  - 1 Greeting_" << fileName << endl;
 	output << "'Greeting_" << fileName << "':" << endl;
@@ -376,6 +379,7 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output << "        1:" << endl;
 	output << "            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?" << endl;
 	output << "            Script:" << endl;
+	output << "              - ENGAGE" << endl;
 	output << "              - CHAT \"This is the home of " << dispName << "!\"" << endl;
 	output << "              - WAIT 2" << endl;
 	if(isMath){
@@ -392,32 +396,41 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output << "              - WAIT 3" << endl;
 	output << "              - CHAT \"If you want to give me a recording, say <Gold>submit<green> so I can hear it!\"" << endl;
 	output << "              - WAIT 3" << endl;
-	output << "              - CHAT \"Otherwise, <blue>click<green> this link to the story! "<< dispUrl << "\"" << endl;
+	output << "              - CHAT \"Otherwise, <white>click<green> this link to the story! "<< dispUrl << "\"" << endl;
+	output << "              - DISENGAGE" << endl;
 	output << "        2:" << endl;
 	output << "            Trigger: I'm ready to /Regex:Submit|submit/ my reading!" << endl;
 	output << "            Script:" << endl;
+	output << "               - ENGAGE" << endl;
 	output << "               - CHAT \"Great! Let's hear it! <Gold>[Paste your recording's URL!]<green>\"" << endl;
+	output << "               - DISENGAGE" << endl;
 	output << "        3:" << endl;             
     output << "            Trigger: /REGEX:www.astorybeforebed.+/" << endl;
 	output << "            Script:" << endl;
+	output << "               - ENGAGE" << endl;
     output << "               - FLAG NPC <player.name>:<player.chat_history>" << endl;
 	output << "               - TWEET \"Check it out! <player.name> reads " << dispName << "! <FLAG.N:<player.name>>\" learninglandscape"<< endl;
 	output << "               - CHAT \"Got it, thanks!\"" << endl;
+	output << "               - DISENGAGE" << endl;
 	}
 	else{
 	output << "              - CHAT \"You can learn more at " << dispUrl << "\"" << endl;
 	output << "              - WAIT 3" << endl;
 	output << "              - CHAT \"Say <Gold>quiz<green> to begin!\"" << endl;
+	output << "              - DISENGAGE" << endl;
 	output << "        2:" << endl;
 	output << "            Trigger: /Regex:Quiz|quiz/ me!" << endl;
 	output << "            Script:" << endl;
+	output << "               - ENGAGE" << endl;
 	output << "               - execute as_server \"npc select <npc.id>\"" << endl;
 	output << "               - execute as_server \"npc assignment --set questions_" << fileName << endl;
 	output << "               - CHAT \"Right click me for a question!\"" << endl;
+	output << "               - DISENGAGE" << endl;
 	}
 	output << "      Proximity Trigger:" << endl;
 	output << "        entry:" << endl;
 	output << "          Script:" << endl;
+	output << "            - ENGAGE" << endl;
 	output << "            - CHAT \"This is the home of " << dispName << "!\"" << endl;
 	output << "            - WAIT 2" << endl;
 	if(isMath){
@@ -434,12 +447,14 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output << "            - WAIT 3" << endl;
 	output << "            - CHAT \"If you want to give me a recording, say <gold>submit<green> so I can hear it!\"" << endl;
 	output << "            - WAIT 3" << endl;
-	output << "            - CHAT \"Otherwise, <blue>click<green> this link to the story! "<< dispUrl << "\"" << endl;
+	output << "            - CHAT \"Otherwise, <white>click<green> this link to the story! "<< dispUrl << "\"" << endl;
+	output << "            - DISENGAGE" << endl;
 	}
 	else{
 	output << "            - CHAT \"You can learn more at " << dispUrl << "\"" << endl;
 	output << "            - WAIT 3" << endl;
 	output << "            - CHAT \"Say <gold>quiz<green> to begin!\"" << endl;
+	output << "            - DISENGAGE" << endl;
 	}
 	if(isMath){
 	output << "'Sentry_" << fileName << "_KA':" << endl;
@@ -467,7 +482,7 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	{
 		output << "    - IF \"<FLAG.G:<player.name>_" << fileName <<">\" == \"1\" FLAG NPC <player.name>_PR:"<< numPreReqs << endl;
 		output << "    - IF \"<FLAG.N:<player.name>_PR>\" != \"" << numPreReqs << "\" WAIT 2" << endl;
-		output << "    - IF \"<FLAG.N:<player.name>_PR>\" != \"" << numPreReqs << "\" CHAT \"This peak may be <blue>above your current skill level<green>!\"" << endl;
+		output << "    - IF \"<FLAG.N:<player.name>_PR>\" != \"" << numPreReqs << "\" CHAT \"This peak may be <white>above your current skill level<green>!\"" << endl;
 		output << "    - IF \"<FLAG.N:<player.name>_PR>\" != \"" << numPreReqs << "\" WAIT 2" << endl;
 		output << "    - IF \"<FLAG.N:<player.name>_PR>\" == \"" << numPreReqs - 1 << "\" CHAT \"You may wish to try the earlier topic first...\"" << endl;
 		output << "    - IF \"<FLAG.N:<player.name>_PR>\" < \"" << numPreReqs - 1 << "\" CHAT \"You may wish to try the earlier topics first...\"" << endl;
@@ -475,8 +490,81 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 
 	for(int i=0; i<numPreReqs; i++)
 		output << "    - IF \"<FLAG.G:<player.name>_" << preReqs[i] <<">\" == \"0\" CHAT \"<white>" << associatedDispNames[i] << "<green>\"" << endl;
+	output << "    - DISENGAGE" << endl;
 
 	}
+
+	output.close();
+}
+
+void generateGrad(double x, double y,double z, string subject, int numPreReqs, string preReqs[], string associatedDispNames[] , string associatedUrls[])
+{
+	ofstream output;
+
+	output.open("Sentry_graduation_"+subject+".yml");
+
+	output << "#This Sentry will appear at node: Graduation" << endl;
+	output << "\"AssignmentSentry_graduation_" << subject << "\":" << endl;
+	output << "  Type: Assignment" << endl;
+	output << "  Actions:" << endl;
+	output << "    On Assignment:" << endl;
+	output << "      - FLAG NPC SentryX:<FLAG.G:MasterX_" << subject << ">" << endl;
+	output << "      - FLAG NPC SentryY:<FLAG.G:MasterY_" << subject << ">" << endl;
+	output << "      - FLAG NPC SentryZ:<FLAG.G:MasterZ_" << subject << ">" << endl;
+	output << "      - FLAG NPC \"SentryX:+:"<<x<<"\"" << endl;
+	output << "      - FLAG NPC \"SentryY:+:"<<y<<"\"" << endl;
+	output << "      - FLAG NPC \"SentryZ:+:"<<z<<"\"" << endl;
+	output << "      - TELEPORT NPC \"location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world\"" << endl;
+	output << "      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8" << endl;
+	output << "      - execute as_server \"npc select <npc.id>\"" << endl;
+	output << "      - execute as_server \"npc lookclose\"" << endl;
+	output << "    On Unavailable:" << endl;
+	output << "      - CHAT \"I'm busy! Just a moment, please!\"" << endl;
+	output << "  Interact Scripts:" << endl;
+	output << "  - 1 Greeting_graduation_" << subject << endl;
+	output << "'Greeting_graduation_" << subject << "':" << endl;
+	output << "  Type: Interact" << endl;
+	output << "  Requirements:" << endl;
+	output << "    Mode: All" << endl;
+	output << "  Steps:" << endl;
+	output << "    1:" << endl;
+	output << "      Chat Trigger:" << endl;
+	output << "        1:" << endl;
+	output << "            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?" << endl;
+	output << "            Script:" << endl;
+	output << "              - ENGAGE" << endl;
+	output << "              - CHAT \"This is the highest peak on " << subject << " Mountain!\"" << endl;
+	output << "              - WAIT 2" << endl;
+	output << "              - RUNTASK \"Sentry_graduation_" << subject << "_KA\"" << endl;
+	output << "'Sentry_graduation_" << subject << "_KA':" << endl;
+	output << "  Type: Task" << endl;
+	output << "  Script:" << endl;
+	output << "    - FLAG NPC <player.name>:0" << endl;
+	output << "    - FLAG NPC <player.name>_PR:" << numPreReqs << endl; //Number of completed pre-reqs. 0 is none. Max is all.
+	output << "    - FLAG GLOBAL <player.name>_graduation_" << subject << ":0" << endl; //0 represents an incomplete peak. 1 represents a completed peak.
+
+
+	for(int i=0; i<numPreReqs; i++)
+	{
+		output << "    - FLAG GLOBAL <player.name>_" << preReqs[i] << ":0" << endl;
+		output << "    - URL \"" << URLFUNCTION + associatedUrls[i] << "\" <player.name>" << endl;
+		output << "    - IF \"<FLAG.N:<player.name>>\" == \"Complete\" FLAG GLOBAL <player.name>_" << preReqs[i] <<":1 ELSE FLAG GLOBAL <player.name>_" << preReqs[i] << ":0" << endl;
+		output << "    - IF \"<FLAG.G:<player.name>_" << preReqs[i] <<">\" == \"0\" FLAG NPC \"<player.name>_PR:-:1\"" << endl;
+	}
+
+	if(numPreReqs!=0)
+	{
+		output << "    - IF \"<FLAG.N:<player.name>_PR\" == \"" << numPreReqs << "\" FLAG GLOBAL <player.name>_graduation_" << subject << ":1 ELSE FLAG GLOBAL <player.name>_graduation_" << subject << ":0" << endl;
+		output << "    - IF \"<FLAG.N:<player.name>_PR\" != \"" << numPreReqs << "\" CHAT \"To truly master " << subject << ", you should try the following first..." << endl; 
+		output << "    - IF \"<FLAG.N:<player.name>_PR\" != \"" << numPreReqs << "\" WAIT 2" << endl; 
+	}
+
+	for(int i=0; i<numPreReqs; i++)
+		output << "    - IF \"<FLAG.G:<player.name>_" << preReqs[i] <<">\" == \"0\" CHAT \"<white>" << associatedDispNames[i] << "<green>\"" << endl;
+
+	output << "    - IF \"<FLAG.G:<player.name>_graduation_" << subject <<">\" == \"1\" CHAT \"You have mastered " << subject << "! Congratulations!\"" << endl;
+	output << "    - DISENGAGE" << endl;
+
 
 	output.close();
 }
@@ -488,7 +576,7 @@ void generateMasterSentry(int entry, string displayNamesSmall[], double highestX
 
 	output.open("MASTER_Sentry_"+subject+".yml");
 
-	output << "#This is the MASTER SENTRY for " << entry << " different Sentries." << endl;
+	output << "#This is the MASTER SENTRY for " << entry << " different " << subject << " Sentries." << endl;
 	output << "\"AssignmentSentry_MASTER_" << subject << "\":" << endl;
 	output << "  Type: Assignment" << endl;
 	output << "  Interact Scripts:" << endl;
@@ -518,6 +606,9 @@ void generateMasterSentry(int entry, string displayNamesSmall[], double highestX
 			output << "                - execute as_npc \"npc create " << displayNames[i] << "\"" << endl;
 			output << "                - execute as_npc \"npc assignment --set AssignmentSentry_" << fileNames[i] << "\"" << endl;
 		}
+    output << "                - execute as_server \"denizen save\"" << endl;
+	output << "                - execute as_npc \"npc select master\"" << endl;
+	output << "                - execute as_npc \"npc remove\"" << endl;
 	output << "            2:" << endl;
 	output << "                Trigger: /Delete/ the sentries on this landscape." << endl;
 	output << "                Script:" << endl;

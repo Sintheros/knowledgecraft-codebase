@@ -1,10 +1,40 @@
-﻿Build started 6/12/2013 11:33:47 AM.
+﻿Build started 6/17/2013 10:40:01 AM.
      1>Project "C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\ComboGenerator\ComboGenerator.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\ComboGenerator.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\ComboGenerator\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ScriptGen.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\ComboGenerator\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt DiamondSquareAlg.cpp ScriptGen.cpp
          ScriptGen.cpp
+         DiamondSquareAlg.cpp
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\node.h(11): warning C4005: 'XMULTI' : macro redefinition
+                 c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.h(10) : see previous definition of 'XMULTI'
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\node.h(12): warning C4005: 'ZMULTI' : macro redefinition
+                 c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.h(11) : see previous definition of 'ZMULTI'
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(451): warning C4101: 'px' : unreferenced local variable
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1032): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1463): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1506): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1515): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1542): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1550): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1561): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1565): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1611): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1613): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1716): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(371) : see declaration of 'sprintf'
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(1745): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(2079): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(2085): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(2097): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(2115): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(2139): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(2148): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(2160): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(2185): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(2227): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\mitre_dev\documents\github\learninglandscape-codebase\combogenerator\combogenerator\diamondsquarealg.cpp(2235): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
        Link:
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\Debug\ComboGenerator.exe" /NOLOGO /LIBPATH:"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\ComboGenerator\lib\Release" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\ComboGenerator.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\Debug\ComboGenerator.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\MITRE_Dev\Documents\GitHub\learninglandscape-codebase\ComboGenerator\Debug\ComboGenerator.lib" /MACHINE:X86 Debug\DiamondSquareAlg.obj
          Debug\glfont2.obj
@@ -21,4 +51,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.27
+Time Elapsed 00:00:02.47

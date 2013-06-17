@@ -1680,7 +1680,7 @@ void initTerrain()
 
                     for(int k = 0; k < steps; ++k) {
 
-                        schematic[(int)y * size * size + (int)(z + zmod) * size + (int)(x + xmod)] = BLOCK_COBBLE;
+                        schematic[(int)y * size * size + (int)(z + zmod) * size + (int)(x + xmod)] = BLOCK_PLAINS;
 
                         x += dx;
                         y += dy;
@@ -1696,7 +1696,7 @@ void initTerrain()
 
                     for(int k = 0; k < steps; ++k) {
 
-                        schematic[(int)y * size * size + (int)(z + zmod) * size + (int)(x + xmod)] = BLOCK_COBBLE;
+                        schematic[(int)y * size * size + (int)(z + zmod) * size + (int)(x + xmod)] = BLOCK_PLAINS;
 
                         x += dx;
                         y += dy;
