@@ -4,6 +4,7 @@
 #include "math.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <vector>
 #include <glut.h>
 #include <ctime>    // For time()
@@ -84,7 +85,7 @@ static float gamma = 0, beta =15 , alpha = 0;
 static float posX = 0, posZ = 0, posY = -2;
 
 const char filenm[100] = "Ignore.txt";
-char FN[100];
+string FN;
 
 //Constants for the IDs of certain block types in Minecraft
 const char BLOCK_NONE = 0;
@@ -1405,7 +1406,10 @@ void initTerrain()
 	//Could be higher or lower, but causes exponential file size increase/decrease
 	cout << "Enter Level of Detail (9, 10, or 11):\n";
 	int det;
-	cin >> det;
+	string sDet;
+	getline(cin,sDet);
+
+	det = atoi(sDet.c_str());
 
 	detail = det;
 	size = (1 << detail) + 1;
@@ -1485,11 +1489,15 @@ void initTerrain()
 	//get the x and z multipliers fromt he user to allow for easier trial and error and manipulation
 	cout << "Enter X Multiplier:\n";
 	float xIn;
-	cin >> xIn;
+	string sxIn;
+	getline(cin,sxIn);
+	xIn = atof(sxIn.c_str());
 
 	cout << "Enter Z Multiplier:\n";
 	float zIn;
-	cin >> zIn;
+	string szIn;
+	getline(cin,szIn);
+	zIn = atof(szIn.c_str());
 
 	//Make the X and Z values take up Multiplier percent of the screen
 	//EX: an X Multiplier of 80 means the (-100, 100) range will be given at minimum -80 and at maximum 80
@@ -1974,7 +1982,8 @@ void treeBuilder()
 
 	//get filename from user
 	cout << "Enter Formtted Text File name for input:\n";
-	cin >> FN;
+
+	getline(cin,FN);
 
 	ifstream dFile;
 	dFile.open(FN);

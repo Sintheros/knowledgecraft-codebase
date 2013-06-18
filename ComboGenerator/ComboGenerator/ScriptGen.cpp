@@ -19,6 +19,7 @@ string const KALITEURL = "http://129.21.142.218:8008";
 string const URLFUNCTION = "http://129.21.142.218:29876/KALITE?userName=<player.name>&HREF=";
 string fileNames[1000];
 string displayNames[1000];
+string displayNamesSmall[1000];
 string urls[1000];
 
 ScriptGen::ScriptGen(void)
@@ -36,7 +37,7 @@ void Scriptifier()
 	string subject;
 
 	cout << "Enter subject (Math, Biology, etc. Don't put in spaces.): " << endl;
-	cin >> subject;
+	getline(cin,subject);
 
 	string buffer;
 
@@ -53,7 +54,6 @@ void Scriptifier()
 	string fileName;
 	string associatedDispNames[1000];
 	string associatedUrls[1000];
-	string displayNamesSmall[1000];
 	string url = "PLACEHOLDER_URL";
 	string dispUrl = "PLACEHOLDER_DISP";
 	double x;
@@ -97,15 +97,6 @@ void Scriptifier()
 		}
 		else if(ticker==2)
 		{
-			string dispNameSmall = dispName;
-			if(dispNameSmall.length()>16)
-			{
-				//cout << "[WARNING]: Display name length exceeds 16, please rename: " << dispNameSmall << endl;
-				//getline(cin,dispNameSmall);
-				//if(dispNameSmall.length()>16)
-					dispNameSmall.resize(16);
-			}
-			displayNamesSmall[entry] = dispNameSmall;
 			buffer.replace(buffer.find(","), 1, "");
 			fileName = buffer;
 			while(fileName.find_first_of(".") != string::npos )
@@ -183,7 +174,8 @@ void Scriptifier()
 						for(int i=0; i<1000; i++)
 							if(fileNames[i] == preReqs[numPreReqs-1])
 							{
-								associatedDispNames[numPreReqs-1] = displayNames[i];
+								associatedDispNames[numPreReqs-1] = displayNamesSmall[i];
+								//associatedDispNames[numPreReqs-1] = displayNames[i];
 								associatedUrls[numPreReqs-1] = urls[i];
 							}
 						numPreReqs++;
@@ -195,8 +187,8 @@ void Scriptifier()
 						for(int i=0; i<1000; i++)
 							if(fileNames[i] == preReqs[numPreReqs-1])
 							{
-								//associatedDispNames[numPreReqs-1] = displayNamesSmall[i];
-								associatedDispNames[numPreReqs-1] = displayNames[i];
+								associatedDispNames[numPreReqs-1] = displayNamesSmall[i];
+								//associatedDispNames[numPreReqs-1] = displayNames[i];
 								associatedUrls[numPreReqs-1] = urls[i];
 							}
 						allPreReqs = true;
@@ -255,6 +247,15 @@ void populate(bool isMath)
 		else if(ticker==2)
 		{
 			displayNames[entry] = DN;
+
+			string dispNameSmall = DN;
+			while(dispNameSmall.length()>16)
+			{
+				cout << "[WARNING]: Display name length exceeds 16, please rename: " << dispNameSmall << endl;
+				getline(cin,dispNameSmall);
+			}
+			displayNamesSmall[entry] = dispNameSmall;
+			
 			buffer.replace(buffer.find(","), 1, "");
 			FN = buffer;
 			while(FN.find_first_of(".") != string::npos )
