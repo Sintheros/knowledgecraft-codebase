@@ -96,20 +96,15 @@ class MyHandler(BaseHTTPRequestHandler):
                 if 'userName' in parsedQuery and 'HREF' in parsedQuery:
                     userName = parsedQuery['userName'][0]
                     HREF =  parsedQuery['HREF'][0]                    
+                    try:
+                        self.wfile.write(status( userName, HREF ) )
+                    except KeyError as e:
+                        print 'ERROR:  KeyError:', e, 'userName', userName, 'HREF', HREF
+                        self.wfile.write('ERROR:  KeyError ' + str(e))
+                    return
                 else:
-                    self.wfile.write('<i>Get with the program:\n</i>')
-                    self.wfile.write('You are really expected to provide an URL like<br/>')
-                    self.wfile.write('<a href="http://localhost:29876/KALITE?userName=JSstudent&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/"> http://localhost:29876/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/</a><hr>')
-                    self.wfile.write(page)
-                        
-                    
-                try:
-                    self.wfile.write(status( userName, HREF ) )
-                except KeyError as e:
-                    print 'ERROR:  KeyError:', e, 'userName', userName, 'HREF', HREF
-                    self.wfile.write('ERROR:  KeyError ' + str(e))
-                return
-                
+                    self.wfile.write('<hr>ERROR!<br/>  ' + str( parsedQuery ).replace(',',',<br/><hr>' ) )
+                 
             
             
             if self.path.upper().startswith('/HTTP://KHANACADEMY.ORG'):
