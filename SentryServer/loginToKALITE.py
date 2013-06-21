@@ -167,7 +167,7 @@ def createMemberAndTopicDict():
             finding  userStatuses[P] for our user
             
 """
-def status(userName='test_user', href='/math/arithmetic/addition-subtraction/basic_addition/e/number_line/' ):
+def status(userName='JSstudent', href='/math/arithmetic/addition-subtraction/basic_addition/e/number_line/' ):
     shortName = getShortName( href)
     topic = memberAndTopics[ shortName ]
     print shortName, 'is in', topic

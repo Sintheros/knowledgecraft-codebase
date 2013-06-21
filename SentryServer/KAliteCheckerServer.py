@@ -15,6 +15,31 @@ CWD = os.path.abspath('.')
 
 PORT = 29876
 
+
+MSG = """Welcome to the KALite Checker Server.
+
+Here are some examples of the kinds of URLs you are expected to provide.
+
+http://localhost:29876/KALITE?userName=JSstudent&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/
+"""
+
+
+
+
+def linkify(MSG):
+    """ Turn URLs into clickable links"""
+    MSG =MSG.replace('\n',' <br/>\n')
+    fixedWords=[]
+    for word in MSG.split():
+        if 'http:' in word:
+            fixedWord = '<a href="' + word + '">\n' + word + '</a>\n'
+        else:
+            fixedWord = word
+        fixedWords.append(fixedWord)
+    return ' '.join(fixedWords).replace('<br/>','<br/>\n')
+ 
+ 
+
 UPLOAD_PAGE = 'upload.html' # must contain a valid link with address and port of the server     s
 
 
@@ -74,7 +99,7 @@ class MyHandler(BaseHTTPRequestHandler):
                 else:
                     self.wfile.write('<i>Get with the program:\n</i>')
                     self.wfile.write('You are really expected to provide an URL like<br/>')
-                    self.wfile.write('<a href="http://localhost:29876/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/"> http://localhost:29876/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/</a><hr>')
+                    self.wfile.write('<a href="http://localhost:29876/KALITE?userName=JSstudent&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/"> http://localhost:29876/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/</a><hr>')
                     self.wfile.write(page)
                         
                     
@@ -101,10 +126,8 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.send_header('Content-type',	'text/html')
                 self.end_headers()
-                self.wfile.write('here is a directory,  but file-serving has been disabled<hr>')
-                self.wfile.write('You are really expected to provide an URL like<br/>')
-                self.wfile.write('<a href="http://localhost:29876/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/"> http://localhost:29876/KALITE?userName=user&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/</a><hr>')
-                self.wfile.write(page)
+                self.wfile.write( linkify(MSG) )
+                #self.wfile.write(page)
                 return     
 
 
@@ -227,11 +250,14 @@ def timestamp():
 def main():
 
     try:
+        print MSG
+        import webbrowser
+        webbrowser.open( 'http://localhost:29876' )
+
         server = HTTPServer(('', 29876), MyHandler)
         print
         print 'OK: ready to respond.'
         print 'started httpserver',  timestamp()
-        print 'try http://localhost:29876/KALITE'
         server.serve_forever()
     except KeyboardInterrupt:
         print '^C received, shutting down server'
