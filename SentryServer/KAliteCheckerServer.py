@@ -16,14 +16,21 @@ CWD = os.path.abspath('.')
 PORT = 29876
 
 
-MSG = """Welcome to the KALite Checker Server.
+MSG = """
+
+Welcome to the KALite Checker Server.
 
 Here are some examples of the kinds of URLs you are expected to provide.
 
 http://localhost:29876/KALITE?userName=JSstudent&HREF=/math/arithmetic/addition-subtraction/basic_addition/e/number_line/
+
+http://localhost:29876/RANDQ?qFile=somefile.txt
+(If somefile.txt is in the same directory as KAliteCheckerServer.py, 
+you will get back a random line from that file.)
+
+
+
 """
-
-
 
 
 def linkify(MSG):
@@ -37,7 +44,6 @@ def linkify(MSG):
             fixedWord = word
         fixedWords.append(fixedWord)
     return ' '.join(fixedWords).replace('<br/>','<br/>\n')
- 
  
 
 UPLOAD_PAGE = 'upload.html' # must contain a valid link with address and port of the server     s
@@ -73,6 +79,12 @@ from loginToKALITE import status
 
 class MyHandler(BaseHTTPRequestHandler):
 
+    def startPage(self):
+        self.send_response(200)
+        self.send_header('Content-type',	'text/html')
+        self.end_headers()
+
+
     def do_GET(self):
         TESTING = False
         try:
@@ -105,6 +117,48 @@ class MyHandler(BaseHTTPRequestHandler):
                 else:
                     self.wfile.write('<hr>ERROR!<br/>  ' + str( parsedQuery ).replace(',',',<br/><hr>' ) )
                  
+                       
+            if self.path.upper().startswith('/RANDQ'):
+                qMSG = """
+                    Try http://localhost:29876/RANDQ?qFile=somefile.txt
+                """
+                self.send_response(200)
+                self.send_header('Content-type',	'text/html')
+                self.end_headers()
+
+                parsedURL = urlparse(self.path)
+                parsedQuery = parse_qs( parsedURL.query) 
+                
+                if TESTING:
+                    self.wfile.write('KALITE<hr><pre>')
+                    self.wfile.write('self.path: \t' + self.path + '\n\n')
+    
+                    self.wfile.write('parsedURL: ' +            str( parsedURL ) + '\n\n' )
+                    self.wfile.write('parsedURL.query: ' +      str( parsedURL.query ) + '\n\n')
+                    self.wfile.write('parse_qs( parsedURL.query): ' +      str( parsedQuery) + '\n\n')
+
+                if 'qFile' in parsedQuery:
+                    from random import choice
+                    qContent = open( parsedQuery['qFile'][0] ).readlines()                   
+                    self.wfile.write('<pre>' + choice( qContent ) + '</pre>')
+
+                else:
+                    self.wfile.write(linkify(qMSG))
+                return
+                """
+                    userName = parsedQuery['userName'][0]
+                    HREF =  parsedQuery['HREF'][0]                    
+                    try:
+                        self.wfile.write(status( userName, HREF ) )
+                    except KeyError as e:
+                        print 'ERROR:  KeyError:', e, 'userName', userName, 'HREF', HREF
+                        self.wfile.write('ERROR:  KeyError ' + str(e))
+                    return
+                else:
+                    self.wfile.write('<hr>ERROR!<br/>  ' + str( parsedQuery ).replace(',',',<br/><hr>' ) )
+                """
+            
+            
             
             
             if self.path.upper().startswith('/HTTP://KHANACADEMY.ORG'):
@@ -152,23 +206,6 @@ class MyHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write('Default page.<hr>')
                 self.wfile.write(self.path)
-
-                
-
-            """else : # default: just send the file     
-                
-                filepath = self.path[1:] # remove leading '/'     
-            
-                f = open( os.path.join(CWD, filepath), 'rb' ) 
-                #note that this potentially makes every file on your computer readable by the internet
-
-                self.send_response(200)
-                self.send_header('Content-type',	'application/octet-stream')
-                self.end_headers()
-                self.wfile.write(f.read())
-                f.close()
-                return"""
-
             return # be sure not to fall into "except:" clause ?       
                 
         except IOError as e :  
