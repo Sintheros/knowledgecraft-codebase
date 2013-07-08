@@ -111,7 +111,7 @@ class MyHandler(BaseHTTPRequestHandler):
                     try:
                         self.wfile.write(status( userName, HREF ) )
                     except KeyError as e:
-                        print 'ERROR:  KeyError:', e, 'userName', userName, 'HREF', HREF
+                        print 'ERROR  KeyError--', e, 'userName', userName, 'HREF', HREF
                         self.wfile.write('ERROR:  KeyError ' + str(e))
                     return
                 else:
