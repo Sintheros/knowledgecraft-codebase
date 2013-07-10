@@ -1,0 +1,107 @@
+"questions_evolution_clarification":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_evolution_clarification
+'Quiz_evolution_clarification':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "Is a baby growing up into a child an example of evolution?"
+            - WAIT 1
+            - CHAT "A. No, it is an example of growth and development."
+            - CHAT "B. Yes, it is the perfect example of evolution."
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/evolution-clarification"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "Organisms evolve during their lifetime."
+            - WAIT 1
+            - CHAT "A. Yes, that's why we change."
+            - CHAT "B. No, they grow and develop"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! This is another example of growth and development."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/evolution-clarification"
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "What do you call evolution of a species as a result of isolation?"
+            - WAIT 1
+            - CHAT "A. isoevolution"
+            - CHAT "B. speciation"
+            - CHAT "C. isolation evolution"
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_evolution_clarification"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! Speciation can occur when a population of organisms becomes isolated from another population of the same species. Without any sort of migration between the two populations, the gene pools of the two species will tend to diverge because of different environmental pressures on either side of the barrier that separates the two species, along with genetic drift. If enough time passes, the two populations will have diverged to the point where even if the barrier is removed, the populations are different enough to be considered two different species."
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_evolution_clarification"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_evolution_clarification"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/evolution-clarification"
+                - ZAP 'step:Q3'

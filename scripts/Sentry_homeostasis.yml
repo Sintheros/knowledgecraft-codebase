@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Homeostasis
+"AssignmentSentry_homeostasis":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:153.6"
+      - FLAG NPC "SentryY:+:59"
+      - FLAG NPC "SentryZ:+:849.318"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_homeostasis
+'Greeting_homeostasis':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Homeostasis!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/mit-k12/mit-k12-biology/v/homeostasis"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_homeostasis
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_homeostasis || 0>" == "0" FLAG "Correct_homeostasis:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_homeostasis || 0>" < "10" RUNTASK "Sentry_homeostasis"
+'Sentry_homeostasis':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_homeostasis':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_homeostasis:+:1"
+    - CHAT "You now have <flag:Correct_homeostasis> correct at this peak."
+'No_homeostasis':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/mit-k12/mit-k12-biology/v/homeostasis"

@@ -1,0 +1,206 @@
+"questions_chromosomes__chromatids__chromatin__etc":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_chromosomes__chromatids__chromatin__etc
+'Quiz_chromosomes__chromatids__chromatin__etc':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "A section of chromosomes that codes for a trait can be called a(n):"
+            - WAIT 1
+            - CHAT "A. nucleotide"
+            - CHAT "B. gene"
+            - CHAT "C. base-pair"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Yes! genes is correct"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/cell-division/v/chromosomes--chromatids--chromatin--etc"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "A person who receives an extra chromosome, could have:"
+            - WAIT 1
+            - CHAT "A. Down syndrome"
+            - CHAT "B. red eyes"
+            - CHAT "C. heightened intelligence"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Correct answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT ">R:"
+                - CHAT "https://www.khanacademy.org/science/biology/cell-division/v/chromosomes--chromatids--chromatin--etc"
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "Each chromosome consists  of two identical"
+            - WAIT 1
+            - CHAT "A. genes"
+            - CHAT "B. chromatids"
+            - CHAT "C. bases"
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Yes, Chromatids are found in pairs."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/cell-division/v/chromosomes--chromatids--chromatin--etc"
+                - ZAP 'step:Q3'
+    'Q4':
+        Click Trigger:
+            Script:
+            - CHAT "A picture of a person's chromosomes is called a "
+            - WAIT 1
+            - CHAT "A. syndrome"
+            - CHAT "B. karyotype"
+            - CHAT "C. chromatin"
+            - CHAT "D. fingerprint"
+            - ZAP 'step:A4'
+    'A4':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q5'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "A karyotype is a picture of a person’s chromosomes."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q5'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q5'
+            4:
+                Trigger: I choose /D/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q5'
+            5:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/cell-division/v/chromosomes--chromatids--chromatin--etc"
+                - ZAP 'step:Q4'
+    'Q5':
+        Click Trigger:
+            Script:
+            - CHAT "A human being has ____ autosomes and ____ sex chromosomes"
+            - WAIT 1
+            - CHAT "A. 22 pairs, 1 pair"
+            - CHAT "B. 23, 23"
+            - CHAT "C. 2, 2"
+            - ZAP 'step:A5'
+    'A5':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Correct!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_chromosomes__chromatids__chromatin__etc"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_chromosomes__chromatids__chromatin__etc"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_chromosomes__chromatids__chromatin__etc"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/cell-division/v/chromosomes--chromatids--chromatin--etc"
+                - ZAP 'step:Q5'

@@ -1,0 +1,23 @@
+#Home TP
+"AssignmentTP_Spawn":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_TP_Spawn
+'Greeting_TP_Spawn':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can you send me home?
+            Script:
+              - CHAT "Certainly! Off you go!"
+              - WAIT 2
+              - FLAG PLAYER respawn:spawn
+              - TELEPORT location:<anchor:spawn>

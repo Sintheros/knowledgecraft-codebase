@@ -1,0 +1,106 @@
+"questions_ATP":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_ATP
+'Quiz_ATP':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "The acronym ATP stands for ______."
+            - WAIT 1
+            - CHAT "A. Adenosine triphosphate "
+            - CHAT "B. All The Power"
+            - CHAT "C. Adeline Triptopharous"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Correct. Adenosine triphosphate is ATP."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "Mmm, you should watch this video: https://www.khanacademy.org/science/biology/photosynthesis/v/atp--adenosine-triphosphate"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "Describe how cells trap energy released from exergonic catabolic chemical reactions and store it as ATP."
+            - WAIT 1
+            - CHAT "A. To trap energy released from exergonic catabolic chemical reactions, the cell uses some of that released energy to attach an inorganic phosphate group on to adenosine diphosphate (ADP) to make adenosine triphosphate (ATP).Thus, energy is trapped and stored in what are known as high-energy phosphate bonds. "
+            - CHAT "B. To trap energy released from exergonic catabolic chemical reactions, the cell uses all of that released energy to attach an inorganic phosphate group on to adenosine diphosphate (ADP) to make adenosine triphosphate (ATP).Thus, energy is released in what are known as high-energy phosphate bonds."
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right! "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "Close, but not quite. https://www.khanacademy.org/science/biology/photosynthesis/v/atp--adenosine-triphosphate"
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "The hydrolysis of ATP is"
+            - WAIT 1
+            - CHAT "A. an endergonic reaction"
+            - CHAT "B. an exergonic reaction"
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_ATP"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! An exergonic reaction is one in which energy is released. "
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_ATP"
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "Why don�t you watch this video again? https://www.khanacademy.org/science/biology/photosynthesis/v/atp--adenosine-triphosphate"
+                - ZAP 'step:Q3'

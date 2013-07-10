@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Viruses
+"AssignmentSentry_viruses":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:576.67"
+      - FLAG NPC "SentryY:+:30"
+      - FLAG NPC "SentryZ:+:830.056"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_viruses
+'Greeting_viruses':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Viruses!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/tree-of-life/v/viruses"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_viruses
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_viruses || 0>" == "0" FLAG "Correct_viruses:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_viruses || 0>" < "10" RUNTASK "Sentry_viruses"
+'Sentry_viruses':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_viruses':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_viruses:+:1"
+    - CHAT "You now have <flag:Correct_viruses> correct at this peak."
+'No_viruses':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/tree-of-life/v/viruses"

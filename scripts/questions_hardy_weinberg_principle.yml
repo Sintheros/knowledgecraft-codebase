@@ -1,0 +1,136 @@
+"questions_hardy_weinberg_principle":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_hardy_weinberg_principle
+'Quiz_hardy_weinberg_principle':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "What do you have to look at to determine allele frequency?"
+            - WAIT 1
+            - CHAT "A. phenotype"
+            - CHAT "B. genotype"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Yes! You can do this by building a punnett square."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/hardy-weinberg-principle"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "Is allele frequency the same as phenotype?"
+            - WAIT 1
+            - CHAT "A. Yes"
+            - CHAT "B. No"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right! The answer is yes."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/hardy-weinberg-principle "
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "What does the Hardy-Weinbery equilibrium mean?"
+            - WAIT 1
+            - CHAT "A. That the allele frequency is changing"
+            - CHAT "B. That the allele frequency is not changing"
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/hardy-weinberg-principle"
+                - ZAP 'step:Q3'
+    'Q4':
+        Click Trigger:
+            Script:
+            - CHAT "Are species in a Hardy-Weinberg equilibrium common in the wild?"
+            - WAIT 1
+            - CHAT "A. Only in very hot, dry climates."
+            - CHAT "B. Yes"
+            - CHAT "C. No"
+            - ZAP 'step:A4'
+    'A4':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_hardy_weinberg_principle"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_hardy_weinberg_principle"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Correct! It is almost impossible to achieve outside of a laboratory. "
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_hardy_weinberg_principle"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/hardy-weinberg-principle"
+                - ZAP 'step:Q4'

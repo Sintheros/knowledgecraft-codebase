@@ -1,0 +1,57 @@
+#This Sentry will appear at node: B Lymphocytes (B cells)
+"AssignmentSentry_b_lymphocytes__b_cells":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:229.604"
+      - FLAG NPC "SentryY:+:57"
+      - FLAG NPC "SentryZ:+:866.778"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_b_lymphocytes__b_cells
+'Greeting_b_lymphocytes__b_cells':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is B Lymphocytes (B cells)!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/immunology/v/b-lymphocytes--b-cells"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_b_lymphocytes__b_cells
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_b_lymphocytes__b_cells || 0>" == "0" FLAG "Correct_b_lymphocytes__b_cells:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_b_lymphocytes__b_cells || 0>" < "10" RUNTASK "Sentry_b_lymphocytes__b_cells"
+'Sentry_b_lymphocytes__b_cells':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_b_lymphocytes__b_cells':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_b_lymphocytes__b_cells:+:1"
+    - CHAT "You now have <flag:Correct_b_lymphocytes__b_cells> correct at this peak."
+'No_b_lymphocytes__b_cells':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/immunology/v/b-lymphocytes--b-cells"

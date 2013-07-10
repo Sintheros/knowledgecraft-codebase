@@ -1,0 +1,55 @@
+"Item_JP_1":
+  type: item
+  material: iron_boots
+  display name: Mushroom Stompers
+  lore:
+  - "A reward for clearing Jump Puzzle Lv1."
+  - "Bouncy boots that make falling easier."
+  - "Earned by <green><proc:PN>"
+  enchantments:
+  - PROTECTION_FALL:4
+
+"Item_JP_2":
+  type: item
+  material: iron_boots
+  display name: Pyramid Boots
+  lore:
+  - "A reward for clearing Jump Puzzle Lv2."
+  - "The boots are filled with sand."
+  - "Earned by <green><proc:PN>"
+  enchantments:
+  - PROTECTION_ENVIRONMENTAL:4
+  - PROTECTION_FALL:4
+  
+"Item_JP_3":
+  type: item
+  material: diamond_boots
+  display name: Tundra Greaves
+  lore:
+  - "A reward for clearing Jump Puzzle Lv3."
+  - "The metal is always ice-cold."
+  - "Earned by <green><proc:PN>"
+  enchantments:
+  - PROTECTION_ENVIRONMENTAL:4
+  - PROTECTION_FALL:4
+  - PROTECTION_FIRE:4
+  
+"Item_JP_S":
+  type: item
+  material: diamond_boots
+  display name: Jump-Master's Greaves
+  lore:
+  - "The mark of a true jump-master."
+  - "Made of enchanted fire,"
+  - "the metal burns would-be enemies."
+  - "Mysteriously earned by <green><proc:PN>"
+  enchantments:
+  - PROTECTION_ENVIRONMENTAL:4
+  - PROTECTION_FALL:4
+  - PROTECTION_FIRE:4
+  - THORNS:3
+  
+"PN":
+  type: procedure
+  script:
+  - determine "<FLAG.G:PN>"

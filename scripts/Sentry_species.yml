@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Species
+"AssignmentSentry_species":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:609.745"
+      - FLAG NPC "SentryY:+:28"
+      - FLAG NPC "SentryZ:+:862.673"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_species
+'Greeting_species':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Species!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/tree-of-life/v/species"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_species
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_species || 0>" == "0" FLAG "Correct_species:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_species || 0>" < "10" RUNTASK "Sentry_species"
+'Sentry_species':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_species':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_species:+:1"
+    - CHAT "You now have <flag:Correct_species> correct at this peak."
+'No_species':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/tree-of-life/v/species"

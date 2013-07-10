@@ -1,0 +1,51 @@
+#Geometry City Temple question
+"AssignmentQuestions_city_geometry_temple":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 greeting_city_geometry_temple
+'Greeting_city_geometry_temple':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+            Script:
+              - ENGAGE
+              - CHAT "What? You do not know? This is the Temple of the Triangle!"
+              - WAIT 2
+              - CHAT "Behold, the Great Right Triangle!"
+              - WAIT 3
+              - CHAT "May its angle always shine rightest!"
+              - WAIT 3
+              - CHAT "...No sense of humor, eh?"
+              - WAIT 3
+              - CHAT "Well, humorless visitor, let us see how much you truly know."
+              - WAIT 2
+              - CHAT "The <red>area<green> of the Great Right Triangle! What is it?"
+              - DISENGAGE
+        2:
+            Trigger: About /REGEX:.+/ units.
+            Script:
+              - ENGAGE
+              - FLAG NPC <player.name>:<player.chat_history>
+              - IF "<FLAG.N:<player.name>>" == "50" FLAG PLAYER Geometry_Temple:1 ELSE FLAG PLAYER Geometry_Temple:0
+              - IF "<FLAG.P:Geometry_Temple || 0>" == "1" CHAT "50 indeed! Ten wide, ten tall! Have you ever seen such beauty? Well you've proven yourself. Please take this, and enjoy your stay in the city! (REWARD NYI)" ELSE CHAT "Blasphemy! You insult the Great Right Triangle in this manner? Try again! Perhaps consult the villagers! Harrumph!"
+              - IF "<FLAG.P:Geometry_Temple || 0>" == "1" ZAP 2
+              - DISENGAGE
+    2:
+      Chat Trigger:
+          1:
+              Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+              Script:
+              - CHAT "Don't be obtuse! What does it look like? The Great Right Triangle demands constant attention, you know!"
+              - WAIT 3
+              - NARRATE "It is certainly an imposing structure."

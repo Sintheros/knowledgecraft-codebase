@@ -1,0 +1,58 @@
+#This is the MASTER SENTRY for 8 different Sentries.
+"AssignmentSentry_MASTER_Geo":
+  Type: Assignment
+  Interact Scripts:
+  - 1 CreateSentries_Geo
+'CreateSentries_Geo':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Create/ the sentries you've been assigned to create.
+                Script:
+                - FLAG GLOBAL MasterX_Math:<npc.location.x>
+                - FLAG GLOBAL MasterY_Math:<npc.location.y>
+                - FLAG GLOBAL MasterZ_Math:<npc.location.z>
+                - FLAG GLOBAL "MasterX_Math:-:254.47"
+                - FLAG GLOBAL "MasterY_Math:-:66"
+                - FLAG GLOBAL "MasterZ_Math:-:245.76"
+                - CHAT "Now spawning and assigning 8 sentries!"
+                - TELEPORT NPC "location:<FLAG.NPC:MasterX_Math>,<FLAG.NPC:MasterY_Math>,<FLAG.NPC:MasterZ_Math>,world"
+                - execute as_npc "npc create Graduation"
+                - execute as_npc "npc assignment --set AssignmentSentry_graduation_geo"
+                - execute as_npc "npc create Area of a circle"
+                - execute as_npc "npc assignment --set AssignmentSentry_area_of_a_circle"
+                - execute as_npc "npc create Radius diameter and circumference"
+                - execute as_npc "npc assignment --set AssignmentSentry_radius_diameter_and_circumference"
+                - execute as_npc "npc create Area of triangles"
+                - execute as_npc "npc assignment --set AssignmentSentry_area_of_triangles_1"
+                - execute as_npc "npc create Perimeter of squares and rectangles"
+                - execute as_npc "npc assignment --set AssignmentSentry_perimeter_of_squares_and_rectangles"
+                - execute as_npc "npc create Area of squares and rectangles"
+                - execute as_npc "npc assignment --set AssignmentSentry_area_of_squares_and_rectangles"
+                - execute as_npc "npc create Perimeter 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_perimeter_1"
+                - execute as_npc "npc create Area 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_area_1"
+            2:
+                Trigger: /Delete/ the sentries on this landscape.
+                Script:
+                - execute as_npc "npc select Graduation"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Area of a circle"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Radius diameter "
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Area of triangle"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Perimeter of squ"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Area of squares "
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Perimeter 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Area 1"
+                - execute as_npc "npc remove"

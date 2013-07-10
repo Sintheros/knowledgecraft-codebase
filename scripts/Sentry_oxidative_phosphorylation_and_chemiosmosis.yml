@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Oxidative Phosphorylation and Chemiosmosis
+"AssignmentSentry_oxidative_phosphorylation_and_chemiosmosis":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:153.6"
+      - FLAG NPC "SentryY:+:39"
+      - FLAG NPC "SentryZ:+:322.259"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_oxidative_phosphorylation_and_chemiosmosis
+'Greeting_oxidative_phosphorylation_and_chemiosmosis':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Oxidative Phosphorylation and Chemiosmosis!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/cellular-respiration/v/oxidative-phosphorylation-and-chemiosmosis"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_oxidative_phosphorylation_and_chemiosmosis
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_oxidative_phosphorylation_and_chemiosmosis || 0>" == "0" FLAG "Correct_oxidative_phosphorylation_and_chemiosmosis:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_oxidative_phosphorylation_and_chemiosmosis || 0>" < "10" RUNTASK "Sentry_oxidative_phosphorylation_and_chemiosmosis"
+'Sentry_oxidative_phosphorylation_and_chemiosmosis':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_oxidative_phosphorylation_and_chemiosmosis':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_oxidative_phosphorylation_and_chemiosmosis:+:1"
+    - CHAT "You now have <flag:Correct_oxidative_phosphorylation_and_chemiosmosis> correct at this peak."
+'No_oxidative_phosphorylation_and_chemiosmosis':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/cellular-respiration/v/oxidative-phosphorylation-and-chemiosmosis"

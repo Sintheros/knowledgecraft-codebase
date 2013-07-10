@@ -1,0 +1,62 @@
+# rollercoster story
+"AssignmentRollercoaster":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:5
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please."
+  Interact Scripts:
+  - 1 Greeting_Rollercoaster
+'Greeting_Rollercoaster':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, you look upset.
+            Script: 
+              - ENGAGE
+              - CHAT "I'm so glad you're here!"
+              - WAIT 1 
+              - CHAT "A creeper blew up my rollercoaster!"
+              - WAIT 1
+              - CHAT "If you fix it for me I will let you ride it."
+              - WAIT 1
+              - CHAT "The wall over to your right will teach you about rails."
+              - WAIT 1
+              - CHAT "The chests behind you have all the materials you need."
+              - WAIT 1
+              - CHAT "Careful though, you can only open the chests once before everything disappears."
+              - WAIT 1
+              - CHAT "Good luck, and happy building."
+              - DISENGAGE
+      Proximity Trigger:
+        entry:
+            Script:
+              - IF "<FLAG.N:<player.name> || 0>" == "0" RUNTASK "Greet" ELSE DISENGAGE  
+
+'Greet':
+  Type: Task
+  Script:
+    - ENGAGE
+    - CHAT "I'm so glad you're here!"
+    - WAIT 1 
+    - CHAT "A creeper blew up my rollercoaster!"
+    - WAIT 1
+    - CHAT "If you fix it for me I will let you ride it."
+    - WAIT 1
+    - CHAT "The wall over to your right will teach you about rails."
+    - WAIT 1
+    - CHAT "The chests behind you have all the materials you need."
+    - WAIT 1
+    - CHAT "Careful though, you can only open the chests once before everything disappears."
+    - WAIT 1
+    - CHAT "Good luck, and happy building."
+    - FLAG NPC <player.name>:1
+    - DISENGAGE
+    

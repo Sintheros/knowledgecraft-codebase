@@ -1,0 +1,20 @@
+"AssignmentRamsay":
+  Type: Assignment
+  Interact Scripts:
+  - 1 Ramsay
+'Ramsay':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Ah, Commander, sir! I'm well, the ships are well, even the weather's supposedly going to be well."
+                - WAIT 3
+                - CHAT "I'm feeling optimistic about this. If Stagg over there's right it should be smooth sailing tomorrow."
+                - WAIT 3
+                - CHAT "We need to decide soon though. Wait too long and there's no turning back, weather or otherwise!"
+                - FINISH

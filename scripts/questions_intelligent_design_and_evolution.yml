@@ -1,0 +1,49 @@
+"questions_intelligent_design_and_evolution":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_intelligent_design_and_evolution
+'Quiz_intelligent_design_and_evolution':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "What does intelligent design mean?"
+            - WAIT 1
+            - CHAT "A. A higher power created the universe"
+            - CHAT "B. A factory made all of the animals and plants."
+            - CHAT "C. A scientific theory of evolution"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right! That is the belief."
+                - CHAT ">H:https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/intelligent-design-and-evolution"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_intelligent_design_and_evolution"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_intelligent_design_and_evolution"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_intelligent_design_and_evolution"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - ZAP 'step:Q1'

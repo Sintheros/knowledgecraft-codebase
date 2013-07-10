@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Genetics 101 Part 1: What are genes?
+"AssignmentSentry_genetics_101_part_1__what_are_genes":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:664.049"
+      - FLAG NPC "SentryY:+:26"
+      - FLAG NPC "SentryZ:+:861.753"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_genetics_101_part_1__what_are_genes
+'Greeting_genetics_101_part_1__what_are_genes':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Genetics 101 Part 1: What are genes?!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/heredity-and-genetics/v/genetics-101-part-1--what-are-genes"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_genetics_101_part_1__what_are_genes
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_genetics_101_part_1__what_are_genes || 0>" == "0" FLAG "Correct_genetics_101_part_1__what_are_genes:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_genetics_101_part_1__what_are_genes || 0>" < "10" RUNTASK "Sentry_genetics_101_part_1__what_are_genes"
+'Sentry_genetics_101_part_1__what_are_genes':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_genetics_101_part_1__what_are_genes':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_genetics_101_part_1__what_are_genes:+:1"
+    - CHAT "You now have <flag:Correct_genetics_101_part_1__what_are_genes> correct at this peak."
+'No_genetics_101_part_1__what_are_genes':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/heredity-and-genetics/v/genetics-101-part-1--what-are-genes"

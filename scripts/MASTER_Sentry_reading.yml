@@ -1,0 +1,41 @@
+#This is the MASTER SENTRY for 3 different Sentries.
+"AssignmentSentry_MASTER_Reading":
+  Type: Assignment
+  Interact Scripts:
+  - 1 CreateSentries_Reading
+'CreateSentries_Reading':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Create/ the sentries you've been assigned to create.
+                Script:
+                - FLAG GLOBAL MasterX_Reading:<npc.location.x>
+                - FLAG GLOBAL MasterY_Reading:<npc.location.y>
+                - FLAG GLOBAL MasterZ_Reading:<npc.location.z>
+                - FLAG GLOBAL "MasterX_Reading:-:230.4"
+                - FLAG GLOBAL "MasterY_Reading:-:62"
+                - FLAG GLOBAL "MasterZ_Reading:-:281.6"
+                - CHAT "Now spawning and assigning 3 sentries!"
+                - TELEPORT NPC "location:<FLAG.NPC:MasterX_Reading>,<FLAG.NPC:MasterY_Reading>,<FLAG.NPC:MasterZ_Reading>,world"
+                - execute as_npc "npc create Rungi-Chungi"
+                - execute as_npc "npc assignment --set AssignmentSentry_rungi_chungi"
+                - execute as_npc "npc create Xander & the Wind"
+                - execute as_npc "npc assignment --set AssignmentSentry_xander"
+                - execute as_npc "npc create Itsy-Bitsy Spider"
+                - execute as_npc "npc assignment --set AssignmentSentry_itsy_bitsy_spider"
+                - execute as_server "denizen save"
+                - execute as_npc "npc select master"
+                - execute as_npc "npc remove"
+            2:
+                Trigger: /Delete/ the sentries on this landscape.
+                Script:
+                - execute as_npc "npc select Rungi-Chungi"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Xander & the Win"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Itsy-Bitsy Spide"
+                - execute as_npc "npc remove"

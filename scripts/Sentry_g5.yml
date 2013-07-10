@@ -1,0 +1,57 @@
+#This Sentry will appear at node: 5th Grade
+"AssignmentSentry_g5":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:768"
+      - FLAG NPC "SentryY:+:14"
+      - FLAG NPC "SentryZ:+:1108.4"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_g5
+'Greeting_g5':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+            - CHAT "This is the base of Level 2 of Math Mountain!"
+            - WAIT 2
+            - CHAT "There are three major Math subjects in Level 2..."
+            - WAIT 1 
+            - CHAT "<White>Lv2 Decimals<green> right over there to the north,"
+            - CHAT "<white>Lv2 Fractions<green>, directly up the hill from here,"
+            - CHAT "and some <white>Miscellaneous<green> topics even further north in the lowlands."
+            - WAIT 3
+            - CHAT "Try climbing any of them! Who knows what you might find?"
+            - WAIT 2
+            - CHAT "Also, if you want to be <gold>teleport<green>ed to the Miscellaneous Topics, just ask."
+            - FLAG NPC <player.name>:1
+            - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_g5:1
+        2:
+            Trigger: Can you /Regex:Teleport|teleport|TELEPORT/ me?
+            Script:
+            - CHAT "Away you go!"
+            - TELEPORT location:<anchor:g5_misc>
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "Welcome to Level 2 of Math Mountain!"
+            - WAIT 2
+            - CHAT "Here you can explore, enhance your math skills, and participate in games all around the mountain!"
+            - WAIT 2
+            - NARRATE "You remember the Professor said to speak with a non-player, simply greet them with a <gold>hi<white> or <gold>hello<white>!"
+            - FLAG NPC <player.name>:1
+            - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_g5:1

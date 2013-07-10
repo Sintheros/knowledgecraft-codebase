@@ -1,0 +1,43 @@
+#This Sentry will appear at node: Number System
+"AssignmentSentry_g6_numbersystem":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1222.62"
+      - FLAG NPC "SentryY:+:24"
+      - FLAG NPC "SentryZ:+:1172.4"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_g6_numbersystem
+'Greeting_g6_numbersystem':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Teleport|TELEPORT|teleport/ me home?
+            Script:
+            - CHAT "Certainly!"
+            - TELEPORT location:<anchor:spawn>
+            - FLAG NPC <player.name>:1
+            - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_g6_numbersystem:1
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "This section of mountain leads to Level 3 'Standard' Math!"
+            - WAIT 2
+            - CHAT "A lot of <white>smaller mountains<green> make up this area. 'Standard' Math is vast!"
+            - WAIT 2
+            - CHAT "If you'd like to go home, I can <gold>teleport<green> you there."
+            - FLAG NPC <player.name>:1
+            - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_g6_numbersystem:1

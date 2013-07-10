@@ -1,0 +1,32 @@
+"AssignmentHistorianB":
+  Type: Assignment
+  Interact Scripts:
+  - 1 HistB
+'HistB':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, what just happened?
+                Script:
+                - CHAT "Oh, you know, time travel!"
+                - WAIT 3
+                - CHAT "You're just north of France now, the Invasion of Normandy is tomorrow!"
+                - WAIT 3
+                - CHAT "My SCIENCE-POWERED SCIENCE-O-MATIC had a little trouble though - do you mind helping? You might have to! <Gold> Yes/No <green>"
+                - ZAP 2
+    2:
+        Chat Trigger:
+            1:
+                Trigger: /Yes/, I'll help, what's the problem?
+                Script:
+                - CHAT "Well...you see...you're now Commander Dwight D. Eisenhower!"
+                - WAIT 3
+                - CHAT "Just a little mishap, it won't be a problem I'm sure! Your officers are upstairs though, apparently there's some issue with the weather."
+                - WAIT 3
+                - CHAT "Apparently some of the officers think it'd be a good idea to hold the invasion for a month. You've studied this, you can work it out! Check that box, good luck!"
+                - GIVE item:redstone_torch_on qty:1
+                - FINISH

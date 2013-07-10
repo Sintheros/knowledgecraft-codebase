@@ -1,0 +1,49 @@
+"questions_natural_selection_and_the_owl_butterfly":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_natural_selection_and_the_owl_butterfly
+'Quiz_natural_selection_and_the_owl_butterfly':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "The owl butterfly evolved to have what?"
+            - WAIT 1
+            - CHAT "A. Feathers"
+            - CHAT "B. Markings that look like eyes."
+            - CHAT "C. Talons"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_natural_selection_and_the_owl_butterfly"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! This helps protect them from predators. "
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_natural_selection_and_the_owl_butterfly"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_natural_selection_and_the_owl_butterfly"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/natural-selection-and-the-owl-butterfly"
+                - ZAP 'step:Q1'

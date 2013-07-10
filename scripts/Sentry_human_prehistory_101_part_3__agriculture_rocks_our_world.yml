@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Human Prehistory 101 Part 3: Agriculture Rocks Our World
+"AssignmentSentry_human_prehistory_101_part_3__agriculture_rocks_our_world":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:422.396"
+      - FLAG NPC "SentryY:+:46"
+      - FLAG NPC "SentryZ:+:348.639"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_human_prehistory_101_part_3__agriculture_rocks_our_world
+'Greeting_human_prehistory_101_part_3__agriculture_rocks_our_world':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Human Prehistory 101 Part 3: Agriculture Rocks Our World!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/tree-of-life/v/human-prehistory-101-part-3--agriculture-rocks-our-world"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_human_prehistory_101_part_3__agriculture_rocks_our_world
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_human_prehistory_101_part_3__agriculture_rocks_our_world || 0>" == "0" FLAG "Correct_human_prehistory_101_part_3__agriculture_rocks_our_world:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_human_prehistory_101_part_3__agriculture_rocks_our_world || 0>" < "10" RUNTASK "Sentry_human_prehistory_101_part_3__agriculture_rocks_our_world"
+'Sentry_human_prehistory_101_part_3__agriculture_rocks_our_world':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_human_prehistory_101_part_3__agriculture_rocks_our_world':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_human_prehistory_101_part_3__agriculture_rocks_our_world:+:1"
+    - CHAT "You now have <flag:Correct_human_prehistory_101_part_3__agriculture_rocks_our_world> correct at this peak."
+'No_human_prehistory_101_part_3__agriculture_rocks_our_world':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/tree-of-life/v/human-prehistory-101-part-3--agriculture-rocks-our-world"

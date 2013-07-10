@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Anatomy of a muscle cell
+"AssignmentSentry_anatomy_of_a_muscle_cell":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:283.927"
+      - FLAG NPC "SentryY:+:54"
+      - FLAG NPC "SentryZ:+:868.192"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_anatomy_of_a_muscle_cell
+'Greeting_anatomy_of_a_muscle_cell':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Anatomy of a muscle cell!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/human-biology/v/anatomy-of-a-muscle-cell"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_anatomy_of_a_muscle_cell
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_anatomy_of_a_muscle_cell || 0>" == "0" FLAG "Correct_anatomy_of_a_muscle_cell:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_anatomy_of_a_muscle_cell || 0>" < "10" RUNTASK "Sentry_anatomy_of_a_muscle_cell"
+'Sentry_anatomy_of_a_muscle_cell':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_anatomy_of_a_muscle_cell':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_anatomy_of_a_muscle_cell:+:1"
+    - CHAT "You now have <flag:Correct_anatomy_of_a_muscle_cell> correct at this peak."
+'No_anatomy_of_a_muscle_cell':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/human-biology/v/anatomy-of-a-muscle-cell"

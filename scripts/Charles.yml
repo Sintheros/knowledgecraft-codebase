@@ -1,0 +1,32 @@
+"CharlesSpeach":
+  Type: Assignment
+  Interact Scripts:
+  - 43 CharlesTalking
+'CharlesTalking':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Hello there! This is the Parthenon! I'm Charles, the groundskeeper."
+                - WAIT 3
+                - CHAT "Talk to me when you want to go back to the musuem."
+                - WAIT 3
+                - CHAT "Would you like yo go back now? <Gold> Yes/No <green>"
+                - ZAP 2
+    2:
+        Chat Trigger:
+            1:
+                Trigger: /Yes/ I want to go back.
+                Script:
+                - CHAT "Alright then."
+                - WAIT 2
+                - CHAT "Come back soon!" 
+                - CAST blindness power:3 duration:5
+                - CAST confusion power:3 duration:5
+                - TELEPORT location:<anchor:museum>
+                - FINISH

@@ -1,0 +1,75 @@
+#This Sentry will appear at node: Central Hub
+"AssignmentIgor":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:5
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_igor
+'Greeting_igor':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, who are you?
+            Script:
+              - ENGAGE
+              - IF "<FLAG.G:<player.name>_KANAME || 0>" == "0" FLAG GLOBAL <player.name>_KANAME:0
+              - CHAT "Me? I am but a lowly servant of knowledge! I am Igor."
+              - WAIT 2
+              - CHAT "A word of caution before you depart this tower!"
+              - WAIT 2
+              - CHAT "You will not be able to <white>save your progress<green> in the puzzles and activities without a <white>Khan Academy Lite Account<green>."
+              - WAIT 2
+              - CHAT "If you already have one, you can link it to your Minecraft character now as well."
+              - WAIT 2
+              - NARRATE "This man seems to have no respect for the fourth wall."
+              - WAIT 2
+              - CHAT "It's also possible that you already have a KA-Lite Account but last used it on a different Minecraft character."
+              - WAIT 2
+              - CHAT "The KA-Lite Account currently linked to this acount is <red><FLAG.G:<player.name>_KANAME><green>."
+              - WAIT 2
+              - CHAT "Would you like to link a <white>Khan Academy Lite Account<green> so you can save your progress? <gold>(Yes/No)<green>"
+              - DISENGAGE
+        2:
+            Trigger: /REGEX:Yes|yes|YES/ please!
+            Script:
+              - ENGAGE
+              - CHAT "A wise choice. Register here, and then inform me what you have named yourself. <aqua>http://tinyurl.com/learninglandscapeka<green>"
+              - DISENGAGE
+              - ZAP 2
+        3:
+            Trigger: /REGEX:No|no|NO/ thanks.
+            Script:
+              - ENGAGE
+              - CHAT "As you wish."
+              - FLAG GLOBAL <player.name>_KANAME:0
+              - execute as_server "denizen save"
+              - DISENGAGE
+    2:
+      Chat Trigger:
+        1:
+            Trigger: My KA-Lite name is /REGEX:.+/!
+            Script:
+              - FLAG GLOBAL <player.name>_KANAME:<player.chat_history>
+              - ENGAGE
+              - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/factors-multiples/prime_factorization/e/divisibility/" IgorCheck
+              - FLAG PLAYER IgorNo:0
+              - IF "<FLAG.N:IgorCheck>" == "ERROR KeyError '<FLAG.G:<player.name>_KANAME>'" FLAG PLAYER IgorNo:1
+              - IF "<FLAG.P:IgorNo>" == "0" CHAT "Very well, <FLAG.G:<player.name>_KANAME>, I wish you luck in your exploration endeavor." ELSE CHAT "<FLAG.G:<player.name>_KANAME>? That's not a KA-Lite name that I recognize."
+              - IF "<FLAG.P:IgorNo>" == "1" FLAG GLOBAL <player_name>_KANAME:0
+              - IF "<FLAG.P:IgorNo>" == "1" CHAT "Would you like to link a <white>Khan Academy Lite Account<green> so you can save your progress? <gold>(Yes/No)<green>"
+              - IF "<FLAG.P:IgorNo>" == "0" CHAT - execute as_server "denizen save"
+              - DISENGAGE
+              - ZAP 1
+      Proximity Trigger:
+        exit:
+          Script:
+            - ZAP 1

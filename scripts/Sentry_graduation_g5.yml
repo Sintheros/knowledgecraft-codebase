@@ -1,0 +1,67 @@
+#This Sentry will appear at node: Graduation
+"AssignmentSentry_graduation_G5":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:904.416"
+      - FLAG NPC "SentryY:+:47"
+      - FLAG NPC "SentryZ:+:1015.74"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_graduation_G5
+'Greeting_graduation_G5':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the highest peak on Level 2 of Math Mountain!"
+              - WAIT 2
+              - RUNTASK "Sentry_graduation_G5_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - CHAT "This is the highest peak on Level 2 of Math Mountain!"
+            - WAIT 2
+            - RUNTASK "Sentry_graduation_G5_KA"
+'Sentry_graduation_G5_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:3
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_G5:0
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_identifying_points_1:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/trigonometry/graphs/graphing_coordinates/e/identifying_points_1/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_identifying_points_1:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_identifying_points_1:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_identifying_points_1>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_rounding_numbers:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/decimals/decimal_rounding_estimation/e/rounding_numbers/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_rounding_numbers:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_rounding_numbers:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_rounding_numbers>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_fractions_cut_and_copy_2:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/fractions/mixed_numbers/e/fractions_cut_and_copy_2/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_fractions_cut_and_copy_2:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_fractions_cut_and_copy_2:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_fractions_cut_and_copy_2>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.N:<player.name>_PR" == "3" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_G5:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_G5:0
+    - IF "<FLAG.N:<player.name>_PR" != "3" CHAT "To truly master Level 2 Math, you should try the following first..."
+    - IF "<FLAG.N:<player.name>_PR" != "3" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_identifying_points_1>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G5>" == "0" CHAT "<white>Points on Planes<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_rounding_numbers>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G5>" == "0" CHAT "<white>Rounding numbers<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_fractions_cut_and_copy_2>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "0" CHAT "<white>Frac CutCopy 2<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G5>" == "1" CHAT "You have mastered Level 2 Math! Congratulations!"
+    - DISENGAGE

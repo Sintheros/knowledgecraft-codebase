@@ -1,0 +1,32 @@
+"AssignmentHistorianA":
+  Type: Assignment
+  Interact Scripts:
+  - 1 Def
+'Def':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Hello there! Always good to meet an eager adventurer! I spend most of my time these days dusting off books!"
+                - WAIT 3
+                - CHAT "Adventurer, did you know that this place is a monument to a historic event, the Invasion of Normandy?"
+                - WAIT 3
+                - CHAT "It happened long ago. Would you like to know what happened? <Gold> Yes/No <green>"
+                - ZAP 2
+    2:
+        Chat Trigger:
+            1:
+                Trigger: /Yes/ I'm interested in this event!
+                Script:
+                - CHAT "Excellent! Oh, it sure was something! If only you could see it for yourself!"
+                - WAIT 3
+                - CHAT "But wait, you can!" 
+                - CAST blindness power:3 duration:5
+                - CAST confusion power:3 duration:5
+                - TELEPORT location:<anchor:bship>
+                - FINISH

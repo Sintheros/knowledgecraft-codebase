@@ -1,0 +1,32 @@
+#Geometry City Farmer Villager
+"AssignmentVillager_city_geometry_farmer":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 greeting_city_geometry_farmer
+'Greeting_city_geometry_farmer':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+            Script:
+              - CHAT "Hello there! Here to buy my produce? ...No?"
+              - WAIT 2
+              - CHAT "Oh I see. You want to enter Geometry City. They can be pretty particular."
+              - WAIT 3
+              - CHAT "I can probably help you out though, I know a thing or two about geometry."
+              - WAIT 3
+              - CHAT "For instance, look at my pen over there. It's 11 units long by 9 units wide."
+              - WAIT 3
+              - CHAT "It's a nice size, keeps everything where it needs to be."
+              - WAIT 2
+              - CHAT "The perimeter's the distance all the way around. That's 11 down one way, 9 over, 11 back, and 9 back to us. 40 units total!"
+              - WAIT 3
+              - CHAT "Get it? Good luck getting into the city!"

@@ -1,0 +1,17 @@
+'WORLD_respawn':
+  type: world
+  events:
+    on player respawns:
+    #- determine location:l@<player.flag[respawn]>
+    #|| "<FLAG.P:respawn || spawn>" == "jp_respawn_4b" || "<FLAG.P:respawn || spawn>" == "jp_respawn_4c" || "<FLAG.P:respawn || spawn>" == "jp_respawn_5a" || "<FLAG.P:respawn || spawn>" == "jp_respawn_5b" || "<FLAG.P:respawn || spawn>" == "jp_respawn_6a" || "<FLAG.P:respawn || spawn>" == "jp_respawn_6b" || "<FLAG.P:respawn || spawn>" == "jp_respawn_6c" FEED amt:-15
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_4a" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_4b" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_4c" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_5a" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_5b" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_6a" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_6b" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_6c" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "JP_start" FLAG PLAYER FSET:1
+    - determine "location:<notable:<FLAG.P:respawn || spawn>>"
+    #- TELEPORT location:<FLAG.P:respawn>

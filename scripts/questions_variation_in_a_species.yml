@@ -1,0 +1,115 @@
+"questions_variation_in_a_species":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_variation_in_a_species
+'Quiz_variation_in_a_species':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "Are mutations a large source for variation in a population?"
+            - WAIT 1
+            - CHAT "A. No"
+            - CHAT "B. Yes"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Correct! Mutations are a large source of the variation that appears in a population."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/variation-in-a-species"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "How much variation can one couple produce? "
+            - WAIT 1
+            - CHAT "A. 2^23"
+            - CHAT "B. 2^46"
+            - CHAT "C. 4^46"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! 2^23 from the mother and 2^23 from the father."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/variation-in-a-species"
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "What is a large source of genetic variation?"
+            - WAIT 1
+            - CHAT "A. mutations"
+            - CHAT "B. sexual reproduction"
+            - CHAT "C. evolution"
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_variation_in_a_species"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Correct! Sexual reproduction is a large source of genetic variation."
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_variation_in_a_species"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_variation_in_a_species"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/variation-in-a-species"
+                - ZAP 'step:Q3'

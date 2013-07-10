@@ -1,0 +1,70 @@
+#This Sentry will appear at node: Solid geometry
+"AssignmentSentry_solid_geometry":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:976.71"
+      - FLAG NPC "SentryY:+:38"
+      - FLAG NPC "SentryZ:+:1208.83"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_solid_geometry
+'Greeting_solid_geometry':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the home of Solid geometry!"
+              - WAIT 2
+              - RUNTASK "Sentry_solid_geometry_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solid_geometry || 0>" == "0" CHAT "This is the home of Solid geometry!" ELSE CHAT "You have completed this topic, Solid geometry!"
+            - WAIT 2
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solid_geometry || 0>" == "0" RUNTASK "Sentry_solid_geometry_KA"
+'Sentry_solid_geometry_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:2
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_solid_geometry:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/geometry/basic-geometry/volume_tutorial/e/solid_geometry/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_solid_geometry:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_solid_geometry:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solid_geometry>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solid_geometry>" == "0" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solid_geometry>" == "0" CHAT "You can learn and practice this topic at <aqua>http://curlsh.me/wjnx8<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solid_geometry>" == "1" CHAT "I see you have completed this topic! Congratulations!"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_area_of_parallelograms:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/geometry/basic-geometry/area_non_standard/e/area_of_parallelograms/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_area_of_parallelograms:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_area_of_parallelograms:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_area_of_parallelograms>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_areas_of_trapezoids_rhombi_and_kites:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/geometry/basic-geometry/area_non_standard/e/areas_of_trapezoids_rhombi_and_kites/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_areas_of_trapezoids_rhombi_and_kites:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_areas_of_trapezoids_rhombi_and_kites:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_areas_of_trapezoids_rhombi_and_kites>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solid_geometry>" == "1" FLAG NPC <player.name>_PR:2
+    - IF "<FLAG.N:<player.name>_PR>" != "2" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" != "2" CHAT "This peak may be <white>above your current skill level<green>!"
+    - IF "<FLAG.N:<player.name>_PR>" != "2" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" == "1" CHAT "You may wish to try this earlier topic first..."
+    - IF "<FLAG.N:<player.name>_PR>" < "1" CHAT "You may wish to try the earlier topics first..."
+    - IF "<FLAG.G:<player.name>_area_of_parallelograms>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solid_geometry>" == "0" CHAT "<white>Parallelograms<green>"
+    - IF "<FLAG.G:<player.name>_areas_of_trapezoids_rhombi_and_kites>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solid_geometry>" == "0" CHAT "<white>Trapezoid Area<green>"
+    - DISENGAGE

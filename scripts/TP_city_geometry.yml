@@ -1,0 +1,48 @@
+'TP_city_geometry':
+  type: world
+  events:
+#gate guard (req gate)
+    on walked over city_geometry_1a:
+    - IF "<FLAG.P:Geometry_Gate || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_1>
+    - IF "<FLAG.P:Geometry_Gate || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_1b:
+    - IF "<FLAG.P:Geometry_Gate || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_1>
+    - IF "<FLAG.P:Geometry_Gate || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_1c:
+    - IF "<FLAG.P:Geometry_Gate || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_1>
+    - IF "<FLAG.P:Geometry_Gate || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_1d:
+    - IF "<FLAG.P:Geometry_Gate || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_1>
+    - IF "<FLAG.P:Geometry_Gate || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+#Theatre guard (req bathhouse)
+    on walked over city_geometry_2a:
+    - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_2>
+    - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_2b:
+    - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_2>
+    - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_2c:
+    - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_2>
+    - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_2d:
+    - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_2>
+    - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_2e:
+    - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_2>
+    - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+#temple guard (req theatre)
+    on walked over city_geometry_3a:
+    - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_3>
+    - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_3b:
+    - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_3>
+    - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_3c:
+    - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_3>
+    - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_3d:
+    - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_3>
+    - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."
+    on walked over city_geometry_3e:
+    - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" TELEPORT NPCID:0 location:<anchor:city_geometry_3>
+    - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" - NARRATE "The guard gets angry with you and drags you out. Maybe you should talk with him."

@@ -1,0 +1,123 @@
+"questions_introduction_to_evolution_and_natural_selection":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_introduction_to_evolution_and_natural_selection
+'Quiz_introduction_to_evolution_and_natural_selection':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "What is evolution?"
+            - WAIT 1
+            - CHAT "A. Something coming out of nothing. "
+            - CHAT "B. Something changing."
+            - CHAT "C. Something dying. "
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! When we evolve, we are changing."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/introduction-to-evolution-and-natural-selection"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "What are examples of variations?"
+            - WAIT 1
+            - CHAT "A. different heights?"
+            - CHAT "B. different hair colors"
+            - CHAT "C. similar skin tones"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right! Anything that can be changed will be "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! Anything that can be changed will be "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/introduction-to-evolution-and-natural-selection"
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "Antiobiotics can help bacteria to evolve into"
+            - WAIT 1
+            - CHAT "A. antibiotic resistant strains"
+            - CHAT "B. dead bacteria "
+            - CHAT "C. a virus"
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right. Too many antibiotics can create antibiotic resistant strains of bacteria. "
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_introduction_to_evolution_and_natural_selection"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_introduction_to_evolution_and_natural_selection"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_introduction_to_evolution_and_natural_selection"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/introduction-to-evolution-and-natural-selection"
+                - ZAP 'step:Q3'

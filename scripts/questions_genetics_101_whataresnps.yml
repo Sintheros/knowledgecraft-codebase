@@ -1,0 +1,86 @@
+"questions_genetics_101_whataresnps":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_genetics_101_whataresnps
+'Quiz_genetics_101_whataresnps':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "What is a genome"
+            - WAIT 1
+            - CHAT "A. your genes. "
+            - CHAT "B. a SNP"
+            - CHAT "C. entire set of chromosomes."
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Right. It is an entire set of chromosomes. "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/genetics-101-part-2--what-are-snps"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "What accounts for genetic differences?"
+            - WAIT 1
+            - CHAT "A. chromosomes"
+            - CHAT "B. SNPs"
+            - CHAT "C. DNA"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_genetics_101_whataresnps"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! SNPs can cause differences between various individuals. "
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_genetics_101_whataresnps"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_genetics_101_whataresnps"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/genetics-101-part-2--what-are-snps"
+                - ZAP 'step:Q2'

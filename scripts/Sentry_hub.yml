@@ -1,0 +1,74 @@
+#This Sentry will appear at node: Central Hub
+"AssignmentSentry_hub":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:5
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_hub
+'Greeting_hub':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/
+            Script:
+              - ENGAGE
+              - CHAT "Precisely! A <gold>hi<green> or <gold>hello<green> will certainly get someone's attention!"
+              - WAIT 3
+              - CHAT "I appreciate you at least stopping to say hello - so many people just run on by and never give me the time of day!"
+              - WAIT 3
+              - CHAT "Now, if something terrible were ever to happen to you, you'll appear right back here!"
+              - WAIT 3
+              - CHAT "I'm getting old, and I have the tendency to greet everyone I meet! But if you'd like, I'll try my best to remember your face so you don't have to hear me repeat myself every time you return here!"
+              - WAIT 3
+              - CHAT "Would you like these old bones to try? <gold>(Yes/No)<green>"
+              - DISENGAGE
+        2:
+            Trigger: /REGEX:Yes|yes|YES/ please!
+            Script:
+              - ENGAGE
+              - CHAT "Alright! I will try my best to remember you, <player.name>!"
+              - FLAG NPC <player.name>:1
+              - execute as_server "denizen save"
+              - DISENGAGE
+        3:
+            Trigger: /REGEX:No|no|NO/ thanks.
+            Script:
+              - ENGAGE
+              - CHAT "As you wish."
+              - FLAG NPC <player.name>:0
+              - execute as_server "denizen save"
+              - DISENGAGE
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - FLAG PLAYER respawn:spawn
+            - IF "<FLAG.G:<player.name>_KANAME || 0>" == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - IF "<FLAG.N:<player.name> || 0>" == "0" CHAT "Welcome to Learning Landscape!" ELSE CHAT "Welcome back, <player.name>!"
+            - IF "<FLAG.N:<player.name> || 0>" == "0" RUNTASK "Hubgreet" ELSE DISENGAGE
+            
+'Hubgreet':
+  Type: Task
+  Script:
+    - WAIT 2
+    - CHAT "I do love seeing a friendly face, whether it's a new learner or an old friend!"
+    - WAIT 3
+    - CHAT "In this world you can explore, learn, and play all across the mountains you see down below there."
+    - WAIT 3
+    - CHAT "Will you be able to obtain the knowledge to master all of the challenges ahead of you? We shall see!"
+    - WAIT 3
+    - CHAT "To speak with a non-player, simply greet them with a <gold>hi<green> or <gold>hello<green>! I'm sure they have something to say."
+    - WAIT 3
+    - CHAT "I wish you luck on your adventure, though we will likely see eachother again!"
+    - WAIT 3
+    - NARRATE "You wonder if the Professor knows that he's a non-player."
+    - DISENGAGE

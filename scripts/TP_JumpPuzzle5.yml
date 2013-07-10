@@ -1,0 +1,48 @@
+#Jump Puzzle Teleporter 5
+"AssignmentTP_JumpPuzzle5":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_TP_JumpPuzzle5
+'Greeting_TP_JumpPuzzle5':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can I play this game?
+            Script:
+              - ENGAGE
+              - CHAT "Certainly! This is the Jump Puzzle!"
+              - WAIT 2
+              - CHAT "In order to succeed, you may find yourself in need of knowledge from the <white>Miscellaneous<green> topics."
+              - WAIT 2
+              - CHAT "If you find yourself struggling, feel free to come back any time! Good luck!"
+              - FEED
+              - WAIT 1
+              - GIVE item:cookie qty:2
+              - TELEPORT location:<anchor:jumppuzzle_start>
+              - FLAG PLAYER respawn:JP_start
+              - NARRATE "You are suddenly very high up. You feel hungry..."
+              - NARRATE "You should probably eat something."
+              - SATURATE
+              - FEED amt:-17
+              - SATURATE amt:-20
+              - FLAG GLOBAL <player.name>_Bread:0
+              - FLAG GLOBAL <player.name>_Mushroomsoup:0
+              - FLAG GLOBAL <player.name>_Melon:0
+              - FLAG GLOBAL <player.name>_Cookedfish:0
+              - FLAG GLOBAL <player.name>_Rawfish:0
+              - FLAG GLOBAL <player.name>_Rawbeef:0
+              - FLAG GLOBAL <player.name>_Bakedpotato:0
+              - FLAG GLOBAL <player.name>_CookieA:0
+              - FLAG GLOBAL <player.name>_CookieB:0
+              - FLAG GLOBAL <player.name>_CookieC:0
+              - FLAG GLOBAL <player.name>_CookieD:0
+              - FLAG GLOBAL <player.name>_JP_prize:0
+              - DISENGAGE

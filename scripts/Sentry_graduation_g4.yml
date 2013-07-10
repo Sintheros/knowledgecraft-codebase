@@ -1,0 +1,67 @@
+#This Sentry will appear at node: Graduation
+"AssignmentSentry_graduation_G4":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1032.52"
+      - FLAG NPC "SentryY:+:76"
+      - FLAG NPC "SentryZ:+:1001.42"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_graduation_G4
+'Greeting_graduation_G4':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the highest peak on Level 1 of Math Mountain!"
+              - WAIT 2
+              - RUNTASK "Sentry_graduation_G4_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - CHAT "This is the highest peak on Level 1 of Math Mountain!"
+            - WAIT 2
+            - RUNTASK "Sentry_graduation_G4_KA"
+'Sentry_graduation_G4_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:3
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_G4:0
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_axis_of_symmetry:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/geometry/transformations/e/axis_of_symmetry/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_axis_of_symmetry:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_axis_of_symmetry:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_converting_decimals_to_fractions_2:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/fractions/decimals_fractions/e/converting_decimals_to_fractions_2/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_converting_decimals_to_fractions_2:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_converting_decimals_to_fractions_2:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_converting_decimals_to_fractions_2>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_the_fundamental_theorem_of_arithmetic:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/applied-math/modern-crypt/e/the_fundamental_theorem_of_arithmetic/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_the_fundamental_theorem_of_arithmetic:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_the_fundamental_theorem_of_arithmetic:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_the_fundamental_theorem_of_arithmetic>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.N:<player.name>_PR" == "3" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_G4:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_G4:0
+    - IF "<FLAG.N:<player.name>_PR" != "3" CHAT "To truly master Level 1 Math, you should try the following first..."
+    - IF "<FLAG.N:<player.name>_PR" != "3" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G4>" == "0" CHAT "<white>Axis of symmetry<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_converting_decimals_to_fractions_2>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G4>" == "0" CHAT "<white>Dec to Frac 2<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_the_fundamental_theorem_of_arithmetic>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G4>" == "0" CHAT "<white>Fundamentals<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G4>" == "1" CHAT "You have mastered Level 1 Math! Congratulations!"
+    - DISENGAGE

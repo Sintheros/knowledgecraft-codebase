@@ -1,0 +1,97 @@
+#This Sentry will appear at node: Graduation
+"AssignmentSentry_graduation_G6":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1066.68"
+      - FLAG NPC "SentryY:+:65"
+      - FLAG NPC "SentryZ:+:1087.35"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_graduation_G6
+'Greeting_graduation_G6':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the highest peak on Level 3 of Math Mountain!"
+              - WAIT 2
+              - RUNTASK "Sentry_graduation_G6_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - CHAT "This is the highest peak on Level 3 of Math Mountain!"
+            - WAIT 2
+            - RUNTASK "Sentry_graduation_G6_KA"
+'Sentry_graduation_G6_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:9
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_Math:0
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_solving_for_a_variable:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/algebra/solving-linear-equations-and-inequalities/solving_for_variable/e/solving_for_a_variable/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_solving_for_a_variable:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_solving_for_a_variable:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solving_for_a_variable>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_herons_formula:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/geometry/basic-geometry/heron_formula_tutorial/e/herons_formula/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_herons_formula:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_herons_formula:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_herons_formula>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_rate_problems_2:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/rates-and-ratios/rates_tutorial/e/rate_problems_2/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_rate_problems_2:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_rate_problems_2:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_rate_problems_2>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_exploring_standard_deviation_1:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/probability/descriptive-statistics/variance_std_deviation/e/exploring_standard_deviation_1/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_exploring_standard_deviation_1:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_exploring_standard_deviation_1:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_exploring_standard_deviation_1>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_negative_number_word_problems:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/absolute-value/mult_div_negatives/e/negative_number_word_problems/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_negative_number_word_problems:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_negative_number_word_problems:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_negative_number_word_problems>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_divisibility:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/factors-multiples/prime_factorization/e/divisibility/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_divisibility:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_divisibility:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_divisibility>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_ordering_numbers:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/fractions/decimals_fractions/e/ordering_numbers/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_ordering_numbers:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_ordering_numbers:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_ordering_numbers>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_comparing_absolute_values:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/absolute-value/abs_value_tutorial/e/comparing_absolute_values/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_comparing_absolute_values:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_comparing_absolute_values:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_comparing_absolute_values>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graphing_points:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/trigonometry/graphs/graphing_coordinates/e/graphing_points_2/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graphing_points:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graphing_points:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graphing_points>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.N:<player.name>_PR" == "9" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_G6:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_G6:0
+    - IF "<FLAG.N:<player.name>_PR" != "9" CHAT "To truly master Level 3 Math, you should try the following first..."
+    - IF "<FLAG.N:<player.name>_PR" != "9" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_solving_for_a_variable>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "0" CHAT "<white>Solving Var Eqs<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_herons_formula>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "0" CHAT "<white>Heron's formula<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_rate_problems_2>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "0" CHAT "<white>Rate problems 2<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_exploring_standard_deviation_1>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "0" CHAT "<white>Standard Dev<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_negative_number_word_problems>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "0" CHAT "<white>Neg Word Probs<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_divisibility>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "0" CHAT "<white>Divisibility<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_ordering_numbers>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "0" CHAT "<white>Ordering numbers<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_comparing_absolute_values>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "0" CHAT "<white>Absolute Value 2<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graphing_points>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "0" CHAT "<white>Graphing points<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_G6>" == "1" CHAT "You have mastered Level 3 Math! Congratulations!"
+    - DISENGAGE

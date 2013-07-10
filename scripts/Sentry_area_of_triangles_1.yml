@@ -1,0 +1,59 @@
+#This Sentry will appear at node: Area of triangles
+"AssignmentSentry_area_of_triangles_1":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:254.47"
+      - FLAG NPC "SentryY:+:41"
+      - FLAG NPC "SentryZ:+:303.686"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_area_of_triangles_1
+'Greeting_area_of_triangles_1':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This is the home of Area of triangles!"
+              - WAIT 2
+              - RUNTASK "Sentry_area_of_triangles_1_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "This is the home of Area of triangles!"
+            - WAIT 2
+            - RUNTASK "Sentry_area_of_triangles_1_KA"
+'Sentry_area_of_triangles_1_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:1
+    - FLAG GLOBAL <player.name>_area_of_triangles_1:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<player.name>&HREF=math/geometry/basic-geometry/perimeter_area_tutorial/e/area_of_triangles_1/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <player.name>_area_of_triangles_1:1 ELSE FLAG GLOBAL <player.name>_area_of_triangles_1:0
+    - IF "<FLAG.G:<player.name>_area_of_triangles_1>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.G:<player.name>_area_of_triangles_1>" == "0" WAIT 2
+    - IF "<FLAG.G:<player.name>_area_of_triangles_1>" == "0" CHAT "You can learn and practice this topic at http://curlsh.me/seemf"
+    - IF "<FLAG.G:<player.name>_area_of_triangles_1>" == "1" CHAT "I see you have completed this topic! Congratulations!"
+    - FLAG GLOBAL <player.name>_area_of_squares_and_rectangles:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<player.name>&HREF=math/geometry/basic-geometry/perimeter_area_basics/e/area_of_squares_and_rectangles/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <player.name>_area_of_squares_and_rectangles:1 ELSE FLAG GLOBAL <player.name>_area_of_squares_and_rectangles:0
+    - IF "<FLAG.G:<player.name>_area_of_squares_and_rectangles>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.G:<player.name>_area_of_triangles_1>" == "1" FLAG NPC <player.name>_PR:1
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" != "1" CHAT "This peak may be <white>above your current skill level<green>!"
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" == "0" CHAT "You may wish to try the earlier topic first..."
+    - IF "<FLAG.N:<player.name>_PR>" < "0" CHAT "You may wish to try the earlier topics first..."
+    - IF "<FLAG.G:<player.name>_area_of_squares_and_rectangles>" == "0" CHAT "<white>Area of squares and rectangles<green>"

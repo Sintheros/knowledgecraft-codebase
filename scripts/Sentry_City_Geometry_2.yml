@@ -1,0 +1,30 @@
+#This Sentry is for the second Geometry City puzzle
+"AssignmentSentry_city_geometry_2":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_city_geometry_2
+'Greeting_city_geometry_2':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can you help me?
+            Script:
+              - CHAT "Certainly! Here to see our famous bathhouse?"
+              - WAIT 2
+              - CHAT "You may find that you need to understand Area in there."
+              - WAIT 3
+              - CHAT "Keep in mind that those pillars on the sides of the pool don't reach the bottom!"
+              - WAIT 2
+              - CHAT "This could help you too! http://tinyurl.com/mchzk43"
+              - WAIT 3
+              - CHAT "Looking for more area practice?"
+              - WAIT 2
+              - CHAT "You can always go here! http://curlsh.me/dv3pi"

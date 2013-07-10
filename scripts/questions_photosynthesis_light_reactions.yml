@@ -1,0 +1,86 @@
+"questions_photosynthesis_light_reactions":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_photosynthesis_light_reactions
+'Quiz_photosynthesis_light_reactions':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "Which best describes light-independent reactions?"
+            - WAIT 1
+            - CHAT "A. They utilize the energy stored in ATP and NADPH"
+            - CHAT "B. They use carbon dioxide to synthesize proteins"
+            - CHAT "C. They create energy-rich ATP and NADPH"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Rich! They utilize the energy that has been stored."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/photosynthesis/v/photosynthesis"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "Why do we perceive chlorophyll as being green?"
+            - WAIT 1
+            - CHAT "A. because it reflects green light."
+            - CHAT "B. because it absorbs green light."
+            - CHAT "C. because it absorbs yellow light and is green."
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right! It reflects green light that we can see. "
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_photosynthesis_light_reactions"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_photosynthesis_light_reactions"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_photosynthesis_light_reactions"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/photosynthesis/v/photosynthesis"
+                - ZAP 'step:Q2'

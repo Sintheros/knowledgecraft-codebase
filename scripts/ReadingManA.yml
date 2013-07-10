@@ -1,0 +1,20 @@
+"AssignmentReadingManA":
+  Type: Assignment
+  Interact Scripts:
+  - 1 ReadingManA
+'ReadingManA':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, how are you?
+                Script:
+                - CHAT "Hello there! You want to improve your reading?"
+                - WAIT 3
+                - CHAT "Reading Ridge, here we go! If you want to go back, just talk to me again!"
+                - WAIT 3
+                - CAST confusion power:3 duration:5
+                - TELEPORT location:<anchor:reading>

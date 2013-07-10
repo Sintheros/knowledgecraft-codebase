@@ -1,0 +1,20 @@
+#Hub ==> G6
+"AssignmentTP_HtG6":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:3
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_HtG6
+'Greeting_HtG6':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Proximity Trigger:
+        entry:
+          Script:
+           - TELEPORT location:<anchor:G6_start>

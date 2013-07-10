@@ -1,0 +1,32 @@
+"AssignmentIvan":
+   Type: Assignment
+   Interact Scripts:
+   - 1 inventory
+'inventory':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+   1:
+     Proximity Trigger:
+      entry:
+       Script:
+       - CHAT "Hi, I'm Ivan, and I'm here to tell you about your inventory!"
+       - WAIT 4
+       - CHAT "Press E To open your inventory?"
+       - WAIT 3
+       - CHAT "You can see the large grid, that's your backpack"
+       - WAIT 4
+       - CHAT "This shows you everything you are holding in storage"
+       - WAIT 3
+       - CHAT "The smaller row is your toolbelt."
+       - WAIT 3
+       - CHAT "The scroll wheel lets you move around it and put different things in your hands."
+       - WAIT 3
+       - CHAT "These can be tools, placeable blocks, or nothing!"
+       - WAIT 2
+       - CHAT "in the top left of the inventory there are armor slots, where you can put made armor on."
+       - WAIT 2
+       - CHAT "The top right is a small crafting plane"
+       - WAIT 2
+       - CHAT "Go upstairs to learn more about that!"

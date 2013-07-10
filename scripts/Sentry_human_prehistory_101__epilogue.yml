@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Human Prehistory 101: Epilogue
+"AssignmentSentry_human_prehistory_101__epilogue":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:153.6"
+      - FLAG NPC "SentryY:+:34"
+      - FLAG NPC "SentryZ:+:153.6"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_human_prehistory_101__epilogue
+'Greeting_human_prehistory_101__epilogue':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Human Prehistory 101: Epilogue!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/tree-of-life/v/human-prehistory-101--epilogue"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_human_prehistory_101__epilogue
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_human_prehistory_101__epilogue || 0>" == "0" FLAG "Correct_human_prehistory_101__epilogue:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_human_prehistory_101__epilogue || 0>" < "10" RUNTASK "Sentry_human_prehistory_101__epilogue"
+'Sentry_human_prehistory_101__epilogue':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_human_prehistory_101__epilogue':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_human_prehistory_101__epilogue:+:1"
+    - CHAT "You now have <flag:Correct_human_prehistory_101__epilogue> correct at this peak."
+'No_human_prehistory_101__epilogue':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/tree-of-life/v/human-prehistory-101--epilogue"

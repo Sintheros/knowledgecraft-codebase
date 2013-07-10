@@ -1,0 +1,51 @@
+#Geometry City Bathhouse question
+"AssignmentQuestions_city_geometry_bathhouse":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 greeting_city_geometry_bathhouse
+'Greeting_city_geometry_bathhouse':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+            Script:
+              - ENGAGE
+              - CHAT "This my friend, is the famous Geometry City Bathhouse!"
+              - WAIT 2
+              - CHAT "Care for a dip?"
+              - WAIT 3
+              - CHAT "...Though while you're here, I've run into some trouble, if you don't mind helping."
+              - WAIT 3
+              - CHAT "The artisan who designed this building went and got himself eaten, and now I have no idea what the <red>area<green> of that pool is."
+              - WAIT 3
+              - CHAT "Just the bottom of the pool, mind you. We need to retile that floor."
+              - WAIT 3
+              - CHAT "Could you tell me what it is?"
+              - DISENGAGE
+        2:
+            Trigger: About /REGEX:.+/ units.
+            Script:
+              - ENGAGE
+              - FLAG NPC <player.name>:<player.chat_history>
+              - IF "<FLAG.N:<player.name>>" == "96" FLAG PLAYER Geometry_Bathhouse:1 ELSE FLAG PLAYER Geometry_Bathhouse:0
+              - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "1" CHAT "That sounds about right. Thanks! Say, have you checked out the theatre on the hill?" ELSE CHAT "...That doesn't sound right. Have you brushed up on your Area? The townspeople can help!"
+              - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "1" ZAP 2
+              - DISENGAGE
+    2:
+      Chat Trigger:
+          1:
+              Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+              Script:
+              - CHAT "Wishing that I was a bathhouse patron right about now."
+              - WAIT 3
+              - NARRATE "Well that water DOES look inviting."

@@ -1,0 +1,28 @@
+#This Sentry will appear at node: Graduation
+"AssignmentSentry_graduation":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_math>
+      - FLAG NPC "SentryX:+:274.286"
+      - FLAG NPC "SentryY:+:63"
+      - FLAG NPC "SentryZ:+:201.608"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_graduation
+'Greeting_graduation':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Graduation!"
+              - WAIT 3
+              - CHAT "Try the other peaks! Or practice anything at www.khanacademy.org"

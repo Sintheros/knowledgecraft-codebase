@@ -1,0 +1,36 @@
+"Romeo":
+  Type: Assignment
+  Interact Scripts:
+  - 52 RomeoSpeach
+'RomeoTalking':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Buon giorno! My name is Romeo and welcome to whats left of Rome!"
+                - WAIT 2
+                - CHAT "To my right we have the roman communal baths, were citizens would join to bath,"
+                - WAIT 1
+                - CHAT "and to my left, the legendary coliseum, were gladiators fought to the death for honor and glory!"
+                - WAIT 2
+                - CHAT "Feel free to look around or take a refreshing bath."
+                - WAIT 2
+                - CHAT "Or did you want to go back to the museum? <Gold>Yes/No <Green>"
+                - ZAP 2    
+    2:
+        Chat Trigger:
+            1:
+                Trigger: /Yes/ I'd like to go back.
+                Script:
+                - CHAT "Oh, alright then."
+                - WAIT 2
+                - CHAT "Come back soon!" 
+                - CAST blindness power:3 duration:5
+                - CAST confusion power:3 duration:5
+                - TELEPORT location:<anchor:museum>
+                - FINISH

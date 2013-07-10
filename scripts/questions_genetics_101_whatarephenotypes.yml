@@ -1,0 +1,77 @@
+"questions_genetics_101_whatarephenotypes":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_genetics_101_whatarephenotypes
+'Quiz_genetics_101_whatarephenotypes':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "Phenotypes"
+            - WAIT 1
+            - CHAT "A. are finished when you are born."
+            - CHAT "B. are determined completely by genes."
+            - CHAT "C. result from genes and environment"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Correct!"
+                - CHAT ">H:http://www.khanacademy.org/science/biology/heredity-and-genetics/v/genetics-101-part-4--what-are-phenotypes"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "SNPs can affect your personality"
+            - WAIT 1
+            - CHAT "A. False"
+            - CHAT "B. True"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_genetics_101_whatarephenotypes"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! But it isn’t fully understood yet. "
+                - CHAT ">H:http://www.khanacademy.org/science/biology/heredity-and-genetics/v/genetics-101-part-4--what-are-phenotypes"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_genetics_101_whatarephenotypes"
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - ZAP 'step:Q2'

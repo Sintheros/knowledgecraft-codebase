@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Types of immune responses: Innate and Adaptive. Humoral vs. Cell-Mediated
+"AssignmentSentry_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:240.482"
+      - FLAG NPC "SentryY:+:55"
+      - FLAG NPC "SentryZ:+:868.33"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated
+'Greeting_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Types of immune responses: Innate and Adaptive. Humoral vs. Cell-Mediated!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/immunology/v/types-of-immune-responses--innate-and-adaptive---humoral-vs--cell-mediated"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated || 0>" == "0" FLAG "Correct_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated || 0>" < "10" RUNTASK "Sentry_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated"
+'Sentry_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated:+:1"
+    - CHAT "You now have <flag:Correct_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated> correct at this peak."
+'No_types_of_immune_responses__innate_and_adaptive___humoral_vs__cell_mediated':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/immunology/v/types-of-immune-responses--innate-and-adaptive---humoral-vs--cell-mediated"

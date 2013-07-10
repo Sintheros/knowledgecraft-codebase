@@ -1,0 +1,49 @@
+"questions_genetics_101_wheredogenescomefrom":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_genetics_101_wheredogenescomefrom
+'Quiz_genetics_101_wheredogenescomefrom':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "What is special about the x and y chromosomes?"
+            - WAIT 1
+            - CHAT "A. They have all of your health problems."
+            - CHAT "B. They determine hair color"
+            - CHAT "C. They determine gender"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_genetics_101_wheredogenescomefrom"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_genetics_101_wheredogenescomefrom"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Right! xx indicates a female. xy indicates a male."
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_genetics_101_wheredogenescomefrom"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/genetics-101-part-3--where-do-your-genes-come-from"
+                - ZAP 'step:Q1'

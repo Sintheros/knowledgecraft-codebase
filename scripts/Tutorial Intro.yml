@@ -1,0 +1,35 @@
+"AssignmentTutorialMan":
+   Type: Assignment
+   Interact Scripts:
+   - 1 IntroToMountain
+   - 2 ChatIntro
+'IntroToMountain':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+   1:
+     Proximity Trigger:
+      entry:
+       Script:
+       - CHAT "Hello! Have you played Minecraft before? Press T on the keyboard and then tell me yes or no. once you've typed yes or no, press enter!"
+       - FINISH
+'ChatIntro':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List: 
+    - script finished script:IntroToMountain
+  Steps:
+    1:
+        Chat Trigger:
+          1:
+            Trigger: /Regex:Yes|yes/, I have played Minecraft!
+            Script:
+              - CHAT "Okay! I'll see you later!"
+              - TELEPORT location:367.49,75,97.5,world
+            #- TELEPORT Bookmark:bottom
+          2:
+            Trigger: /Regex:No|no/, I have not played Minecraft!
+            Script:
+              - CHAT "Okay then! You should read the signs down the mountain, and it will teach you some basics!"

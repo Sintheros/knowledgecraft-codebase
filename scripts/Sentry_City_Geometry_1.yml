@@ -1,0 +1,26 @@
+#This Sentry is for the first Geometry City puzzle
+"AssignmentSentry_city_geometry_1":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_city_geometry_1
+'Greeting_city_geometry_1':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can you help me?
+            Script:
+              - CHAT "Looking to enter our perimeters, I see? Hah. Get it? Perimeters?"
+              - WAIT 2
+              - CHAT "This might help! http://tinyurl.com/lr5jhhm"
+              - WAIT 3
+              - CHAT "Looking for more perimeter practice?"
+              - WAIT 2
+              - CHAT "You can always go here! http://curlsh.me/feot2"

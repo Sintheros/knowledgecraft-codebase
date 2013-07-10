@@ -1,0 +1,74 @@
+"AssignmentMerchantBarrels":
+  Type: Assignment
+  Interact Scripts:
+  - 3 BarrelGreeting
+  - 2 HasInfo
+  - 1 DoesNotHaveInfo
+'BarrelGreeting':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List:
+    - -script finished 'script:BarrelGreeting'
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Why hello there, I'm alright. I'm buying barrels of cider from a friend later, but I don't know how many there are."
+                - WAIT 2
+                - CHAT "Maybe you can help me adventurer. Go talk to my friend, the Merchant Captain, and see how many barrels he has to sell me."
+                - WAIT 1
+                - CHAT "There's a reward for providing me with the correct information. You want to make an old merchant happy? <Gold> Yes/No <green>"
+                - ZAP 2
+    2:
+        Chat Trigger:
+            1:
+                Trigger: /Yes/ I will help you old merchant.
+                Script:
+                - CHAT "Superb! The Merchant Captain can be found at the docks. Come back when you have talked to him."
+                - WAIT 1
+                - CHAT "If you need some help, there is a book in a chest at the docks that you may find useful." 
+                - WAIT 2
+                - CHAT "Carry on!"
+                - FINISH
+'HasInfo':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List:
+    - script finished 'script:BarrelGreeting'
+    - -script finished 'script:HasInfo'
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: The Merchant Captain has /50/ barrels for you to buy.
+                Script:
+                - CHAT "Fantastic! I will get my money in order to buy these barrels."
+                - WAIT 1
+                - CHAT "Thank you so much <PLAYER.NAME>. Here is a knowledge emerald for your troubles."
+                - GIVE item:emerald qty:1
+                - FINISH
+            2:
+                Trigger: /<*>/
+                Script:
+                - CHAT "Ahh that can't be right. Go back and make sure you have the correct information. This business matter is very important to me."
+                - WAIT 1
+                - CHAT "If you need some help, there is a book in a chest at the docks that you may find useful."
+    
+'DoesNotHaveInfo':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List:
+    - script finished 'script:BarrelGreeting'
+    - -script finished 'script:HasInfo'
+  Steps:
+    1:
+    Chat Trigger:
+        1:
+            Trigger: I have /not/ talked to the Merchant Captain yet.
+            Script:
+            - CHAT "Well go talk to him, I need to know as soon as possible!

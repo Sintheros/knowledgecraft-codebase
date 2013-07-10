@@ -1,0 +1,20 @@
+"AssignmentMathManA":
+  Type: Assignment
+  Interact Scripts:
+  - 1 MathManA
+'MathManA':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, how are you?
+                Script:
+                - CHAT "Hello there! Interested in brushing up on your basic math skills are you?"
+                - WAIT 3
+                - CHAT "Well let's get you right on over to Math Mountain! If you want to go back, just talk to me again!"
+                - WAIT 3
+                - CAST confusion power:3 duration:5
+                - TELEPORT location:<anchor:math>

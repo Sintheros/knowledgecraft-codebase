@@ -1,0 +1,60 @@
+#Geometry City Theatre Patron Villager
+"AssignmentVillager_city_geometry_patron":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 greeting_city_geometry_patron
+'Greeting_city_geometry_patron':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+            Script:
+              - ENGAGE
+              - CHAT "Hiatus?! Why's the performance on hiatus?"
+              - WAIT 3
+              - CHAT "Oh, and I came all the way out here too..."
+              - WAIT 3
+              - CHAT "Don't mind Barnes over there, he may seem crazy but he's just enthusiastic."
+              - WAIT 3
+              - CHAT "He might make some strange requests though."
+              - WAIT 3
+              - CHAT "He likes ...circles..."
+              - WAIT 2
+              - CHAT "For instance, do you know about finding the area of a circle? <gold>(Yes/No)<green>"
+              - DISENGAGE
+        2:
+            Trigger: /Regex:Yes|yes/, I do.
+            Script:
+              - ENGAGE
+              - CHAT "Well that's good, it's a very useful skill to have."
+              - DISENGAGE
+        3:
+            Trigger: /Regex:No|no/, I don't.
+            Script:
+              - ENGAGE
+              - CHAT "Oh, well then allow me."
+              - WAIT 3
+              - CHAT "First you find the radius - that's the distance from the center to any point on the outside. It's also half the diameter, which is the entire way across."
+              - WAIT 5
+              - CHAT "Then you take the radius and square it - that's multiplying something times itself."
+              - WAIT 4
+              - CHAT "Last, you take your new number and multiply it by pi! Pi's a special number that you see along when talking about circles. Pi equals about 3.14. Delicious!"
+              - WAIT 5
+              - CHAT "And that gets you the area. Like look at this orchestra platform here. It's 7 across."
+              - WAIT 4
+              - CHAT "That makes its radius half that, 3.5."
+              - WAIT 3
+              - CHAT "3.5 times 3.5 is 12.25, and 12.25 times pi is about 38.5! There's your area!"
+              - WAIT 4
+              - CHAT "I hope I could help!"
+              - DISENGAGE

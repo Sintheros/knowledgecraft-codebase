@@ -1,0 +1,68 @@
+#This Sentry will appear at node: 6th Grade
+"AssignmentSentry_g6":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1010.47"
+      - FLAG NPC "SentryY:+:17"
+      - FLAG NPC "SentryZ:+:1280"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_g6
+'Greeting_g6':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+            - CHAT "This is the base of Level 3 of Math Mountain!"
+            - WAIT 2
+            - CHAT "There are five major Math subjects in Level 3..."
+            - WAIT 1 
+            - CHAT "<White>Lv3 Geometry<green> to the west,"
+            - CHAT "<white>Equations and Expressions<green>, slightly farther west,"
+            - CHAT "<white>Rates and Ratios<green>, directly up the hill from here,"
+            - CHAT "<white>Statistics<green>, over to the east,"
+            - CHAT "and <white>The Number System<green> (that's 'normal math') even further east!"
+            - WAIT 3
+            - CHAT "Try climbing any of them! Who knows what you might find?"
+            - WAIT 2
+            - CHAT "Also, if you want to be <gold>teleport<green>ed to any of the further subjects, just ask."
+            - FLAG NPC <player.name>:1
+            - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_g6:1
+        2:
+            Trigger: Can you /Regex:Teleport|teleport|TELEPORT/ me?
+            Script:
+            - CHAT "Sure. Do you want to go to <gold>Expressions<green> or The <gold>Number<green> System?"
+        3:
+            Trigger: Send me to /Regex:expressions|equations/ex|eq|Expressions|Equations/!
+            Script:
+            - CHAT "Away you go!"
+            - TELEPORT location:<anchor:g6_ee>
+        4:
+            Trigger: Send me to /Regex:NS|ns|Number|System|number|system|numbersystem/!
+            Script:
+            - CHAT "Away you go!"
+            - TELEPORT location:<anchor:g6_numbersystem>
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "Welcome to Level 3 of Math Mountain!"
+            - WAIT 2
+            - CHAT "Here you can explore, enhance your math skills, and participate in games all around the mountain!"
+            - WAIT 2
+            - NARRATE "You remember the Professor said to speak with a non-player, simply greet them with a <gold>hi<white> or <gold>hello<white>!"
+            - FLAG NPC <player.name>:1
+            - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_g6:1

@@ -1,0 +1,57 @@
+#This Sentry will appear at node: ATP: Adenosine Triphosphate
+"AssignmentSentry_atp__adenosine_triphosphate":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:153.63"
+      - FLAG NPC "SentryY:+:59"
+      - FLAG NPC "SentryZ:+:870.147"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_atp__adenosine_triphosphate
+'Greeting_atp__adenosine_triphosphate':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is ATP: Adenosine Triphosphate!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/cellular-respiration/v/atp--adenosine-triphosphate"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_atp__adenosine_triphosphate
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_atp__adenosine_triphosphate || 0>" == "0" FLAG "Correct_atp__adenosine_triphosphate:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_atp__adenosine_triphosphate || 0>" < "10" RUNTASK "Sentry_atp__adenosine_triphosphate"
+'Sentry_atp__adenosine_triphosphate':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_atp__adenosine_triphosphate':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_atp__adenosine_triphosphate:+:1"
+    - CHAT "You now have <flag:Correct_atp__adenosine_triphosphate> correct at this peak."
+'No_atp__adenosine_triphosphate':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/cellular-respiration/v/atp--adenosine-triphosphate"

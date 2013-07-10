@@ -1,0 +1,24 @@
+"InfoGuide1":
+  Type: Assignment
+  Interact Scripts:
+  - 48 HGuide1
+'HGuide1':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Hello, I'm an Info Guide."
+                - WAIT 2
+                - CHAT "The person right next to me wants to quiz you on your knowledge of Ancient Greece. "
+                - WAIT 1
+                - CHAT "Before you can take a quiz, you need to learn!I can send you some information on Ancient Greece right now."
+                - WAIT 3
+                - CHAT "http://www.youtube.com/watch?v=cdbZZULSyLQ"
+                - WAIT 2 
+                - CHAT "Good Luck!"
+                - FINISH

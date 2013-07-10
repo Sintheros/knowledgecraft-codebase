@@ -1,0 +1,87 @@
+#--- assignment ----
+"BlockClicking":
+    Type: Assignment
+    Interact Scripts:
+    - 1 RickyGreeting
+    - 2 BlocksBroken
+    - 3 BlocksPlaced
+    
+#--- Greet and tell them ----
+'RickyGreeting':
+    Type: Interact
+    Requirements:
+      Mode: All
+      List:
+      - -script finished script:RickyGreeting
+    Steps:
+       1:
+        Click Trigger:
+          Script:
+          #I've taken out the engages and finishes and it still doesnt work
+          #I checked everything and can't tell what's wrong with it
+          - ENGAGE
+          - CHAT "Hello there! So you're interested about clicking."
+          - WAIT 4
+          - CHAT "Well, left click is how you destroy blocks. You can hold it to destroy faster."
+          - WAIT 3
+          - CHAT "Try it out on these four blocks of wood and then come back and click on me."
+          - DISENGAGE
+          - FINISH
+          - LISTEN block type:break block:wood qty:4 'SCRIPT: BlocksBroken'
+
+#--- See blocks broken and tell them to build ----
+'BlocksBroken':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List: #this is where we check if they are on the quest and have the items
+    - script finished script:RickyGreeting
+    - -script finished script:BlocksBroken
+  Steps:
+     '1':
+      Click Trigger:
+        Script:
+        #Engage is used to keep the player from clicking twice
+        - ENGAGE
+        - CHAT "Haha! You've successfully destroyed those blocks!"
+        - WAIT 4
+        - CHAT "Now about right clicking..."
+        - WAIT 3
+        - CHAT "Right click allows you to place the blocks you pick up after destroying them."
+        - WAIT 4
+        - CHAT "You can also hold this but I wouldn't recommend it."
+        - WAIT 3
+        - CHAT "Now replace those blocks you've just destroyed, I loved them!"
+        - WAIT 4
+        - CHAT "Right click me when you've done so"
+        - DISENGAGE
+        - FINISH
+        - LISTEN block type:build block:wood qty:4 'SCRIPT: BlocksPlaced'
+
+'BlocksPlaced':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List: #this is where we check if they are on the quest and have the items
+    - script finished script:RickyGreeting
+    - script finished script:BlocksBroken
+    - -script finished script:BlocksPlaced
+  Steps:
+     1:
+      Click Trigger:
+        Script:
+        #Engage is used to keep the player from clicking twice
+        - ENGAGE
+        - CHAT "By the gods, you've done it."
+        - WAIT 4
+        - CHAT "You've successfully placed the blocks back."
+        - WAIT 3
+        - CHAT "Let me tell you about some other uses of right clicking."
+        - WAIT 4
+        - CHAT "Right click is also how you open doors and chests."
+        - WAIT 3
+        - CHAT "You now know everything about clicking! Continue on....if you dare"
+        - WAIT 4
+        - CHAT "LOL jk this is a tutorial."
+        - DISENGAGE
+        - FINISH        

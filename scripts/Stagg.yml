@@ -1,0 +1,22 @@
+"AssignmentStagg":
+  Type: Assignment
+  Interact Scripts:
+  - 1 Stagg
+'Stagg':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Commander Eisenhower, sir! There you are! Where have you been? This is very important!"
+                - WAIT 3
+                - CHAT "The poor weather's about to clear up. Well, clear up enough to go through with the invasion."
+                - WAIT 3
+                - CHAT "It's not going to last that long though. It's go tomorrow or call it for a month, sir."
+                - WAIT 3
+                - CHAT "Mallory doesn't seem convinced though. I think we're good to<Gold> attack <green> but that's just me."
+                - FINISH

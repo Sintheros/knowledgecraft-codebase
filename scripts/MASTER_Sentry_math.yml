@@ -1,0 +1,744 @@
+#This is the MASTER SENTRY for 143 different Math Sentries.
+"AssignmentSentry_MASTER_Math":
+  Type: Assignment
+  Interact Scripts:
+  - 1 CreateSentries_Math
+'CreateSentries_Math':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Create/ the sentries you've been assigned to create.
+                Script:
+                - FLAG GLOBAL MasterX_Math:<npc.location.x>
+                - FLAG GLOBAL MasterY_Math:<npc.location.y>
+                - FLAG GLOBAL MasterZ_Math:<npc.location.z>
+                - FLAG GLOBAL "MasterX_Math:-:1023.98"
+                - FLAG GLOBAL "MasterY_Math:-:80"
+                - FLAG GLOBAL "MasterZ_Math:-:1015.74"
+                - CHAT "Now spawning and assigning 143 sentries!"
+                - TELEPORT NPC "location:<FLAG.NPC:MasterX_Math>,<FLAG.NPC:MasterY_Math>,<FLAG.NPC:MasterZ_Math>,world"
+                - execute as_npc "npc create Central Hub"
+                - execute as_npc "npc assignment --set AssignmentSentry_hub"
+                - WAIT 1
+                - execute as_npc "npc create Graduation G4"
+                - execute as_npc "npc assignment --set AssignmentSentry_graduation_g4"
+                - WAIT 1
+                - execute as_npc "npc create Dec to Frac 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_converting_decimals_to_fractions_2"
+                - WAIT 1
+                - execute as_npc "npc create Dec to Frac 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_converting_decimals_to_fractions_1"
+                - WAIT 1
+                - execute as_npc "npc create Frac to Dec"
+                - execute as_npc "npc assignment --set AssignmentSentry_converting_fractions_to_decimals"
+                - WAIT 1
+                - execute as_npc "npc create Dec Estimation"
+                - execute as_npc "npc assignment --set AssignmentSentry_estimation_with_decimals"
+                - WAIT 1
+                - execute as_npc "npc create Graduation G6"
+                - execute as_npc "npc assignment --set AssignmentSentry_graduation_g6"
+                - WAIT 1
+                - execute as_npc "npc create Dec Place Value"
+                - execute as_npc "npc assignment --set AssignmentSentry_understanding_decimals_place_value"
+                - WAIT 1
+                - execute as_npc "npc create Rounding Wholes"
+                - execute as_npc "npc assignment --set AssignmentSentry_rounding_whole_numbers"
+                - WAIT 1
+                - execute as_npc "npc create Solving Var Eqs"
+                - execute as_npc "npc assignment --set AssignmentSentry_solving_for_a_variable"
+                - WAIT 1
+                - execute as_npc "npc create Decimals 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_decimals_on_the_number_line_2"
+                - WAIT 1
+                - execute as_npc "npc create Standard Dev"
+                - execute as_npc "npc assignment --set AssignmentSentry_exploring_standard_deviation_1"
+                - WAIT 1
+                - execute as_npc "npc create Graduation G5"
+                - execute as_npc "npc assignment --set AssignmentSentry_graduation_g5"
+                - WAIT 1
+                - execute as_npc "npc create Unknown Vars"
+                - execute as_npc "npc assignment --set AssignmentSentry_expressions_with_unknown_variables"
+                - WAIT 1
+                - execute as_npc "npc create Fundamentals"
+                - execute as_npc "npc assignment --set AssignmentSentry_the_fundamental_theorem_of_arithmetic"
+                - WAIT 1
+                - execute as_npc "npc create Bar Charts 3"
+                - execute as_npc "npc assignment --set AssignmentSentry_reading_bar_charts_3"
+                - WAIT 1
+                - execute as_npc "npc create Inequalities"
+                - execute as_npc "npc assignment --set AssignmentSentry_inequalities_on_a_number_line"
+                - WAIT 1
+                - execute as_npc "npc create Rounding numbers"
+                - execute as_npc "npc assignment --set AssignmentSentry_rounding_numbers"
+                - WAIT 1
+                - execute as_npc "npc create Decimals 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_decimals_on_the_number_line_1"
+                - WAIT 1
+                - execute as_npc "npc create MeanMedianMode"
+                - execute as_npc "npc assignment --set AssignmentSentry_mean_median_and_mode"
+                - WAIT 1
+                - execute as_npc "npc create Axis of symmetry"
+                - execute as_npc "npc assignment --set AssignmentSentry_axis_of_symmetry"
+                - WAIT 1
+                - execute as_npc "npc create Prime Factors"
+                - execute as_npc "npc assignment --set AssignmentSentry_prime_factorization"
+                - WAIT 1
+                - execute as_npc "npc create Writing Ex 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_writing_expressions_2"
+                - WAIT 1
+                - execute as_npc "npc create Combo Like Terms"
+                - execute as_npc "npc assignment --set AssignmentSentry_combining_like_terms_2"
+                - WAIT 1
+                - execute as_npc "npc create Div Dec 3"
+                - execute as_npc "npc assignment --set AssignmentSentry_dividing_decimals"
+                - WAIT 1
+                - execute as_npc "npc create Order Imp Fracs"
+                - execute as_npc "npc assignment --set AssignmentSentry_ordering_improper_fractions_and_mixed_numbers"
+                - WAIT 1
+                - execute as_npc "npc create Ordering Fracs"
+                - execute as_npc "npc assignment --set AssignmentSentry_ordering_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Neg Word Probs"
+                - execute as_npc "npc assignment --set AssignmentSentry_negative_number_word_problems"
+                - WAIT 1
+                - execute as_npc "npc create Bar Charts 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_reading_bar_charts_2"
+                - WAIT 1
+                - execute as_npc "npc create Div Dec 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_dividing_decimals_2"
+                - WAIT 1
+                - execute as_npc "npc create 2Var Expressions"
+                - execute as_npc "npc assignment --set AssignmentSentry_evaluating_expressions_2"
+                - WAIT 1
+                - execute as_npc "npc create Writing Ex"
+                - execute as_npc "npc assignment --set AssignmentSentry_writing_expressions_1"
+                - WAIT 1
+                - execute as_npc "npc create Prime numbers"
+                - execute as_npc "npc assignment --set AssignmentSentry_prime_numbers"
+                - WAIT 1
+                - execute as_npc "npc create Frac CutCopy 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_fractions_cut_and_copy_2"
+                - WAIT 1
+                - execute as_npc "npc create Mixed Numbers"
+                - execute as_npc "npc assignment --set AssignmentSentry_adding_subtracting_mixed_numbers_05"
+                - WAIT 1
+                - execute as_npc "npc create Composites"
+                - execute as_npc "npc assignment --set AssignmentSentry_composite_numbers"
+                - WAIT 1
+                - execute as_npc "npc create Compare Frac 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_comparing_fractions_2"
+                - WAIT 1
+                - execute as_npc "npc create Comp Imp Fracs"
+                - execute as_npc "npc assignment --set AssignmentSentry_comparing_improper_fractions_and_mixed_numbers"
+                - WAIT 1
+                - execute as_npc "npc create Congruent angles"
+                - execute as_npc "npc assignment --set AssignmentSentry_congruent_angles"
+                - WAIT 1
+                - execute as_npc "npc create Congruent Segs"
+                - execute as_npc "npc assignment --set AssignmentSentry_congruent_segments"
+                - WAIT 1
+                - execute as_npc "npc create Measuring angles"
+                - execute as_npc "npc assignment --set AssignmentSentry_measuring_angles"
+                - WAIT 1
+                - execute as_npc "npc create Heron's formula"
+                - execute as_npc "npc assignment --set AssignmentSentry_herons_formula"
+                - WAIT 1
+                - execute as_npc "npc create Rate problems 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_rate_problems_2"
+                - WAIT 1
+                - execute as_npc "npc create Line Charts 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_reading_line_charts_1"
+                - WAIT 1
+                - execute as_npc "npc create Write Bar Charts"
+                - execute as_npc "npc assignment --set AssignmentSentry_creating_bar_charts_1"
+                - WAIT 1
+                - execute as_npc "npc create Divisibility"
+                - execute as_npc "npc assignment --set AssignmentSentry_divisibility"
+                - WAIT 1
+                - execute as_npc "npc create Convert ImpFracs"
+                - execute as_npc "npc assignment --set AssignmentSentry_converting_mixed_numbers_and_improper_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Compare Fracs 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_comparing_fractions_1"
+                - WAIT 1
+                - execute as_npc "npc create MultDivWordProbs"
+                - execute as_npc "npc assignment --set AssignmentSentry_arithmetic_word_problems_2"
+                - WAIT 1
+                - execute as_npc "npc create Divisibility T"
+                - execute as_npc "npc assignment --set AssignmentSentry_divisibility_tests"
+                - WAIT 1
+                - execute as_npc "npc create Div Dec 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_dividing_decimals_1"
+                - WAIT 1
+                - execute as_npc "npc create Sub Dec"
+                - execute as_npc "npc assignment --set AssignmentSentry_subtracting_decimals"
+                - WAIT 1
+                - execute as_npc "npc create Add Sub Negs"
+                - execute as_npc "npc assignment --set AssignmentSentry_adding_and_subtracting_negative_numbers"
+                - WAIT 1
+                - execute as_npc "npc create Frac CutCopy 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_fractions_cut_and_copy_1"
+                - WAIT 1
+                - execute as_npc "npc create 1Var Expressions"
+                - execute as_npc "npc assignment --set AssignmentSentry_evaluating_expressions_1"
+                - WAIT 1
+                - execute as_npc "npc create Moving Decimals"
+                - execute as_npc "npc assignment --set AssignmentSentry_understanding_moving_the_decimal"
+                - WAIT 1
+                - execute as_npc "npc create Angle types"
+                - execute as_npc "npc assignment --set AssignmentSentry_angle_types"
+                - WAIT 1
+                - execute as_npc "npc create Measuring Segs"
+                - execute as_npc "npc assignment --set AssignmentSentry_measuring_segments"
+                - WAIT 1
+                - execute as_npc "npc create SimplifyingFracs"
+                - execute as_npc "npc assignment --set AssignmentSentry_simplifying_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Add Dec 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_adding_decimals_2"
+                - WAIT 1
+                - execute as_npc "npc create Divisibility Int"
+                - execute as_npc "npc assignment --set AssignmentSentry_divisibility_intuition"
+                - WAIT 1
+                - execute as_npc "npc create Rate problems 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_rate_problems_1"
+                - WAIT 1
+                - execute as_npc "npc create Bar Charts 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_reading_bar_charts_1"
+                - WAIT 1
+                - execute as_npc "npc create Stem Leaf Plots"
+                - execute as_npc "npc assignment --set AssignmentSentry_reading_stem_and_leaf_plots"
+                - WAIT 1
+                - execute as_npc "npc create Basic Div Dec"
+                - execute as_npc "npc assignment --set AssignmentSentry_dividing_decimals_05"
+                - WAIT 1
+                - execute as_npc "npc create Solid geometry"
+                - execute as_npc "npc assignment --set AssignmentSentry_solid_geometry"
+                - WAIT 1
+                - execute as_npc "npc create Exponent rules"
+                - execute as_npc "npc assignment --set AssignmentSentry_exponent_rules"
+                - WAIT 1
+                - execute as_npc "npc create Division 3"
+                - execute as_npc "npc assignment --set AssignmentSentry_division_3"
+                - WAIT 1
+                - execute as_npc "npc create MultMixedNums 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_multiplying_mixed_numbers_1"
+                - WAIT 1
+                - execute as_npc "npc create Mult Dec"
+                - execute as_npc "npc assignment --set AssignmentSentry_multiplying_decimals"
+                - WAIT 1
+                - execute as_npc "npc create Basic Sub Dec"
+                - execute as_npc "npc assignment --set AssignmentSentry_subtracting_decimals_05"
+                - WAIT 1
+                - execute as_npc "npc create Add Negatives"
+                - execute as_npc "npc assignment --set AssignmentSentry_adding_negative_numbers"
+                - WAIT 1
+                - execute as_npc "npc create RaysLinesSegs"
+                - execute as_npc "npc assignment --set AssignmentSentry_recognizing_rays_lines_and_line_segments"
+                - WAIT 1
+                - execute as_npc "npc create LCM and GCD"
+                - execute as_npc "npc assignment --set AssignmentSentry_least_common_multiple_and_greatest_common_divisor_word_problems"
+                - WAIT 1
+                - execute as_npc "npc create Ordering numbers"
+                - execute as_npc "npc assignment --set AssignmentSentry_ordering_numbers"
+                - WAIT 1
+                - execute as_npc "npc create Pos and Zero Exs"
+                - execute as_npc "npc assignment --set AssignmentSentry_exponents_1"
+                - WAIT 1
+                - execute as_npc "npc create Square Perimeter"
+                - execute as_npc "npc assignment --set AssignmentSentry_perimeter_of_squares_and_rectangles"
+                - WAIT 1
+                - execute as_npc "npc create Equiv Frac 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_equivalent_fractions_2"
+                - WAIT 1
+                - execute as_npc "npc create Basic Rate Probs"
+                - execute as_npc "npc assignment --set AssignmentSentry_rate_problems_05"
+                - WAIT 1
+                - execute as_npc "npc create Add Sub Fracs"
+                - execute as_npc "npc assignment --set AssignmentSentry_adding_and_subtracting_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Mult 3x2"
+                - execute as_npc "npc assignment --set AssignmentSentry_multiplication_3"
+                - WAIT 1
+                - execute as_npc "npc create MultFracWordProb"
+                - execute as_npc "npc assignment --set AssignmentSentry_multiplying_fractions_word_problems"
+                - WAIT 1
+                - execute as_npc "npc create Reading tables 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_reading_tables_2"
+                - WAIT 1
+                - execute as_npc "npc create Parallelograms"
+                - execute as_npc "npc assignment --set AssignmentSentry_area_of_parallelograms"
+                - WAIT 1
+                - execute as_npc "npc create Points on Planes"
+                - execute as_npc "npc assignment --set AssignmentSentry_identifying_points_1"
+                - WAIT 1
+                - execute as_npc "npc create Trapezoid Area"
+                - execute as_npc "npc assignment --set AssignmentSentry_areas_of_trapezoids_rhombi_and_kites"
+                - WAIT 1
+                - execute as_npc "npc create AddSubWordProbs"
+                - execute as_npc "npc assignment --set AssignmentSentry_arithmetic_word_problems_1"
+                - WAIT 1
+                - execute as_npc "npc create Ordering Negs"
+                - execute as_npc "npc assignment --set AssignmentSentry_ordering_negative_numbers"
+                - WAIT 1
+                - execute as_npc "npc create MarkupWordProbs"
+                - execute as_npc "npc assignment --set AssignmentSentry_markup_and_commission_word_problems"
+                - WAIT 1
+                - execute as_npc "npc create TaxTip WordProbs"
+                - execute as_npc "npc assignment --set AssignmentSentry_discount_tax_and_tip_word_problems"
+                - WAIT 1
+                - execute as_npc "npc create L.C.M."
+                - execute as_npc "npc assignment --set AssignmentSentry_least_common_multiple"
+                - WAIT 1
+                - execute as_npc "npc create G.C.D."
+                - execute as_npc "npc assignment --set AssignmentSentry_greatest_common_divisor"
+                - WAIT 1
+                - execute as_npc "npc create Adding decimals"
+                - execute as_npc "npc assignment --set AssignmentSentry_adding_decimals"
+                - WAIT 1
+                - execute as_npc "npc create Mult Fracs"
+                - execute as_npc "npc assignment --set AssignmentSentry_multiplying_fractions"
+                - WAIT 1
+                - execute as_npc "npc create DivFracWordProbs"
+                - execute as_npc "npc assignment --set AssignmentSentry_dividing_fractions_word_problems"
+                - WAIT 1
+                - execute as_npc "npc create Div Frac"
+                - execute as_npc "npc assignment --set AssignmentSentry_dividing_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Ratio Word Probs"
+                - execute as_npc "npc assignment --set AssignmentSentry_ratio_word_problems"
+                - WAIT 1
+                - execute as_npc "npc create Absolute Value 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_comparing_absolute_values"
+                - WAIT 1
+                - execute as_npc "npc create FracWordProbs"
+                - execute as_npc "npc assignment --set AssignmentSentry_fraction_word_problems_1"
+                - WAIT 1
+                - execute as_npc "npc create Midpoints"
+                - execute as_npc "npc assignment --set AssignmentSentry_midpoint_of_a_segment"
+                - WAIT 1
+                - execute as_npc "npc create Basic Div Frac"
+                - execute as_npc "npc assignment --set AssignmentSentry_dividing_fractions_05"
+                - WAIT 1
+                - execute as_npc "npc create Basic Mult Frac"
+                - execute as_npc "npc assignment --set AssignmentSentry_multiplying_fractions_05"
+                - WAIT 1
+                - execute as_npc "npc create Ratios as Fracs"
+                - execute as_npc "npc assignment --set AssignmentSentry_expressing_ratios_as_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Dec to Percents"
+                - execute as_npc "npc assignment --set AssignmentSentry_converting_decimals_to_percents"
+                - WAIT 1
+                - execute as_npc "npc create Adding fractions"
+                - execute as_npc "npc assignment --set AssignmentSentry_adding_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Reading tables 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_reading_tables_1"
+                - WAIT 1
+                - execute as_npc "npc create Sub Fractions"
+                - execute as_npc "npc assignment --set AssignmentSentry_subtracting_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Mult 1x1"
+                - execute as_npc "npc assignment --set AssignmentSentry_multiplication_1"
+                - WAIT 1
+                - execute as_npc "npc create Perimeter 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_perimeter_1"
+                - WAIT 1
+                - execute as_npc "npc create Number line 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_number_line_2"
+                - WAIT 1
+                - execute as_npc "npc create Area 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_area_1"
+                - WAIT 1
+                - execute as_npc "npc create Equiv Fracs 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_equivalent_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Basic Add Frac"
+                - execute as_npc "npc assignment --set AssignmentSentry_adding_fractions_with_common_denominators"
+                - WAIT 1
+                - execute as_npc "npc create Subtraction 3"
+                - execute as_npc "npc assignment --set AssignmentSentry_subtraction_3"
+                - WAIT 1
+                - execute as_npc "npc create Divisibility 0.5"
+                - execute as_npc "npc assignment --set AssignmentSentry_divisibility_05"
+                - WAIT 1
+                - execute as_npc "npc create Basic Sub Frac"
+                - execute as_npc "npc assignment --set AssignmentSentry_subtracting_fractions_with_common_denominators"
+                - WAIT 1
+                - execute as_npc "npc create Props of Nums 2"
+                - execute as_npc "npc assignment --set AssignmentSentry_properties_of_numbers_2"
+                - WAIT 1
+                - execute as_npc "npc create Distrib Property"
+                - execute as_npc "npc assignment --set AssignmentSentry_distributive_property"
+                - WAIT 1
+                - execute as_npc "npc create MultDivWordProb2"
+                - execute as_npc "npc assignment --set AssignmentSentry_arithmetic_word_problems"
+                - WAIT 1
+                - execute as_npc "npc create Basic Add Dec"
+                - execute as_npc "npc assignment --set AssignmentSentry_adding_decimals_05"
+                - WAIT 1
+                - execute as_npc "npc create Order of Op"
+                - execute as_npc "npc assignment --set AssignmentSentry_order_of_operations"
+                - WAIT 1
+                - execute as_npc "npc create Multi Div"
+                - execute as_npc "npc assignment --set AssignmentSentry_division_4"
+                - WAIT 1
+                - execute as_npc "npc create Absolute Value 1"
+                - execute as_npc "npc assignment --set AssignmentSentry_absolute_value"
+                - WAIT 1
+                - execute as_npc "npc create Multi Multi"
+                - execute as_npc "npc assignment --set AssignmentSentry_multiplication_4"
+                - WAIT 1
+                - execute as_npc "npc create Graphing points"
+                - execute as_npc "npc assignment --set AssignmentSentry_graphing_points"
+                - WAIT 1
+                - execute as_npc "npc create PointLinePlane"
+                - execute as_npc "npc assignment --set AssignmentSentry_points_lines_and_planes"
+                - WAIT 1
+                - execute as_npc "npc create Addition 3"
+                - execute as_npc "npc assignment --set AssignmentSentry_addition_3"
+                - WAIT 1
+                - execute as_npc "npc create Square Area"
+                - execute as_npc "npc assignment --set AssignmentSentry_area_of_squares_and_rectangles"
+                - WAIT 1
+                - execute as_npc "npc create Percents to Dec"
+                - execute as_npc "npc assignment --set AssignmentSentry_converting_percents_to_decimals"
+                - WAIT 1
+                - execute as_npc "npc create Fractions"
+                - execute as_npc "npc assignment --set AssignmentSentry_g4_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Geometry"
+                - execute as_npc "npc assignment --set AssignmentSentry_g4_geometry"
+                - WAIT 1
+                - execute as_npc "npc create Rates and Ratios"
+                - execute as_npc "npc assignment --set AssignmentSentry_g6_rr"
+                - WAIT 1
+                - execute as_npc "npc create Geometry"
+                - execute as_npc "npc assignment --set AssignmentSentry_g6_geometry"
+                - WAIT 1
+                - execute as_npc "npc create Expressions"
+                - execute as_npc "npc assignment --set AssignmentSentry_g6_ee"
+                - WAIT 1
+                - execute as_npc "npc create Fractions"
+                - execute as_npc "npc assignment --set AssignmentSentry_g5_fractions"
+                - WAIT 1
+                - execute as_npc "npc create Number System"
+                - execute as_npc "npc assignment --set AssignmentSentry_g6_numbersystem"
+                - WAIT 1
+                - execute as_npc "npc create Statistics"
+                - execute as_npc "npc assignment --set AssignmentSentry_g6_stats"
+                - WAIT 1
+                - execute as_npc "npc create Decimals"
+                - execute as_npc "npc assignment --set AssignmentSentry_g5_decimals"
+                - WAIT 1
+                - execute as_npc "npc create Miscellaneous"
+                - execute as_npc "npc assignment --set AssignmentSentry_g5_misc"
+                - WAIT 1
+                - execute as_npc "npc create Standard Ops"
+                - execute as_npc "npc assignment --set AssignmentSentry_g4_so"
+                - WAIT 1
+                - execute as_npc "npc create 6th Grade"
+                - execute as_npc "npc assignment --set AssignmentSentry_g6"
+                - WAIT 1
+                - execute as_npc "npc create 4th Grade"
+                - execute as_npc "npc assignment --set AssignmentSentry_g4"
+                - WAIT 1
+                - execute as_npc "npc create 5th Grade"
+                - execute as_npc "npc assignment --set AssignmentSentry_g5"
+                - WAIT 1
+                - execute as_server "denizen save"
+                - execute as_npc "npc select master"
+                - execute as_npc "npc remove"
+            2:
+                Trigger: /Delete/ the sentries on this landscape.
+                Script:
+                - execute as_npc "npc select Central Hub"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Graduation G4"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Dec to Frac 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Dec to Frac 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Frac to Dec"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Dec Estimation"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Graduation G6"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Dec Place Value"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Rounding Wholes"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Solving Var Eqs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Decimals 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Standard Dev"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Graduation G5"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Unknown Vars"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Fundamentals"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Bar Charts 3"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Inequalities"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Rounding numbers"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Decimals 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select MeanMedianMode"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Axis of symmetry"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Prime Factors"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Writing Ex 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Combo Like Terms"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Div Dec 3"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Order Imp Fracs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Ordering Fracs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Neg Word Probs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Bar Charts 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Div Dec 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select 2Var Expressions"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Writing Ex"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Prime numbers"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Frac CutCopy 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Mixed Numbers"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Composites"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Compare Frac 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Comp Imp Fracs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Congruent angles"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Congruent Segs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Measuring angles"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Heron's formula"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Rate problems 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Line Charts 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Write Bar Charts"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Divisibility"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Convert ImpFracs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Compare Fracs 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select MultDivWordProbs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Divisibility T"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Div Dec 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Sub Dec"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Add Sub Negs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Frac CutCopy 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select 1Var Expressions"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Moving Decimals"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Angle types"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Measuring Segs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select SimplifyingFracs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Add Dec 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Divisibility Int"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Rate problems 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Bar Charts 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Stem Leaf Plots"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Basic Div Dec"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Solid geometry"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Exponent rules"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Division 3"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select MultMixedNums 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Mult Dec"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Basic Sub Dec"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Add Negatives"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select RaysLinesSegs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select LCM and GCD"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Ordering numbers"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Pos and Zero Exs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Square Perimeter"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Equiv Frac 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Basic Rate Probs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Add Sub Fracs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Mult 3x2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select MultFracWordProb"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Reading tables 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Parallelograms"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Points on Planes"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Trapezoid Area"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select AddSubWordProbs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Ordering Negs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select MarkupWordProbs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select TaxTip WordProbs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select L.C.M."
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select G.C.D."
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Adding decimals"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Mult Fracs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select DivFracWordProbs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Div Frac"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Ratio Word Probs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Absolute Value 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select FracWordProbs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Midpoints"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Basic Div Frac"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Basic Mult Frac"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Ratios as Fracs"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Dec to Percents"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Adding fractions"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Reading tables 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Sub Fractions"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Mult 1x1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Perimeter 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Number line 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Area 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Equiv Fracs 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Basic Add Frac"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Subtraction 3"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Divisibility 0.5"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Basic Sub Frac"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Props of Nums 2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Distrib Property"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select MultDivWordProb2"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Basic Add Dec"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Order of Op"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Multi Div"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Absolute Value 1"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Multi Multi"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Graphing points"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select PointLinePlane"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Addition 3"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Square Area"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Percents to Dec"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Fractions"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Geometry"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Rates and Ratios"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Geometry"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Expressions"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Fractions"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Number System"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Statistics"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Decimals"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Miscellaneous"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select Standard Ops"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select 6th Grade"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select 4th Grade"
+                - execute as_npc "npc remove"
+                - execute as_npc "npc select 5th Grade"
+                - execute as_npc "npc remove"

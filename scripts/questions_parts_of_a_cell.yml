@@ -1,0 +1,160 @@
+"questions_parts_of_a_cell":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_parts_of_a_cell
+'Quiz_parts_of_a_cell':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "What is responsible for breaking down and digesting things in cells?"
+            - WAIT 1
+            - CHAT "A. ribosomes"
+            - CHAT "B. lysosomes"
+            - CHAT "C. vacuole"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Correct! The lysosome is responsible for breaking down and digesting things in cells. "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/cell-division/v/parts-of-a-cell"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "What part of the cell serves as the intracellular highway?"
+            - WAIT 1
+            - CHAT "A. endoplasmic reticulum"
+            - CHAT "B. golgi apparatus"
+            - CHAT "C. mitochondria"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Correct! The endoplasmic reticulum serves as the intracellular highway."
+                - CHAT ">H:https://www.khanacademy.org/science/biology/cell-division/v/parts-of-a-cell"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "Which of the following would you not find in a bacterial cell"
+            - WAIT 1
+            - CHAT "A. DNA"
+            - CHAT "B. cell membrane"
+            - CHAT "C. golgi apparatus "
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Correct. A cell membrane will not be found in a bacterial cell."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/cell-division/v/parts-of-a-cell"
+                - ZAP 'step:Q3'
+    'Q4':
+        Click Trigger:
+            Script:
+            - CHAT "The jellylike interior of the cell is called the "
+            - WAIT 1
+            - CHAT "A. vacuole"
+            - CHAT "B. cytoplasm"
+            - CHAT "C. endoplasmic reticulum"
+            - ZAP 'step:A4'
+    'A4':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_parts_of_a_cell"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "The cytoplasm helps hold all of the other organelles in place. "
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_parts_of_a_cell"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_parts_of_a_cell"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/cell-division/v/parts-of-a-cell"
+                - ZAP 'step:Q4'

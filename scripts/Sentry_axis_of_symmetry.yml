@@ -1,0 +1,75 @@
+#This Sentry will appear at node: Axis of symmetry
+"AssignmentSentry_axis_of_symmetry":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1168.43"
+      - FLAG NPC "SentryY:+:53"
+      - FLAG NPC "SentryZ:+:964.84"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_axis_of_symmetry
+'Greeting_axis_of_symmetry':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the home of Axis of symmetry!"
+              - WAIT 2
+              - RUNTASK "Sentry_axis_of_symmetry_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry || 0>" == "0" CHAT "This is the home of Axis of symmetry!" ELSE CHAT "You have completed this topic, Axis of symmetry!"
+            - WAIT 2
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry || 0>" == "0" RUNTASK "Sentry_axis_of_symmetry_KA"
+'Sentry_axis_of_symmetry_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:3
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_axis_of_symmetry:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/geometry/transformations/e/axis_of_symmetry/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_axis_of_symmetry:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_axis_of_symmetry:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry>" == "0" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry>" == "0" CHAT "You can learn and practice this topic at <aqua>http://curlsh.me/iuii4<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry>" == "1" CHAT "I see you have completed this topic! Congratulations!"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_congruent_angles:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/geometry/parallel-and-perpendicular-lines/ang_intro/e/congruent_angles/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_congruent_angles:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_congruent_angles:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_congruent_angles>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_measuring_segments:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/geometry/segments-and-angles/intro_euclid/e/measuring_segments/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_measuring_segments:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_measuring_segments:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_measuring_segments>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_measuring_angles:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/geometry/parallel-and-perpendicular-lines/Angle_basics/e/measuring_angles/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_measuring_angles:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_measuring_angles:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_measuring_angles>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry>" == "1" FLAG NPC <player.name>_PR:3
+    - IF "<FLAG.N:<player.name>_PR>" != "3" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" != "3" CHAT "This peak may be <white>above your current skill level<green>!"
+    - IF "<FLAG.N:<player.name>_PR>" != "3" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" == "2" CHAT "You may wish to try this earlier topic first..."
+    - IF "<FLAG.N:<player.name>_PR>" < "2" CHAT "You may wish to try the earlier topics first..."
+    - IF "<FLAG.G:<player.name>_congruent_angles>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry>" == "0" CHAT "<white>Congruent angles<green>"
+    - IF "<FLAG.G:<player.name>_measuring_segments>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry>" == "0" CHAT "<white>Measuring Segs<green>"
+    - IF "<FLAG.G:<player.name>_measuring_angles>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_axis_of_symmetry>" == "0" CHAT "<white>Measuring angles<green>"
+    - DISENGAGE

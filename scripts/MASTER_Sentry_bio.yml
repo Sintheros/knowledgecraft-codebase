@@ -1,0 +1,52 @@
+#This is the MASTER SENTRY for 10 different Sentries.
+"AssignmentSentry_MASTER_bio":
+  Type: Assignment
+  Interact Scripts:
+  - 1 CreateSentriesBio
+'CreateSentriesBio':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Create/ the sentries you've been assigned to create.
+                Script:
+                - FLAG GLOBAL MasterX_bio:<npc.location.x>
+                - FLAG GLOBAL MasterY_bio:<npc.location.y>
+                - FLAG GLOBAL MasterZ_bio:<npc.location.z>
+                - FLAG GLOBAL "MasterX_bio:-:179.2"
+                - FLAG GLOBAL "MasterY_bio:-:81"
+                - FLAG GLOBAL "MasterZ_bio:-:332.8"
+                - CHAT "Now spawning and assigning 10 sentries!"
+                - TELEPORT NPC "location:<FLAG.NPC:MasterX_bio>,<FLAG.NPC:MasterY_bio>,<FLAG.NPC:MasterZ_bio>,world"
+                - execute as_npc "npc create Chromosomes/ Chromatids/ Chromatin/ etc"
+                - execute as_npc "npc assignment --set AssignmentSentry_chromosomes__chromatids__chromatin__etc"
+                - execute as_npc "npc create Parts of a cell"
+                - execute as_npc "npc assignment --set AssignmentSentry_parts_of_a_cell"
+                - execute as_npc "npc create Diffusion and Osmosis"
+                - execute as_npc "npc assignment --set AssignmentSentry_diffusion_and_osmosis"
+                - execute as_npc "npc create Variation in a Species"
+                - execute as_npc "npc assignment --set AssignmentSentry_variation_in_a_species"
+                - execute as_npc "npc create DNA"
+                - execute as_npc "npc assignment --set AssignmentSentry_dna"
+                - execute as_npc "npc create Natural Selection and the Owl Butterfly"
+                - execute as_npc "npc assignment --set AssignmentSentry_natural_selection_and_the_owl_butterfly"
+                - execute as_npc "npc create Evolution Clarification"
+                - execute as_npc "npc assignment --set AssignmentSentry_evolution_clarification"
+                - execute as_npc "npc create Intelligent Design and Evolution"
+                - execute as_npc "npc assignment --set AssignmentSentry_intelligent_design_and_evolution"
+                - execute as_npc "npc create Introduction to Evolution and Natural Selection"
+                - execute as_npc "npc assignment --set AssignmentSentry_introduction_to_evolution_and_natural_selection"
+                - execute as_npc "npc create Biology"
+                - execute as_npc "npc assignment --set AssignmentSentry_biology"
+                - FINISH
+
+            2:
+                Trigger: Set /invis/.
+                Script:
+                - CHAT "Test 1"
+                - INVISIBLE 'toggle:true'
+                - CHAT "Test 2"
+                - FINISH

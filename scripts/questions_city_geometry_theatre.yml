@@ -1,0 +1,68 @@
+#Geometry City Theatre question
+"AssignmentQuestions_city_geometry_theatre":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 greeting_city_geometry_theatre
+'Greeting_city_geometry_theatre':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+            Script:
+              - ENGAGE
+              - CHAT "Welcome, ladies and gentlemen, to this evening's presentation!" 
+              - WAIT 3
+              - CHAT "Tonight, we plumb the depths of the human soul as we - "
+              - WAIT 3
+              - CHAT "Ahem! Sorry. Practicing, you know! The show must always go on! Even if there's no actors and nobody to watch!"
+              - WAIT 4
+              - CHAT "An amphitheatre is the greatest of venues, don't you agree?"
+              - WAIT 3
+              - CHAT "...you're not from a-ROUND these parts, are you?"
+              - WAIT 3
+              - CHAT "Not a big surprise, this theatre attracts guests the world ROUND!"
+              - WAIT 2
+              - CHAT "Ah ha ha ha! Round! Circles! Geometrical perfection!"
+              - WAIT 3
+              - NARRATE "You begin to suspect that this theatre manager has been a part of one too many performances."
+              - WAIT 4
+              - CHAT "It's a shame you travelled all this way with the performances on hiatus, but maybe you can still help me out."
+              - WAIT 4
+              - CHAT "The house over there's a half circle. Just how much <red>area<green> does it have, though?"
+              - WAIT 3
+              - CHAT "...House young bean, house! That's where the audience sits! Ours has a <red>diameter of 31<green>."
+              - WAIT 3
+              - NARRATE "You wonder how this can possibly be relevant information."
+              - WAIT 4
+              - CHAT "Well, what is it?"
+              - DISENGAGE
+              
+        2:
+            Trigger: About /REGEX:.+/ units.
+            Script:
+              - ENGAGE
+              - FLAG NPC <player.name>:<player.chat_history>
+              - IF "<FLAG.N:<player.name>>" == "377" FLAG PLAYER Geometry_Theatre:1 ELSE FLAG PLAYER Geometry_Theatre:0
+              - IF "<FLAG.P:Geometry_Theatre || 0>" == "1" CHAT "Yes! Exactly! Magnificent! Your understanding of this subject is certainly....well-ROUNDED! Ah ha ha ha!" ELSE CHAT "Not quite, no. Do remember that it is a half-circle! Why don't you talk to some of the other theatre patrons?"
+              - IF "<FLAG.P:Geometry_Theatre || 0>" == "1" ZAP 2
+              - DISENGAGE
+    2:
+      Chat Trigger:
+          1:
+              Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+              Script:
+              - CHAT "Theatre, of course!"
+              - WAIT 3
+              - CHAT "Theatre today, theatre tomorrow, theatre every day the world remains ROUND!"
+              - WAIT 3
+              - NARRATE "You think it might be a good idea to explore elsewhere."

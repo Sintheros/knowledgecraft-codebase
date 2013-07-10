@@ -1,0 +1,32 @@
+"AssignmentSteve":
+   Type: Assignment
+   Interact Scripts:
+   - 1 Explain
+'Explain':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+   1:
+     Proximity Trigger:
+      entry:
+       Script:
+       - CHAT "Hello! Welcome to Minecraft!"
+       - WAIT 4
+       - CHAT "My name is Steve, what’s yours?"
+       - WAIT 3
+       - CHAT "You will learn descending the mountain, but I’ll quickly tell you about some basics."
+       - WAIT 4
+       - CHAT "The hearts near the bottom of the screen is your life bar."
+       - WAIT 3
+       - CHAT "If that’s empty, you die and have to respawn."
+       - WAIT 3
+       - CHAT "Next to that is your level, which is cool."
+       - WAIT 3
+       - CHAT "After that there is a hunger meter."
+       - WAIT 2
+       - CHAT "If this is full, your health will restore itself."
+       - WAIT 2
+       - CHAT "Eat food to fill this up!"
+       - WAIT 2
+       - CHAT "That’s all I have to tell you, move on to learn about inventory!"

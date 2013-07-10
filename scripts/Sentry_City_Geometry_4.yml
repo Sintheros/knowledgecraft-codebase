@@ -1,0 +1,30 @@
+#This Sentry is for the fourth Geometry City puzzle
+"AssignmentSentry_city_geometry_4":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_city_geometry_4
+'Greeting_city_geometry_4':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can you help me?
+            Script:
+              - CHAT "The Trial of the Triangle getting you down?"
+              - WAIT 2
+              - CHAT "You may find them simpler than circles."
+              - WAIT 3
+              - CHAT "Did you try counting the blocks in that giant triangle?"
+              - WAIT 2
+              - CHAT "This could help too! http://tinyurl.com/mgts4ys"
+              - WAIT 3
+              - CHAT "Looking for more triangle area practice?"
+              - WAIT 2
+              - CHAT "You can always go here! http://curlsh.me/seemf"

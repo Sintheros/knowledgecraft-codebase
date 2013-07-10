@@ -1,0 +1,24 @@
+#Geometry City Guard 2
+"AssignmentGuard_city_geometry_2":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 greeting_guard_city_geometry_2
+'Greeting_guard_city_geometry_2':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can I get past here?
+            Script:
+              - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "1" CHAT "Oh good, you helped out the Bathhouse Manager." ELSE CHAT "Here to see the theatre? It's known a-ROUND the world, you know! Ha ha ha!"
+              - WAIT 3
+              - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "1" CHAT "I see no reason to hold you back!" ELSE CHAT "But no. The Bathhouse Manager's been looking for some help today."
+              - WAIT 3
+              - IF "<FLAG.P:Geometry_Bathhouse || 0>" == "1" CHAT "Enjoy your stay!" ELSE CHAT "I don't want to distract someone who could help him. Run along now!"

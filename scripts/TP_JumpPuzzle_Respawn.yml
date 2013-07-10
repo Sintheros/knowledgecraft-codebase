@@ -1,0 +1,96 @@
+'TP_JumpPuzzle_Respawn':
+  type: world
+  events:
+#extra
+    on player walks over JP_start:
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE
+    - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
+    - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    - FLAG GLOBAL <player.name>_CookieA:0
+    - FLAG GLOBAL <player.name>_CookieB:0
+    - FLAG GLOBAL <player.name>_CookieC:0
+    - FLAG GLOBAL <player.name>_CookieD:0
+#4th grade
+    on player walks over JP_respawn_4a:
+    - IF "<FLAG.P:respawn || 0>" != "JP_respawn_4a" NARRATE "<gold>Spawn Point Updated!<white>"
+    - FLAG PLAYER respawn:JP_respawn_4a
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE
+    - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
+    - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    - FLAG GLOBAL <player.name>_CookieA:0
+    - FLAG GLOBAL <player.name>_CookieB:0
+    - FLAG GLOBAL <player.name>_CookieC:0
+    - FLAG GLOBAL <player.name>_CookieD:0
+    
+    on player walks over JP_respawn_4b:
+    - IF "<FLAG.P:respawn || 0>" != "JP_respawn_4b" NARRATE "<gold>Spawn Point Updated!<white>"
+    - FLAG PLAYER respawn:JP_respawn_4b
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE
+    - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
+    - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    - FLAG GLOBAL <player.name>_CookieA:0
+    - FLAG GLOBAL <player.name>_CookieB:0
+    - FLAG GLOBAL <player.name>_CookieC:0
+    - FLAG GLOBAL <player.name>_CookieD:0
+    
+    on player walks over JP_respawn_4c:
+    - IF "<FLAG.P:respawn || 0>" != "JP_respawn_4c" NARRATE "<gold>Spawn Point Updated!<white>"
+    - FLAG PLAYER respawn:JP_respawn_4c
+    - FLAG PLAYER JPprize4:1
+    - FLAG PLAYER JPprize5:0
+    - FLAG PLAYER JPprize6:0
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE
+    - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
+    - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+
+#5th grade
+    on player walks over JP_respawn_5a:
+    - IF "<FLAG.P:respawn || 0>" != "JP_respawn_5a" NARRATE "<gold>Spawn Point Updated!<white>"
+    - FLAG PLAYER respawn:JP_respawn_5a
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE
+    - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
+    - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    
+    on player walks over JP_respawn_5b:
+    - IF "<FLAG.P:respawn || 0>" != "JP_respawn_5b" NARRATE "<gold>Spawn Point Updated!<white>"
+    - FLAG PLAYER respawn:JP_respawn_5b
+    - FLAG PLAYER JPprize4:0
+    - FLAG PLAYER JPprize5:1
+    - FLAG PLAYER JPprize6:0
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE
+    - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
+    - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    
+#6th grade
+    on player walks over JP_respawn_6a:
+    - IF "<FLAG.P:respawn || 0>" != "JP_respawn_6a" NARRATE "<gold>Spawn Point Updated!<white>"
+    - FLAG PLAYER respawn:JP_respawn_6a
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE
+    - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
+    - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    
+    on player walks over JP_respawn_6b:
+    - IF "<FLAG.P:respawn || 0>" != "JP_respawn_6b" NARRATE "<gold>Spawn Point Updated!<white>"
+    - FLAG PLAYER respawn:JP_respawn_6b
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE
+    - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
+    - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    
+    on player walks over JP_respawn_6c:
+    - IF "<FLAG.P:respawn || 0>" != "JP_respawn_6c" NARRATE "<gold>Spawn Point Updated!<white>"
+    - FLAG PLAYER respawn:JP_respawn_6c
+    - FLAG PLAYER JPprize4:0
+    - FLAG PLAYER JPprize5:0
+    - FLAG PLAYER JPprize6:1
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE
+    - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
+    - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
+    - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0

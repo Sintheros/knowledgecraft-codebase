@@ -1,0 +1,20 @@
+"AssignmentMontgomery":
+  Type: Assignment
+  Interact Scripts:
+  - 1 Montgomery
+'Montgomery':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Ready for hell or high water, commander!"
+                - WAIT 3
+                - CHAT "You're not gonna let a little RAIN get in our way are you?"
+                - WAIT 3
+                - CHAT "I've got all of the plans for the land invasion set! It's do or die tomorrow!"
+                - FINISH

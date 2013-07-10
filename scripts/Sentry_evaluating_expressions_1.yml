@@ -1,0 +1,65 @@
+#This Sentry will appear at node: Evaluating expressions in one variable
+"AssignmentSentry_evaluating_expressions_1":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:931.46"
+      - FLAG NPC "SentryY:+:42"
+      - FLAG NPC "SentryZ:+:1174.06"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_evaluating_expressions_1
+'Greeting_evaluating_expressions_1':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the home of Evaluating expressions in one variable!"
+              - WAIT 2
+              - RUNTASK "Sentry_evaluating_expressions_1_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_evaluating_expressions_1 || 0>" == "0" CHAT "This is the home of Evaluating expressions in one variable!" ELSE CHAT "You have completed this topic, Evaluating expressions in one variable!"
+            - WAIT 2
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_evaluating_expressions_1 || 0>" == "0" RUNTASK "Sentry_evaluating_expressions_1_KA"
+'Sentry_evaluating_expressions_1_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:1
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_evaluating_expressions_1:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/algebra/solving-linear-equations-and-inequalities/variable-and-expressions/e/evaluating_expressions_1/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_evaluating_expressions_1:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_evaluating_expressions_1:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_evaluating_expressions_1>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_evaluating_expressions_1>" == "0" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_evaluating_expressions_1>" == "0" CHAT "You can learn and practice this topic at <aqua>http://curlsh.me/9qaw4<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_evaluating_expressions_1>" == "1" CHAT "I see you have completed this topic! Congratulations!"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_exponent_rules:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/exponents-radicals/exponent-properties/e/exponent_rules/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_exponent_rules:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_exponent_rules:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_exponent_rules>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_evaluating_expressions_1>" == "1" FLAG NPC <player.name>_PR:1
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" != "1" CHAT "This peak may be <white>above your current skill level<green>!"
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" == "0" CHAT "You may wish to try this earlier topic first..."
+    - IF "<FLAG.N:<player.name>_PR>" < "0" CHAT "You may wish to try the earlier topics first..."
+    - IF "<FLAG.G:<player.name>_exponent_rules>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_evaluating_expressions_1>" == "0" CHAT "<white>Exponent rules<green>"
+    - DISENGAGE

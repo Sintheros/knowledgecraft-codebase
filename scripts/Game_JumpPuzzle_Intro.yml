@@ -1,0 +1,40 @@
+#Melon NPC
+"AssignmentGame_JP_Intro":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 Greeting_JP_Intro
+'Greeting_JP_Intro':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This is the <white>Jump Puzzle<green>!"
+              - WAIT 2
+              - CHAT "You'll need to combine your problem-solving abilities and platform-hopping prowess in order to make it to the end!"
+              - WAIT 2
+              - CHAT "Many jumps will require you to make a <white>running start<green> in order to succeed."
+              - WAIT 2
+              - CHAT "You can't run if you're <white>too hungry<green> however! The Food-Keepers may be able to help you there."
+              - WAIT 3
+              - CHAT "Also, holding <white>shift<green> to <white>sneak<green> can help you better position yourself, and keep you from slipping off of ice!"
+              - WAIT 3
+              - CHAT "Can you reach the end? Good luck!"
+              - WAIT 2
+              - CHAT "Also, if you want to go home, I can <gold>teleport<green> you there."
+        2:
+            Trigger: /Regex:Teleport|teleport|TELEPORT/ me out of here!
+            Script:
+              - CHAT "As you wish! Come back any time!"
+              - TELEPORT location:<anchor:spawn>

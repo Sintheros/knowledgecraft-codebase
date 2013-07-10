@@ -1,0 +1,51 @@
+#Geometry City Guard 1
+"AssignmentGuard_city_geometry_1":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 greeting_guard_city_geometry_1
+'Greeting_guard_city_geometry_1':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+            Script:
+              - ENGAGE
+              - CHAT "Halt! Go no further!"
+              - WAIT 2
+              - CHAT "This is the ancient and proud Geometry City!"
+              - WAIT 3
+              - CHAT "Ours are the foundations upon which the most congruent of modern societies was built!"
+              - WAIT 3
+              - CHAT "You wish to enter and see our glory for yourself, do you?"
+              - WAIT 3
+              - CHAT "Answer this, then! Our great city has a perfectly rectangular wall, <red>200 wide<green> by <red>136 long<green>!"
+              - WAIT 3
+              - CHAT "But what is its total <red>perimeter<green>, eh?"
+              - DISENGAGE
+        2:
+            Trigger: About /REGEX:.+/ units.
+            Script:
+              - ENGAGE
+              - FLAG NPC <player.name>:<player.chat_history>
+              - IF "<FLAG.N:<player.name>>" == "672" FLAG PLAYER Geometry_Gate:1 ELSE FLAG PLAYER Geometry_Gate:0
+              - IF "<FLAG.P:Geometry_Gate || 0>" == "1" CHAT "Indeed it is! Very well, you are welcome to explore our city! Might I suggest the bathhouse?" ELSE CHAT "You are mistaken, traveller! That farmer over there's more versed in perimeter than you!"
+              - IF "<FLAG.P:Geometry_Gate || 0>" == "1" ZAP 2
+              - DISENGAGE
+    2:
+      Chat Trigger:
+          1:
+              Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+              Script:
+              - CHAT "Guarding geometry! Protecting perimeter! Abjuring the advesaries of area!"
+              - WAIT 3
+              - NARRATE "This man is certainly dedicated to his job."

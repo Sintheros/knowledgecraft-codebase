@@ -1,0 +1,47 @@
+#This Sentry will appear at node: Complex plane operations
+"AssignmentSentry_complex_plane_operations":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:978.717"
+      - FLAG NPC "SentryY:+:59"
+      - FLAG NPC "SentryZ:+:1157.03"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_complex_plane_operations
+'Greeting_complex_plane_operations':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This is the home of Complex plane operations!"
+              - WAIT 3
+              - RUNTASK "Sentry_complex_plane_operations_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "This is the home of Complex plane operations!"
+            - WAIT 3
+            - RUNTASK "Sentry_complex_plane_operations_KA"
+'Sentry_complex_plane_operations_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<player.name>&HREF=math/e/complex_plane_operations" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG NPC <player.name>:1 ELSE FLAG NPC <player.name>:0
+    - IF "<FLAG.N:<player.name>>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.N:<player.name>>" == "0" WAIT 2
+    - IF "<FLAG.N:<player.name>>" == "0" CHAT "Try some practice at http://curlsh.me/q2hfm"
+    - IF "<FLAG.N:<player.name>>" == "1" CHAT "You have completed this peak!"
+    - IF "<FLAG.N:<player.name>>" == "1" CHAT "Congratulations!"

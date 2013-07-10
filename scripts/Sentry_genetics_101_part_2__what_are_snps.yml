@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Genetics 101 Part 2: What are SNPs?
+"AssignmentSentry_genetics_101_part_2__what_are_snps":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:653.188"
+      - FLAG NPC "SentryY:+:28"
+      - FLAG NPC "SentryZ:+:861.937"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_genetics_101_part_2__what_are_snps
+'Greeting_genetics_101_part_2__what_are_snps':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Genetics 101 Part 2: What are SNPs?!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/heredity-and-genetics/v/genetics-101-part-2--what-are-snps"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_genetics_101_part_2__what_are_snps
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_genetics_101_part_2__what_are_snps || 0>" == "0" FLAG "Correct_genetics_101_part_2__what_are_snps:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_genetics_101_part_2__what_are_snps || 0>" < "10" RUNTASK "Sentry_genetics_101_part_2__what_are_snps"
+'Sentry_genetics_101_part_2__what_are_snps':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_genetics_101_part_2__what_are_snps':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_genetics_101_part_2__what_are_snps:+:1"
+    - CHAT "You now have <flag:Correct_genetics_101_part_2__what_are_snps> correct at this peak."
+'No_genetics_101_part_2__what_are_snps':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/heredity-and-genetics/v/genetics-101-part-2--what-are-snps"

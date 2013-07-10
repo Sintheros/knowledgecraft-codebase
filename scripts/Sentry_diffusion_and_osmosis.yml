@@ -1,0 +1,44 @@
+#This Sentry will appear at node: Diffusion and Osmosis
+"AssignmentSentry_diffusion_and_osmosis":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_bio>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_bio>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_bio>
+      - FLAG NPC "SentryX:+:203.337"
+      - FLAG NPC "SentryY:+:59"
+      - FLAG NPC "SentryZ:+:179.2"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_diffusion_and_osmosis
+'Greeting_diffusion_and_osmosis':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Diffusion and Osmosis!"
+              - WAIT 3
+              - CHAT "You can learn more at www.khanacademy.org/science/v/diffusion-and-osmosis"
+              - WAIT 3
+              - CHAT "Say 'quiz' to begin!"
+        2:
+            Trigger: /Regex:Quiz|quiz/ me!
+            Script:
+              - EXECUTE as_server "npc select <npc.id>"
+              - EXECUTE as_server "npc assignment --set questions_diffusion_and_osmosis"
+              - CHAT "Right click me for a question!"
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "This peak is Diffusion and Osmosis!"
+            - WAIT 3
+            - CHAT "You can learn more at www.khanacademy.org/science/v/diffusion-and-osmosis"
+            - WAIT 3
+            - CHAT "Say 'quiz' to begin!"

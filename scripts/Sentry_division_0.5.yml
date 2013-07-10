@@ -1,0 +1,34 @@
+#This Sentry will appear at node: Basic division
+"AssignmentSentry_division_05":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_math>
+      - FLAG NPC "SentryX:+:304.241"
+      - FLAG NPC "SentryY:+:49"
+      - FLAG NPC "SentryZ:+:178.862"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_division_05
+'Greeting_division_05':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Basic division!"
+              - WAIT 3
+              - CHAT "Try some practice at https://www.khanacademy.org/math/e/division_0.5"
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "This peak is Basic division!"
+            - WAIT 3
+            - CHAT "Try some practice at https://www.khanacademy.org/math/e/division_0.5"

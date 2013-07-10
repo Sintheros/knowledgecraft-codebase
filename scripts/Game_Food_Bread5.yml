@@ -1,0 +1,55 @@
+#Bread5 NPC
+"AssignmentGame_Food_Bread5":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 Greeting_Food_Bread5
+'Greeting_Food_Bread5':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need food!
+            Script:
+              - ENGAGE
+              - WAIT 1
+              - IF "<FLAG.G:<player.name>_Bread5 || 0>" == "1" CHAT "No more for you!" ELSE FLAG GLOBAL <player.name>_Bread5:0
+              - IF "<FLAG.G:<player.name>_Bread5>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=g5_so.txt" question
+             #- IF "<FLAG.G:<player.name>_Bread5>" == "0" FLAG NPC "question:2+2=4"
+              - IF "<FLAG.G:<player.name>_Bread5>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
+              - IF "<FLAG.G:<player.name>_Bread5>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
+              - IF "<FLAG.G:<player.name>_Bread5>" == "0" CHAT "Oh? Then you'll have to solve my test! Behold!"
+              - IF "<FLAG.G:<player.name>_Bread5>" == "0" WAIT 2
+              - IF "<FLAG.G:<player.name>_Bread5>" == "0" CHAT "<red><FLAG.N:Q><green>"
+              - IF "<FLAG.G:<player.name>_Bread5>" == "0" ZAP 2
+              - DISENGAGE
+    2:
+      Chat Trigger:
+        1:
+            Trigger: The answer is /REGEX:.+/!
+            Script:
+               - ENGAGE
+               - FLAG NPC <player.name>_answer:<player.chat_history>
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_Bread5:1
+               - IF "<FLAG.G:<player.name>_Bread5>" == "0" CHAT "Incorrect! Looks like all this food is mine!" ELSE CHAT "Correct! A tasty victory for you!"
+               - WAIT 1
+               - IF "<FLAG.G:<player.name>_Bread5>" == "0" NARRATE "You feel hungrier..." ELSE NARRATE "The crazed man throws some food at you."
+               - IF "<FLAG.G:<player.name>_Bread5>" == "1" GIVE item:Bread5 ELSE CAST hunger duration:30
+               - ZAP 1
+               - DISENGAGE
+      Proximity Trigger:
+        exit:
+          Script:
+            - IF "<FLAG.G:<player.name>_Bread>" == "0" CHAT "Giving up? More food for me!"
+            - IF "<FLAG.G:<player.name>_Bread5>" == "0" FLAG GLOBAL <player.name>_Bread5:1
+            - ZAP 1
+    

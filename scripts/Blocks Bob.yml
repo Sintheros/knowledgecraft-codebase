@@ -1,0 +1,28 @@
+"AssignmentBob":
+   Type: Assignment
+   Interact Scripts:
+   - 1 BobSpeak 
+'BobSpeak':
+  Type: Interact
+  Requirements:
+   Mode: All   
+  Steps:
+   1:
+     Proximity Trigger:
+      entry:
+       Script:
+       - CHAT "There are many types of blocks in the world of Minecraft!"
+       - WAIT 4
+       - CHAT "When you break a block, it will be added to your inventory."
+       - WAIT 4
+       - CHAT "You can break some blocks with your hands, but most will require tools. "
+       - WAIT 4
+       - CHAT "Shovels can be used to harvest dirt, sand, and gravel."
+       - WAIT 4
+       - CHAT "Picks can be used to harvest Rocks and rare minerals."
+       - WAIT 4
+       - CHAT "Wood can be harvested with hands or axes."
+       - WAIT 4
+       - CHAT "Right clicking special blocks lets you interact with them."
+       - WAIT 4
+       - CHAT "Special blocks are Furnaces, Crafting Tables, Doors, and more!"

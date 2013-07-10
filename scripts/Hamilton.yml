@@ -1,0 +1,32 @@
+"HamiltonSpeach":
+  Type: Assignment
+  Interact Scripts:
+  - 42 HamiltonTalking
+'HamiltonTalking':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Hello there! Welcome to the Mindcraft Museum! I'm Hamilton, the curator"
+                - WAIT 3
+                - CHAT "One of my favorite subjects is Ancient Greece! In fact, I once studied the Parthenon, a huge temple dedicated to the goddess Athena!"
+                - WAIT 3
+                - CHAT "It's quite marvelous. Would you like to visit this place? <Gold> Yes/No <green>"
+                - ZAP 2
+    2:
+        Chat Trigger:
+            1:
+                Trigger: /Yes/ I'm interested in this event!
+                Script:
+                - CHAT "Excellent! Oh, it sure is a sight to behold!"
+                - WAIT 2
+                - CHAT "We're off!" 
+                - CAST blindness power:3 duration:5
+                - CAST confusion power:3 duration:5
+                - TELEPORT location:<anchor:parthenon>
+                - FINISH

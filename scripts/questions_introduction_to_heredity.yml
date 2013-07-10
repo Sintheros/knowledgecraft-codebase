@@ -1,0 +1,176 @@
+"questions_introduction_to_heredity":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_introduction_to_heredity
+'Quiz_introduction_to_heredity':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "What does DNA stand for?"
+            - WAIT 1
+            - CHAT "A. deoribonucleus acid"
+            - CHAT "B. deonucleic acid"
+            - CHAT "C. deoxyribonucleic acid"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Yes! Deoxyribonucleic acid is correct."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/introduction-to-heredity"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "What is an allele?"
+            - WAIT 1
+            - CHAT "A. A twin�s DNA"
+            - CHAT "B. a dominant gene"
+            - CHAT "C. a specific version of a gene"
+            - CHAT "D. a recessive gene"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Yes! Perfect!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            4:
+                Trigger: I choose /D/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            5:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/introduction-to-heredity"
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "If there are two alleles for a specific gene, such as hair color, how many possible colors are there?"
+            - WAIT 1
+            - CHAT "A. 1"
+            - CHAT "B. 2^2"
+            - CHAT "C. 2"
+            - CHAT "D. 4"
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Great! Each allele would be a color possibility. "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            4:
+                Trigger: I choose /D/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            5:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/introduction-to-heredity"
+                - ZAP 'step:Q3'
+    'Q4':
+        Click Trigger:
+            Script:
+            - CHAT "What is a locus?"
+            - WAIT 1
+            - CHAT "A. a place where alleles meet"
+            - CHAT "B. location of a gene"
+            - CHAT "C. a bug that eats your DNA"
+            - ZAP 'step:A4'
+    'A4':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_introduction_to_heredity"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Great! A locus is a location!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_introduction_to_heredity"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_introduction_to_heredity"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/introduction-to-heredity"
+                - ZAP 'step:Q4'

@@ -1,0 +1,42 @@
+#This Sentry will appear at node: Types of Tools
+"AssignmentSentry_tools":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:230.4"
+      - FLAG NPC "SentryY:+:11"
+      - FLAG NPC "SentryZ:+:194.268"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting
+  - 2 Sentry
+'Greeting':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, where am I?
+                Script:
+                - CHAT "This peak is Types of Tools!"
+                - FINISH
+'Sentry':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List:
+    - -Script Finished 'Script:questions_tools'
+  Steps:
+    1:
+      Proximity Trigger:
+        exit:
+          Script:
+          - CHAT "You haven't finished this area yet!"
+          - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+          - FINISH

@@ -1,0 +1,141 @@
+"questions_dna":
+  Type: Assignment
+  Actions:
+    On Assignment:
+        - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 10 Quiz_dna
+'Quiz_dna':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "What is RNA?"
+            - WAIT 1
+            - CHAT "A. ribosomal nuclear acid"
+            - CHAT "B. Ribonucleic Acid"
+            - CHAT "C. an amino acid"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Correct! It simpy lacks the �deoxy� of DNA"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/dna"
+                - ZAP 'step:Q1'
+        Proximity Trigger:
+            exit:
+                Script:
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_dna"
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "What replaces thymine in RNA?"
+            - WAIT 1
+            - CHAT "A. Adenine "
+            - CHAT "B. Uracil"
+            - CHAT "C. Cytosine"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Correct! Uracil replaces thymine in RNA."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/dna"
+                - ZAP 'step:Q2'
+        Proximity Trigger:
+            exit:
+                Script::
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_dna"
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "Where are mRNAs transcribed into protein?"
+            - WAIT 1
+            - CHAT "A. the nucleus"
+            - CHAT "B. ribosomes"
+            - CHAT "C. mitochondria"
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_dna"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Correct! Ribosomes are where proteins are formed. "
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_dna"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_dna"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/evolution-and-natural-selection/v/dna"
+                - ZAP 'step:Q3'
+        Proximity Trigger:
+            exit:
+                Script::
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_dna"

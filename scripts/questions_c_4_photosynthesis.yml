@@ -1,0 +1,123 @@
+"questions_c_4_photosynthesis":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_c_4_photosynthesis
+'Quiz_c_4_photosynthesis':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "In C4 plants..."
+            - WAIT 1
+            - CHAT "A. RuBP carboxylase catalyzes the first step of carbon dioxide incorporation"
+            - CHAT "B. carbon dioxide is added to the phosphoenol pyruvate to form a C4-acid"
+            - CHAT "C. phosphoglycerate (3PG) is the first product in carbon fixation."
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right! RuBP carboxylase catalyzes the first step of carbon dioxide incorporation. "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/photosynthesis/v/c-4-photosynthesis"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "Which statement is false for C4 plants? "
+            - WAIT 1
+            - CHAT "A. phosphoenol pyruvate carboxylase has a very high affinity to carbon dioxide."
+            - CHAT "B. C4 plants have no photorespiration."
+            - CHAT "C. C4 plants do better in colder climates."
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right! "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/photosynthesis/v/c-4-photosynthesis"
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "C4 plants.."
+            - WAIT 1
+            - CHAT "A. Carry out the calvin cycle in their mesophyll cells. "
+            - CHAT "B. have no or few chloroplasts in their bundle sheath cells. "
+            - CHAT "C. require one ATP for the initial carbon fixation step, wheras C3 plants do not. "
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right! They carry out the Calvin Cycle in their mesophyll cells. "
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_c_4_photosynthesis"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_c_4_photosynthesis"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_c_4_photosynthesis"
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "https://www.khanacademy.org/science/biology/photosynthesis/v/c-4-photosynthesis"
+                - ZAP 'step:Q3'

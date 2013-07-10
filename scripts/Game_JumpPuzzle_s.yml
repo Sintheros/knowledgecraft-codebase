@@ -1,0 +1,34 @@
+#End NPC s
+"AssignmentGame_JumpPuzzle_s":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 Greeting_JumpPuzzle_s
+'Greeting_JumpPuzzle_s':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, who are you?
+            Script:
+              - ENGAGE
+              - FLAG PLAYER respawn:spawn
+              - CHAT "What in the world? How did you get here? How did you find me?"
+              - WAIT 2
+              - IF "<FLAG.P:JPprize6 || 0>" == "0" CHAT "That's pretty impressive of you. Why don't you come see me again after completing the <white>Level 3 course<green>?"
+              - IF "<FLAG.P:JPprize6 || 0>" == "1" CHAT "That's pretty impressive of you. And you completed the Level Three course too?!"
+              - WAIT 2
+              - IF "<FLAG.P:JPprize6 || 0>" == "0" CHAT "You really shouldn't be here!" ELSE CHAT "Just take this and get out of here!"
+              - WAIT 2
+              - TELEPORT location:l@<player.flag[respawn]>
+              - FLAG GLOBAL PN:<player.name>
+              - IF "<FLAG.P:JPprize6 || 0>" == "1" GIVE item:Item_JP_S
+              - IF "<FLAG.P:JPprize6 || 0>" == "1" NARRATE "You feel something in your pocket."

@@ -1,0 +1,116 @@
+"questions_punnett_square_fun":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_punnett_square_fun
+'Quiz_punnett_square_fun':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "What is a phenotype? "
+            - WAIT 1
+            - CHAT "A. A pair of alleles"
+            - CHAT "B. A set of observable characteristics. "
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Correct! Phenotypes are sets of observable characteristics"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/punnett-square-fun"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "What is a genotype?"
+            - WAIT 1
+            - CHAT "A. A pair of alleles"
+            - CHAT "B. A set of observable characteristics"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! a genotype is a pair of alleles."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/punnett-square-fun"
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "Which of the following genotypes is Homozygous?"
+            - WAIT 1
+            - CHAT "A. bB"
+            - CHAT "B. bb"
+            - CHAT "C. Bb"
+            - CHAT "D. BB"
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_punnett_square_fun"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Perfect! Both of the alleles are the same!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_punnett_square_fun"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_punnett_square_fun"
+            4:
+                Trigger: I choose /D/.
+                Script:
+                - CHAT "Perfect! Both of the alleles are the same!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_punnett_square_fun"
+            5:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/punnett-square-fun"
+                - ZAP 'step:Q3'

@@ -1,0 +1,32 @@
+#Geometry City Guard 3
+"AssignmentGuard_city_geometry_3":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 greeting_guard_city_geometry_3
+'Greeting_guard_city_geometry_3':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can I get past here?
+            Script:
+              - IF "<FLAG.P:Geometry_Theatre || 0>" == "1" CHAT "Ah, I see you've been to the theatre. Feeling like a ROUNDER person? Ha ha ha!" ELSE CHAT "What? You wish to lay eyes on our great temple and all its angled beauty?"
+              - WAIT 3
+              - IF "<FLAG.P:Geometry_Theatre || 0>" == "1" CHAT "...Go right on ahead." ELSE CHAT "I don't think so!"
+              - WAIT 3
+              - IF "<FLAG.P:Geometry_Theatre || 0>" == "0" CHAT "...Tourists these days. They think they can see our temple without indulging a stay at the theatre first."
+              
+'Guard_city_geometry_3':
+  Type: Task
+  Script:
+    #- EXECUTE as_player "npc select <npc.id>"
+    #- EXECUTE as_player "npc teleport"
+    - CHAT TALKER:NPC.<npc.id> TARGET:PLAYER.<player.name> "Hey! Get back here!"
+    - TELEPORT location:<anchor:city_geometry_3>

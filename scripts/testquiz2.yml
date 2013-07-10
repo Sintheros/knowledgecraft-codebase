@@ -1,0 +1,36 @@
+"QuizAssignment":
+  Type: Assignment
+  Interact Scripts:
+  - 1 Quiz
+'Quiz':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Quiz/ me!
+                Script:
+                - CHAT "blah"
+                - WAIT 2
+                - CHAT "sad"
+                - CHAT "asd"
+                - ZAP 2
+    2:
+        Chat Trigger:
+            1:
+                Trigger: I choose /1/.
+                Script:
+                - CHAT "Correct answer!"
+                - ZAP 1
+            2:
+                Trigger: I choose /2/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - ZAP 1
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "asdad"
+                - ZAP 1

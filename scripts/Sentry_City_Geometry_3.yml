@@ -1,0 +1,28 @@
+#This Sentry is for the third Geometry City puzzle
+"AssignmentSentry_city_geometry_3":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_city_geometry_3
+'Greeting_city_geometry_3':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can you help me?
+            Script:
+              - CHAT "Certainly! A theatre visitor, are you?"
+              - WAIT 2
+              - CHAT "The building's a giant half-circle, you know!"
+              - WAIT 2
+              - CHAT "This might help you! http://tinyurl.com/lht6z8t"
+              - WAIT 3
+              - CHAT "Looking for more circle area practice?"
+              - WAIT 2
+              - CHAT "You can always go here! http://curlsh.me/zrm0y"

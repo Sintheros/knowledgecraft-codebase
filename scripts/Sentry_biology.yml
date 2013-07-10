@@ -1,0 +1,34 @@
+#This Sentry will appear at node: Biology
+"AssignmentSentry_biology":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_bio>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_bio>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_bio>
+      - FLAG NPC "SentryX:+:332.8"
+      - FLAG NPC "SentryY:+:13"
+      - FLAG NPC "SentryZ:+:324.27"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_biology
+'Greeting_biology':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "Welcome to Biology Bluff!"
+              - WAIT 3
+              - CHAT "You can learn about Biology at https://www.khanacademy.org/science/biology while climbing this mountain!"
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "Welcome to Biology Bluff!"
+            - WAIT 3
+            - CHAT "You can learn about Biology at https://www.khanacademy.org/science/biology while climbing this mountain!"

@@ -1,0 +1,20 @@
+"AssignmentSmith":
+  Type: Assignment
+  Interact Scripts:
+  - 1 Smith
+'Smith':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Commander, sir! "
+                - WAIT 3
+                - CHAT "You should talk to Stagg if you haven't. Something about the weather."
+                - WAIT 3
+                - CHAT "Looks like we're good for tomorrow, though Mallory over there doesn't seem to think so."
+                - FINISH

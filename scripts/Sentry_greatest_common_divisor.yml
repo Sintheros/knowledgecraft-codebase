@@ -1,0 +1,65 @@
+#This Sentry will appear at node: Greatest common divisor
+"AssignmentSentry_greatest_common_divisor":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1171.59"
+      - FLAG NPC "SentryY:+:34"
+      - FLAG NPC "SentryZ:+:1176.33"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_greatest_common_divisor
+'Greeting_greatest_common_divisor':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the home of Greatest common divisor!"
+              - WAIT 2
+              - RUNTASK "Sentry_greatest_common_divisor_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_greatest_common_divisor || 0>" == "0" CHAT "This is the home of Greatest common divisor!" ELSE CHAT "You have completed this topic, Greatest common divisor!"
+            - WAIT 2
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_greatest_common_divisor || 0>" == "0" RUNTASK "Sentry_greatest_common_divisor_KA"
+'Sentry_greatest_common_divisor_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:1
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_greatest_common_divisor:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/factors-multiples/greatest_common_divisor/e/greatest_common_divisor/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_greatest_common_divisor:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_greatest_common_divisor:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_greatest_common_divisor>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_greatest_common_divisor>" == "0" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_greatest_common_divisor>" == "0" CHAT "You can learn and practice this topic at <aqua>http://curlsh.me/ssfj6<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_greatest_common_divisor>" == "1" CHAT "I see you have completed this topic! Congratulations!"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_divisibility_05:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/factors-multiples/divisibility_and_factors/e/divisibility_0.5/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_divisibility_05:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_divisibility_05:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_divisibility_05>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_greatest_common_divisor>" == "1" FLAG NPC <player.name>_PR:1
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" != "1" CHAT "This peak may be <white>above your current skill level<green>!"
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" == "0" CHAT "You may wish to try this earlier topic first..."
+    - IF "<FLAG.N:<player.name>_PR>" < "0" CHAT "You may wish to try the earlier topics first..."
+    - IF "<FLAG.G:<player.name>_divisibility_05>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_greatest_common_divisor>" == "0" CHAT "<white>Divisibility 0.5<green>"
+    - DISENGAGE

@@ -1,0 +1,43 @@
+#--- assignment ----
+"CraftMission":
+    Type: Assignment
+    Interact Scripts:
+    - 1 StartCarlCraft
+    - 2 EndCarlCraft
+    
+#--- CraftQuest ----
+'StartCarlCraft':
+    Type: Interact
+    Requirements:
+      Mode: None
+    Steps:
+       '1*':
+        Proximity Trigger:
+          entry:
+              Script:
+              - CHAT "Welcome to the Craft Zone!"
+              - WAIT 3
+              - CHAT "Follow the instructions on the walls and bring me what you make so you can continue."
+              - FINISH
+
+'EndCarlCraft':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List: #this is where we check if they are on the quest and have the items
+    - script finished script:StartCarlCraft
+    # item 270 is a wooden pickaxe
+    - ITEM 270 qty:1
+  Steps:
+     1:
+      Click Trigger:
+        Script:
+        #Engage is used to keep the player from clicking twice
+        - ENGAGE
+        - TAKE 270 QTY:1
+        - CHAT "Aha! You've successfully made the requested item!"
+        - WAIT 2
+        - CHAT "You can now move on."
+        - DISENGAGE
+          
+          

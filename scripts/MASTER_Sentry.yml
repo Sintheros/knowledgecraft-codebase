@@ -1,0 +1,40 @@
+#This is the MASTER SENTRY for 8 different Sentries.
+"AssignmentSentry_MASTER":
+  Type: Assignment
+  Interact Scripts:
+  - 1 CreateSentries
+'CreateSentries':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Create/ the sentries you've been assigned to create.
+                Script:
+                - FLAG GLOBAL MasterX:<npc.location.x>
+                - FLAG GLOBAL MasterY:<npc.location.y>
+                - FLAG GLOBAL MasterZ:<npc.location.z>
+                - FLAG GLOBAL "MasterX:-:25.6"
+                - FLAG GLOBAL "MasterY:-:74"
+                - FLAG GLOBAL "MasterZ:-:230.4"
+                - CHAT "Now spawning and assigning 8 sentries!"
+                - TELEPORT NPC "location:<FLAG.NPC:MasterX>,<FLAG.NPC:MasterY>,<FLAG.NPC:MasterZ>,world"
+                - execute as_npc "npc create Sentry"
+                - execute as_npc "npc assignment --set AssignmentSentry_move"
+                - execute as_npc "npc create Sentry"
+                - execute as_npc "npc assignment --set AssignmentSentry_click"
+                - execute as_npc "npc create Sentry"
+                - execute as_npc "npc assignment --set AssignmentSentry_ui"
+                - execute as_npc "npc create Sentry"
+                - execute as_npc "npc assignment --set AssignmentSentry_inventory"
+                - execute as_npc "npc create Sentry"
+                - execute as_npc "npc assignment --set AssignmentSentry_mining"
+                - execute as_npc "npc create Sentry"
+                - execute as_npc "npc assignment --set AssignmentSentry_tools"
+                - execute as_npc "npc create Sentry"
+                - execute as_npc "npc assignment --set AssignmentSentry_blocks"
+                - execute as_npc "npc create Sentry"
+                - execute as_npc "npc assignment --set AssignmentSentry_npc"
+                - FINISH

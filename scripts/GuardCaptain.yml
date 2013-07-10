@@ -1,0 +1,34 @@
+#Geometry City Guard 3
+"AssignmentGuard_city_captain":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 greeting_guard_city_captain
+'Greeting_guard_city_captain':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, how are you?
+            Script:
+              - CHAT "You know, keeping the peace, maintaining order, the usual."
+              - WAIT 2
+              - CHAT "Enjoy your stay, traveller."
+        2:
+            Trigger: /Regex:Delete|delete/ my flags.
+            Script:
+              - CHAT "Done."
+              - FLAG PLAYER Geometry_Gate:0
+              - ZAP SCRIPT:Greeting_guard_city_geometry_1 1
+              - FLAG PLAYER Geometry_Bathhouse:0
+              - ZAP SCRIPT:Greeting_city_geometry_bathhouse 1
+              - FLAG PLAYER Geometry_Theatre:0
+              - ZAP SCRIPT:Greeting_city_geometry_theatre 1
+              - FLAG PLAYER Geometry_Temple:0
+              - ZAP SCRIPT:Greeting_city_geometry_temple 1

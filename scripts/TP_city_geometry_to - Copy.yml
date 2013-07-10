@@ -1,0 +1,27 @@
+#Spawn ==> Geometry City
+"AssignmentTP_geometry_to":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_city_geometry_to
+'Greeting_city_geometry_to':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can you help me?
+            Script:
+              - CHAT "Sure. Geometry City, coming up!"
+              - TELEPORT location:<anchor:city_geometry_start>
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "Welcome! Interact with people by greeting them with a <gold>hi<green> or a <gold>hello<green>!"
+            - CHAT "Need a lift to Geometry City? Just ask!"

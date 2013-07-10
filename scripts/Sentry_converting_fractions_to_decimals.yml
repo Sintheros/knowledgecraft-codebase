@@ -1,0 +1,65 @@
+#This Sentry will appear at node: Converting fractions to decimals
+"AssignmentSentry_converting_fractions_to_decimals":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1072.29"
+      - FLAG NPC "SentryY:+:67"
+      - FLAG NPC "SentryZ:+:968.971"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_converting_fractions_to_decimals
+'Greeting_converting_fractions_to_decimals':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the home of Converting fractions to decimals!"
+              - WAIT 2
+              - RUNTASK "Sentry_converting_fractions_to_decimals_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals || 0>" == "0" CHAT "This is the home of Converting fractions to decimals!" ELSE CHAT "You have completed this topic, Converting fractions to decimals!"
+            - WAIT 2
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals || 0>" == "0" RUNTASK "Sentry_converting_fractions_to_decimals_KA"
+'Sentry_converting_fractions_to_decimals_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:1
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/fractions/decimals_fractions/e/converting_fractions_to_decimals/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals>" == "0" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals>" == "0" CHAT "You can learn and practice this topic at <aqua>http://curlsh.me/8c2la<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals>" == "1" CHAT "I see you have completed this topic! Congratulations!"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_estimation_with_decimals:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/decimals/decimal_rounding_estimation/e/estimation_with_decimals/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_estimation_with_decimals:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_estimation_with_decimals:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_estimation_with_decimals>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals>" == "1" FLAG NPC <player.name>_PR:1
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" != "1" CHAT "This peak may be <white>above your current skill level<green>!"
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" == "0" CHAT "You may wish to try this earlier topic first..."
+    - IF "<FLAG.N:<player.name>_PR>" < "0" CHAT "You may wish to try the earlier topics first..."
+    - IF "<FLAG.G:<player.name>_estimation_with_decimals>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_converting_fractions_to_decimals>" == "0" CHAT "<white>Dec Estimation<green>"
+    - DISENGAGE

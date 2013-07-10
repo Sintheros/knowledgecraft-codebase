@@ -1,0 +1,17 @@
+GuardAssignment:
+  Type: Assignment
+  Interact Scripts:
+  - 1 GuardScript
+GuardScript:                                     
+  Type: Interact                    
+  Requirements:                                    
+    Mode: all
+    List:
+    - -Script Finished ‘Script:ScriptNeeded'   
+  Steps:                                         
+    1:
+      Proximity Trigger:
+        entry:
+          Script:
+          - CHAT "You haven't finished this area yet!"
+          - TELEPORT "location:477,150,279,world"

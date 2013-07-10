@@ -1,0 +1,22 @@
+"AssignmentEternalDay":
+  Type: Assignment
+  Actions:
+    Interact Scripts:
+    - 1 Greeting_timekeeper
+'Greeting_timekeeper':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, you should begin.
+            Script:
+              - CHAT "Timekeeping activated."
+              - RUNTASK 'Eternal_Day_TASK'
+'Eternal_Day_TASK':
+  Type: Task
+  Script:
+    - CHAT "TEST"
+   # - execute as_server "time set 0"

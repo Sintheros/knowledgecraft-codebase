@@ -1,0 +1,58 @@
+"AssignmentMallory":
+  Type: Assignment
+  Interact Scripts:
+  - 2 Later
+  - 1 Start
+'Start':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List:
+    - -script finished 'script:Start'
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "How am I? HOW AM I?! Commander Eisenhower, you MUST talk some sense in to these people!"
+                - WAIT 3
+                - CHAT "Have you seen the weather? There is no way we can go through with this invasion!"
+                - WAIT 3
+                - CHAT "As Air Chief Marshall, I can tell when the skies are ripe for flying and these are not! Do you think they are? <Gold> Yes/No <green>"
+                - ZAP 2
+    2:
+        Chat Trigger:
+            1:
+                Trigger: /Yes/, the weather is going to clear up.
+                Script:
+                - CHAT "You must be joking. What does everyone else think?"
+                - WAIT 3
+                - CHAT "Harrumph!"
+                - FINISH
+            2:
+                Trigger: /No/, you're right. We should wait until the next full moon.
+                Script:
+                - CHAT "At least SOMEONE on this ship understands!"
+                - WAIT 3
+                - CHAT "You might want to tell the others though!"
+                - FINISH
+'Later':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List:
+    - script finished 'script:Start'
+    - -script finished 'script:Later'
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: Everyone else says we should /attack/ as planned.
+                Script:
+                - CHAT "I see that. I hope you're right."
+                - WAIT 3
+                - CHAT "We only get one shot at saving Europe, we'd better make it count. Take this, let's move on ahead."
+                - GIVE item:redstone_torch_on qty:1
+                - FINISH
+    

@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Correction to Sodium and Potassium Pump Video
+"AssignmentSentry_correction_to_sodium_and_potassium_pump_video":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:359.951"
+      - FLAG NPC "SentryY:+:55"
+      - FLAG NPC "SentryZ:+:866.904"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_correction_to_sodium_and_potassium_pump_video
+'Greeting_correction_to_sodium_and_potassium_pump_video':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Correction to Sodium and Potassium Pump Video!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/human-biology/v/correction-to-sodium-and-potassium-pump-video"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_correction_to_sodium_and_potassium_pump_video
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_correction_to_sodium_and_potassium_pump_video || 0>" == "0" FLAG "Correct_correction_to_sodium_and_potassium_pump_video:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_correction_to_sodium_and_potassium_pump_video || 0>" < "10" RUNTASK "Sentry_correction_to_sodium_and_potassium_pump_video"
+'Sentry_correction_to_sodium_and_potassium_pump_video':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_correction_to_sodium_and_potassium_pump_video':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_correction_to_sodium_and_potassium_pump_video:+:1"
+    - CHAT "You now have <flag:Correct_correction_to_sodium_and_potassium_pump_video> correct at this peak."
+'No_correction_to_sodium_and_potassium_pump_video':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/human-biology/v/correction-to-sodium-and-potassium-pump-video"

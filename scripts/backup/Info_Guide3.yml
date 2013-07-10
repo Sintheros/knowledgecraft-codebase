@@ -1,0 +1,24 @@
+"InfoGuide3":
+  Type: Assignment
+  Interact Scripts:
+  - 50 HGuide3
+'HGuide3':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Hi/, how are you?
+                Script:
+                - CHAT "Hello, I'm an Info Guide."
+                - WAIT 2
+                - CHAT "The person right next to me wants to quiz you on your knowledge of Ancient Sumeria. "
+                - WAIT 1
+                - CHAT "Before you can take a quiz, you need to learn!I can send you some information on Ancient Sumeria right now."
+                - WAIT 3
+                - CHAT "https://www.khanacademy.org/humanities/history/ancient-medieval/v/standard-of-ur--c--2600-2400-b-c-e"
+                - WAIT 2 
+                - CHAT "Good Luck!"
+                - FINISH

@@ -1,0 +1,20 @@
+"AssignmentTutMan":
+  Type: Assignment
+  Interact Scripts:
+  - 1 TutMan
+'TutMan':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, how are you?
+                Script:
+                - CHAT "You want to go back to the bottom of Tutorial Mountain?"
+                - WAIT 3
+                - CHAT "Well I can make that happen! If you want to come back here, just talk to one of my friends over there!"
+                - WAIT 3
+                - CAST confusion power:3 duration:5
+                - TELEPORT location:<anchor:tut>

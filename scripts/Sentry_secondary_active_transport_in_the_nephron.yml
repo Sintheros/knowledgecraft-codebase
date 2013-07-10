@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Secondary Active Transport in the Nephron
+"AssignmentSentry_secondary_active_transport_in_the_nephron":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:262.206"
+      - FLAG NPC "SentryY:+:55"
+      - FLAG NPC "SentryZ:+:868.56"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_secondary_active_transport_in_the_nephron
+'Greeting_secondary_active_transport_in_the_nephron':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Secondary Active Transport in the Nephron!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/human-biology/v/secondary-active-transport-in-the-nephron"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_secondary_active_transport_in_the_nephron
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_secondary_active_transport_in_the_nephron || 0>" == "0" FLAG "Correct_secondary_active_transport_in_the_nephron:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_secondary_active_transport_in_the_nephron || 0>" < "10" RUNTASK "Sentry_secondary_active_transport_in_the_nephron"
+'Sentry_secondary_active_transport_in_the_nephron':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_secondary_active_transport_in_the_nephron':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_secondary_active_transport_in_the_nephron:+:1"
+    - CHAT "You now have <flag:Correct_secondary_active_transport_in_the_nephron> correct at this peak."
+'No_secondary_active_transport_in_the_nephron':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/human-biology/v/secondary-active-transport-in-the-nephron"

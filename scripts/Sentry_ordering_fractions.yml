@@ -1,0 +1,65 @@
+#This Sentry will appear at node: Ordering fractions
+"AssignmentSentry_ordering_fractions":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1127.68"
+      - FLAG NPC "SentryY:+:54"
+      - FLAG NPC "SentryZ:+:903.506"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_ordering_fractions
+'Greeting_ordering_fractions':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the home of Ordering fractions!"
+              - WAIT 2
+              - RUNTASK "Sentry_ordering_fractions_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_ordering_fractions || 0>" == "0" CHAT "This is the home of Ordering fractions!" ELSE CHAT "You have completed this topic, Ordering fractions!"
+            - WAIT 2
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_ordering_fractions || 0>" == "0" RUNTASK "Sentry_ordering_fractions_KA"
+'Sentry_ordering_fractions_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:1
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_ordering_fractions:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/fractions/Equivalent_fractions/e/ordering_fractions/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_ordering_fractions:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_ordering_fractions:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_ordering_fractions>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_ordering_fractions>" == "0" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_ordering_fractions>" == "0" CHAT "You can learn and practice this topic at <aqua>http://curlsh.me/nlbfe<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_ordering_fractions>" == "1" CHAT "I see you have completed this topic! Congratulations!"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_comparing_fractions_2:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/fractions/Equivalent_fractions/e/comparing_fractions_2/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_comparing_fractions_2:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_comparing_fractions_2:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_comparing_fractions_2>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_ordering_fractions>" == "1" FLAG NPC <player.name>_PR:1
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" != "1" CHAT "This peak may be <white>above your current skill level<green>!"
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" == "0" CHAT "You may wish to try this earlier topic first..."
+    - IF "<FLAG.N:<player.name>_PR>" < "0" CHAT "You may wish to try the earlier topics first..."
+    - IF "<FLAG.G:<player.name>_comparing_fractions_2>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_ordering_fractions>" == "0" CHAT "<white>Compare Frac 2<green>"
+    - DISENGAGE

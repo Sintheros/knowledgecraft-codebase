@@ -1,0 +1,135 @@
+"questions_sex_linked_traits":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_sex_linked_traits
+'Quiz_sex_linked_traits':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "In reptiles, gender can be determined by the environment they are in, not genetically."
+            - WAIT 1
+            - CHAT "A. Yes"
+            - CHAT "B. No"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right! In some instances, reptiles environments determine their gender. "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/sex-linked-traits"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "xy can be read as a "
+            - WAIT 1
+            - CHAT "A. Female"
+            - CHAT "B. Male"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Right! it is a male. "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/sex-linked-traits"
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "If a father wants a male son, but gets a daughter, should he be mad at himself or his wife?"
+            - WAIT 1
+            - CHAT "A. His wife, she made her egg a female"
+            - CHAT "B. His wife, she wanted a baby girl."
+            - CHAT "C. Himself. Sperm determine a child�s gender."
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Right! So a man actually determines the gender of the child. "
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/sex-linked-traits"
+                - ZAP 'step:Q3'
+    'Q4':
+        Click Trigger:
+            Script:
+            - CHAT "Is a male or a female more lilkely to be colorblind?"
+            - WAIT 1
+            - CHAT "A. Male"
+            - CHAT "B. Female"
+            - ZAP 'step:A4'
+    'A4':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Right! Men are more likely to suffer from colorblindness."
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_sex_linked_traits"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_sex_linked_traits"
+            3:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "http://www.khanacademy.org/science/biology/heredity-and-genetics/v/sex-linked-traits"
+                - ZAP 'step:Q4'

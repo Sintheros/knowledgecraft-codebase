@@ -1,0 +1,78 @@
+"AssignmentGame_Pirate_Red":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:2
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Arrrr, I be busy at this present moment."
+  Interact Scripts:
+     - 1 Greeting_pirateRed
+'Greeting_pirateRed':
+  Type: Interact
+  Requirements: 
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:hi|HI|Hi|hey|Hey|HEY|Hello|hello|HELLO/ there! Who are you?
+            Script:
+              - ENGAGE
+              - IF "<FLAG.P:PirateRed>" == "0" CHAT "Yarrrrr? I be Captain Redmond of the <red>Red Raiders<green>, the most fearsome pirates on the pixilated sea!" ELSE CHAT "Yarrr? I be your captain, matey!"
+              - WAIT 3
+              - IF "<FLAG.P:PirateRed>" == "0" CHAT "Me nemesis, Captain Cyan of the <aqua>Blue Brigands<green> and I were in the middle of of a battle when we ran out of cannonballs! And crew!" ELSE CHAT "We still be preparin' for the battle, I hope 'yer ready for treasure and glory!"
+              - WAIT 3
+              - IF "<FLAG.P:PirateRed>" == "0" CHAT "Ye be joining us, right? Thar be <white>treasure<green> in it for you if ye help me sink Cyan's ship! <gold>(Yes/No)" ELSE CHAT "If ye want to back out, speak with <white>Admiral Admiral<green>, but 'yer gonna be a huge help!"
+              - IF "<FLAG.P:PirateRed>" == "0" ZAP 2
+              - DISENGAGE
+        2:
+            Trigger: /Regex:Yes|YES|yes/, I'll fight with you!
+            Script:
+              - ENGAGE
+              - CHAT "Yarr harr harr! <red>RED<green> will be the color of victory today!"
+              - IF "<FLAG.G:NumPiratesRed || 0>" == "0" FLAG GLOBAL NumPiratesRed:1 ELSE FLAG GLOBAL "NumPiratesRed:+:1"
+              - FLAG PLAYER PirateRed:1
+              - IF "<FLAG.P:PirateBlue || 0>" == "1" FLAG GLOBAL "NumPiratesBlue:+:-1"
+              - FLAG PLAYER PirateBlue:0
+              - WAIT 2
+              - CHAT "We're short on cannonballs, matey. There's a shop over in that village." 
+              - WAIT 1
+              - CHAT "They won't open until <white>Admiral Admiral<green> says, though, so stick around!"
+              - DISENGAGE
+              - execute as_server "denizen save"
+      Proximity Trigger:
+        entry:
+            Script:
+              - IF "<FLAG.P:PirateRed || 0>" == "0" FLAG PLAYER PirateRed:0
+              - IF "<FLAG.P:PirateRed>" == "0" CHAT "Yarr! 'Yer here to join the <red>Red Raiders<green>, aint you matey?" ELSE CHAT "Yarr, fellow <red>Red Raider<green>, victory will be ours!"
+    2:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Yes|YES|yes/, I'll fight with you!
+            Script:
+              - ENGAGE
+              - CHAT "Yarr harr harr! <red>RED<green> will be the color of victory today!"
+              - IF "<FLAG.G:NumPiratesRed || 0>" == "0" FLAG GLOBAL NumPiratesRed:1 ELSE FLAG GLOBAL "NumPiratesRed:+:1"
+              - FLAG PLAYER PirateRed:1
+              - IF "<FLAG.P:PirateBlue || 0>" == "1" FLAG GLOBAL "NumPiratesBlue:+:-1"
+              - FLAG PLAYER PirateBlue:0
+              - WAIT 2
+              - CHAT "We're short on cannonballs, matey. There's a shop over in that village." 
+              - WAIT 1
+              - CHAT "They won't open until <white>Admiral Admiral<green> says, though, so stick around!"
+              - DISENGAGE
+              - ZAP 1
+              - execute as_server "denizen save"
+        2:
+            Trigger: /Regex:No|NO|no/, I won't join you!"
+            Script:
+              - CHAT "Ye be makin' a mistake, laddy!"
+              - ZAP 1
+      Proximity Trigger:
+        exit:
+          Script:
+            - IF "<FLAG.P:PirateRed || 0>" == "0" CHAT "Ye be makin' a mistake, laddy!"
+            - ZAP 1
+    

@@ -1,0 +1,50 @@
+#Geometry City Theatre librarian Villager
+"AssignmentVillager_city_geometry_librarian":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 greeting_city_geometry_librarian
+'Greeting_city_geometry_librarian':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+            Script:
+              - ENGAGE
+              - CHAT "Shhh. Library!"
+              - WAIT 3
+              - CHAT "Oh all right. We don't get many visitors these days."
+              - WAIT 3
+              - CHAT "People just don't seem to care as much about learning!"
+              - WAIT 3
+              - CHAT "And what about you? Are you a learner?"
+              - WAIT 2
+              - CHAT "For instance, are you familiar with finding the area of a square or rectangle? <gold>(Yes/No)<green>"
+              - DISENGAGE
+        2:
+            Trigger: /Regex:Yes|yes/, I do.
+            Script:
+              - ENGAGE
+              - CHAT "I'm not surprised, it's not that hard. And it's very useful!"
+              - WAIT 3
+              - CHAT "You can find all that and more in any book, you know!"
+              - DISENGAGE
+        3:
+            Trigger: /Regex:No|no/, I don't.
+            Script:
+              - ENGAGE
+              - CHAT "Ah! Then I will teach you!"
+              - WAIT 3
+              - CHAT "It's very easy - simply multiply the length by the width and you have the area!"
+              - WAIT 3
+              - CHAT "See that table over here? It's 2 units on each side. 2 times 2 is 4. That's all there is to it!"
+              - DISENGAGE

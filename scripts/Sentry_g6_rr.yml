@@ -1,0 +1,41 @@
+#This Sentry will appear at node: Rates and Ratios
+"AssignmentSentry_g6_rr":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1011.31"
+      - FLAG NPC "SentryY:+:23"
+      - FLAG NPC "SentryZ:+:1263.48"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_g6_rr
+'Greeting_g6_rr':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Teleport|TELEPORT|teleport/ me home?
+            Script:
+            - CHAT "Certainly!"
+            - TELEPORT location:<anchor:spawn>
+            - FLAG NPC <player.name>:1
+            - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_g6_rr:1
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "This section of mountain leads to Level 3 Rates and Ratios!"
+            - WAIT 2
+            - CHAT "If you'd like to go home, I can <gold>teleport<green> you there."
+            - FLAG NPC <player.name>:1
+            - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_g6_rr:1

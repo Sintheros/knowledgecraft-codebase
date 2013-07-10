@@ -1,0 +1,55 @@
+#This Sentry will appear at node: Graduation
+"AssignmentSentry_graduation_geo":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:254.47"
+      - FLAG NPC "SentryY:+:66"
+      - FLAG NPC "SentryZ:+:245.76"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_graduation_geo
+'Greeting_graduation_geo':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This is the highest peak on Mt. Geometry!"
+              - WAIT 3
+              - RUNTASK "Sentry_graduation_geo_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "This is the highest peak on Mt. Geometry!"
+            - WAIT 3
+            - RUNTASK "Sentry_graduation_geo_KA"
+'Sentry_graduation_geo_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>_PR:2
+    - FLAG GLOBAL <player.name>_graduation_geo:0
+    - FLAG GLOBAL <player.name>_area_of_a_circle:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<player.name>&HREF=math/geometry/basic-geometry/circum_area_circles/e/area_of_a_circle/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <player.name>_area_of_a_circle:1 ELSE FLAG GLOBAL <player.name>_area_of_a_circle:0
+    - IF "<FLAG.G:<player.name>_area_of_a_circle>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - FLAG GLOBAL <player.name>_area_of_triangles_1:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<player.name>&HREF=math/geometry/basic-geometry/perimeter_area_tutorial/e/area_of_triangles_1/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <player.name>_area_of_triangles_1:1 ELSE FLAG GLOBAL <player.name>_area_of_triangles_1:0
+    - IF "<FLAG.G:<player.name>_area_of_triangles_1>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.N:<player.name>_PR>" == "2" FLAG GLOBAL <player.name>_graduation_geo:1 ELSE FLAG GLOBAL <player.name>_graduation_geo:0
+    - IF "<FLAG.N:<player.name_PR>>" != "2" CHAT "To truly master basic geometry, you should try the following first..."
+    - IF "<FLAG.N:<player.name_PR>>" != "2" WAIT 2
+    - IF "<FLAG.G:<player.name>_area_of_a_circle>" == "0" CHAT "<white>Circle Area<green>"
+    - IF "<FLAG.G:<player.name>_area_of_triangles_1>" == "0" CHAT "<white>Triangle Area<green>"
+    - IF "<FLAG.G:<player.name>_graduation_geo>" == "1" CHAT "You have mastered basic geometry! Congratulations!"

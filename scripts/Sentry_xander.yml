@@ -1,0 +1,76 @@
+#This Sentry will appear at node: Xander & the Wind
+"AssignmentSentry_xander":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Reading>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Reading>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Reading>
+      - FLAG NPC "SentryX:+:230.4"
+      - FLAG NPC "SentryY:+:34"
+      - FLAG NPC "SentryZ:+:245.396"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_xander
+'Greeting_xander':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the home of Xander & the Wind!"
+              - WAIT 2
+              - CHAT "Here you can..."
+              - WAIT 2
+              - CHAT "...read the story"
+              - WAIT 2
+              - CHAT "...record the story"
+              - WAIT 2
+              - CHAT "...or share your recording with me for a reward!"
+              - WAIT 3
+              - CHAT "If you want to give me a recording, say <Gold>submit<green> so I can hear it!"
+              - WAIT 3
+              - CHAT "Otherwise, <white>click<green> this link to the story! <aqua>http://curlsh.me/6q194<green>"
+              - DISENGAGE
+        2:
+            Trigger: I'm ready to /Regex:Submit|submit/ my reading!
+            Script:
+               - ENGAGE
+               - CHAT "Great! Let's hear it! <Gold>[Paste your recording's URL!]<green>"
+               - DISENGAGE
+        3:
+            Trigger: /REGEX:www.astorybeforebed.+/
+            Script:
+               - ENGAGE
+               - FLAG NPC <player.name>:<player.chat_history>
+               - TWEET "Check it out! <player.name> reads Xander & the Wind! <FLAG.N:<player.name>>" learninglandscape
+               - CHAT "Got it, thanks!"
+               - DISENGAGE
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - CHAT "This is the home of Xander & the Wind!"
+            - WAIT 2
+            - CHAT "Here you can..."
+            - WAIT 2
+            - CHAT "...read the story"
+            - WAIT 2
+            - CHAT "...record the story"
+            - WAIT 2
+            - CHAT "...or share your recording with me for a reward!"
+            - WAIT 3
+            - CHAT "If you want to give me a recording, say <gold>submit<green> so I can hear it!"
+            - WAIT 3
+            - CHAT "Otherwise, <white>click<green> this link to the story! <aqua>http://curlsh.me/6q194<green>"
+            - DISENGAGE

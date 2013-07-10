@@ -1,0 +1,64 @@
+#Geometry City Theatre Keeper Villager
+"AssignmentVillager_city_geometry_keeper":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 greeting_city_geometry_keeper
+'Greeting_city_geometry_keeper':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, what's going on here?
+            Script:
+              - ENGAGE
+              - CHAT "Man, all of this hubbub over a triangle statue?"
+              - WAIT 3
+              - CHAT "Between you and me, I think everyone in this city's a few degrees short of a full circle, if you know what I mean."
+              - WAIT 4
+              - CHAT "Wait, did I just..."
+              - WAIT 3
+              - CHAT "Erm, you didn't hear anything! I'm not like these people!"
+              - WAIT 3
+              - CHAT "Those triangles are kind of acute though..."
+              - WAIT 3
+              - NARRATE "The man seems to be nervous."
+              - WAIT 3
+              - CHAT "Uh. Uh....ANYWAY! You know how to find ...the area of a triangle....right....? <gold>(Yes/No)<green>"
+              - DISENGAGE
+        2:
+            Trigger: /Regex:Yes|yes/, I do.
+            Script:
+              - ENGAGE
+              - CHAT "You do?! You'd better be careful with knowledge like that."
+              - WAIT 3
+              - CHAT "Math has the power to change entire civilizations, you know. Just look at history!"
+              - WAIT 3
+              - NARRATE "The man makes a good point."
+              - DISENGAGE
+        3:
+            Trigger: /Regex:No|no/, I don't.
+            Script:
+              - ENGAGE
+              - CHAT "Well then!"
+              - WAIT 3
+              - CHAT "IT LOOKS LIKE WE HAVE ANOTHER VICtimmmm ....I mean..."
+              - WAIT 3
+              - CHAT "..Uh...I mean it's quite simple really."
+              - WAIT 3
+              - CHAT "A triangle is like half of a square, all the way down to the calculations!"
+              - WAIT 4
+              - CHAT "All you do is take the base of a triangle and multiply it by the height, and divide by 2!"
+              - WAIT 4
+              - CHAT "A triangle with a base of one and a height of one has an area of .5! Isn't that great?!"
+              - WAIT 4
+              - NARRATE "The nervous man is making you nervous too. Best leave him be."
+              - DISENGAGE

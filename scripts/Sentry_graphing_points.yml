@@ -1,0 +1,65 @@
+#This Sentry will appear at node: Graphing points
+"AssignmentSentry_graphing_points":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1261.49"
+      - FLAG NPC "SentryY:+:34"
+      - FLAG NPC "SentryZ:+:1042.62"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_graphing_points
+'Greeting_graphing_points':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the home of Graphing points!"
+              - WAIT 2
+              - RUNTASK "Sentry_graphing_points_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graphing_points || 0>" == "0" CHAT "This is the home of Graphing points!" ELSE CHAT "You have completed this topic, Graphing points!"
+            - WAIT 2
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graphing_points || 0>" == "0" RUNTASK "Sentry_graphing_points_KA"
+'Sentry_graphing_points_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:1
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graphing_points:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/trigonometry/graphs/graphing_coordinates/e/graphing_points_2/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graphing_points:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graphing_points:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graphing_points>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graphing_points>" == "0" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graphing_points>" == "0" CHAT "You can learn and practice this topic at <aqua>http://curlsh.me/g4ncp<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graphing_points>" == "1" CHAT "I see you have completed this topic! Congratulations!"
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_points_lines_and_planes:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/geometry/segments-and-angles/intro_euclid/e/points_lines_and_planes/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_points_lines_and_planes:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_points_lines_and_planes:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_points_lines_and_planes>" == "0" FLAG NPC "<player.name>_PR:-:1"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graphing_points>" == "1" FLAG NPC <player.name>_PR:1
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" != "1" CHAT "This peak may be <white>above your current skill level<green>!"
+    - IF "<FLAG.N:<player.name>_PR>" != "1" WAIT 2
+    - IF "<FLAG.N:<player.name>_PR>" == "0" CHAT "You may wish to try this earlier topic first..."
+    - IF "<FLAG.N:<player.name>_PR>" < "0" CHAT "You may wish to try the earlier topics first..."
+    - IF "<FLAG.G:<player.name>_points_lines_and_planes>" == "0" && "<FLAG.G:<FLAG.G:<player.name>_KANAME>_graphing_points>" == "0" CHAT "<white>PointLinePlane<green>"
+    - DISENGAGE

@@ -1,0 +1,66 @@
+#This Sentry will appear at node: 4th Grade
+"AssignmentSentry_g4":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:1217.22"
+      - FLAG NPC "SentryY:+:16"
+      - FLAG NPC "SentryZ:+:828.655"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_g4
+'Greeting_g4':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+            - CHAT "This is the base of Level 1 of Math Mountain!"
+            - WAIT 2
+            - CHAT "There are three major Math subjects in Level 1..."
+            - WAIT 1 
+            - CHAT "<White>Lv1 Geometry<green> to the south,"
+            - CHAT "<white>Standard Operations<green> (that's 'normal math') to the west,"
+            - CHAT "and <white>Fractions and Decimals<green>, directly up the hill from here!"
+            - WAIT 3
+            - CHAT "Try climbing any of them! Who knows what you might find?"
+            - WAIT 2
+            - CHAT "Also, if you want to be <gold>teleport<green>ed to either of the further subjects, just ask."
+            - FLAG NPC <player.name>:1
+            - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_g4:1
+        2:
+            Trigger: Can you /Regex:Teleport|teleport|TELEPORT/ me?
+            Script:
+            - CHAT "Sure. Do you want to go to <gold>Geometry<green> or <gold>Standard<green> Operations?"
+        3:
+            Trigger: Send me to /Regex:Geo|geo|Geometry|geometry/!
+            Script:
+            - CHAT "Away you go!"
+            - TELEPORT location:<anchor:g4_geo>
+        4:
+            Trigger: Send me to /Regex:Standard|so|SO|standard|op|ops|operations|Operations/!
+            Script:
+            - CHAT "Away you go!"
+            - TELEPORT location:<anchor:g4_so>
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "Welcome to Level 1 of Math Mountain!"
+            - WAIT 2
+            - CHAT "Here you can explore, enhance your math skills, and participate in games all around the mountain!"
+            - WAIT 2
+            - NARRATE "You remember the Professor said to speak with a non-player, simply greet them with a <gold>hi<white> or <gold>hello<white>!"
+            - FLAG NPC <player.name>:1
+            - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_g4:1

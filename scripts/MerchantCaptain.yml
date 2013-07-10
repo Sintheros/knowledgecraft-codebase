@@ -1,0 +1,34 @@
+"AssignmentMerchantCaptain":
+    type: assignment
+    
+    interact scripts:
+    - 10 MerchantCaptainScript2
+
+'MerchantCaptainScript2':   
+    type: interact
+    
+    Steps:
+        1:
+            Chat Trigger:
+                1:
+                    trigger: '/Hi/.'
+                    script:
+                    - CHAT "Hello, <PLAYER.NAME>."
+                    - WAIT 1
+                    - CHAT "I need some help. I have a shipment of apple juice coming in but I don't know how much is arriving."
+                    - WAIT 1
+                    - CHAT "All I know is that there are 5 ships coming each with 10 barrels of juice."
+                    - WAIT 1
+                    - CHAT "If you know the answer please tell the Merchant over by the shop."
+                    - WAIT 1
+                    - CHAT "If not, there is book in a chest in my ship that might be able to help."
+                    - WAIT 1
+                    - CHAT "Remember, there are 5 ships each with 10 barrels."
+                    - ZAP 2
+        2:
+            Chat Trigger:
+                1:
+                    trigger: '/Hi/.'
+                    script:
+                    - CHAT "When you figure it out, tell the merchant how many barrels will be in the shipment."
+                    - CHAT "Remember, there are 5 ships each with 10 barrels."

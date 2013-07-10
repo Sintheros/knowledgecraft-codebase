@@ -1,0 +1,361 @@
+"questions_science":
+  Type: Assignment
+  Interact Scripts:
+  - 10 Quiz_science
+'Quiz_science':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    'Q1*':
+        Click Trigger:
+            Script:
+            - CHAT "Ultimately, all scientific knowledge comes from"
+            - WAIT 1
+            - CHAT "A. experimentation"
+            - CHAT "B. observation"
+            - CHAT "C. textbooks"
+            - CHAT "D. Both experimentation and observation"
+            - ZAP 'step:A1'
+    'A1':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            4:
+                Trigger: I choose /D/.
+                Script:
+                - CHAT "Good job! Scientific knowledge comes from both observation and experimentation. As scientists, we would never learn anything new unless we TESTED things we SAW."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q2'
+            5:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "Hmm. Not quite right."
+                - CHAT "Check out these sources for more information"
+                - CHAT "http://www.biologycorner.com/bio1/notes_ch1.html"
+                - ZAP 'step:Q1'
+    'Q2':
+        Click Trigger:
+            Script:
+            - CHAT "A hypothesis must be:"
+            - WAIT 1
+            - CHAT "A. testable"
+            - CHAT "B. proven correct"
+            - CHAT "C. observable"
+            - ZAP 'step:A2'
+    'A2':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Great! A hypothesis must be testable."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q3'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "Close, but not quite right."
+                - CHAT "Learn a little more about hypotheses here"
+                - CHAT "http://www.livescience.com/21490-what-is-a-scientific-hypothesis-definition-of-hypothesis.html"
+                - ZAP 'step:Q2'
+    'Q3':
+        Click Trigger:
+            Script:
+            - CHAT "A scientist testing the affects of a chemical on apple yeild sprays an orchard with the chemical. A second orchard does not receive the chemical. In the fall, the number of apples harvested from each forest is counted. Which of the following is the independent variable in the experiment?"
+            - WAIT 1
+            - CHAT "A. the number of apples"
+            - CHAT "B. the first orchard"
+            - CHAT "C. the chemical"
+            - CHAT "D. the second orchard"
+            - ZAP 'step:A3'
+    'A3':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Perfect! The change between the first and the second orchard was the chemical."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            4:
+                Trigger: I choose /D/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q4'
+            5:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "I think you should think about that some more."
+                - CHAT "Visit this link for more information"
+                - CHAT "http://www.sciencebuddies.org/science-fair-projects/project_variables.shtml"
+                - ZAP 'step:Q3'
+    'Q4':
+        Click Trigger:
+            Script:
+            - CHAT "The orchard sprayed with chemical yields an average of 60 apples per tree while the orchard that was not sprayed with chemicals yields an average of 40 apples per tree. Based on the data the scientist would:"
+            - WAIT 1
+            - CHAT "A. report his data"
+            - CHAT "B. test the chemical on other plants"
+            - CHAT "C. determine that the chemical increases apple yield"
+            - ZAP 'step:A4'
+    'A4':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q5'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q5'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Right! According to his data, the orchard sprayed with chemicals yielded MUCH more fruit than the orchard that was not sprayed."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q5'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "Hmm. Think about that a little bit more."
+                - ZAP 'step:Q4'
+    'Q5':
+        Click Trigger:
+            Script:
+            - CHAT "Theories help scientists to:"
+            - WAIT 1
+            - CHAT "A. explain large bodies of data"
+            - CHAT "B. the theory is accepted, not the evidence"
+            - CHAT "C. the evidence is wrong"
+            - ZAP 'step:A5'
+    'A5':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Great! Theories are used to help scientists explain large bodies of data!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q6'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q6'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q6'
+            4:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "No, Let’s look at this concept a little more."
+                - CHAT "http://www.livescience.com/21491-what-is-a-scientific-theory-definition-of-theory.html"
+                - ZAP 'step:Q5'
+    'Q6':
+        Click Trigger:
+            Script:
+            - CHAT "All living things must:"
+            - WAIT 1
+            - CHAT "A. Move"
+            - CHAT "B. Have two parents"
+            - CHAT "C. Eat food"
+            - CHAT "D. Maintain Homeostasis"
+            - ZAP 'step:A6'
+    'A6':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q7'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q7'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q7'
+            4:
+                Trigger: I choose /D/.
+                Script:
+                - CHAT "Great! This is just one of the qualifications of life. To check out the other things,"
+                - CHAT "go here http://chsweb.lr.k12.nj.us/mstanley/outlines/living2/living2.htm"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q7'
+            5:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "Well, good try."
+                - CHAT "http://chsweb.lr.k12.nj.us/mstanley/outlines/living2/living2.htm"
+                - ZAP 'step:Q6'
+    'Q7':
+        Click Trigger:
+            Script:
+            - CHAT "The mechanism by which evolution occurs is called:"
+            - WAIT 1
+            - CHAT "A. natural selection"
+            - CHAT "B. creationism"
+            - CHAT "C. interpedendence"
+            - CHAT "D. metabolism"
+            - ZAP 'step:A7'
+    'A7':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Great! Darwin would be proud."
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q8'
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q8'
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q8'
+            4:
+                Trigger: I choose /D/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "Right click me for another question"
+                - ZAP 'step:Q8'
+            5:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "I think you should look up that again."
+                - CHAT "http://evolution.berkeley.edu/evolibrary/article/evo_02"
+                - CHAT "http://evolution.berkeley.edu/evosite/evo101/IIIENaturalSelection.shtml"
+                - ZAP 'step:Q7'
+    'Q8':
+        Click Trigger:
+            Script:
+            - CHAT "The smallest unit capable of carrying out life functions is:"
+            - WAIT 1
+            - CHAT "A. a cell"
+            - CHAT "B. tissue"
+            - CHAT "C. DNA"
+            - CHAT "D. blood"
+            - ZAP 'step:A8'
+    'A8':
+        Chat Trigger:
+            1:
+                Trigger: I choose /A/.
+                Script:
+                - CHAT "Great Work! Some living things are ONLY a single cell. (That’s really small!!)"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_science"
+            2:
+                Trigger: I choose /B/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_science"
+            3:
+                Trigger: I choose /C/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_science"
+            4:
+                Trigger: I choose /D/.
+                Script:
+                - CHAT "Incorrect answer!"
+                - WAIT 1
+                - CHAT "That's all I've got! Why don't you try the next peak?"
+                - EXECUTE as_server "npc select <npc.id>"
+                - EXECUTE as_server "npc assignment --set AssignmentSentry_science"
+            5:
+                Trigger: I would like a /Hint/.
+                Script:
+                - CHAT "Hmm. Check out this great resource to check yourself"
+                - CHAT "http://www.biologycorner.com/bio1/notes_ch1.html"
+                - ZAP 'step:Q8'

@@ -1,0 +1,74 @@
+geniequesttestassignment:
+  Type: Assignment
+  Interact Scripts:
+  - 4 questisdonetest
+  - 3 hasitemstest
+  - 2 doesnothavitemstest
+  - 1 geniemoderatescript
+geniemoderatescript:
+  Type: Interact
+  Requirements:
+    Mode: Any 1
+    List:
+    - -script finished 'script:geniemoderatescript'
+  Steps:
+      1:
+        Chat Trigger:
+          1:
+            Trigger: /Hello/, how are you?
+            Script:
+            - CHAT "My daughter's birthday is today and I can't bake! The baker is out of town, so I have no one to help!"
+            - WAIT 2
+            - CHAT "Maybe you could help? Could you help me bake a <GOLD> cake?"
+            - ZAP 2
+      2:
+        Chat Trigger:
+          1:
+            Trigger: I'll help you bake a /cake/.
+            Script:
+            - CHAT "Great! You'll need 3 buckets of milk, two piles of sugar, one egg, and three wheat."
+            - CHAT "Come back to me when you have all the ingredients."
+            - FINISH
+hasitemstest:
+  Type: Interact
+  Requirements:
+  Mode: All
+  List:
+  - script finished 'script:geniemoderatescript'
+  - item 335 'qty:3'
+  - item 296 'qty:3'
+  - item 344 'qty:1'
+  - item 353 'qty:2'
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+          Trigger: /Regex:Hi|Hello|Hey/!
+          Script:
+          - CHAT "You've got all the items! Thanks so much!"
+          - CHAT "I'll let everyone know how much you've helped me!"
+          - FLAG TownHero
+doesnothaveitemstest:
+  Type: Interact
+  Requirements:
+    Mode: Any 1
+    List:
+    - script finished 'script:geniemoderatescript'
+  Steps:
+    1:
+      Trigger: /Regex:Hi|Hello|Hey/!
+      Script:
+      - CHAT "You're still missing some things! Come back once you have all the items!"
+questisdonetest
+  Type: Interact
+  Requirements:
+    Mode: All
+    List:
+    - FLAGGED TownHero
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+          Trigger: /Regex:Hi|Hello|Hey/!
+          Script:
+          - CHAT "Ah! <player.name>! Great to see you!"

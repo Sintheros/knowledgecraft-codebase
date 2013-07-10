@@ -1,0 +1,20 @@
+"AssignmentBioManA":
+  Type: Assignment
+  Interact Scripts:
+  - 1 BioManA
+'BioManA':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, how are you?
+                Script:
+                - CHAT "You want to learn about Biology do you?"
+                - WAIT 3
+                - CHAT "Well I'll make your trip shorter. Biology Bluff, here we go! If you want to go back, just talk to me again!"
+                - WAIT 3
+                - CAST confusion power:3 duration:5
+                - TELEPORT location:<anchor:bio>

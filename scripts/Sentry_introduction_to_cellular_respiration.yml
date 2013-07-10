@@ -1,0 +1,57 @@
+#This Sentry will appear at node: Introduction to Cellular Respiration
+"AssignmentSentry_introduction_to_cellular_respiration":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX>
+      - FLAG NPC SentryY:<FLAG.G:MasterY>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ>
+      - FLAG NPC "SentryX:+:501.048"
+      - FLAG NPC "SentryY:+:39"
+      - FLAG NPC "SentryZ:+:853.844"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_introduction_to_cellular_respiration
+'Greeting_introduction_to_cellular_respiration':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Introduction to Cellular Respiration!"
+              - WAIT 3
+              - CHAT "You can learn more at /science/biology/cellular-respiration/v/introduction-to-cellular-respiration"
+              - WAIT 3
+              - CHAT "Right click me for a question!"
+      Click Trigger:
+        Script:
+          - RUNTASK questions_introduction_to_cellular_respiration
+      Proximity Trigger:
+        enter:
+          Script:
+            - IF "<flag:Correct_introduction_to_cellular_respiration || 0>" == "0" FLAG "Correct_introduction_to_cellular_respiration:0"
+        exit:
+          Script:
+            - IF "<flag:Correct_introduction_to_cellular_respiration || 0>" < "10" RUNTASK "Sentry_introduction_to_cellular_respiration"
+'Sentry_introduction_to_cellular_respiration':
+  Type: Task
+  Script:
+    - CHAT "You haven't finished this area yet!"
+    - TELEPORT "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+'Yes_introduction_to_cellular_respiration':
+  Type: Task
+  Script:
+    - CHAT "Correct!"
+    - FLAG "Correct_introduction_to_cellular_respiration:+:1"
+    - CHAT "You now have <flag:Correct_introduction_to_cellular_respiration> correct at this peak."
+'No_introduction_to_cellular_respiration':
+  Type: Task
+  Script:
+    - CHAT "Sorry, that's wrong."
+    - WAIT 2
+    - "Remember, you can learn more at /science/biology/cellular-respiration/v/introduction-to-cellular-respiration"

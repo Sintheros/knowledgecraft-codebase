@@ -1,0 +1,50 @@
+#--- assignment ----
+"MiningMission":
+    Type: Assignment
+    Interact Scripts:
+    - 1 StartMineFetch
+    - 2 EndMineFetch
+    
+#--- FetchQuest ----
+'StartMineFetch':
+    Type: Interact
+    Requirements:
+      Mode: None
+    Steps:
+       1:
+        Click Trigger:
+          Script:
+          - ENGAGE
+          - CHAT "Now that you know how to mine..."
+          - WAIT 3
+          - CHAT "There is a chest underground. Dig until you find it and bring me what's inside."
+          - WAIT 3
+          - CHAT "Stay within the green boundaries when digging. Get mining!"
+          #finish script so we know player started it
+          - DISENGAGE
+          - FINISH
+
+'EndMineFetch':
+  Type: Interact
+  Requirements:
+    Mode: All
+    List: #this is where we check if they are on the quest and have the items
+    - script finished script:StartMineFetch
+    #286 is a gold axe
+    - ITEM 286 qty:1
+  Steps:
+     1:
+      Click Trigger:
+        Script:
+        #Engage is used to keep the player from clicking twice
+        - ENGAGE
+        - TAKE 286 QTY:1
+        - CHAT "Aha! You've successfully retrieved the golden axe!"
+        - WAIT 3
+        - CHAT "You can now move on. Here is a reward for helping me!"
+        - GIVE <PLAYER.NAME> 357 QTY:1
+        - DISENGAGE
+        - FINISH
+          
+          
+            

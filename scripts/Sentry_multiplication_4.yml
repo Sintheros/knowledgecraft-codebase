@@ -1,0 +1,54 @@
+#This Sentry will appear at node: Multi-digit multiplication
+"AssignmentSentry_multiplication_4":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_Math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_Math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_Math>
+      - FLAG NPC "SentryX:+:881.182"
+      - FLAG NPC "SentryY:+:22"
+      - FLAG NPC "SentryZ:+:830.043"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! Just a moment, please!"
+  Interact Scripts:
+  - 1 Greeting_multiplication_4
+'Greeting_multiplication_4':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - ENGAGE
+              - CHAT "This is the home of Multi-digit multiplication!"
+              - WAIT 2
+              - RUNTASK "Sentry_multiplication_4_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - ENGAGE
+            - IF "<FLAG.G:<player.name>_KANAME || 0> == "0" FLAG GLOBAL <player.name>_KANAME:0
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_multiplication_4 || 0>" == "0" CHAT "This is the home of Multi-digit multiplication!" ELSE CHAT "You have completed this topic, Multi-digit multiplication!"
+            - WAIT 2
+            - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_multiplication_4 || 0>" == "0" RUNTASK "Sentry_multiplication_4_KA"
+'Sentry_multiplication_4_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - FLAG NPC <player.name>_PR:0
+    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_multiplication_4:0
+    - URL "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/math/arithmetic/multiplication-division/multi_digit_multiplication/e/multiplication_4/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "Complete" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_multiplication_4:1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_multiplication_4:0
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_multiplication_4>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_multiplication_4>" == "0" WAIT 2
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_multiplication_4>" == "0" CHAT "You can learn and practice this topic at <aqua>http://curlsh.me/jezud<green>"
+    - IF "<FLAG.G:<FLAG.G:<player.name>_KANAME>_multiplication_4>" == "1" CHAT "I see you have completed this topic! Congratulations!"
+    - DISENGAGE

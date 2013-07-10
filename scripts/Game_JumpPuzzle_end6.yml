@@ -1,0 +1,59 @@
+#End NPC 6
+"AssignmentGame_JumpPuzzle_End6":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 Greeting_JumpPuzzle_End6
+'Greeting_JumpPuzzle_End6':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I've made it!
+            Script:
+              - ENGAGE
+              - FLAG PLAYER respawn:spawn
+              - WAIT 1
+              - IF "<FLAG.G:<player.name>_JP_prize || 0>" == "1" CHAT "One prize per puzzle! The exit's behind me!"
+              - IF "<FLAG.G:<player.name>_JP_prize || 0>" == "0" FLAG GLOBAL <player.name>_JP_prize:0
+              - IF "<FLAG.P:JPprize6 || 0>" == "0" && "<FLAG.G:<player.name>_JP_prize || 0>" == "0" CHAT "You're at the wrong Prize-Keeper for the level you completed!"
+              - IF "<FLAG.P:JPprize6 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=g6_numbersystem.txt" question
+              - IF "<FLAG.P:JPprize6 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
+              - IF "<FLAG.P:JPprize6 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
+              - IF "<FLAG.P:JPprize6 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" CHAT "Indeed you have! One final test for you! Behold!"
+              - IF "<FLAG.P:JPprize6 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" WAIT 2
+              - IF "<FLAG.P:JPprize6 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" CHAT "<red><FLAG.N:Q><green>"
+              - IF "<FLAG.P:JPprize6 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" ZAP step:2
+              - DISENGAGE
+    2:
+      Chat Trigger:
+        1:
+            Trigger: The answer is /REGEX:.+/!
+            Script:
+               - ENGAGE
+               - FLAG NPC <player.name>_answer:<player.chat_history>
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_JP_prize:1
+               - IF "<FLAG.G:<player.name>_JP_prize>" == "0" CHAT "Nope, can't say that was correct. Come back another time! Exit's right behind me." ELSE CHAT "You got it! The prize is yours! You can exit behind me when you're ready."
+               - WAIT 1
+               - IF "<FLAG.G:<player.name>_JP_prize>" == "0" NARRATE "You can always come again." ELSE NARRATE "The man hands you something."
+               - FLAG GLOBAL PN:<player.name>
+               - IF "<FLAG.G:<player.name>_JP_prize>" == "1" GIVE item:Item_JP_3
+               - FLAG GLOBAL <player.name>_JP_prize:1
+               - ZAP step:1
+               - DISENGAGE
+      Proximity Trigger:
+        exit:
+          Script:
+            - IF "<FLAG.G:<player.name>_JP_prize>" == "0" CHAT "Giving up? Then the prize is mine!"
+            - IF "<FLAG.G:<player.name>_JP_prize>" == "0" FLAG GLOBAL <player.name>_JP_prize:1
+            - ZAP step:1
+    

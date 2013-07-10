@@ -1,0 +1,44 @@
+#This Sentry will appear at node: Basic multiplication
+"AssignmentSentry_multiplication_05":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - FLAG NPC SentryX:<FLAG.G:MasterX_math>
+      - FLAG NPC SentryY:<FLAG.G:MasterY_math>
+      - FLAG NPC SentryZ:<FLAG.G:MasterZ_math>
+      - FLAG NPC "SentryX:+:384"
+      - FLAG NPC "SentryY:+:28"
+      - FLAG NPC "SentryZ:+:183.447"
+      - TELEPORT NPC "location:<FLAG.NPC:SentryX>,<FLAG.NPC:SentryY>,<FLAG.NPC:SentryZ>,world"
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
+  Interact Scripts:
+  - 1 Greeting_multiplication_05
+'Greeting_multiplication_05':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, where am I?
+            Script:
+              - CHAT "This peak is Basic multiplication!"
+              - WAIT 3
+              - RUNTASK "Sentry_multiplication_05_KA"
+      Proximity Trigger:
+        entry:
+          Script:
+            - CHAT "This peak is Basic multiplication!"
+            - WAIT 3
+            - RUNTASK "Sentry_multiplication_05_KA"
+'Sentry_multiplication_05_KA':
+  Type: Task
+  Script:
+    - FLAG NPC <player.name>:0
+    - URL "http://isitthursday.org/" <player.name>
+    - IF "<FLAG.N:<player.name>>" == "0" CHAT "You have not finished this peak yet!"
+    - IF "<FLAG.N:<player.name>>" == "0" WAIT 3
+    - IF "<FLAG.N:<player.name>>" == "0" CHAT "Try some practice at www.khanacademy.org/math/e/multiplication_0.5"
+    - IF "<FLAG.N:<player.name>>" == "1" CHAT "You have completed this peak!"
+    - IF "<FLAG.N:<player.name>>" == "1" CHAT "Congratulations!"
