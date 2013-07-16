@@ -8,15 +8,15 @@
 
 using namespace std;
 
-void Scriptifier();
+//void Scriptifier();
 void populate(bool isMath);
 string truncURL(string url);
 void generateYML(string dispName, string fileName, string url, string dispUrl, double x, double y, double z, string subject, bool isMath, bool isReading, int numPreReqs, string preReqs[], string associatedDispNames[], string associatedUrls[]);
-void generateGrad(double x, double y,double z, string subject, int numPreReqs, string preReqs[], string associatedDispNames[] , string associatedUrls[]);
+void generateGrad(string fileName, double x, double y,double z, string subject, int numPreReqs, string preReqs[], string associatedDispNames[] , string associatedUrls[]);
 void generateMasterSentry(int entry, string displayNamesSmall[], double highestX, double highestY, double highestZ, string subject);
 
 string const KALITEURL = "http://129.21.142.218:8008";
-string const URLFUNCTION = "http://129.21.142.218:29876/KALITE?userName=<player.name>&HREF=";
+string const URLFUNCTION = "http://129.21.142.218:29876/KALITE?userName=<FLAG.G:<player.name>_KANAME>&HREF=/";
 string fileNames[1000];
 string displayNames[1000];
 string displayNamesSmall[1000];
@@ -24,18 +24,17 @@ string urls[1000];
 
 ScriptGen::ScriptGen(void)
 {
-	Scriptifier();
+	//Scriptifier();
 }
 
 ScriptGen::~ScriptGen(void)
 {
 }
 
-void Scriptifier()
-//int main()
+//void Scriptifier()
+int main()
 {
 	string subject;
-
 	cout << "Enter subject (Math, Biology, etc. Don't put in spaces.): " << endl;
 	getline(cin,subject);
 
@@ -150,7 +149,8 @@ void Scriptifier()
 			bool allPreReqs = false;
 			int numPreReqs = 0;
 			string preReqNext = buffer;
-
+			while(preReqNext.find_first_of(".") != string::npos )
+				preReqNext.replace(preReqNext.find("."), 1, "");
 			if(preReqNext.find("N/A") == string::npos)
 				numPreReqs++;
 			else
@@ -198,7 +198,7 @@ void Scriptifier()
 			}
 
 			if(fileName.find("graduation") != string::npos)
-				generateGrad(x,y,z,subject,numPreReqs,preReqs,associatedDispNames,associatedUrls);
+				generateGrad(fileName,x,y,z,subject,numPreReqs,preReqs,associatedDispNames,associatedUrls);
 			else
 				generateYML(dispName,fileName,url,dispUrl,x,y,z,subject,isMath,isReading,numPreReqs,preReqs,associatedDispNames,associatedUrls);
 			cout << fileName << " Sentry Generated." << endl;
@@ -225,6 +225,7 @@ void populate(bool isMath)
 		exit(1);
 	}
 	int ticker = 1;
+	int DNSticker = 0;
 	int entry = 0;
 	string DN="";
 	string FN="";
@@ -247,8 +248,8 @@ void populate(bool isMath)
 		else if(ticker==2)
 		{
 			displayNames[entry] = DN;
-
 			string dispNameSmall = DN;
+			
 			while(dispNameSmall.length()>16)
 			{
 				cout << "[WARNING]: Display name length exceeds 16, please rename: " << dispNameSmall << endl;
@@ -347,6 +348,13 @@ string truncURL(string url)
 //Create standard sentries here. Some code is commented out temporarily until further Learning Landscape development occurs. This includes code such as preventing the player from leaving a node until they are done.
 void generateYML(string dispName, string fileName, string url, string dispUrl, double x, double y, double z, string subject, bool isMath, bool isReading, int numPreReqs, string preReqs[], string associatedDispNames[], string associatedUrls[])
 {
+	//Remove the PreReqs for "starter" and "header" type sentries.
+	if(isMath)
+		if(numPreReqs!=0)
+			for(int i=0; i<numPreReqs; i++)
+				if((preReqs[i].find("g4") != string::npos)||(preReqs[i].find("g5") != string::npos)||(preReqs[i].find("g6") != string::npos))
+					numPreReqs = 0;
+
 	ofstream output;
 
 	output.open("Sentry_"+fileName+".yml");
@@ -410,7 +418,7 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output << "            Script:" << endl;
 	output << "               - ENGAGE" << endl;
     output << "               - FLAG NPC <player.name>:<player.chat_history>" << endl;
-	output << "               - TWEET \"Check it out! <player.name> reads " << dispName << "! <FLAG.N:<player.name>>\" learninglandscape"<< endl;
+	output << "               - TWEET \"Check it out! <FLAG.G:<player.name>_KANAME> reads " << dispName << "! <FLAG.N:<player.name>>\" learninglandscape"<< endl;
 	output << "               - CHAT \"Got it, thanks!\"" << endl;
 	output << "               - DISENGAGE" << endl;
 	}
@@ -432,10 +440,11 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output << "        entry:" << endl;
 	output << "          Script:" << endl;
 	output << "            - ENGAGE" << endl;
-	output << "            - CHAT \"This is the home of " << dispName << "!\"" << endl;
+	output << "            - IF \"<FLAG.G:<player.name>_KANAME || 0> == \"0\" FLAG GLOBAL <player.name>_KANAME:0" << endl;
+	output << "            - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << fileName <<" || 0>\" == \"0\" CHAT \"This is the home of " << dispName << "!\" ELSE CHAT \"You have completed this topic, " << dispName << "!\"" << endl;
 	output << "            - WAIT 2" << endl;
 	if(isMath){
-	output << "            - RUNTASK \"Sentry_" << fileName << "_KA\"" << endl;
+	output << "            - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << fileName <<" || 0>\" == \"0\" RUNTASK \"Sentry_" << fileName << "_KA\"" << endl;
 	}
 	else if(isReading){
 	output << "            - CHAT \"Here you can...\"" << endl;
@@ -463,34 +472,34 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output << "  Script:" << endl;
 	output << "    - FLAG NPC <player.name>:0" << endl;
 	output << "    - FLAG NPC <player.name>_PR:" << numPreReqs << endl; //Number of completed pre-reqs. 0 is none. Max is all.
-	output << "    - FLAG GLOBAL <player.name>_" << fileName << ":0" << endl; //0 represents an incomplete peak. 1 represents a completed peak.
+	output << "    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_" << fileName << ":0" << endl; //0 represents an incomplete peak. 1 represents a completed peak.
 	output << "    - URL \"" << URLFUNCTION + url << "\" <player.name>" << endl;
-	output << "    - IF \"<FLAG.N:<player.name>>\" == \"Complete\" FLAG GLOBAL <player.name>_" << fileName <<":1 ELSE FLAG GLOBAL <player.name>_" << fileName << ":0" << endl;
-	output << "    - IF \"<FLAG.G:<player.name>_" << fileName <<">\" == \"0\" CHAT \"You have not finished this peak yet!\"" << endl;
-	output << "    - IF \"<FLAG.G:<player.name>_" << fileName <<">\" == \"0\" WAIT 2" << endl;
-	output << "    - IF \"<FLAG.G:<player.name>_" << fileName <<">\" == \"0\" CHAT \"You can learn and practice this topic at " << dispUrl << "\"" << endl;
-	output << "    - IF \"<FLAG.G:<player.name>_" << fileName <<">\" == \"1\" CHAT \"I see you have completed this topic! Congratulations!\"" << endl;
+	output << "    - IF \"<FLAG.N:<player.name>>\" == \"Complete\" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_" << fileName <<":1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_" << fileName << ":0" << endl;
+	output << "    - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << fileName <<">\" == \"0\" CHAT \"You have not finished this peak yet!\"" << endl;
+	output << "    - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << fileName <<">\" == \"0\" WAIT 2" << endl;
+	output << "    - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << fileName <<">\" == \"0\" CHAT \"You can learn and practice this topic at <aqua>" << dispUrl << "<green>\"" << endl;
+	output << "    - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << fileName <<">\" == \"1\" CHAT \"I see you have completed this topic! Congratulations!\"" << endl;
 
 	for(int i=0; i<numPreReqs; i++)
 	{
-		output << "    - FLAG GLOBAL <player.name>_" << preReqs[i] << ":0" << endl;
+		output << "    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_" << preReqs[i] << ":0" << endl;
 		output << "    - URL \"" << URLFUNCTION + associatedUrls[i] << "\" <player.name>" << endl;
-		output << "    - IF \"<FLAG.N:<player.name>>\" == \"Complete\" FLAG GLOBAL <player.name>_" << preReqs[i] <<":1 ELSE FLAG GLOBAL <player.name>_" << preReqs[i] << ":0" << endl;
-		output << "    - IF \"<FLAG.G:<player.name>_" << preReqs[i] <<">\" == \"0\" FLAG NPC \"<player.name>_PR:-:1\"" << endl;
+		output << "    - IF \"<FLAG.N:<player.name>>\" == \"Complete\" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_" << preReqs[i] <<":1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_" << preReqs[i] << ":0" << endl;
+		output << "    - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << preReqs[i] <<">\" == \"0\" FLAG NPC \"<player.name>_PR:-:1\"" << endl;
 	}
 
 	if(numPreReqs!=0)
 	{
-		output << "    - IF \"<FLAG.G:<player.name>_" << fileName <<">\" == \"1\" FLAG NPC <player.name>_PR:"<< numPreReqs << endl;
+		output << "    - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << fileName <<">\" == \"1\" FLAG NPC <player.name>_PR:"<< numPreReqs << endl;
 		output << "    - IF \"<FLAG.N:<player.name>_PR>\" != \"" << numPreReqs << "\" WAIT 2" << endl;
 		output << "    - IF \"<FLAG.N:<player.name>_PR>\" != \"" << numPreReqs << "\" CHAT \"This peak may be <white>above your current skill level<green>!\"" << endl;
 		output << "    - IF \"<FLAG.N:<player.name>_PR>\" != \"" << numPreReqs << "\" WAIT 2" << endl;
-		output << "    - IF \"<FLAG.N:<player.name>_PR>\" == \"" << numPreReqs - 1 << "\" CHAT \"You may wish to try the earlier topic first...\"" << endl;
+		output << "    - IF \"<FLAG.N:<player.name>_PR>\" == \"" << numPreReqs - 1 << "\" CHAT \"You may wish to try this earlier topic first...\"" << endl;
 		output << "    - IF \"<FLAG.N:<player.name>_PR>\" < \"" << numPreReqs - 1 << "\" CHAT \"You may wish to try the earlier topics first...\"" << endl;
 	}
 
 	for(int i=0; i<numPreReqs; i++)
-		output << "    - IF \"<FLAG.G:<player.name>_" << preReqs[i] <<">\" == \"0\" CHAT \"<white>" << associatedDispNames[i] << "<green>\"" << endl;
+		output << "    - IF \"<FLAG.G:<player.name>_" << preReqs[i] <<">\" == \"0\" && \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << fileName << ">\" == \"0\" CHAT \"<white>" << associatedDispNames[i] << "<green>\"" << endl;
 	output << "    - DISENGAGE" << endl;
 
 	}
@@ -498,11 +507,11 @@ void generateYML(string dispName, string fileName, string url, string dispUrl, d
 	output.close();
 }
 
-void generateGrad(double x, double y,double z, string subject, int numPreReqs, string preReqs[], string associatedDispNames[] , string associatedUrls[])
+void generateGrad(string fileName, double x, double y,double z, string subject, int numPreReqs, string preReqs[], string associatedDispNames[] , string associatedUrls[])
 {
 	ofstream output;
 
-	output.open("Sentry_graduation_"+subject+".yml");
+	output.open("Sentry_"+fileName+".yml");
 
 	output << "#This Sentry will appear at node: Graduation" << endl;
 	output << "\"AssignmentSentry_graduation_" << subject << "\":" << endl;
@@ -542,28 +551,28 @@ void generateGrad(double x, double y,double z, string subject, int numPreReqs, s
 	output << "  Script:" << endl;
 	output << "    - FLAG NPC <player.name>:0" << endl;
 	output << "    - FLAG NPC <player.name>_PR:" << numPreReqs << endl; //Number of completed pre-reqs. 0 is none. Max is all.
-	output << "    - FLAG GLOBAL <player.name>_graduation_" << subject << ":0" << endl; //0 represents an incomplete peak. 1 represents a completed peak.
+	output << "    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_" << subject << ":0" << endl; //0 represents an incomplete peak. 1 represents a completed peak.
 
 
 	for(int i=0; i<numPreReqs; i++)
 	{
-		output << "    - FLAG GLOBAL <player.name>_" << preReqs[i] << ":0" << endl;
+		output << "    - FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_" << preReqs[i] << ":0" << endl;
 		output << "    - URL \"" << URLFUNCTION + associatedUrls[i] << "\" <player.name>" << endl;
-		output << "    - IF \"<FLAG.N:<player.name>>\" == \"Complete\" FLAG GLOBAL <player.name>_" << preReqs[i] <<":1 ELSE FLAG GLOBAL <player.name>_" << preReqs[i] << ":0" << endl;
-		output << "    - IF \"<FLAG.G:<player.name>_" << preReqs[i] <<">\" == \"0\" FLAG NPC \"<player.name>_PR:-:1\"" << endl;
+		output << "    - IF \"<FLAG.N:<player.name>>\" == \"Complete\" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_" << preReqs[i] <<":1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_" << preReqs[i] << ":0" << endl;
+		output << "    - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << preReqs[i] <<">\" == \"0\" FLAG NPC \"<player.name>_PR:-:1\"" << endl;
 	}
 
 	if(numPreReqs!=0)
 	{
-		output << "    - IF \"<FLAG.N:<player.name>_PR\" == \"" << numPreReqs << "\" FLAG GLOBAL <player.name>_graduation_" << subject << ":1 ELSE FLAG GLOBAL <player.name>_graduation_" << subject << ":0" << endl;
-		output << "    - IF \"<FLAG.N:<player.name>_PR\" != \"" << numPreReqs << "\" CHAT \"To truly master " << subject << ", you should try the following first..." << endl; 
+		output << "    - IF \"<FLAG.N:<player.name>_PR\" == \"" << numPreReqs << "\" FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_" << subject << ":1 ELSE FLAG GLOBAL <FLAG.G:<player.name>_KANAME>_graduation_" << subject << ":0" << endl;
+		output << "    - IF \"<FLAG.N:<player.name>_PR\" != \"" << numPreReqs << "\" CHAT \"To truly master " << subject << ", you should try the following first...\"" << endl; 
 		output << "    - IF \"<FLAG.N:<player.name>_PR\" != \"" << numPreReqs << "\" WAIT 2" << endl; 
 	}
 
 	for(int i=0; i<numPreReqs; i++)
-		output << "    - IF \"<FLAG.G:<player.name>_" << preReqs[i] <<">\" == \"0\" CHAT \"<white>" << associatedDispNames[i] << "<green>\"" << endl;
+		output << "    - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_" << preReqs[i] <<">\" == \"0\" && \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_" << subject << ">\" == \"0\" CHAT \"<white>" << associatedDispNames[i] << "<green>\"" << endl;
 
-	output << "    - IF \"<FLAG.G:<player.name>_graduation_" << subject <<">\" == \"1\" CHAT \"You have mastered " << subject << "! Congratulations!\"" << endl;
+	output << "    - IF \"<FLAG.G:<FLAG.G:<player.name>_KANAME>_graduation_" << subject <<">\" == \"1\" CHAT \"You have mastered " << subject << "! Congratulations!\"" << endl;
 	output << "    - DISENGAGE" << endl;
 
 
@@ -604,8 +613,9 @@ void generateMasterSentry(int entry, string displayNamesSmall[], double highestX
 	for(int i=0; i<1000; i++)
 		if(fileNames[i]!="BLANK")
 		{
-			output << "                - execute as_npc \"npc create " << displayNames[i] << "\"" << endl;
+			output << "                - execute as_npc \"npc create " << displayNamesSmall[i] << "\"" << endl;
 			output << "                - execute as_npc \"npc assignment --set AssignmentSentry_" << fileNames[i] << "\"" << endl;
+			output << "                - WAIT 1" << endl;
 		}
     output << "                - execute as_server \"denizen save\"" << endl;
 	output << "                - execute as_npc \"npc select master\"" << endl;

@@ -144,7 +144,7 @@ void Node::setChildStuff(float mHeight)
 	}
 	if (range <= 1)
 		range = 1;
-	
+
 	//set the min/max angles of the children based on new range
 	for(int i = 0; i < numChild; i++)
 	{
@@ -155,13 +155,13 @@ void Node::setChildStuff(float mHeight)
 			children[i]->setLevelDiff(getLevel() - children[i]->getLevel());
 
 			float tempA = abs(children[i]->getAngleMax() - children[i]->getAngleMin());
-			
+
 			//will only change the child's angles if it can be put into a smaller range
 			if(tempA >= range)
 			{
 				if(i == 0)
 				{
-			
+
 					//for the first child
 					//set the child's minimum angle using the parents angleMin
 					children[i]->setAngleMin(angleMin);
@@ -183,8 +183,8 @@ void Node::setChildStuff(float mHeight)
 					children[i]->setAngle( children[i]->getAngleMin() + range/2);
 				}
 			}
-		
-			
+
+
 			//get distance from top node, every level is another 1
 			float dist = (mHeight - children[i]->y) * DISTANCE;
 			children[i]->setDistance(dist);

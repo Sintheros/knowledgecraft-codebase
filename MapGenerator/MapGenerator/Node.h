@@ -80,4 +80,3 @@ public:
 
 	bool operator<(Node& other);
 };
-

@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 	vector<Node> nodes;
 
 	srand (time(NULL));
-	
+
 	//get filename from user
 	cout << "Enter file name for input:\n";
 	char filename[100];
@@ -43,9 +43,9 @@ int main(int argc, char** argv)
 		//break when we achieve end of file
 		if(dFile.eof()) 
 			break;
-			
+
 		string temp(line);
-		
+
 		//read in and store info from txt file
 		//check if current line contains DisplayName, the starting point
 		if(temp.find("DisplayName") != temp.npos) {
@@ -75,7 +75,7 @@ int main(int argc, char** argv)
 			//get the prereqs line for later
 			dFile.getline(line, 2000);
 			string prereqs(line);
-			
+
 			//get coordinates, not actually necessary anymore
 			//delete if you wish
 			/*
@@ -89,7 +89,7 @@ int main(int argc, char** argv)
 			float xp = atof(coordinates.substr(0, commaPos).c_str());
 			float zp = atof(coordinates.substr(commaPos + 1, 12).c_str());
 			*/
-			
+
 			//initialize a new Node with the displayname and filename
 			Node n(const_cast<char*>(toPushFile.c_str()), const_cast<char*>(toPushName.c_str()));
 			nodes.push_back(n);
@@ -104,7 +104,7 @@ int main(int argc, char** argv)
 
 			//use a loop to get all the prereqs separatly 
 			while(true) {
-				
+
 				//same as above, search for the first and then second set
 				//of quotation marks
 				int reqPos = prereqs.find_first_of("\"");
@@ -114,7 +114,7 @@ int main(int argc, char** argv)
 				++reqPos;
 				int reqPos2 = prereqs.find_first_of("\"", reqPos);
 				string child(prereqs.substr(reqPos, reqPos2 - reqPos));
-				
+
 				//add the child's ID to the current Node
 				nodes[i].addChildIDS(child);
 				//start the prereqs string after this prereq so that we don't run into it again
@@ -136,13 +136,13 @@ int main(int argc, char** argv)
 	//loop through all nodes
 	for( int k = 0; k < nodes.size(); k++)
 	{
-		
+
 		//loop through the nodes' children
 		for ( int l = 0; l < nodes[k].getNumChild(); l++)
 		{
 			//store the child Id
 			string guy = nodes[k].childIDs[l];
-			
+
 			bool foundGuy = false;
 
 			//loop through all the node Id's...
@@ -205,7 +205,7 @@ int main(int argc, char** argv)
 		{
 			//store the child Id
 			string guy = nodes[k].childIDs[l];
-			
+
 			bool foundGuy = false;
 
 			//loop through all the node Id's...
@@ -223,7 +223,7 @@ int main(int argc, char** argv)
 				nodes[k].addChild(&(nodes[i]));
 			}
 		}
-		
+
 
 	}
 
@@ -238,7 +238,7 @@ int main(int argc, char** argv)
 	{
 		//call the function to set children positions and stuff
 		nodes[k].setChildStuff(nodes[0].y);
-		
+
 		//cout << k << ": " << nodes[k].getAngleMin() << ", " << nodes[k].getAngleMax() << ", " << nodes[k].x << ", " 
 		//	<< nodes[k].z << ", " << nodes[k].y << ", " << nodes[k].getURL().c_str() << endl;
 	}

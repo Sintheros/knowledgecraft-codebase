@@ -2195,6 +2195,7 @@ void treeBuilder()
 	{
 		//call the function to set children positions and stuff
 		nodes[k].setChildStuff(nodes[0].y);
+		
 
 		//cout << k << ": " << nodes[k].getAngleMin() << ", " << nodes[k].getAngleMax() << ", " << nodes[k].x << ", " 
 		//	<< nodes[k].z << ", " << nodes[k].y << ", " << nodes[k].getURL().c_str() << endl;

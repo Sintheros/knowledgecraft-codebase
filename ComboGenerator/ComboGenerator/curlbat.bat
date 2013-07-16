@@ -1,1 +1,1 @@
-curl us.curlsh.me?url=http://129.21.142.218:8008/math/geometry/basic-geometry/circum_area_circles/e/radius_diameter_and_circumference/ >> "temp.txt"
+curl us.curlsh.me?url=http://129.21.142.218:8008 >> "temp.txt"

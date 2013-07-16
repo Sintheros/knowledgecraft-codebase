@@ -133,10 +133,9 @@ void Scriptifier()
 			url = buffer;
 			string dispUrl = truncURL(url);
 			if(isMath)
-				if(url.find_first_of("http://129.21.142.218:8008/") != string::npos )
+				if(url.find_first_of("http://129.21.142.218:8008") != string::npos )
 				{
-					url.replace(url.find("http://129.21.142.218:8008/"), 27, ""); //GET RID OF THAT SLASH ON THE END when regen-ing
-					cout << url << endl;
+					url.replace(url.find("http://129.21.142.218:8008"), 27, "");
 				}
 			generateYML(dispName,fileName,url,dispUrl,x,y,z,subject,isMath,isReading);
 			cout << fileName << " Sentry Generated." << endl;
@@ -355,7 +354,7 @@ void generateMasterSentry(int entry, string fileNames[], string displayNames[], 
 		if(fileNames[i]!="BLANK")
 		{
 			output << "                - execute as_npc \"npc select " << displayNamesSmall[i] << "\"" << endl;
-			output << "                - execute as_npc \"npc remove " << displayNamesSmall[i] << "\"" << endl;
+			output << "                - execute as_npc \"npc remove\"" << endl;
 		}
 
 	output.close();

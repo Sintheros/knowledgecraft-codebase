@@ -49,4 +49,3 @@ public:
 	//vector<Point> setUp(void);
 	int main();
 };
-

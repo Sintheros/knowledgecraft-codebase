@@ -713,13 +713,13 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 
 						//First, set the block type. If it's a node, we won't average it
 						if(fIsNode[i * size + pz]) {
-
 							fBlock[i * size + pz] = BLOCK_WOOD;
 							continue;
 						}
 						else {
 
-							fBlock[i * size + pz] = BLOCK_MOUNTAIN;
+							//fBlock[i * size + pz] = BLOCK_MOUNTAIN;
+							fBlock[i * size + pz] = BLOCK_PLAINS;
 						}
 
 						float& v = fArray[i * size + pz];
@@ -771,7 +771,8 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 						}
 						else {
 
-							fBlock[i * size + pz] = BLOCK_MOUNTAIN;
+							//fBlock[i * size + pz] = BLOCK_MOUNTAIN;
+							fBlock[i * size + pz] = BLOCK_PLAINS;
 						}
 
 						float& v = fArray[i * size + pz];
@@ -827,7 +828,8 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 							}
 							else {
 
-								fBlock[i * size + pz] = BLOCK_MOUNTAIN;
+								//fBlock[i * size + pz] = BLOCK_MOUNTAIN;
+								fBlock[i * size + pz] = BLOCK_PLAINS;
 							}
 
 							float& v = fArray[i * size + pz];
@@ -876,7 +878,8 @@ void fillCircle (float *fa, int size, int cx1, int cx2, int cz1, int cz2, float 
 							}
 							else {
 
-								fBlock[i * size + pz] = BLOCK_MOUNTAIN;
+								//fBlock[i * size + pz] = BLOCK_MOUNTAIN;
+								fBlock[i * size + pz] = BLOCK_PLAINS;
 							}
 
 							float& v = fArray[i * size + pz];
@@ -1586,7 +1589,7 @@ void initTerrain()
 				}
 			}
 		}
-
+		/*
 		//Now make bridges
 		//NOTE: Bridges do not currently seem to work. For small maps, bridges are correct. As the size increases,
 		//so do the number of errors. Occasionally, it seems bridges all connect to the same X level as Keensley
@@ -1694,7 +1697,7 @@ void initTerrain()
                     z = originalz;
                 }
             }
-        }
+        }*/
 
 		char fileName[50];
 		//Schematic files MUST be named in this format if they aren pure byte arrays
@@ -1725,7 +1728,7 @@ void initTerrain()
 
 	for( int l = 0; l < nodes.size(); l++ )
 	{
-		oFile << nodes[l]._disName.c_str() <<  ", " << nodes[l]._fileName.c_str() <<  ", " << nodes[l]._x << ", " << nodes[l]._y << ", " << nodes[l]._z << ", " << nodes[l]._url.c_str() << endl;
+		oFile << nodes[l]._disName.c_str() <<  ", " << nodes[l]._fileName.c_str() <<  ", " << nodes[l]._x << ", " << nodes[l]._y << ", " << nodes[l]._z << ", " << nodes[l]._url.c_str() << ", " << endl;
 	}
 
 	cout << "Done writing..." << endl;
