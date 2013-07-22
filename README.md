@@ -1,7 +1,7 @@
 # learninglandscape-codebase
 =======================
 
-Repository for the technical portions of the Learning Landscape / That project from I&amp;I Spring 2013
+Repository for the technical portions of the Learning Landscape / That project that started from I&amp;I Spring 2013
 
 Apparently I&I has had issues in the past with keeping everything in order for future innovators to work on.
 
