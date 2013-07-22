@@ -1,0 +1,709 @@
+DisplayName: "Central Hub"
+FileName: "hub"
+URL: "http://129.21.142.218:8008"
+PreReqs: [N/A]
+
+DisplayName: "4th Grade"
+FileName: "g4"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["hub"]
+
+DisplayName: "5th Grade"
+FileName: "g5"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["hub"]
+
+DisplayName: "6th Grade"
+FileName: "g6"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["hub"]
+
+DisplayName: "Geometry"
+FileName: "g4_geometry"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g4"]
+
+DisplayName: "Fractions"
+FileName: "g4_fractions"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g4"]
+
+DisplayName: "Standard Operations"
+FileName: "g4_so"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g4"]
+
+DisplayName: "Miscellaneous"
+FileName: "g5_misc"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g5"]
+
+DisplayName: "Decimals"
+FileName: "g5_decimals"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g5"]
+
+DisplayName: "Fractions"
+FileName: "g5_fractions"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g5"]
+
+DisplayName: "Expressions"
+FileName: "g6_ee"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g6"]
+
+DisplayName: "Geometry"
+FileName: "g6_geometry"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g6"]
+
+DisplayName: "Rates and Ratios"
+FileName: "g6_rr"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g6"]
+
+DisplayName: "Statistics"
+FileName: "g6_stats"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g6"]
+
+DisplayName: "Number System"
+FileName: "g6_numbersystem"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["g6"]
+
+DisplayName: "Perimeter 1"
+FileName: "perimeter_1"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/perimeter_area_basics/e/perimeter_1/"
+PreReqs: ["g4_geometry"]
+
+DisplayName: "Area 1"
+FileName: "area_1"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/perimeter_area_basics/e/area_1/"
+PreReqs: ["g4_geometry"]
+
+DisplayName: "Perimeter of squares and rectangles"
+FileName: "perimeter_of_squares_and_rectangles"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/perimeter_area_basics/e/perimeter_of_squares_and_rectangles/"
+PreReqs: ["perimeter_1"]
+
+DisplayName: "Recognizing rays lines and line segments"
+FileName: "recognizing_rays_lines_and_line_segments"
+URL: "http://129.21.142.218:8008/math/geometry/segments-and-angles/intro_euclid/e/recognizing_rays_lines_and_line_segments/"
+PreReqs: ["area_1", "perimeter_of_squares_and_rectangles"]
+
+DisplayName: "Angle types"
+FileName: "angle_types"
+URL: "http://129.21.142.218:8008/math/geometry/parallel-and-perpendicular-lines/Angle_basics/e/angle_types/"
+PreReqs: ["recognizing_rays_lines_and_line_segments"]
+
+DisplayName: "Measuring segments"
+FileName: "measuring_segments"
+URL: "http://129.21.142.218:8008/math/geometry/segments-and-angles/intro_euclid/e/measuring_segments/"
+PreReqs: ["recognizing_rays_lines_and_line_segments"]
+
+DisplayName: "Congruent segments"
+FileName: "congruent_segments"
+URL: "http://129.21.142.218:8008/math/geometry/segments-and-angles/intro_euclid/e/congruent_segments/"
+PreReqs: ["recognizing_rays_lines_and_line_segments"]
+
+DisplayName: "Measuring angles"
+FileName: "measuring_angles"
+URL: "http://129.21.142.218:8008/math/geometry/parallel-and-perpendicular-lines/Angle_basics/e/measuring_angles/"
+PreReqs: ["recognizing_rays_lines_and_line_segments"]
+
+DisplayName: "Congruent angles"
+FileName: "congruent_angles"
+URL: "http://129.21.142.218:8008/math/geometry/parallel-and-perpendicular-lines/ang_intro/e/congruent_angles/"
+PreReqs: ["congruent_segments"]
+
+DisplayName: "Axis of symmetry"
+FileName: "axis_of_symmetry"
+URL: "http://129.21.142.218:8008/math/geometry/transformations/e/axis_of_symmetry/"
+PreReqs: ["congruent_angles", "measuring_segments", "measuring_angles"]
+
+DisplayName: "Equivalent fractions"
+FileName: "equivalent_fractions"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Equivalent_fractions/e/equivalent_fractions/"
+PreReqs: ["g4_fractions"]
+
+DisplayName: "Equivalent fractions 2"
+FileName: "equivalent_fractions_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Equivalent_fractions/e/equivalent_fractions_2/"
+PreReqs: ["equivalent_fractions"]
+
+DisplayName: "Adding fractions with common denominators"
+FileName: "adding_fractions_with_common_denominators"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Adding_and_subtracting_fractions/e/adding_fractions_with_common_denominators/"
+PreReqs: ["g4_fractions"]
+
+DisplayName: "Subtracting fractions with common denominators"
+FileName: "subtracting_fractions_with_common_denominators"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Adding_and_subtracting_fractions/e/subtracting_fractions_with_common_denominators/"
+PreReqs: ["g4_fractions"]
+
+DisplayName: "Simplifying fractions"
+FileName: "simplifying_fractions"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Equivalent_fractions/e/simplifying_fractions/"
+PreReqs: ["adding_fractions_with_common_denominators", "equivalent_fractions_2", "subtracting_fractions_with_common_denominators"]
+
+DisplayName: "Fraction word problems 1"
+FileName: "fraction_word_problems_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/understanding_fractions/e/fraction_word_problems_1/"
+PreReqs: ["adding_fractions_with_common_denominators", "subtracting_fractions_with_common_denominators"]
+
+DisplayName: "Converting mixed numbers and improper fractions"
+FileName: "converting_mixed_numbers_and_improper_fractions"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/mixed_numbers/e/converting_mixed_numbers_and_improper_fractions/"
+PreReqs: ["simplifying_fractions"]
+
+DisplayName: "Adding subtracting mixed numbers 0.5"
+FileName: "adding_subtracting_mixed_numbers_0.5"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Mixed_number_add_sub/e/adding_subtracting_mixed_numbers_0.5/"
+PreReqs: ["converting_mixed_numbers_and_improper_fractions"]
+
+DisplayName: "Comparing fractions 1"
+FileName: "comparing_fractions_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Equivalent_fractions/e/comparing_fractions_1/"
+PreReqs: ["simplifying_fractions"]
+
+DisplayName: "Comparing fractions 2"
+FileName: "comparing_fractions_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Equivalent_fractions/e/comparing_fractions_2/"
+PreReqs: ["comparing_fractions_1"]
+
+DisplayName: "Ordering fractions"
+FileName: "ordering_fractions"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Equivalent_fractions/e/ordering_fractions/"
+PreReqs: ["comparing_fractions_2"]
+
+DisplayName: "Comparing improper fractions and mixed numbers"
+FileName: "comparing_improper_fractions_and_mixed_numbers"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/mixed_numbers/e/comparing_improper_fractions_and_mixed_numbers/"
+PreReqs: ["converting_mixed_numbers_and_improper_fractions"]
+
+DisplayName: "Ordering improper fractions and mixed numbers"
+FileName: "ordering_improper_fractions_and_mixed_numbers"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/mixed_numbers/e/ordering_improper_fractions_and_mixed_numbers/"
+PreReqs: ["comparing_improper_fractions_and_mixed_numbers"]
+
+DisplayName: "Decimals on the number line 1"
+FileName: "decimals_on_the_number_line_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/decimal_place_value/e/decimals_on_the_number_line_1/"
+PreReqs: ["ordering_improper_fractions_and_mixed_numbers", "adding_subtracting_mixed_numbers_0.5", "ordering_fractions"]
+
+DisplayName: "Decimals on the number line 2"
+FileName: "decimals_on_the_number_line_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/decimal_place_value/e/decimals_on_the_number_line_2/"
+PreReqs: ["decimals_on_the_number_line_1"]
+
+DisplayName: "Understanding decimals place value"
+FileName: "understanding_decimals_place_value"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/decimal_place_value/e/understanding_decimals_place_value/"
+PreReqs: ["decimals_on_the_number_line_2"]
+
+DisplayName: "Rounding whole numbers"
+FileName: "rounding_whole_numbers"
+URL: "http://129.21.142.218:8008/math/arithmetic/multiplication-division/rounding_whole_numbers/e/rounding_whole_numbers/"
+PreReqs: ["decimals_on_the_number_line_2"]
+
+DisplayName: "Estimation with decimals"
+FileName: "estimation_with_decimals"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/decimal_rounding_estimation/e/estimation_with_decimals/"
+PreReqs: ["rounding_whole_numbers", "understanding_decimals_place_value"]
+
+DisplayName: "Converting fractions to decimals"
+FileName: "converting_fractions_to_decimals"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/decimals_fractions/e/converting_fractions_to_decimals/"
+PreReqs: ["estimation_with_decimals"]
+
+DisplayName: "Converting decimals to fractions 1"
+FileName: "converting_decimals_to_fractions_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/decimals_fractions/e/converting_decimals_to_fractions_1/"
+PreReqs: ["converting_fractions_to_decimals"]
+
+DisplayName: "Converting decimals to fractions 2"
+FileName: "converting_decimals_to_fractions_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/decimals_fractions/e/converting_decimals_to_fractions_2/"
+PreReqs: ["converting_decimals_to_fractions_1"]
+
+DisplayName: "Addition with carrying"
+FileName: "addition_3"
+URL: "http://129.21.142.218:8008/math/arithmetic/addition-subtraction/addition_carrying/e/addition_3/"
+PreReqs: ["g4_so"]
+
+DisplayName: "Subtraction with borrowing"
+FileName: "subtraction_3"
+URL: "http://129.21.142.218:8008/math/arithmetic/addition-subtraction/sub_borrowing/e/subtraction_3/"
+PreReqs: ["g4_so"]
+
+DisplayName: "Addition and subtraction word problems"
+FileName: "arithmetic_word_problems_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/addition-subtraction/add_sub_word_problems/e/arithmetic_word_problems_1/"
+PreReqs: ["addition_3", "subtraction_3"]
+
+DisplayName: "Multiplying 1-digit numbers"
+FileName: "multiplication_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/multiplication-division/multiplication_fun/e/multiplication_1/"
+PreReqs: ["g4_so"]
+
+DisplayName: "Multiplying 3 digits by 2 digits"
+FileName: "multiplication_3"
+URL: "http://129.21.142.218:8008/math/arithmetic/multiplication-division/multi_digit_multiplication/e/multiplication_3/"
+PreReqs: ["multiplication_1"]
+
+DisplayName: "Divisibility intuition"
+FileName: "divisibility_intuition"
+URL: "http://129.21.142.218:8008/math/arithmetic/factors-multiples/divisibility_and_factors/e/divisibility_intuition/"
+PreReqs: ["multiplication_3"]
+
+DisplayName: "Division with remainders"
+FileName: "division_3"
+URL: "http://129.21.142.218:8008/math/arithmetic/multiplication-division/long_division/e/division_3/"
+PreReqs: ["multiplication_3"]
+
+DisplayName: "Multiplication and division word problems"
+FileName: "arithmetic_word_problems_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/multiplication-division/delightful_division/e/arithmetic_word_problems_2/"
+PreReqs: ["multiplication_3", "division_3"]
+
+DisplayName: "Divisibility tests"
+FileName: "divisibility_tests"
+URL: "http://129.21.142.218:8008/math/arithmetic/factors-multiples/divisibility_tests/e/divisibility_tests/"
+PreReqs: ["divisibility_intuition", "division_3"]
+
+DisplayName: "Prime numbers"
+FileName: "prime_numbers"
+URL: "http://129.21.142.218:8008/math/arithmetic/factors-multiples/prime_numbers/e/prime_numbers/"
+PreReqs: ["arithmetic_word_problems_1", "arithmetic_word_problems_2", "divisibility_tests"]
+
+DisplayName: "Composite numbers"
+FileName: "composite_numbers"
+URL: "http://129.21.142.218:8008/math/arithmetic/factors-multiples/prime_numbers/e/composite_numbers/"
+PreReqs: ["arithmetic_word_problems_2", "divisibility_tests"]
+
+DisplayName: "Prime factorization"
+FileName: "prime_factorization"
+URL: "http://129.21.142.218:8008/math/arithmetic/factors-multiples/prime_factorization/e/prime_factorization/"
+PreReqs: ["prime_numbers", "composite_numbers"]
+
+DisplayName: "The fundamental theorem of arithmetic"
+FileName: "the_fundamental_theorem_of_arithmetic"
+URL: "http://129.21.142.218:8008/math/applied-math/modern-crypt/e/the_fundamental_theorem_of_arithmetic/"
+PreReqs: ["prime_factorization"]
+
+DisplayName: "Multi-digit multiplication"
+FileName: "multiplication_4"
+URL: "http://129.21.142.218:8008/math/arithmetic/multiplication-division/multi_digit_multiplication/e/multiplication_4/"
+PreReqs: ["g5_misc"]
+
+DisplayName: "Multi-digit division"
+FileName: "division_4"
+URL: "http://129.21.142.218:8008/math/arithmetic/multiplication-division/long_division/e/division_4/"
+PreReqs: ["g5_misc"]
+
+DisplayName: "Order of operations"
+FileName: "order_of_operations"
+URL: "http://129.21.142.218:8008/math/arithmetic/multiplication-division/order_of_operations/e/order_of_operations/"
+PreReqs: ["g5_misc"]
+
+DisplayName: "Points on the coordinate plane"
+FileName: "identifying_points_1"
+URL: "http://129.21.142.218:8008/math/trigonometry/graphs/graphing_coordinates/e/identifying_points_1/"
+PreReqs: ["multiplication_4", "division_4", "order_of_operations"]
+
+DisplayName: "Adding decimals 0.5"
+FileName: "adding_decimals_0.5"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/adding_decimals/e/adding_decimals_0.5/"
+PreReqs: ["g5_decimals"]
+
+DisplayName: "Adding decimals"
+FileName: "adding_decimals"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/adding_decimals/e/adding_decimals/"
+PreReqs: ["adding_decimals_0.5"]
+
+DisplayName: "Adding decimals 2"
+FileName: "adding_decimals_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/adding_decimals/e/adding_decimals_2/"
+PreReqs: ["adding_decimals"]
+
+DisplayName: "Subtracting decimals 0.5"
+FileName: "subtracting_decimals_0.5"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/adding_decimals/e/subtracting_decimals_0.5/"
+PreReqs: ["adding_decimals"]
+
+DisplayName: "Dividing decimals 0.5"
+FileName: "dividing_decimals_0.5"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/dividing_decimals/e/dividing_decimals_0.5/"
+PreReqs: ["adding_decimals"]
+
+DisplayName: "Dividing decimals 1"
+FileName: "dividing_decimals_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/dividing_decimals/e/dividing_decimals_1/"
+PreReqs: ["dividing_decimals_0.5"]
+
+DisplayName: "Multiplying decimals"
+FileName: "multiplying_decimals"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/multiplying_decimals/e/multiplying_decimals/"
+PreReqs: ["adding_decimals"]
+
+DisplayName: "Subtracting decimals"
+FileName: "subtracting_decimals"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/adding_decimals/e/subtracting_decimals/"
+PreReqs: ["subtracting_decimals_0.5"]
+
+DisplayName: "Dividing decimals 2"
+FileName: "dividing_decimals_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/dividing_decimals/e/dividing_decimals_2/"
+PreReqs: ["dividing_decimals_1"]
+
+DisplayName: "Understanding moving the decimal"
+FileName: "understanding_moving_the_decimal"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/multiplying_decimals/e/understanding_moving_the_decimal/"
+PreReqs: ["multiplying_decimals"]
+
+DisplayName: "Dividing decimals 3"
+FileName: "dividing_decimals"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/dividing_decimals/e/dividing_decimals/"
+PreReqs: ["dividing_decimals_2"]
+
+DisplayName: "Rounding numbers"
+FileName: "rounding_numbers"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/decimal_rounding_estimation/e/rounding_numbers/"
+PreReqs: ["dividing_decimals", "understanding_moving_the_decimal", "subtracting_decimals", "adding_decimals_2"]
+
+DisplayName: "Multiplying fractions 0.5"
+FileName: "multiplying_fractions_0.5"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/multiplying_and_dividing_frac/e/multiplying_fractions_0.5/"
+PreReqs: ["g5_fractions"]
+
+DisplayName: "Adding fractions"
+FileName: "adding_fractions"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Adding_and_subtracting_fractions/e/adding_fractions/"
+PreReqs: ["g5_fractions"]
+
+DisplayName: "Subtracting fractions"
+FileName: "subtracting_fractions"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Adding_and_subtracting_fractions/e/subtracting_fractions/"
+PreReqs: ["g5_fractions"]
+
+DisplayName: "Multiplying fractions word problems"
+FileName: "multiplying_fractions_word_problems"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/multiplying_and_dividing_frac/e/multiplying_fractions_word_problems/"
+PreReqs: ["multiplying_fractions_0.5"]
+
+DisplayName: "Multiplying fractions"
+FileName: "multiplying_fractions"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/multiplying_and_dividing_frac/e/multiplying_fractions/"
+PreReqs: ["multiplying_fractions_0.5"]
+
+DisplayName: "Adding and subtracting fractions"
+FileName: "adding_and_subtracting_fractions"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Adding_and_subtracting_fractions/e/adding_and_subtracting_fractions/"
+PreReqs: ["subtracting_fractions", "adding_fractions"]
+
+DisplayName: "Multiplying mixed numbers 1"
+FileName: "multiplying_mixed_numbers_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/mixed_number_mult_div/e/multiplying_mixed_numbers_1/"
+PreReqs: ["multiplying_fractions_word_problems", "multiplying_fractions"]
+
+DisplayName: "Fractions cut and copy 1"
+FileName: "fractions_cut_and_copy_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/Equivalent_fractions/e/fractions_cut_and_copy_1/"
+PreReqs: ["multiplying_mixed_numbers_1", "adding_and_subtracting_fractions"]
+
+DisplayName: "Fractions cut and copy 2"
+FileName: "fractions_cut_and_copy_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/mixed_numbers/e/fractions_cut_and_copy_2/"
+PreReqs: ["fractions_cut_and_copy_1"]
+
+DisplayName: "Properties of numbers 2"
+FileName: "properties_of_numbers_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/order-of-operations/arithmetic_properties/e/properties_of_numbers_2/"
+PreReqs: ["g6_ee"]
+
+DisplayName: "Distributive property"
+FileName: "distributive_property"
+URL: "http://129.21.142.218:8008/math/arithmetic/multiplication-division/ditributive_property/e/distributive_property/"
+PreReqs: ["g6_ee"]
+
+DisplayName: "Multiplication and division word problems 2"
+FileName: "arithmetic_word_problems"
+URL: "http://129.21.142.218:8008/math/arithmetic/multiplication-division/long_division/e/arithmetic_word_problems/"
+PreReqs: ["g6_ee"]
+
+DisplayName: "Positive and zero exponents"
+FileName: "exponents_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/exponents-radicals/world-of-exponents/e/exponents_1/"
+PreReqs: ["distributive_property", "arithmetic_word_problems", "properties_of_numbers_2"]
+
+DisplayName: "Exponent rules"
+FileName: "exponent_rules"
+URL: "http://129.21.142.218:8008/math/arithmetic/exponents-radicals/exponent-properties/e/exponent_rules/"
+PreReqs: ["exponents_1"]
+
+DisplayName: "Evaluating expressions in one variable"
+FileName: "evaluating_expressions_1"
+URL: "http://129.21.142.218:8008/math/algebra/solving-linear-equations-and-inequalities/variable-and-expressions/e/evaluating_expressions_1/"
+PreReqs: ["exponent_rules"]
+
+DisplayName: "Writing expressions"
+FileName: "writing_expressions_1"
+URL: "http://129.21.142.218:8008/math/algebra/solving-linear-equations-and-inequalities/manipulating-expressions/e/writing_expressions_1/"
+PreReqs: ["evaluating_expressions_1"]
+
+DisplayName: "Evaluating expressions in 2 variables"
+FileName: "evaluating_expressions_2"
+URL: "http://129.21.142.218:8008/math/algebra/solving-linear-equations-and-inequalities/variable-and-expressions/e/evaluating_expressions_2/"
+PreReqs: ["evaluating_expressions_1"]
+
+DisplayName: "Combining like terms with distribution"
+FileName: "combining_like_terms_2"
+URL: "http://129.21.142.218:8008/math/algebra/solving-linear-equations-and-inequalities/manipulating-expressions/e/combining_like_terms_2/"
+PreReqs: ["writing_expressions_1"]
+
+DisplayName: "Writing expressions 2"
+FileName: "writing_expressions_2"
+URL: "http://129.21.142.218:8008/math/algebra/solving-linear-equations-and-inequalities/manipulating-expressions/e/writing_expressions_2/"
+PreReqs: ["writing_expressions_1"]
+
+DisplayName: "Inequalities on a number line"
+FileName: "inequalities_on_a_number_line"
+URL: "http://129.21.142.218:8008/math/algebra/linear_inequalities/inequalities/e/inequalities_on_a_number_line/"
+PreReqs: ["evaluating_expressions_2", "combining_like_terms_2", "writing_expressions_2"]
+
+DisplayName: "Expressions with unknown variables"
+FileName: "expressions_with_unknown_variables"
+URL: "http://129.21.142.218:8008/math/algebra/solving-linear-equations-and-inequalities/exp_unknown_vars/e/expressions_with_unknown_variables/"
+PreReqs: ["inequalities_on_a_number_line"]
+
+DisplayName: "Solving equations in terms of a variable"
+FileName: "solving_for_a_variable"
+URL: "http://129.21.142.218:8008/math/algebra/solving-linear-equations-and-inequalities/solving_for_variable/e/solving_for_a_variable/"
+PreReqs: ["expressions_with_unknown_variables"]
+
+DisplayName: "Area of squares and rectangles"
+FileName: "area_of_squares_and_rectangles"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/perimeter_area_basics/e/area_of_squares_and_rectangles/"
+PreReqs: ["g6_geometry"]
+
+DisplayName: "Midpoint of a segment"
+FileName: "midpoint_of_a_segment"
+URL: "http://129.21.142.218:8008/math/geometry/segments-and-angles/intro_euclid/e/midpoint_of_a_segment/"
+PreReqs: ["g6_geometry"]
+
+DisplayName: "Area of parallelograms"
+FileName: "area_of_parallelograms"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/area_non_standard/e/area_of_parallelograms/"
+PreReqs: ["area_of_squares_and_rectangles", "midpoint_of_a_segment"]
+
+DisplayName: "Area of trapezoids rhombi and kites"
+FileName: "areas_of_trapezoids_rhombi_and_kites"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/area_non_standard/e/areas_of_trapezoids_rhombi_and_kites/"
+PreReqs: ["area_of_squares_and_rectangles", "midpoint_of_a_segment"]
+
+DisplayName: "Solid geometry"
+FileName: "solid_geometry"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/volume_tutorial/e/solid_geometry/"
+PreReqs: ["area_of_parallelograms", "areas_of_trapezoids_rhombi_and_kites"]
+
+DisplayName: "Heron's formula"
+FileName: "herons_formula"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/heron_formula_tutorial/e/herons_formula/"
+PreReqs: ["solid_geometry"]
+
+DisplayName: "Expressing ratios as fractions"
+FileName: "expressing_ratios_as_fractions"
+URL: "http://129.21.142.218:8008/math/arithmetic/rates-and-ratios/ratios_and_proportions/e/expressing_ratios_as_fractions/"
+PreReqs: ["g6_rr"]
+
+DisplayName: "Rate problems 0.5"
+FileName: "rate_problems_0.5"
+URL: "http://129.21.142.218:8008/math/arithmetic/rates-and-ratios/rates_tutorial/e/rate_problems_0.5/"
+PreReqs: ["expressing_ratios_as_fractions"]
+
+DisplayName: "Ratio word problems"
+FileName: "ratio_word_problems"
+URL: "http://129.21.142.218:8008/math/arithmetic/rates-and-ratios/ratios_and_proportions/e/ratio_word_problems/"
+PreReqs: ["expressing_ratios_as_fractions"]
+
+DisplayName: "Rate problems 1"
+FileName: "rate_problems_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/rates-and-ratios/rates_tutorial/e/rate_problems_1/"
+PreReqs: ["rate_problems_0.5"]
+
+DisplayName: "Converting decimals to percents"
+FileName: "converting_decimals_to_percents"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/percent_tutorial/e/converting_decimals_to_percents/"
+PreReqs: ["g6_rr"]
+
+DisplayName: "Converting percents to decimals"
+FileName: "converting_percents_to_decimals"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/percent_tutorial/e/converting_percents_to_decimals/"
+PreReqs: ["g6_rr"]
+
+DisplayName: "Discount tax and tip word problems"
+FileName: "discount_tax_and_tip_word_problems"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/percent_word_probs/e/discount_tax_and_tip_word_problems/"
+PreReqs: ["converting_decimals_to_percents", "converting_percents_to_decimals"]
+
+DisplayName: "Markup and commission word problems"
+FileName: "markup_and_commission_word_problems"
+URL: "http://129.21.142.218:8008/math/arithmetic/decimals/percent_word_probs/e/markup_and_commission_word_problems/"
+PreReqs: ["converting_decimals_to_percents", "converting_percents_to_decimals"]
+
+DisplayName: "Rate problems 2"
+FileName: "rate_problems_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/rates-and-ratios/rates_tutorial/e/rate_problems_2/"
+PreReqs: ["rate_problems_1", "ratio_word_problems", "discount_tax_and_tip_word_problems", "markup_and_commission_word_problems"]
+
+DisplayName: "Reading tables 1"
+FileName: "reading_tables_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/interpreting-data-topic/reading_data/e/reading_tables_1/"
+PreReqs: ["g6_stats"]
+
+DisplayName: "Reading tables 2"
+FileName: "reading_tables_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/interpreting-data-topic/reading_data/e/reading_tables_2/"
+PreReqs: ["reading_tables_1"]
+
+DisplayName: "Reading stem and leaf plots"
+FileName: "reading_stem_and_leaf_plots"
+URL: "http://129.21.142.218:8008/math/arithmetic/interpreting-data-topic/reading_data/e/reading_stem_and_leaf_plots/"
+PreReqs: ["reading_tables_2"]
+
+DisplayName: "Reading bar charts 1"
+FileName: "reading_bar_charts_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/interpreting-data-topic/reading_data/e/reading_bar_charts_1/"
+PreReqs: ["reading_tables_2"]
+
+DisplayName: "Reading line charts 1"
+FileName: "reading_line_charts_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/interpreting-data-topic/reading_data/e/reading_line_charts_1/"
+PreReqs: ["reading_bar_charts_1"]
+
+DisplayName: "Creating bar charts 1"
+FileName: "creating_bar_charts_1"
+URL: "http://129.21.142.218:8008/math/arithmetic/interpreting-data-topic/reading_data/e/creating_bar_charts_1/"
+PreReqs: ["reading_bar_charts_1"]
+
+DisplayName: "Reading bar charts 2"
+FileName: "reading_bar_charts_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/interpreting-data-topic/reading_data/e/reading_bar_charts_2/"
+PreReqs: ["reading_bar_charts_1", "creating_bar_charts_1"]
+
+DisplayName: "Mean median and mode"
+FileName: "mean_median_and_mode"
+URL: "http://129.21.142.218:8008/math/probability/descriptive-statistics/central_tendency/e/mean_median_and_mode/"
+PreReqs: ["reading_bar_charts_1", "creating_bar_charts_1"]
+
+DisplayName: "Reading bar charts 3"
+FileName: "reading_bar_charts_3"
+URL: "http://129.21.142.218:8008/math/arithmetic/interpreting-data-topic/reading_data/e/reading_bar_charts_3/"
+PreReqs: ["reading_bar_charts_2", "mean_median_and_mode"]
+
+DisplayName: "Exploring standard deviation 1"
+FileName: "exploring_standard_deviation_1"
+URL: "http://129.21.142.218:8008/math/probability/descriptive-statistics/variance_std_deviation/e/exploring_standard_deviation_1/"
+PreReqs: ["reading_bar_charts_3"]
+
+DisplayName: "Number line 2"
+FileName: "number_line_2"
+URL: "http://129.21.142.218:8008/math/arithmetic/absolute-value/add-sub-negatives/e/number_line_2/"
+PreReqs: ["g6_numbersystem"]
+
+DisplayName: "Ordering negative numbers"
+FileName: "ordering_negative_numbers"
+URL: "http://129.21.142.218:8008/math/arithmetic/absolute-value/add-sub-negatives/e/ordering_negative_numbers/"
+PreReqs: ["number_line_2"]
+
+DisplayName: "Adding negative numbers"
+FileName: "adding_negative_numbers"
+URL: "http://129.21.142.218:8008/math/arithmetic/absolute-value/adding_subtracting_negatives/e/adding_negative_numbers/"
+PreReqs: ["ordering_negative_numbers"]
+
+DisplayName: "Adding and subtracting negative numbers"
+FileName: "adding_and_subtracting_negative_numbers"
+URL: "http://129.21.142.218:8008/math/arithmetic/absolute-value/adding_subtracting_negatives/e/adding_and_subtracting_negative_numbers/"
+PreReqs: ["adding_negative_numbers"]
+
+DisplayName: "Negative number word problems"
+FileName: "negative_number_word_problems"
+URL: "http://129.21.142.218:8008/math/arithmetic/absolute-value/mult_div_negatives/e/negative_number_word_problems/"
+PreReqs: ["adding_and_subtracting_negative_numbers"]
+
+DisplayName: "Divisibility 0.5"
+FileName: "divisibility_0.5"
+URL: "http://129.21.142.218:8008/math/arithmetic/factors-multiples/divisibility_and_factors/e/divisibility_0.5/"
+PreReqs: ["g6_numbersystem"]
+
+DisplayName: "Least common multiple"
+FileName: "least_common_multiple"
+URL: "http://129.21.142.218:8008/math/arithmetic/factors-multiples/least_common_multiple/e/least_common_multiple/"
+PreReqs: ["divisibility_0.5"]
+
+DisplayName: "Greatest common divisor"
+FileName: "greatest_common_divisor"
+URL: "http://129.21.142.218:8008/math/arithmetic/factors-multiples/greatest_common_divisor/e/greatest_common_divisor/"
+PreReqs: ["divisibility_0.5"]
+
+DisplayName: "LCM and GCD word problems"
+FileName: "least_common_multiple_and_greatest_common_divisor_word_problems"
+URL: "http://129.21.142.218:8008/math/arithmetic/factors-multiples/greatest_common_divisor/e/least_common_multiple_and_greatest_common_divisor_word_problems/"
+PreReqs: ["least_common_multiple", "greatest_common_divisor"]
+
+DisplayName: "Divisibility"
+FileName: "divisibility"
+URL: "http://129.21.142.218:8008/math/arithmetic/factors-multiples/prime_factorization/e/divisibility/"
+PreReqs: ["least_common_multiple_and_greatest_common_divisor_word_problems"]
+
+DisplayName: "Dividing fractions 0.5"
+FileName: "dividing_fractions_0.5"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/multiplying_and_dividing_frac/e/dividing_fractions_0.5/"
+PreReqs: ["g6_numbersystem"]
+
+DisplayName: "Dividing fractions word problems"
+FileName: "dividing_fractions_word_problems"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/multiplying_and_dividing_frac/e/dividing_fractions_word_problems/"
+PreReqs: ["dividing_fractions_0.5"]
+
+DisplayName: "Dividing fractions"
+FileName: "dividing_fractions"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/multiplying_and_dividing_frac/e/dividing_fractions/"
+PreReqs: ["dividing_fractions_0.5"]
+
+DisplayName: "Ordering numbers"
+FileName: "ordering_numbers"
+URL: "http://129.21.142.218:8008/math/arithmetic/fractions/decimals_fractions/e/ordering_numbers/"
+PreReqs: ["dividing_fractions_word_problems", "dividing_fractions"]
+
+DisplayName: "Finding absolute values"
+FileName: "absolute_value"
+URL: "http://129.21.142.218:8008/math/arithmetic/absolute-value/abs_value_tutorial/e/absolute_value/"
+PreReqs: ["g6_numbersystem"]
+
+DisplayName: "Comparing absolute values"
+FileName: "comparing_absolute_values"
+URL: "http://129.21.142.218:8008/math/arithmetic/absolute-value/abs_value_tutorial/e/comparing_absolute_values/"
+PreReqs: ["absolute_value"]
+
+DisplayName: "Graphing points"
+FileName: "graphing_points"
+URL: "http://129.21.142.218:8008/math/trigonometry/graphs/graphing_coordinates/e/graphing_points/"
+PreReqs: ["g6_numbersystem"]
+
+DisplayName: "Graduation G4"
+FileName: "graduation_g4"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["axis_of_symmetry", "converting_decimals_to_fractions_2", "the_fundamental_theorem_of_arithmetic"]
+
+DisplayName: "Graduation G5"
+FileName: "graduation_g5"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["identifying_points_1", "rounding_numbers", "fractions_cut_and_copy_2"]
+
+DisplayName: "Graduation G6"
+FileName: "graduation_g6"
+URL: "http://129.21.142.218:8008"
+PreReqs: ["solving_for_a_variable", "herons_formula", "rate_problems_2", "exploring_standard_deviation_1", "negative_number_word_problems", "divisibility", "ordering_numbers", "comparing_absolute_values", "graphing_points"]

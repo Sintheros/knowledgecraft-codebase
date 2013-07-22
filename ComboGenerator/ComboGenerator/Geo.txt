@@ -1,0 +1,39 @@
+DisplayName: "Perimeter 1"
+FileName: "perimeter_1"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/perimeter_area_basics/e/perimeter_1/"
+PreReqs: [N/A]
+
+DisplayName: "Area 1"
+FileName: "area_1"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/perimeter_area_basics/e/area_1/"
+PreReqs: [N/A]
+
+DisplayName: "Perimeter of squares and rectangles"
+FileName: "perimeter_of_squares_and_rectangles"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/perimeter_area_basics/e/perimeter_of_squares_and_rectangles/"
+PreReqs: ["perimeter_1"]
+
+DisplayName: "Area of squares and rectangles"
+FileName: "area_of_squares_and_rectangles"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/perimeter_area_basics/e/area_of_squares_and_rectangles/"
+PreReqs: ["area_1"]
+
+DisplayName: "Radius diameter and circumference"
+FileName: "radius_diameter_and_circumference"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/circum_area_circles/e/radius_diameter_and_circumference/"
+PreReqs: ["perimeter_of_squares_and_rectangles"]
+
+DisplayName: "Area of a circle"
+FileName: "area_of_a_circle"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/circum_area_circles/e/area_of_a_circle/"
+PreReqs: ["radius_diameter_and_circumference", "area_of_squares_and_rectangles"]
+
+DisplayName: "Area of triangles"
+FileName: "area_of_triangles_1"
+URL: "http://129.21.142.218:8008/math/geometry/basic-geometry/perimeter_area_tutorial/e/area_of_triangles_1/"
+PreReqs: ["area_of_squares_and_rectangles"]
+
+DisplayName: "Graduation"
+FileName: "graduation_geo"
+URL: "http://129.21.142.218:8008/math/geometry"
+PreReqs: ["area_of_a_circle", "area_of_triangles_1"]
