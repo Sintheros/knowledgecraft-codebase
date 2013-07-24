@@ -30,18 +30,9 @@
         2:
             Trigger: /Regex:Yes|YES|yes/, I'll fight with you!
             Script:
-              - ENGAGE
-              - CHAT "Yarr harr harr! <red>RED<green> will be the color of victory today!"
-              - IF "<FLAG.G:NumPiratesRed || 0>" == "0" FLAG GLOBAL NumPiratesRed:1 ELSE FLAG GLOBAL "NumPiratesRed:+:1"
-              - FLAG PLAYER PirateRed:1
-              - IF "<FLAG.P:PirateBlue || 0>" == "1" FLAG GLOBAL "NumPiratesBlue:+:-1"
-              - FLAG PLAYER PirateBlue:0
-              - WAIT 2
-              - CHAT "We're short on cannonballs, matey. There's a shop over in that village." 
-              - WAIT 1
-              - CHAT "They won't open until <white>Admiral Admiral<green> says, though, so stick around!"
-              - DISENGAGE
-              - execute as_server "denizen save"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateRed>" == "0" RUN "JoinRed" 
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateRed>" == "1" CHAT "Yer already on me team!"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "1" CHAT "The battle has already started! No joinin' or changin' now!"      
       Proximity Trigger:
         entry:
             Script:
@@ -52,19 +43,8 @@
         1:
             Trigger: /Regex:Yes|YES|yes/, I'll fight with you!
             Script:
-              - ENGAGE
-              - CHAT "Yarr harr harr! <red>RED<green> will be the color of victory today!"
-              - IF "<FLAG.G:NumPiratesRed || 0>" == "0" FLAG GLOBAL NumPiratesRed:1 ELSE FLAG GLOBAL "NumPiratesRed:+:1"
-              - FLAG PLAYER PirateRed:1
-              - IF "<FLAG.P:PirateBlue || 0>" == "1" FLAG GLOBAL "NumPiratesBlue:+:-1"
-              - FLAG PLAYER PirateBlue:0
-              - WAIT 2
-              - CHAT "We're short on cannonballs, matey. There's a shop over in that village." 
-              - WAIT 1
-              - CHAT "They won't open until <white>Admiral Admiral<green> says, though, so stick around!"
-              - DISENGAGE
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" RUN "JoinRed" ELSE CHAT "The battle has already started! No joinin' or changin' now!"
               - ZAP 1
-              - execute as_server "denizen save"
         2:
             Trigger: /Regex:No|NO|no/, I won't join you!"
             Script:
@@ -75,4 +55,18 @@
           Script:
             - IF "<FLAG.P:PirateRed || 0>" == "0" CHAT "Ye be makin' a mistake, laddy!"
             - ZAP 1
-    
+"JoinRed":
+  Type: Task
+  Script:   
+    - ENGAGE
+    - CHAT "Yarr harr harr! <red>RED<green> will be the color of victory today!"
+    - IF "<FLAG.G:NumPiratesRed || 0>" == "0" FLAG GLOBAL NumPiratesRed:1 ELSE FLAG GLOBAL "NumPiratesRed:+:1"
+    - FLAG PLAYER PirateRed:1
+    - IF "<FLAG.P:PirateBlue || 0>" == "1" FLAG GLOBAL "NumPiratesBlue:+:-1"
+    - FLAG PLAYER PirateBlue:0
+    - WAIT 1
+    - CHAT "We're short on cannonballs, matey. There's a shop over in that village." 
+    - WAIT 1
+    - CHAT "They won't open until <white>Admiral Admiral<green> says, though, so stick around!"
+    - DISENGAGE
+    - execute as_server "denizen save"

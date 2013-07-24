@@ -45,8 +45,8 @@
                - IF "<FLAG.G:<player.name>_JP_prize>" == "0" CHAT "Nope, can't say that was correct. Come back another time! Exit's right behind me." ELSE CHAT "You got it! The prize is yours! You can exit behind me when you're ready."
                - WAIT 1
                - IF "<FLAG.G:<player.name>_JP_prize>" == "0" NARRATE "You can always come again." ELSE NARRATE "The man hands you something."
-               - IF "<FLAG.G:<player.name>_JP_prize>" == "1" GIVE item:Item_JP_1
                - FLAG GLOBAL PN:<player.name>
+               - IF "<FLAG.G:<player.name>_JP_prize>" == "1" GIVE item:Item_JP_1
                - FLAG GLOBAL <player.name>_JP_prize:1
                - ZAP step:1
                - DISENGAGE

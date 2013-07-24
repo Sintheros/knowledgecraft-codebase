@@ -21,21 +21,21 @@
             Script:
               - ENGAGE
               - CHAT "Yarrrrr! Excellent!"
-              - WAIT 2
-              - CHAT "But first I must teach you how to load a cannon!"
-              - WAIT 2
-              - CHAT "Here is a cannon I loaded me-self!"
-              - WAIT 2
+              - WAIT 5
+              - CHAT "Lets teach you how to load a cannon like this one!"
+              - WAIT 5
               - CHAT "Place <white>one TNT<green> next to the <white>iron block<green> in the front, this will be yar cannon ball."
-              - WAIT 3
+              - WAIT 5
               - CHAT "Then place TNT in the water behind the cannon ball."
-              - WAIT 3
-              - CHAT "I'm leaving it up to you to figure out how many TNT you need to place for the perfect shot!"
-              - WAIT 3
+              - WAIT 5
+              - CHAT "You can decide how many TNT you need to place for the perfect shot!"
+              - WAIT 5
               - CHAT "The more you place, the <white>further the cannon ball will fly<green>!"
-              - WAIT 3
+              - WAIT 5
               - CHAT "Now for the fun part! <white>Press the button at the back to fire the cannon<green>!"
-              - WAIT 3
+              - WAIT 5
+              - CHAT "The chest next to me has TNT so you can test this cannon."
+              - WAIT 5
               - CHAT "Careful though! when TNT blows up it can hurt you, so steer clear! Yarr harr harr!"
               - FLAG NPC <player.name>:1
               - DISENGAGE
@@ -44,21 +44,21 @@
             Script:
               - ENGAGE
               - CHAT "Yarrrrr! Excellent!"
-              - WAIT 2
-              - CHAT "But first I must teach you how to load a cannon!"
-              - WAIT 2
-              - CHAT "Here is a cannon I loaded me-self!"
-              - WAIT 2
+              - WAIT 5
+              - CHAT "Lets teach you how to load a cannon like this one!"
+              - WAIT 5
               - CHAT "Place <white>one TNT<green> next to the <white>iron block<green> in the front, this will be yar cannon ball."
-              - WAIT 3
+              - WAIT 5
               - CHAT "Then place TNT in the water behind the cannon ball."
-              - WAIT 3
-              - CHAT "I'm leaving it up to you to figure out how many TNT you need to place for the perfect shot!"
-              - WAIT 3
+              - WAIT 5
+              - CHAT You can decide how many TNT you need to place for the perfect shot!"
+              - WAIT 5
               - CHAT "The more you place, the <white>further the cannon ball will fly<green>!"
-              - WAIT 3
+              - WAIT 5
               - CHAT "Now for the fun part! <white>Press the button at the back to fire the cannon<green>!"
-              - WAIT 3
+              - WAIT 5
+              - CHAT "The chest next to me has TNT so you can test this cannon."
+              - WAIT 5
               - CHAT "Careful though! when TNT blows up it can hurt you, so steer clear! Yarr harr harr!"
               - FLAG NPC <player.name>:1
               - DISENGAGE

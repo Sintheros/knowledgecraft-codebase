@@ -1,0 +1,171 @@
+"Item_Pirate_Boots_Blue":
+  type: item
+  material: leather_boots
+  display name: Brigand Boots
+  lore:
+  - "Blue boots of the <aqua>Blue Brigands"
+  - "Property of <green><proc:PN>"
+  color: blue
+  
+"Item_Pirate_Chest_Blue":
+  type: item
+  material: leather_chestplate
+  display name: Brigand Chestguard
+  lore:
+  - "Blue chestguard of the <aqua>Blue Brigands"
+  - "Property of <green><proc:PN>"
+  color: blue
+
+"Item_Pirate_Helm_Blue":
+  type: item
+  material: leather_helmet
+  display name: Brigand Helmet
+  lore:
+  - "Blue helmet of the <aqua>Blue Brigands"
+  - "Property of <green><proc:PN>"
+  color: blue
+
+"Item_Pirate_Legs_Blue":
+  type: item
+  material: leather_leggings
+  display name: Brigand Pants
+  lore:
+  - "Blue pants of the <aqua>Blue Brigands"
+  - "Property of <green><proc:PN>"
+  color: blue
+  
+"Item_Pirate_Boots_Red":
+  type: item
+  material: leather_boots
+  display name: Raider Boots
+  lore:
+  - "Red boots of the <red>Red Raiders"
+  - "Property of <green><proc:PN>"
+  color: red
+  
+"Item_Pirate_Chest_Red":
+  type: item
+  material: leather_chestplate
+  display name: Raider Chestguard
+  lore:
+  - "Red chestguard of the <red>Red Raiders"
+  - "Property of <green><proc:PN>"
+  color: red
+
+"Item_Pirate_Helm_Red":
+  type: item
+  material: leather_helmet
+  display name: Raider Helmet
+  lore:
+  - "Red helmet of the <red>Red Raiders"
+  - "Property of <green><proc:PN>"
+  color: red
+
+"Item_Pirate_Legs_Red":
+  type: item
+  material: leather_leggings
+  display name: Raider Pants
+  lore:
+  - "Red pants of the <red>Red Raiders"
+  - "Property of <green><proc:PN>"
+  color: red
+
+#Lose or win w/0 answered
+"Item_Pirate_Sword1_Red":
+   type: item
+   material: stone_sword
+   display name: Rookie Raider's Sword
+   lore:
+   - "Basic sword of the <red>Red Raiders"
+   - "Property of <green><proc:PN>"
+   enchantments:
+   - DAMAGE_ALL:3
+   
+"Item_Pirate_Sword1_Blue":
+   type: item
+   material: stone_sword
+   display name: Rookie Brigand's Sword
+   lore:
+   - "Basic sword of the <aqua>Blue Brigands"
+   - "Property of <green><proc:PN>"
+   enchantments:
+   - DAMAGE_ALL:3
+
+#Win w/1-7 answered
+"Item_Pirate_Sword2_Red":
+   type: item
+   material: iron_sword
+   display name: Raider Blade
+   lore:
+   - "Standard issue sword of the <red>Red Raiders"
+   - "Earned by <green><proc:PN>"
+   enchantments:
+   - DAMAGE_ALL:4
+   
+"Item_Pirate_Sword2_Blue":
+   type: item
+   material: iron_sword
+   display name: Brigand Blade
+   lore:
+   - "Standard issue sword of the <aqua>Blue Brigands"
+   - "Earned by <green><proc:PN>"
+   enchantments:
+   - DAMAGE_ALL:4
+   
+#Win w/8-14 answered
+"Item_Pirate_Sword3_Red":
+   type: item
+   material: diamond_sword
+   display name: Raider Reaver
+   lore:
+   - "Powerful sword of the <red>Red Raiders"
+   - "Given to those who made a strong"
+   - "contribution to the war effort." 
+   - "Earned by <green><proc:PN>"
+   enchantments:
+   - DAMAGE_ALL:5
+   - KNOCKBACK:2
+
+"Item_Pirate_Sword3_Blue":
+   type: item
+   material: diamond_sword
+   display name: Brigand Broadsword
+   lore:
+   - "Powerful sword of the <aqua>Blue Brigands"
+   - "Given to those who made a strong"
+   - "contribution to the war effort." 
+   - "Earned by <green><proc:PN>"
+   enchantments:
+   - DAMAGE_ALL:5
+   - KNOCKBACK:2
+   
+#Win w/15+ answered
+"Item_Pirate_Sword4_Red":
+   type: item
+   material: diamond_sword
+   display name: Captain Redmond's Rapier
+   lore:
+   - "The flame-enhanced personal blade of"
+   - "Redmond, captain of the <red>Red Raiders"
+   - "Any who wield it are master pirates."
+   - "<red>'Make 'em see red!'"
+   - "Earned by <green><proc:PN>"
+   enchantments:
+   - DAMAGE_ALL:5
+   - KNOCKBACK:2
+   - FIRE_ASPECT:2
+   
+"Item_Pirate_Sword4_Blue":
+   type: item
+   material: diamond_sword
+   display name: Captain Cyan's Saber
+   lore:
+   - "The flame-enhanced personal blade of"
+   - "Cyan, captain of the <aqua>Blue Brigands"
+   - "Any who wield it are master pirates."
+   - "<aqua>'Make 'em sing the blues!'"
+   - "Earned by <green><proc:PN>"
+   enchantments:
+   - DAMAGE_ALL:5
+   - KNOCKBACK:2
+   - FIRE_ASPECT:2

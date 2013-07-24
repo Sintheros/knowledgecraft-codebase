@@ -1,0 +1,24 @@
+"AssignmentGame_Pirate_Rebuilder":
+  Type: Assignment
+  Interact Scripts:
+     - 1 Greeting_pirateRebuilder
+'Greeting_pirateRebuilder':
+  Type: Interact
+  Requirements: 
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:swordfish|Swordfish|SWORDFISH/ is the password! Do the thing!
+            Script:
+              - CHAT "Doing thing."
+              - EXECUTE as_npc "/schematic load redblueship"
+              - EXECUTE as_npc "/paste"
+              - CHAT "Done."
+        2:
+            Trigger: /Regex:undo|Undo|UNDO/!
+            Script:
+              - CHAT "Undoing."
+              - EXECUTE as_npc "/undo"
+              - CHAT "Done."

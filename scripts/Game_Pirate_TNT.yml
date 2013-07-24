@@ -1,0 +1,156 @@
+#TNT NPC
+"AssignmentGame_Pirate_TNT4":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:15
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! You might want to try a different TNT-Keeper"
+  Interact Scripts:
+  - 1 Greeting_Pirate_TNT4
+'Greeting_Pirate_TNT4':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need TNT!
+            Script:
+              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g4_so ELSE FLAG NPC qbank:g8_lv1
+              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT Yes"
+              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "1" RUN "TNT Yes"
+              - IF "<FLAG.P:PirateRed || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "0" RUN "TNT No"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT No"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "1" RUN "TNT No"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" ZAP 2
+              - IF "<FLAG.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "1" ZAP 2
+    2:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/!
+            Script:
+               - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
+        2:
+            Trigger: The answer is /REGEX:.+/!
+            Script:
+               - ZAP 1
+               - FLAG NPC <player.name>_answer:<player.chat_history>
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" CHAT "Correct! Have some TNT!" ELSE CHAT "Not quite. You'll have to try a new question! <gold>(Hi/Hello)<green>"
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" GIVE item:tnt qty:10
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG PLAYER "PirateTNT:+:10"
+      Proximity Trigger:
+        exit:
+          Script:
+            - ZAP 1
+#TNT NPC
+"AssignmentGame_Pirate_TNT5":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:15
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! You might want to try a different TNT-Keeper"
+  Interact Scripts:
+  - 1 Greeting_Pirate_TNT5
+'Greeting_Pirate_TNT5':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need TNT!
+            Script:
+              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g5_so ELSE FLAG NPC qbank:g8_lv2
+              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT Yes"
+              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "1" RUN "TNT Yes"
+              - IF "<FLAG.P:PirateRed || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "0" RUN "TNT No"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT No"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "1" RUN "TNT No"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" ZAP 2
+              - IF "<FLAG.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "1" ZAP 2
+    2:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/!
+            Script:
+               - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
+        2:
+            Trigger: The answer is /REGEX:.+/!
+            Script:
+               - ZAP 1
+               - FLAG NPC <player.name>_answer:<player.chat_history>
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" CHAT "Correct! Have some TNT!" ELSE CHAT "Not quite. You'll have to try a new question! <gold>(Hi/Hello)<green>"
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" GIVE item:tnt qty:10
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG PLAYER "PirateTNT:+:10"
+      Proximity Trigger:
+        exit:
+          Script:
+            - ZAP 1
+#TNT NPC
+"AssignmentGame_Pirate_TNT6":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:15
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm busy! You might want to try a different TNT-Keeper"
+  Interact Scripts:
+  - 1 Greeting_Pirate_TNT6
+'Greeting_Pirate_TNT6':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need TNT!
+            Script:
+              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g6_numbersystem ELSE FLAG NPC qbank:g8_lv3
+              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT Yes"
+              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "1" RUN "TNT Yes"
+              - IF "<FLAG.P:PirateRed || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "0" RUN "TNT No"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT No"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "1" RUN "TNT No"
+              - IF "<FLAG.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" ZAP 2
+              - IF "<FLAG.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "1" ZAP 2
+    2:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/!
+            Script:
+               - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
+        2:
+            Trigger: The answer is /REGEX:.+/!
+            Script:
+               - ZAP 1
+               - FLAG NPC <player.name>_answer:<player.chat_history>
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" CHAT "Correct! Have some TNT!" ELSE CHAT "Not quite. You'll have to try a new question! <gold>(Hi/Hello)<green>"
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" GIVE item:tnt qty:10
+               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG PLAYER "PirateTNT:+:10"
+      Proximity Trigger:
+        exit:
+          Script:
+            - ZAP 1
+"TNT Yes":
+  Type: Task
+  Script:
+    - URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
+    - FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
+    - FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
+    - WAIT 1
+    - CHAT "Then answer this!<&co> <red><FLAG.N:Q><green>"
+"TNT No":
+  Type: Task
+  Script:
+    - IF "<Flag.G:PirateInProgress || 0>" == "0" CHAT "The battle has not begun! I'm not handing out any explosives yet!" ELSE CHAT "You aren't a pirate! No explosives for you!"

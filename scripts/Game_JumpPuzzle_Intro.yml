@@ -28,13 +28,18 @@
               - WAIT 2
               - CHAT "You can't run if you're <white>too hungry<green> however! The Food-Keepers may be able to help you there."
               - WAIT 3
-              - CHAT "Also, holding <white>shift<green> to <white>sneak<green> can help you better position yourself, and keep you from slipping off of ice!"
+              - CHAT "Also, holding <white>shift<green> to <white>sneak<green> stop you from falling off a platform!"
               - WAIT 3
-              - CHAT "Can you reach the end? Good luck!"
+              - CHAT "If you can reach the end, there will be a prize!"
               - WAIT 2
               - CHAT "Also, if you want to go home, I can <gold>teleport<green> you there."
         2:
             Trigger: /Regex:Teleport|teleport|TELEPORT/ me out of here!
             Script:
               - CHAT "As you wish! Come back any time!"
-              - TELEPORT location:<anchor:spawn>
+              - FLAG PLAYER respawn:spawn
+              - TELEPORT location:l@<player.flag[respawn]>
+      Proximity Trigger:
+        exit:
+          Script:
+            - execute as_npc "killall ocelot"

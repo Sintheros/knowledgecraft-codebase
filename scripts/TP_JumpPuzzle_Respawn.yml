@@ -7,10 +7,15 @@
     - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
     - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
     - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
-    - FLAG GLOBAL <player.name>_CookieA:0
-    - FLAG GLOBAL <player.name>_CookieB:0
-    - FLAG GLOBAL <player.name>_CookieC:0
-    - FLAG GLOBAL <player.name>_CookieD:0
+    - FLAG GLOBAL <player.name>_CookieM:0
+    - FLAG GLOBAL <player.name>_Cookie4A:0
+    - FLAG GLOBAL <player.name>_Cookie4B:0
+    - FLAG GLOBAL <player.name>_Cookie4C:0
+    - FLAG GLOBAL <player.name>_Cookie5A:0
+    - FLAG GLOBAL <player.name>_Cookie5B:0
+    - FLAG GLOBAL <player.name>_Cookie6A:0
+    - FLAG GLOBAL <player.name>_Cookie6B:0
+    - FLAG GLOBAL <player.name>_Cookie6C:0
 #4th grade
     on player walks over JP_respawn_4a:
     - IF "<FLAG.P:respawn || 0>" != "JP_respawn_4a" NARRATE "<gold>Spawn Point Updated!<white>"
@@ -19,10 +24,15 @@
     - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
     - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
     - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
-    - FLAG GLOBAL <player.name>_CookieA:0
-    - FLAG GLOBAL <player.name>_CookieB:0
-    - FLAG GLOBAL <player.name>_CookieC:0
-    - FLAG GLOBAL <player.name>_CookieD:0
+    - FLAG GLOBAL <player.name>_CookieM:0
+    - FLAG GLOBAL <player.name>_Cookie4A:0
+    - FLAG GLOBAL <player.name>_Cookie4B:0
+    - FLAG GLOBAL <player.name>_Cookie4C:0
+    - FLAG GLOBAL <player.name>_Cookie5A:0
+    - FLAG GLOBAL <player.name>_Cookie5B:0
+    - FLAG GLOBAL <player.name>_Cookie6A:0
+    - FLAG GLOBAL <player.name>_Cookie6B:0
+    - FLAG GLOBAL <player.name>_Cookie6C:0
     
     on player walks over JP_respawn_4b:
     - IF "<FLAG.P:respawn || 0>" != "JP_respawn_4b" NARRATE "<gold>Spawn Point Updated!<white>"
@@ -31,10 +41,15 @@
     - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
     - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
     - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
-    - FLAG GLOBAL <player.name>_CookieA:0
-    - FLAG GLOBAL <player.name>_CookieB:0
-    - FLAG GLOBAL <player.name>_CookieC:0
-    - FLAG GLOBAL <player.name>_CookieD:0
+    - FLAG GLOBAL <player.name>_CookieM:0
+    - FLAG GLOBAL <player.name>_Cookie4A:0
+    - FLAG GLOBAL <player.name>_Cookie4B:0
+    - FLAG GLOBAL <player.name>_Cookie4C:0
+    - FLAG GLOBAL <player.name>_Cookie5A:0
+    - FLAG GLOBAL <player.name>_Cookie5B:0
+    - FLAG GLOBAL <player.name>_Cookie6A:0
+    - FLAG GLOBAL <player.name>_Cookie6B:0
+    - FLAG GLOBAL <player.name>_Cookie6C:0
     
     on player walks over JP_respawn_4c:
     - IF "<FLAG.P:respawn || 0>" != "JP_respawn_4c" NARRATE "<gold>Spawn Point Updated!<white>"
@@ -46,6 +61,15 @@
     - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
     - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
     - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    - FLAG GLOBAL <player.name>_CookieM:0
+    - FLAG GLOBAL <player.name>_Cookie4A:0
+    - FLAG GLOBAL <player.name>_Cookie4B:0
+    - FLAG GLOBAL <player.name>_Cookie4C:0
+    - FLAG GLOBAL <player.name>_Cookie5A:0
+    - FLAG GLOBAL <player.name>_Cookie5B:0
+    - FLAG GLOBAL <player.name>_Cookie6A:0
+    - FLAG GLOBAL <player.name>_Cookie6B:0
+    - FLAG GLOBAL <player.name>_Cookie6C:0
 
 #5th grade
     on player walks over JP_respawn_5a:
@@ -55,6 +79,15 @@
     - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
     - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
     - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    - FLAG GLOBAL <player.name>_CookieM:0
+    - FLAG GLOBAL <player.name>_Cookie4A:0
+    - FLAG GLOBAL <player.name>_Cookie4B:0
+    - FLAG GLOBAL <player.name>_Cookie4C:0
+    - FLAG GLOBAL <player.name>_Cookie5A:0
+    - FLAG GLOBAL <player.name>_Cookie5B:0
+    - FLAG GLOBAL <player.name>_Cookie6A:0
+    - FLAG GLOBAL <player.name>_Cookie6B:0
+    - FLAG GLOBAL <player.name>_Cookie6C:0
     
     on player walks over JP_respawn_5b:
     - IF "<FLAG.P:respawn || 0>" != "JP_respawn_5b" NARRATE "<gold>Spawn Point Updated!<white>"
@@ -66,6 +99,15 @@
     - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
     - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
     - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    - FLAG GLOBAL <player.name>_CookieM:0
+    - FLAG GLOBAL <player.name>_Cookie4A:0
+    - FLAG GLOBAL <player.name>_Cookie4B:0
+    - FLAG GLOBAL <player.name>_Cookie4C:0
+    - FLAG GLOBAL <player.name>_Cookie5A:0
+    - FLAG GLOBAL <player.name>_Cookie5B:0
+    - FLAG GLOBAL <player.name>_Cookie6A:0
+    - FLAG GLOBAL <player.name>_Cookie6B:0
+    - FLAG GLOBAL <player.name>_Cookie6C:0
     
 #6th grade
     on player walks over JP_respawn_6a:
@@ -75,6 +117,15 @@
     - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
     - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
     - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    - FLAG GLOBAL <player.name>_CookieM:0
+    - FLAG GLOBAL <player.name>_Cookie4A:0
+    - FLAG GLOBAL <player.name>_Cookie4B:0
+    - FLAG GLOBAL <player.name>_Cookie4C:0
+    - FLAG GLOBAL <player.name>_Cookie5A:0
+    - FLAG GLOBAL <player.name>_Cookie5B:0
+    - FLAG GLOBAL <player.name>_Cookie6A:0
+    - FLAG GLOBAL <player.name>_Cookie6B:0
+    - FLAG GLOBAL <player.name>_Cookie6C:0
     
     on player walks over JP_respawn_6b:
     - IF "<FLAG.P:respawn || 0>" != "JP_respawn_6b" NARRATE "<gold>Spawn Point Updated!<white>"
@@ -83,6 +134,15 @@
     - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
     - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
     - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    - FLAG GLOBAL <player.name>_CookieM:0
+    - FLAG GLOBAL <player.name>_Cookie4A:0
+    - FLAG GLOBAL <player.name>_Cookie4B:0
+    - FLAG GLOBAL <player.name>_Cookie4C:0
+    - FLAG GLOBAL <player.name>_Cookie5A:0
+    - FLAG GLOBAL <player.name>_Cookie5B:0
+    - FLAG GLOBAL <player.name>_Cookie6A:0
+    - FLAG GLOBAL <player.name>_Cookie6B:0
+    - FLAG GLOBAL <player.name>_Cookie6C:0
     
     on player walks over JP_respawn_6c:
     - IF "<FLAG.P:respawn || 0>" != "JP_respawn_6c" NARRATE "<gold>Spawn Point Updated!<white>"
@@ -94,3 +154,12 @@
     - IF "<FLAG.P:FSET || 0>" == "1" FEED amt:-13
     - IF "<FLAG.P:FSET || 0>" == "1" SATURATE amt:-20
     - IF "<FLAG.P:FSET || 0>" == "1" FLAG PLAYER FSET:0
+    - FLAG GLOBAL <player.name>_CookieM:0
+    - FLAG GLOBAL <player.name>_Cookie4A:0
+    - FLAG GLOBAL <player.name>_Cookie4B:0
+    - FLAG GLOBAL <player.name>_Cookie4C:0
+    - FLAG GLOBAL <player.name>_Cookie5A:0
+    - FLAG GLOBAL <player.name>_Cookie5B:0
+    - FLAG GLOBAL <player.name>_Cookie6A:0
+    - FLAG GLOBAL <player.name>_Cookie6B:0
+    - FLAG GLOBAL <player.name>_Cookie6C:0

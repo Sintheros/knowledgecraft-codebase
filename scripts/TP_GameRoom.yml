@@ -1,0 +1,127 @@
+#Jump Puzzle Teleporter N
+"AssignmentTP_JumpPuzzleN":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 Greeting_TP_JumpPuzzleN
+'Greeting_TP_JumpPuzzleN':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can I play this game?
+            Script:
+              - CHAT "Certainly! This is the Jump Puzzle!"
+              - WAIT 2
+              - CHAT "When you arrive at the puzzle you will <white>lose all of your items<green>, so I suggest you put them <white>in that storage chest<green>."
+              - WAIT 2
+              - CHAT "Whenever you're ready, just say <gold>teleport<green> to me and you'll be on your way!"
+        2:
+            Trigger: /Regex:Teleport|teleport|TELEPORT/ me!
+            Script:
+              - WAIT 1
+              - CHAT "Away you go! Good luck!"
+              - INVENTORY clear destination:<player>
+              - FEED
+              - WAIT 1
+              - GIVE item:cookie qty:2
+              - FLAG PLAYER respawn:JP_start
+              - TELEPORT location:l@<player.flag[respawn]>
+              - NARRATE "You are suddenly very high up. You feel hungry..."
+              - NARRATE "You should probably eat something."
+              - SATURATE
+              - FEED amt:-17
+              - SATURATE amt:-20
+              - FLAG GLOBAL <player.name>_Bread:0
+              - FLAG GLOBAL <player.name>_Mushroomsoup:0
+              - FLAG GLOBAL <player.name>_Melon:0
+              - FLAG GLOBAL <player.name>_Cookedfish:0
+              - FLAG GLOBAL <player.name>_Rawfish:0
+              - FLAG GLOBAL <player.name>_Rawbeef:0
+              - FLAG GLOBAL <player.name>_Bakedpotato:0
+              - FLAG GLOBAL <player.name>_CookieA:0
+              - FLAG GLOBAL <player.name>_CookieB:0
+              - FLAG GLOBAL <player.name>_CookieC:0
+              - FLAG GLOBAL <player.name>_CookieD:0
+              - FLAG GLOBAL <player.name>_JP_prize:0
+              
+#Pirate Teleporter N
+"AssignmentTP_PirateN":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 Greeting_TP_PirateN
+'Greeting_TP_PirateN':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can I play this game?
+            Script:
+              - CHAT "Certainly! This is the Pirate Battle!"
+              - WAIT 2
+              - CHAT "When the game begins you will <white>lose all of your items<green>, so I suggest you put them <white>in that storage chest<green>."
+              - WAIT 2
+              - CHAT "Whenever you're ready, just say <gold>teleport<green> to me and you'll be on your way!"
+        2:
+            Trigger: /Regex:Teleport|teleport|TELEPORT/ me!
+            Script:
+              - WAIT 1
+              - CHAT "Away you go! Have fun!"
+              - WAIT 1
+              - FEED
+              - SATURATE
+              - TELEPORT location:l@<pirates>
+
+#Coaster Teleporter N
+"AssignmentTP_CoasterN":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "Just a moment, can't you see I'm busy?"
+  Interact Scripts:
+  - 1 Greeting_TP_CoasterN
+'Greeting_TP_CoasterN':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, can I play this game?
+            Script:
+              - CHAT "Certainly! This is the Rollercoaster!"
+              - WAIT 2
+              - CHAT "When I teleport you, you will <white>lose all of your items<green>, so I suggest you put them <white>in that storage chest<green>."
+              - WAIT 2
+              - CHAT "Whenever you're ready, just say <gold>teleport<green> to me and you'll be on your way!"
+        2:
+            Trigger: /Regex:Teleport|teleport|TELEPORT/ me!
+            Script:
+              - WAIT 1
+              - CHAT "Away you go! Have fun!"
+              - INVENTORY clear destination:<player>
+              - WAIT 1
+              - FEED
+              - SATURATE
+              - TELEPORT location:l@<coaster>

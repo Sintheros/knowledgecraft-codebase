@@ -1,0 +1,66 @@
+'WORLD_eList':
+  type: world
+  events:
+    on server start:
+      - FLAG GLOBAL PirateInProgress:0
+      
+    on player logs in:
+      - RUN "Login Admin" delay:3s
+    
+    on player places block:
+      - IF <context.location.in_region[redboat]> RUN as:p@<player.name> "RedProtect"
+      - IF <context.location.in_region[redboat]> && "<FLAG.G:PirateStarted || 0>" == "0" DETERMINE cancelled
+      - IF <context.location.in_region[redboat]> && "<FLAG.G:PirateStarted || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "0" DETERMINE cancelled
+      - IF <context.location.in_region[blueboat]> RUN as:p@<player.name> "BlueProtect"
+      - IF <context.location.in_region[blueboat]> && "<FLAG.G:PirateStarted || 0>" == "0" DETERMINE cancelled
+      - IF <context.location.in_region[blueboat]> && "<FLAG.G:PirateStarted || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "0" DETERMINE cancelled
+    
+    on player breaks block:
+      - IF <context.location.in_region[redboat]> RUN as:p@<player.name> "RedProtect"
+      - IF <context.location.in_region[redboat]> && "<FLAG.G:PirateStarted || 0>" == "0" DETERMINE cancelled
+      - IF <context.location.in_region[redboat]> && "<FLAG.G:PirateStarted || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "0" DETERMINE cancelled
+      - IF <context.location.in_region[blueboat]> RUN as:p@<player.name> "BlueProtect"
+      - IF <context.location.in_region[blueboat]> && "<FLAG.G:PirateStarted || 0>" == "0" DETERMINE cancelled
+      - IF <context.location.in_region[blueboat]> && "<FLAG.G:PirateStarted || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "0" DETERMINE cancelled
+      
+    on primed_tnt explodes:
+      - IF <context.entity.location.in_region[redboat]> && "<context.blocks.size>" > 1 FLAG GLOBAL "PirateBlueScore:+:<context.blocks.size>"
+      - IF <context.entity.location.in_region[redboat]> && "<context.blocks.size>" > 1 FLAG GLOBAL "PirateBlueLooper:+:<context.blocks.size>"
+      - IF <context.entity.location.in_region[blueboat]> && "<context.blocks.size>" > 1 FLAG GLOBAL "PirateRedScore:+:<context.blocks.size>"
+      - IF <context.entity.location.in_region[blueboat]> && "<context.blocks.size>" > 1 FLAG GLOBAL "PirateRedLooper:+:<context.blocks.size>"
+      - IF "<FLAG.G:PirateRedLooper || 0>" >= "200" && "<FLAG.G:PirateStarted || 0>" == "1" RUNTASK "PirateMidgameRed"
+      - IF "<FLAG.G:PirateBlueLooper || 0>" >= "200" && "<FLAG.G:PirateStarted || 0>" == "1" RUNTASK "PirateMidgameBlue"
+      
+    on player respawns:
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_4a" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_4b" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_4c" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_5a" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_5b" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_6a" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_6b" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_6c" FLAG PLAYER FSET:1
+    - IF "<FLAG.P:respawn || spawn>" == "JP_start" FLAG PLAYER FSET:1
+    - DETERMINE "location:<notable:<FLAG.P:respawn || spawn>>"
+    
+"Login Admin":
+  Type: Task
+  Script:
+    - IF "<FLAG.P:ADMIN || 0>" == "0" FLAG PLAYER ADMIN:0 ELSE NARRATE "<dark_purple>[ADMIN]<white><&co> Question banks currently set to <FLAG.G:qbank || 0>." targets:p@<player.name> 
+
+"RedProtect":
+  Type: Task
+  Script:
+    #Pregame
+    - IF "<FLAG.G:PirateStarted || 0>" == "0" NARRATE "<red>Redmond<white><&co> Yarr! Don't be messing with me boat before the battle!" targets:p@<player.name>
+    #Midgame
+    - IF "<FLAG.G:PirateStarted || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "0" NARRATE "<red>Redmond<white><&co> Yarr! Ye ain't a <red>Red Raider<white>! Don't touch me boat!" targets:p@<player.name>
+    
+    
+"BlueProtect":
+  Type: Task
+  Script:
+    #Pregame
+    - IF "<FLAG.G:PirateStarted || 0>" == "0" NARRATE "<aqua>Cyan<white><&co> Yarr! Don't be messing with me boat before the battle!" targets:p@<player.name>
+    #Midgame
+    - IF "<FLAG.G:PirateStarted || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "0" NARRATE "<aqua>Cyan<white><&co> Yarr! Ye ain't a <aqua>Blue Brigand<white>! Don't touch me boat!" targets:p@<player.name>

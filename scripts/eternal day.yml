@@ -1,22 +1,36 @@
-"AssignmentEternalDay":
+"AssignmentEternalDay2":
   Type: Assignment
   Actions:
-    Interact Scripts:
-    - 1 Greeting_timekeeper
-'Greeting_timekeeper':
+    On Assignment:
+      - execute as_server "npc select <npc.id>
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "I'm already running"
+  Interact Scripts: 
+   - 1 EternalDayStart
+'EternalDayStart':
   Type: Interact
-  Requirements:
+  Requirements: 
     Mode: All
   Steps:
     1:
       Chat Trigger:
         1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, you should begin.
-            Script:
-              - CHAT "Timekeeping activated."
-              - RUNTASK 'Eternal_Day_TASK'
-'Eternal_Day_TASK':
+          Trigger: /begin/ please!
+          Script:
+            - ENGAGE
+            - CHAT "starting eternal day"
+            - RUNTASK 'EternalDay'
+            - DISENGAGE
+'EternalDay':
   Type: Task
   Script:
-    - CHAT "TEST"
-   # - execute as_server "time set 0"
+    - ENGAGE
+    - CHAT "task started"
+    - execute as_server "time set 0"
+    - WAIT 1
+    - execute as_server "weather set"
+    - WAIT 1
+    - execute as_server "killall ocelot"
+    - RUN 'EternalDay' delay:600s
+    - DISENGAGE

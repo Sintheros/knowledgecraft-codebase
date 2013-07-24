@@ -1,0 +1,22 @@
+#Rollback Test
+"AssignmentRollback":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_RB
+'Greeting_RB':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, do the thing.
+            Script:
+              - WAIT 1
+              - CHAT "Thing."
+              - execute as_npc "co rollback r:20 t:2m"

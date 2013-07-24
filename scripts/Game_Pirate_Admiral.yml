@@ -22,14 +22,10 @@
               - ENGAGE
               - IF "<FLAG.G:PirateInProgress || 0>" == "0" FLAG GLOBAL PirateInProgress:0
               - IF "<FLAG.G:PirateInProgress>" == "1" CHAT "Look at those pirates quarrel on those boats. I'm busy watching the spectacle, sorry." ELSE RUNTASK "AdmiralTask"
-              - IF "<FLAG.G:PirateInProgress>" == "0" ZAP 2
               - DISENGAGE
-    2:
-      Chat Trigger:
-        1:
+        2:
             Trigger: Please /Regex:explain|Explain|EXPLAIN/ what's going on here!
             Script:
-              - ENGAGE
               - WAIT 1
               - CHAT "It's simple really. These uncouth pirates never stop quarreling! So they hire me to find them ammo and crew."
               - WAIT 2
@@ -40,67 +36,252 @@
               - CHAT "Once time is up, the crew can use all the cannonballs they've collected to try to <white>sink the enemy's ship<green>!"
               - WAIT 2
               - CHAT "You think you have what it takes to be a top pirate...yarr? Go see one of the <white>captains<green>!"
-              - DISENGAGE
-              - ZAP 1
-        2:
+        3:
             Trigger: How many people are currently on the /Regex:teams|Teams|TEAMS/?
             Script:
               - ENGAGE
               - IF "<FLAG.G:NumPiratesRed || 0>" == "0" FLAG GLOBAL NumPiratesRed:0
               - IF "<FLAG.G:NumPiratesBlue || 0>" == "0" FLAG GLOBAL NumPiratesBlue:0
-              - IF "<FLAG.G:NumPiratesRed>" == "1" CHAT "The <red>Red Raiders<green> have <red>1<green> member." ELSE CHAT "The <red>Red Raiders<green> have <red><FLAG.G:NumPiratesRed><green> members."
-              - IF "<FLAG.G:NumPiratesBlue>" == "1" CHAT "The <aqua>Blue Brigands<green> have <aqua>1<green> member." ELSE CHAT "The <aqua>Blue Brigands<green> have <aqua><FLAG.G:NumPiratesBlue><green> members."
+              - IF "<FLAG.G:NumPiratesRed>" == "1" CHAT "The <red>Red Raiders<green> have <red>1<green> member." ELSE CHAT "The <red>Red Raiders<green> have <red><FLAG.G:NumPiratesRed.as_int><green> members."
+              - IF "<FLAG.G:NumPiratesBlue>" == "1" CHAT "The <aqua>Blue Brigands<green> have <aqua>1<green> member." ELSE CHAT "The <aqua>Blue Brigands<green> have <aqua><FLAG.G:NumPiratesBlue.as_int><green> members."
               - WAIT 1
               - IF "<FLAG.P:PirateRed || 0>" == "1" CHAT "You are a member of the <red>Red Raiders<green>."
-              - IF "<FLAG.P:PirateBlue || 0>" == "1" CHAT "You are a member of the <aqua>Blue Brigands<green>."
+              - IF "<FLAG.P:PirateBlue || 0>" == "1" CHAT "You are a member of the <aqua>Blue Brigands<green>."  
               - IF "<FLAG.P:PirateRed || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "0" CHAT "You are a member of <white>neither team<green>."
+              - WAIT 1
+              - FLAG GLOBAL NumPirates:0
+              - FLAG GLOBAL "NumPirates:+:<FLAG.G:NumPiratesRed>"
+              - FLAG GLOBAL "NumPirates:+:<FLAG.G:NumPiratesBlue>"
+              - IF "<FLAG.G:NumPirates>" != "0" CHAT "The current pirates are..."
+              - IF "<FLAG.G:NumPirates>" != "0" RUNTASK "script:loop through" "context:PirateTeam Task|Players|global"
               - DISENGAGE
-              - ZAP 1
-        3:
+        4:
             Trigger: I want to /Regex:leave|Leave|LEAVE/ my team!
             Script:
               - ENGAGE
               - IF "<FLAG.P:PirateRed || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "0" CHAT "You are not on a team!"
-              - IF "<FLAG.P:PirateRed || 0>" == "1" CHAT "You have left the <red>Red Raiders<green>."
-              - IF "<FLAG.P:PirateRed || 0>" == "1" FLAG GLOBAL "NumPiratesRed:+:-1"
-              - IF "<FLAG.P:PirateRed || 0>" == "1" FLAG PLAYER PirateRed:0
-              - IF "<FLAG.P:PirateBlue || 0>" == "1" CHAT "You have left the <aqua>Blue Brigands<green>."
-              - IF "<FLAG.P:PirateBlue || 0>" == "1" FLAG GLOBAL "NumPiratesBlue:+:-1"
-              - IF "<FLAG.P:PirateBlue || 0>" == "1" FLAG PLAYER PirateBlue:0
+              - IF "<FLAG.P:PirateRed || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" CHAT "You have left the <red>Red Raiders<green>."
+              - IF "<FLAG.P:PirateRed || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" FLAG GLOBAL "NumPiratesRed:+:-1"
+              - IF "<FLAG.P:PirateRed || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" FLAG PLAYER PirateRed:0
+              - IF "<FLAG.P:PirateBlue || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" CHAT "You have left the <aqua>Blue Brigands<green>."
+              - IF "<FLAG.P:PirateBlue || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" FLAG GLOBAL "NumPiratesBlue:+:-1"
+              - IF "<FLAG.P:PirateBlue || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" FLAG PLAYER PirateBlue:0
+              - IF "<FLAG.G:PirateInProgress || 0>" == "1" CHAT "Not in the midst of a battle!"  
               - execute as_server "denizen save"
               - DISENGAGE
-              - ZAP 1
-        4:
+        5:
             Trigger: Can you /Regex:teleport|Teleport|TELEPORT/ me home?
             Script:
-              - ENGAGE
               - CHAT "Of course."
               - FLAG PLAYER respawn:spawn
               - TELEPORT location:l@<player.flag[respawn]>
-              - DISENGAGE
-              - ZAP 1
-        5:
+        6:
             Trigger: /Regex:start|Start|START/ the battle!
             Script:
               - ENGAGE
               - WAIT 1
-              - CHAT "<red>(NYI)<green>"
+              - IF "<FLAG.G:PirateRedScore || 0>" == "0" FLAG PirateRedScore:0
+              - IF "<FLAG.G:PirateBlueScore || 0>" == "0" FLAG PirateBlueScore:0
+              - IF "<FLAG.G:PirateRedLooper || 0>" == "0" FLAG PirateRedLooper:0
+              - IF "<FLAG.G:PirateBlueLooper || 0>" == "0" FLAG PirateBlueLooper:0
+              - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "I cannot. Only an <dark_purple>Admin<green> can start the battle." ELSE CHAT "And here...we...go!"
+              - IF "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL PirateInProgress:1
+              - IF "<FLAG.P:ADMIN || 0>" == "1" ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> The <gold>Pirate Battle<white> is about to begin! The following pirates will be brought to the cannonball shop in <red>15 seconds<white><&co>"
+              - IF "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL "Players:<player.list.online>"
+              #Announce signed up players
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "script:loop through" "def:PiratePreTele Task|Players|global"
+              #15 LATER: Teleport players to question
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "script:loop through" "def:PirateTele Task|Players|global" delay:15s
+              #Announce questions have begun
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "PirateTeleSub Task" delay:15s
+              #4m45 LATER: 15 second warning base-300
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "PirateWarning" delay:300s
+              #15 LATER: Teleport players to boats base-315
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "script:loop through" "def:PirateStart Task|Players|global" delay:315s
+              #Equip items base-315
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "script:loop through" "def:PirateItems Task|Players|global" delay:315s
+              #Announce combat has begun base-315
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "PirateStartSub Task" delay:315s
+              #15sec before end base-600
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "PiratePreEnd" delay:600s
+              #TEMP - END TASK base-615
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "script:loop through" "def:PirateEnd Task|Players|global" delay:615s
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN as:n@152 "PirateEndSub Task" delay:615s
+              #TEMP - HOME TASK base-630
+              - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "script:loop through" "def:PirateHome Task|Players|global" delay:630s    
               - DISENGAGE
-              - ZAP 1
       Proximity Trigger:
-        exit:
+        entry:
           Script:
-            - ZAP 1
+            - IF "<FLAG.G:PirateInProgress || 0>" == "0" FLAG GLOBAL PirateInProgress:0
+            #- IF "<FLAG.G:PirateInProgress>" == "0" EXECUTE as_npc "rg flag redboat build deny"
+            #- IF "<FLAG.G:PirateInProgress>" == "0" EXECUTE as_npc "rg flag blueboat build deny"
+            #- IF "<FLAG.G:PirateInProgress>" == "0" EXECUTE as_npc "rg flag redboat tnt deny"
+            #- IF "<FLAG.G:PirateInProgress>" == "0" EXECUTE as_npc "rg flag blueboat tnt deny"
 'AdmiralTask':
   Type: Task
   Script:
     - CHAT "Admiral Admiral here! These pirates never get along. I just provide the show! How can I help you?"
     - WAIT 2
-    - CHAT "Would you like to..."
+    - CHAT "Would you like to<&co>"
     - WAIT 1
     - CHAT "...Have me <gold>explain<green> what's going on?"
     - CHAT "...Check the <gold>teams<green>?"
     - CHAT "...<gold>Leave<green> your team?"
     - CHAT "...Have me <gold>teleport<green> you home?"
     - CHAT "...Or <gold>start<green> the battle?"
+
+"PirateTeam Task":
+  Type: Task
+  Context: Value
+  Script:
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" CHAT <red><player[<context.value>].name><green>
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" CHAT <aqua><player[<context.value>].name><green>
+
+"PiratePreTele Task":
+  Type: Task
+  Context: Value
+  Script:
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" ANNOUNCE <red><player[<context.value>].name><white>"
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" ANNOUNCE "<aqua><player[<context.value>].name><white>"
     
+"PirateTele Task":
+  Type: Task
+  Context: Value
+  Script:
+    - FLAG player:<^context.value> "PirateTNT:0"
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" TELEPORT location:<anchor:piratequestion> target:p@<context.value>
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" TELEPORT location:<anchor:piratequestion> target:p@<context.value>
+
+"PirateTeleSub Task":
+  Type: Task
+  Script:
+    - ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> Welcome to the cannonball shop! You have <red>five minutes<white> to obtain as much TNT as possible before the battle begins!"
+    - ANNOUNCE "Good luck!"
+    
+"PirateWarning":
+  Type: Task
+  Script:
+    - ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> Time is running out! The cannonball shop closes in <red>15 seconds<white>!"
+    
+"PirateStart Task":
+  Type: Task
+  Context: Value
+  Script:
+    - FEED target:p@<context.value>
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" INVENTORY clear destination:p@<context.value>
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" INVENTORY clear destination:p@<context.value>
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" GIVE player:<^context.value> item:tnt qty:<player[<context.value>].flag[PirateTNT]>
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" GIVE player:<^context.value> item:tnt qty:<player[<context.value>].flag[PirateTNT]>
+    #Set spawn to boats
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" FLAG player:<^context.value> "respawn:piratered"
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" FLAG player:<^context.value> "respawn:pirateblue"
+    #TP players to boats
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" TELEPORT location:l@<player[<context.value>].flag[respawn]> target:p@<context.value>
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" TELEPORT location:l@<player[<context.value>].flag[respawn]> target:p@<context.value>
+
+"PirateItems Task":
+  Type: Task
+  Context: Value
+  Script:
+   - FLAG GLOBAL PN:<^context.value>
+   - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1"  EQUIP player player:<^context.value> head:Item_Pirate_Helm_Red chest:Item_Pirate_Chest_Red legs:Item_Pirate_Legs_Red boots:Item_Pirate_Boots_Red
+   - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1"  EQUIP player player:<^context.value> head:Item_Pirate_Helm_Blue chest:Item_Pirate_Chest_Blue legs:Item_Pirate_Legs_Blue Boots:Item_Pirate_Boots_Blue
+    
+"PirateStartSub Task":
+  Type: Task
+  Script:
+    - ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> Time is up! Man your cannons! Which team can cause the most damage in <red>5 minutes<white>?"
+    - FLAG GLOBAL PirateStarted:1
+    - FLAG GLOBAL PirateRedScore:0
+    - FLAG GLOBAL PirateBlueScore:0
+    - FLAG GLOBAL PirateRedLooper:0
+    - FLAG GLOBAL PirateBlueLooper:0
+
+"PirateMidgameRed":
+  Type: Task
+  Script:
+    - URL "http://129.21.142.218:29876/RANDQ?qFile=redmond.txt" redshout GLOBAL
+    - ANNOUNCE "<red>Redmond<white><&co> <FLAG.G:redshout>"
+    - FLAG GLOBAL PirateRedLooper:0
+
+"PirateMidgameBlue":
+  Type: Task
+  Script:
+    - URL "http://129.21.142.218:29876/RANDQ?qFile=cyan.txt" blueshout GLOBAL
+    - ANNOUNCE "<aqua>Cyan<white><&co> <FLAG.G:blueshout>"
+    - FLAG GLOBAL PirateBlueLooper:0
+
+"PiratePreEnd":
+  Type: Task
+  Script:
+    - ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> <red>15 seconds<white> remain! Fire those final shots!"
+    
+#END TASKS
+"PirateEnd Task":
+  Type: Task
+  Context: Value
+  Script:
+    - FLAG GLOBAL PN:<^context.value>
+    #Clear INV
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" INVENTORY clear destination:p@<context.value>
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" INVENTORY clear destination:p@<context.value>
+    #If you lose, give basic sword
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" && "<FLAG.G:PirateRedScore || 0>" < "<FLAG.G:PirateBlueScore || 0>" GIVE player:<^context.value> item:Item_Pirate_Sword1_Red
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" && "<FLAG.G:PirateRedScore || 0>" > "<FLAG.G:PirateBlueScore || 0>" GIVE player:<^context.value> item:Item_Pirate_Sword1_Blue
+    #If you won but answered no questions, give basic sword
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" && "<FLAG.G:PirateRedScore || 0>" > "<FLAG.G:PirateBlueScore || 0>" && "<player[<context.value>].flag[PirateTNT]>" == "0" GIVE player:<^context.value> item:Item_Pirate_Sword1_Red
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" && "<FLAG.G:PirateRedScore || 0>" < "<FLAG.G:PirateBlueScore || 0>" && "<player[<context.value>].flag[PirateTNT]>" == "0" GIVE player:<^context.value> item:Item_Pirate_Sword1_Blue
+    #If you won and answered 1-7 questions, give lv2 sword
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" && "<FLAG.G:PirateRedScore || 0>" > "<FLAG.G:PirateBlueScore || 0>" && "<player[<context.value>].flag[PirateTNT]>" > "0" && "<player[<context.value>].flag[PirateTNT]>" <= "70" GIVE player:<^context.value> item:Item_Pirate_Sword2_Red
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" && "<FLAG.G:PirateRedScore || 0>" < "<FLAG.G:PirateBlueScore || 0>" && "<player[<context.value>].flag[PirateTNT]>" > "0" && "<player[<context.value>].flag[PirateTNT]>" <= "70" GIVE player:<^context.value> item:Item_Pirate_Sword2_Blue
+    #If you won and answered 8-14 questions, give lv3 sword
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" && "<FLAG.G:PirateRedScore || 0>" > "<FLAG.G:PirateBlueScore || 0>" && "<player[<context.value>].flag[PirateTNT]>" > "70" && "<player[<context.value>].flag[PirateTNT]>" <= "140" GIVE player:<^context.value> item:Item_Pirate_Sword3_Red
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" && "<FLAG.G:PirateRedScore || 0>" < "<FLAG.G:PirateBlueScore || 0>" && "<player[<context.value>].flag[PirateTNT]>" > "70" && "<player[<context.value>].flag[PirateTNT]>" <= "140" GIVE player:<^context.value> item:Item_Pirate_Sword3_Blue
+    #If you won and answered 15+ questions, give lv4 sword
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" && "<FLAG.G:PirateRedScore || 0>" > "<FLAG.G:PirateBlueScore || 0>" && "<player[<context.value>].flag[PirateTNT]>" > "140" GIVE player:<^context.value> item:Item_Pirate_Sword4_Red
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" && "<FLAG.G:PirateRedScore || 0>" < "<FLAG.G:PirateBlueScore || 0>" && "<player[<context.value>].flag[PirateTNT]>" > "140" GIVE player:<^context.value> item:Item_Pirate_Sword4_Blue
+    #Port to box
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1 "TELEPORT location:l@<redbox> target:p@<context.value>
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1 "TELEPORT location:l@<bluebox> target:p@<context.value>
+    
+    
+"PirateHome Task":
+  Type: Task
+  Context: Value
+  Script:
+    #Port home
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" FLAG player:<^context.value> "respawn:spawn"
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" FLAG player:<^context.value> "respawn:spawn"
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" TELEPORT location:l@<player[<context.value>].flag[respawn]> target:p@<context.value>
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" TELEPORT location:l@<player[<context.value>].flag[respawn]> target:p@<context.value>
+    #Remove team flag
+    - IF "<player[<context.value>].flag[PirateRed] || 0>" == "1" FLAG player:<^context.value> "PirateRed:0"
+    - IF "<player[<context.value>].flag[PirateBlue] || 0>" == "1" FLAG player:<^context.value> "PirateBlue:0"
+    
+"PirateEndSub Task":
+  Type: Task
+  Script:
+    - ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> Observe the destruction!"
+    - WAIT 2
+    - IF "<FLAG.G:PirateRedScore || 0>" > "<FLAG.G:PirateBlueScore || 0>" ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> <red><FLAG.G:PirateRedScore.as_int || 0><white> to <aqua><FLAG.G:PirateBlueScore.as_int || 0><white> -- The <red>Red Raiders<white> win!"
+    - IF "<FLAG.G:PirateRedScore || 0>" < "<FLAG.G:PirateBlueScore || 0>" ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> <red><FLAG.G:PirateRedScore.as_int || 0><white> to <aqua><FLAG.G:PirateBlueScore.as_int || 0><white> -- The <aqua>Blue Brigands<white> win!"
+    - IF "<FLAG.G:PirateRedScore || 0>" == "<FLAG.G:PirateBlueScore || 0>" ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> <red><FLAG.G:PirateRedScore.as_int || 0><white> to <aqua><FLAG.G:PirateBlueScore.as_int || 0><white> -- A draw!"
+    - WAIT 1
+    - IF "<FLAG.G:PirateRedScore || 0>" > "<FLAG.G:PirateBlueScore || 0>" ANNOUNCE "<red>Redmond<&co><white> Yarr harr harr! A red day for our enemies! Good work mateys!"
+    - IF "<FLAG.G:PirateRedScore || 0>" < "<FLAG.G:PirateBlueScore || 0>" ANNOUNCE "<aqua>Cyan<&co><white> Yarr harr harr! A blue-tal victory! Good work mateys!"
+    - FLAG GLOBAL PirateRedScore:0
+    - FLAG GLOBAL PirateBlueScore:0
+    - FLAG GLOBAL PirateRedLooper:0
+    - FLAG GLOBAL PirateBlueLooper:0
+    - FLAG GLOBAL NumPiratesRed:0
+    - FLAG GLOBAL NumPiratesBlue:0
+    - WAIT 3
+    - ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> Time to repair those ships so these scoundrels can fight again."
+    - execute as_npc "/schematic load redblueship"
+    - execute as_npc "/paste"
+    - WAIT 2
+    - ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> Off you go now! Come back the next time you want some gold and glory!"
+    - FLAG GLOBAL PirateStarted:0
+    - FLAG GLOBAL PirateInProgress:0
+    - execute as_server "denizen save"

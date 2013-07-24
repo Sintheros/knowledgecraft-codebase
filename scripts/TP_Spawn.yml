@@ -20,4 +20,4 @@
               - CHAT "Certainly! Off you go!"
               - WAIT 2
               - FLAG PLAYER respawn:spawn
-              - TELEPORT location:<anchor:spawn>
+              - TELEPORT location:l@<player.flag[respawn]>

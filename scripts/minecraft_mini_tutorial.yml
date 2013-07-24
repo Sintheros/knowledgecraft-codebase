@@ -2,7 +2,7 @@
   Type: Assignment
   Actions:
     On Assignment:
-      - TRIGGER NAME:Proximity TOGGLE:True Radius:8
+      - TRIGGER NAME:Proximity TOGGLE:True Radius:5
       - execute as_server "npc select <npc.id>
       - execute as_server "npc lookclose"  
   Interact Scripts: 
@@ -16,118 +16,160 @@
       Proximity Trigger:
         entry:
           Script:
-            - ENGAGE
             - IF "<FLAG.N:<player.name> || 0>" == "0" RUNTASK 'StartTutorial' ELSE CHAT "Welcome back <player.name>!"
-            - DISENGAGE
       Chat Trigger:
         1:
-          Trigger: /Regex:yes/YES/Yes/ please!
-          Script:
-            - ENGAGE
-            - WAIT 2
-            - CHAT "Let's start with the basic controls."
-            - WAIT 3
-            - CHAT "To <white>move<green>, use the <white>W,A,S,D keys<green>"
-            - WAIT 2
-            - CHAT "To <white>jump<green>, press <white>space<green>"
-            - WAIT 2
-            - CHAT "To <white>look around<green>, move the <white>mouse<green>"
-            - WAIT 2
-            - CHAT "To <white>talk<green>, press <white>T<green>, type your message and then hit <white>enter<green>"
-            - WAIT 2 
-            - CHAT "To access your <white>inventory<green> press <white>E<green>"
-            - WAIT 2
-            - CHAT "You can <white>scroll<green>, you put different items in your <white>hand<green>
-            - WAIT 2
-            - CHAT "To <white>throw<green> an item in your hand, press <white>Q<green>"
-            - WAIT 2
-            - CHAT "To <white>attack<green> or <white>use an item<green>, press the <white>left mouse button<green>"
-            - WAIT 2
-            - CHAT "To access <white>chests<green>, use the <white>right mouse button<green>"
-            - WAIT 2
-            - CHAT "To <white>see who's online<green>, use the <white>tab<green> key"
-            - WAIT 2
-            - CHAT "To access the <white>menu<green>, hit <white>esc<green>"
-            - WAIT 2
-            - CHAT "From the menu, if you click on <white>options<green> and then <white>controls<green>, you can see and change all of the controls"
-            - WAIT 3
-            - CHAT "For all in game mechanics, you can go to <white>minecraftwiki.net<green>"
-            - WAIT 2
-            - DISENGAGE
-        2:  
           Trigger: Teach me the /Regex:Controls|controls|CONTROLS/ please!
           Script:
             - ENGAGE
             - CHAT "Let's start with the basic controls."
-            - WAIT 3
+            - WAIT 5
             - CHAT "To <white>move<green>, use the <white>W,A,S,D keys<green>"
-            - WAIT 2
+            - WAIT 5
             - CHAT "To <white>jump<green>, press <white>space<green>"
-            - WAIT 2
+            - WAIT 5
             - CHAT "To <white>look around<green>, move the <white>mouse<green>"
-            - WAIT 2
+            - WAIT 5
             - CHAT "To <white>talk<green>, press <white>T<green>, type your message and then hit <white>enter<green>"
-            - WAIT 2 
+            - WAIT 5 
             - CHAT "To access your <white>inventory<green> press <white>E<green>"
-            - WAIT 2
-            - CHAT "You can <white>scroll<green> to put different items in your <white>hand<green>"
-            - WAIT 2
+            - WAIT 5
+            - CHAT "You can <white>scroll<green>, you put different items in your <white>hand<green>"
+            - WAIT 5
             - CHAT "To <white>throw<green> an item in your hand, press <white>Q<green>"
-            - WAIT 2
+            - WAIT 5
             - CHAT "To <white>attack<green> or <white>use an item<green>, press the <white>left mouse button<green>"
-            - WAIT 2
+            - WAIT 5
             - CHAT "To access <white>chests<green>, use the <white>right mouse button<green>"
-            - WAIT 2
+            - WAIT 5
             - CHAT "To <white>see who's online<green>, use the <white>tab<green> key"
-            - WAIT 2
+            - WAIT 5
             - CHAT "To access the <white>menu<green>, hit <white>esc<green>"
-            - WAIT 2
-            - CHAT "To <white>sprint<green>, double tap <white>W<green> and hold it to keep moving forward"
-            - WAIT 2
+            - WAIT 5
             - CHAT "From the <white>menu<green>, if you click on <white>options<green> and then <white>controls<green>, you can see and change all of the controls"
-            - WAIT 3
-            - CHAT "For all in game mechanics, you can go to <white>minecraftwiki.net<green>"
+            - WAIT 5
+            - CHAT "For all in game mechanics, you can go to <aqua>minecraftwiki.net<green>"
+            - WAIT 5
+            - DISENGAGE     
+        2:
+          Trigger: /Regex:Yes|yes|YES/ please!
+          Script:
+            - ENGAGE
             - WAIT 2
+            - CHAT "Let's start with the basic controls."
+            - WAIT 5
+            - CHAT "To <white>move<green>, use the <white>W,A,S,D keys<green>"
+            - WAIT 5
+            - CHAT "To <white>jump<green>, press <white>space<green>"
+            - WAIT 5
+            - CHAT "To <white>look around<green>, move the <white>mouse<green>"
+            - WAIT 5
+            - CHAT "To <white>talk<green>, press <white>T<green>, type your message and then hit <white>enter<green>"
+            - WAIT 5
+            - CHAT "You can also use <white>T<green> and <white>scrolling<green> to see <white>old text<green>"
+            - WAIT 5 
+            - CHAT "To access your <white>inventory<green> press <white>E<green>"
+            - WAIT 5
+            - CHAT "You can <white>scroll<green>, you put different items in your <white>hand<green>
+            - WAIT 5
+            - CHAT "To <white>throw<green> an item in your hand, press <white>Q<green>"
+            - WAIT 5
+            - CHAT "To <white>attack<green> or <white>use an item<green>, press the <white>left mouse button<green>"
+            - WAIT 5
+            - CHAT "To access <white>chests<green>, use the <white>right mouse button<green>"
+            - WAIT 5
+            - CHAT "To <white>see who's online<green>, use the <white>tab<green> key"
+            - WAIT 5
+            - CHAT "To access the <white>menu<green>, hit <white>esc<green>"
+            - WAIT 5
+            - CHAT "From the menu, if you click on <white>options<green> and then <white>controls<green>, you can see and change all of the controls"
+            - WAIT 5
+            - CHAT "For all in game mechanics, you can go to <white>minecraftwiki.net<green>"
+            - WAIT 5
             - DISENGAGE
         3:
+          Trigger: I don't understand /Regex:.+/
+          Script:
+            - ENGAGE
+            - CHAT "Remember, to talk to an npc, type hi or hello."
+            - WAIT 3
+            - CHAT "You can also interact with them using any word they say in <gold>gold<green>."
+            - DISENGAGE 
+
+        4:
           Trigger: /Regex:Hi|hi|HI|hey|Hey|HEY|hello|Hello|HELLO/ again!
           Script:
             - ENGAGE
             - RUNTASK 'StartTutorial'
             - DISENGAGE
-        4:
+        5:
           Trigger: /Please reset my flag to 0 Sir Dancealot/
           Script:
             - ENGAGE
-            - CHAT "<white>Hi! Congratulations on knowing this trigger!"
+            - CHAT "Hi! Congratulations on knowing this trigger!"
             - WAIT 2
             - CHAT "I can now annoy you by talking to you when you are near me"
             - WAIT 2
-            - CHAT "Have a nice day!<green>"
-            - WAIT 10
+            - CHAT "Have a nice day!"
             - FLAG NPC <player.name>:0
             - DISENGAGE
+        6:
+          Trigger: /Regex:no|NO|No/ thanks, I know the controls.
+          Script:
+            - ENGAGE
+            - CHAT "OK! Have a nice day!"
+            - DISENGAGE
+        7:
+          Trigger: /regex:gold|GOLD|Gold/
+          Script:
+            - ENGAGE
+            - CHAT "Very good! you're learning!"
+            - WAIT 2
+            - CHAT "Have a nice day!"
+            - DISENGAGE
+        8:
+            Trigger: The password is /REGEX:swordfish|Swordfish|SWORDFISH/.
+            Script:
+              - ENGAGE
+              - CHAT "Isn't it always?"
+              - WAIT 1
+              - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "Your <dark_purple>ADMIN<green> flag has been toggled <aqua>ON<green>." ELSE CHAT "Your <white>ADMIN<green> flag has been toggled <red>OFF<green>."
+              - IF "<FLAG.P:ADMIN || 0>" == "0" FLAG PLAYER ADMIN:1 ELSE FLAG PLAYER ADMIN:0
+              - execute as_server "denizens save"
+              - DISENGAGE
+        9:
+            Trigger: /Regex:Toggle|toggle|TOGGLE/ the question banks.
+            Script:
+              - ENGAGE
+              - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "I cannot. Only an <dark_purple>Admin<green> can toggle question banks."
+              - IF "<FLAG.G:qbank || 0>" == "0" FLAG GLOBAL qbank:CC456
+              - IF "<FLAG.G:qbank>" == "CC456" && "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL qbank:G8 ELSE FLAG GLOBAL qbank:CC456
+              - IF "<FLAG.P:ADMIN || 0>" == "1" CHAT "Question banks set to <dark_purple><FLAG.G:qbank><green>."
+              - execute as_server "denizens save"
+              - DISENGAGE
 'StartTutorial':
   Type: TASK
   Script:
     - ENGAGE
-    - FLAG NPC <player.name>:1
-    - execute as_server "denizens save"
     - CHAT "Welcome to Learning Landscapes!"
+    - WAIT 2
+    - CHAT "I am Professor Rosseforp, the NPC! You can consider me your guide for the server."
     - WAIT 3
-    - CHAT "I am Sir Dancealot! You can consider me your guide for the server."
-    - WAIT 3
-    - CHAT "Around the server you will see npcs. These non player characters look like players but are controlled by the computer."
+    - CHAT "Around the server you will see non-player characters (NPCs) that look like players but are controlled by the computer."
     - WAIT 4
-    - CHAT "They will <white>teleport<green> you places and teach you everything you need to know"
-    - WAIT 3
-    - CHAT "If you ever need to know something or want to go somewhere, just greet an npc."
-    - WAIT 3
-    - CHAT "To do this just walk near an npc, face them and say something nice like <gold>hi<green> or <gold>hello<green>."
-    - WAIT 3
-    - CHAT "You can click on any <white>url<green> in game as long as it's not too high in the chat"
-    - WAIT 3
+    - CHAT "They will warp you places and teach you everything you need to know if you greet them with <gold>hi<green> or <gold>hello<green>"
+    - WAIT 4
+    - CHAT "Any <white>white<green> text that an npc says is important."
+    - WAIT 4
+    - CHAT "Anything they say in <gold>gold<green> is something you can say back to them!"
+    - WAIT 4
+    - CHAT "You can click on any <aqua>URL<green> in game."
+    - WAIT 4
     - CHAT "Are you familiar with minecraft? Would you like me to teach you about it? <gold>(Yes/No)<green>"
     - WAIT 1
-    - CHAT "If you ever need my help again you can just say hi to me, or chat me <gold>controls<green> to re-learn the controls."
-    - DISENGAGE 
+    - CHAT "If you ever need my help again you can just say <gold>hi<green> to me, or tell me <gold>controls<green> to re-learn the controls."
+    - WAIT 4
+    - NARRATE "You realize you must hit T to type anything or see old text."
+    - FLAG NPC <player.name>:1
+    - execute as_server "denizens save"
+    - DISENGAGE
