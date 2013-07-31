@@ -58,17 +58,19 @@
         4:
             Trigger: I want to /Regex:leave|Leave|LEAVE/ my team!
             Script:
-              - ENGAGE
+              
               - IF "<FLAG.P:PirateRed || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "0" CHAT "You are not on a team!"
               - IF "<FLAG.P:PirateRed || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" CHAT "You have left the <red>Red Raiders<green>."
+              - IF "<FLAG.P:PirateBlue || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" CHAT "You have left the <aqua>Blue Brigands<green>."
+              - ENGAGE
               - IF "<FLAG.P:PirateRed || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" FLAG GLOBAL "NumPiratesRed:+:-1"
               - IF "<FLAG.P:PirateRed || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" FLAG PLAYER PirateRed:0
-              - IF "<FLAG.P:PirateBlue || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" CHAT "You have left the <aqua>Blue Brigands<green>."
               - IF "<FLAG.P:PirateBlue || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" FLAG GLOBAL "NumPiratesBlue:+:-1"
               - IF "<FLAG.P:PirateBlue || 0>" == "1" && "<FLAG.G:PirateInProgress || 0>" == "0" FLAG PLAYER PirateBlue:0
+              - DISENGAGE
               - IF "<FLAG.G:PirateInProgress || 0>" == "1" CHAT "Not in the midst of a battle!"  
               - execute as_server "denizen save"
-              - DISENGAGE
+              
         5:
             Trigger: Can you /Regex:teleport|Teleport|TELEPORT/ me home?
             Script:
@@ -85,6 +87,7 @@
               - IF "<FLAG.G:PirateRedLooper || 0>" == "0" FLAG PirateRedLooper:0
               - IF "<FLAG.G:PirateBlueLooper || 0>" == "0" FLAG PirateBlueLooper:0
               - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "I cannot. Only an <dark_purple>Admin<green> can start the battle." ELSE CHAT "And here...we...go!"
+              - IF "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL PirateLocked:0
               - IF "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL PirateInProgress:1
               - IF "<FLAG.P:ADMIN || 0>" == "1" ANNOUNCE "<dark_purple>Admiral Admiral<white><&co> The <gold>Pirate Battle<white> is about to begin! The following pirates will be brought to the cannonball shop in <red>15 seconds<white><&co>"
               - IF "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL "Players:<player.list.online>"
@@ -110,14 +113,13 @@
               #TEMP - HOME TASK base-630
               - IF "<FLAG.P:ADMIN || 0>" == "1" RUN "script:loop through" "def:PirateHome Task|Players|global" delay:630s    
               - DISENGAGE
-      Proximity Trigger:
-        entry:
-          Script:
-            - IF "<FLAG.G:PirateInProgress || 0>" == "0" FLAG GLOBAL PirateInProgress:0
-            #- IF "<FLAG.G:PirateInProgress>" == "0" EXECUTE as_npc "rg flag redboat build deny"
-            #- IF "<FLAG.G:PirateInProgress>" == "0" EXECUTE as_npc "rg flag blueboat build deny"
-            #- IF "<FLAG.G:PirateInProgress>" == "0" EXECUTE as_npc "rg flag redboat tnt deny"
-            #- IF "<FLAG.G:PirateInProgress>" == "0" EXECUTE as_npc "rg flag blueboat tnt deny"
+        7:
+            Trigger: /Regex:lock|Lock|LOCK/ or unlock the teams!
+            Script:
+               - ENGAGE
+               - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "I cannot. Only an <dark_purple>Admin<green> can lock or unlock the teams." ELSE RUNTASK "LockTask"
+               - DISENGAGE
+        
 'AdmiralTask':
   Type: Task
   Script:
@@ -131,6 +133,14 @@
     - CHAT "...Have me <gold>teleport<green> you home?"
     - CHAT "...Or <gold>start<green> the battle?"
 
+"LockTask":
+  Type: Task
+  Script:
+    - IF "<FLAG.G:PirateLocked || 0>" == "0" FLAG GLOBAL PirateLocked:1 ELSE FLAG GLOBAL PirateLocked:0
+    - IF "<FLAG.G:NumPiratesRed || 0>" == "0" FLAG GLOBAL NumPiratesRed:0
+    - IF "<FLAG.G:NumPiratesBlue || 0>" == "0" FLAG GLOBAL NumPiratesBlue:0
+    - IF "<FLAG.G:PirateLocked || 0>" == "0" CHAT "The teams have been <dark_purple>unlocked<green>." ELSE CHAT "The teams have been <dark_purple>locked<green> <red><FLAG.G:NumPiratesRed.as_int><green> to <aqua><FLAG.G:NumPiratesBlue.as_int><green>."
+    
 "PirateTeam Task":
   Type: Task
   Context: Value

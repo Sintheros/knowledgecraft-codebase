@@ -40,6 +40,9 @@
               - FLAG PLAYER respawn:spawn
               - TELEPORT location:l@<player.flag[respawn]>
       Proximity Trigger:
+        entry:
+          Script:
+            - FLAG PLAYER respawn:JP_start
         exit:
           Script:
             - execute as_npc "killall ocelot"

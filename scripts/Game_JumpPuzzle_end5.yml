@@ -25,30 +25,32 @@
               - WAIT 1
               - IF "<FLAG.G:<player.name>_JP_prize || 0>" == "1" CHAT "One prize per puzzle! The exit's behind me!"
               - IF "<FLAG.G:<player.name>_JP_prize || 0>" == "0" FLAG GLOBAL <player.name>_JP_prize:0
+              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g5_so
+              - IF "<FLAG.G:qbank || 0>" == "G8" FLAG NPC qbank:g8_lv2
+              - IF "<FLAG.G:qbank || 0>" == "MedSci2013" FLAG NPC qbank:MedSci_Summer13m
               - IF "<FLAG.P:JPprize5 || 0>" == "0" && "<FLAG.G:<player.name>_JP_prize || 0>" == "0" CHAT "You're at the wrong Prize-Keeper for the level you completed!"
-              - IF "<FLAG.P:JPprize5 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=g5_so.txt" question
-              - IF "<FLAG.P:JPprize5 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-              - IF "<FLAG.P:JPprize5 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
               - IF "<FLAG.P:JPprize5 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" CHAT "Indeed you have! One final test for you! Behold!"
-              - IF "<FLAG.P:JPprize5 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" WAIT 2
-              - IF "<FLAG.P:JPprize5 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" CHAT "<red><FLAG.N:Q><green>"
+              - IF "<FLAG.P:JPprize5 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" WAIT 1
+              - IF "<FLAG.P:JPprize5 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" RUN "TNT Yes"
               - IF "<FLAG.P:JPprize5 || 0>" == "1" && "<FLAG.G:<player.name>_JP_prize>" == "0" ZAP step:2
               - DISENGAGE
     2:
       Chat Trigger:
         1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/!
+            Script:
+               - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
+        2:
             Trigger: The answer is /REGEX:.+/!
             Script:
                - ENGAGE
+               - ZAP step:1
+               - FLAG NPC <player.name>_correct:0
                - FLAG NPC <player.name>_answer:<player.chat_history>
                - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_JP_prize:1
-               - IF "<FLAG.G:<player.name>_JP_prize>" == "0" CHAT "Nope, can't say that was correct. Come back another time! Exit's right behind me." ELSE CHAT "You got it! The prize is yours! You can exit behind me when you're ready."
-               - WAIT 1
-               - IF "<FLAG.G:<player.name>_JP_prize>" == "0" NARRATE "You can always come again." ELSE NARRATE "The man hands you something."
-               - FLAG GLOBAL PN:<player.name>
-               - IF "<FLAG.G:<player.name>_JP_prize>" == "1" GIVE item:Item_JP_2
-               - FLAG GLOBAL <player.name>_JP_prize:1
-               - ZAP step:1
+               - IF "<FLAG.P:multiple>" > "0" RUNTASK "loop through" "context:AnswerGrabJP5|AList|player"
+               - IF "<FLAG.P:multiple>" == "0" && "<FLAG.N:<player.name>_answer>" == "<FLAG.P:A>" FLAG NPC <player.name>_correct:1
+               - IF "<FLAG.P:multiple>" == "0" RUN "QuestionJP5 End"
                - DISENGAGE
       Proximity Trigger:
         exit:
@@ -56,4 +58,22 @@
             - IF "<FLAG.G:<player.name>_JP_prize>" == "0" CHAT "Giving up? Then the prize is mine!"
             - IF "<FLAG.G:<player.name>_JP_prize>" == "0" FLAG GLOBAL <player.name>_JP_prize:1
             - ZAP step:1
-    
+            
+"AnswerGrabJP5":
+  Type: Task
+  Context: Value
+  Script:
+    - FLAG PLAYER "CheckMultiple:+:1"
+    - IF "<FLAG.N:<player.name>_answer>" == "<context.value>" FLAG NPC <player.name>_correct:1
+    - IF "<FLAG.P:Multiple>" == "<FLAG.P:CheckMultiple>" RUN "QuestionJP5 End"
+
+"QuestionJP5 End":
+  Type: Task
+  Script:
+     - IF "<FLAG.N:<player.name>_correct>" == "0" CHAT "Nope, can't say that was correct. Come back another time! Exit's right behind me." ELSE CHAT "You got it! The prize is yours! You can exit behind me when you're ready."
+     - WAIT 1
+     - IF "<FLAG.N:<player.name>_correct>" == "0" NARRATE "You can always come again." ELSE NARRATE "The man hands you something."
+     - IF "<FLAG.N:<player.name>_correct>" == "1" FLAG GLOBAL PN:<player.name>
+     - IF "<FLAG.N:<player.name>_correct>" == "1" GIVE item:Item_JP_2
+     - IF "<FLAG.N:<player.name>_correct>" == "1" ANNOUNCE "<gold><player.name><white> has cleared <gold>Jump Puzzle Level 2<white>! Congratulations!"
+     - FLAG GLOBAL <player.name>_JP_prize:1

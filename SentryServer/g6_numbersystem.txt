@@ -1,0 +1,67 @@
+0 + (-8)@-8
+-7 + (-3)@-10
+3 + (-4)@-1
+2 + (-5)@-3
+-3 + (-10)@-13
+5 - (-8)@13
+-4 + (-3)@-7
+7 - (-9)@16
+-1 + (-2)@-3
+-3 - (-5)@2
+Which is a multiple of 2? 45,55,61,94,111@94
+Which is a multiple of 8? 60,77,96,100,103@96
+Which is a multiple of 12? 45,60,61,95,104@60
+Which is a multiple of 7? 52,53,84,92,108@84
+Which is a multiple of 6? 47,78,94,106,115@78
+Which is a factor of 132? 5,9,10,11,13@11
+Which is a factor of 160? 3,5,9,11,13@5
+Which is a factor of 98? 3,7,9,10,13@7
+Which is a factor of 98? 3,4,11,13,14@14
+Which is a factor of 104? 6,10,12,13,14@13
+What is the LCM of 12 and 9?@36
+What is the LCM of 48 and 18?@144
+What is the LCM of 12 and 36?@36
+What is the LCM of 48 and 12?@48
+What is the LCM of 40 and 35?@280
+What is the LCM of 15 and 18?@90
+What is the LCM of 50 and 5?@50
+What is the LCM of 24 and 9?@72
+What is the LCM of 54 and 30?@270
+What is the LCM of 40 and 15?@120
+What is the GCD of 40 and 15?@5
+What is the GCD of 35 and 40?@5
+What is the GCD of 18 and 6?@6
+What is the GCD of 36 and 32?@4
+What is the GCD of 30 and 50?@10
+What is the GCD of 14 and 16?@2
+What is the GCD of 21 and 30?@3
+What is the GCD of 36 and 28?@4
+What is the GCD of 6 and 21@3
+What is the GCD of 12 and 32?@4
+Numbers divisible by 20 and 14 are also by... 80,35,106,54,52@35
+Numbers divisible by 13 and 15 are also by... 93,94,21,75,39@39
+Numbers divisible by 23 and 12 are also by... 138,111,47,197,135@138
+Numbers divisible by 23 and 12 are also by... 110,88,122,92,231@92
+Numbers divisible by 19 and 18 are also by... 132,313,147,276,171@171
+Reduce to lowest terms... (9/7) / (4/9)@81/28
+Reduce to lowest terms... (5/2) / (4/9)@45/8
+Reduce to lowest terms... (7/5) / (4/9)@63/20
+Reduce to lowest terms... (8/7) / (6/5)@20/21
+Reduce to lowest terms... (5/7) / (1/4)@20/7
+Reduce to lowest terms... (5/6) / (1/2)@5/3
+Reduce to lowest terms... (5/2) / (6/7)@35/12
+Reduce to lowest terms... (7/8) / (9/5)@35/72
+Reduce to lowest terms... (5/8) / (3/8)@5/3
+Reduce to lowest terms... (7/3) / (2/5)@35/6
+Which is the greatest? (4/7),87.4%,0.96,0.81,63%@0.96@.96
+Which is the smallest? 0.163,80.4%,0.62,72%,(45/52)@0.163@.163
+What is |-9.4|?@9.4
+What is |5.6|?@5.6
+What is |-12.8|?@12.8
+What is |6.89|?@6.89
+What is |-4.13|?@4.13
+|2| is greater than -9 (True/False)@true@yes@t
+-10 is greater than |1| (True/False)@false@no@f
+|-10| is greater than 6 (True/False)@true@yes@t
+|8| is greater than -1 (True/False)@true@yes@t
+|3| is greater than |-7| (True/False)@false@no@f

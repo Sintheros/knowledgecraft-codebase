@@ -175,7 +175,6 @@ int main()
 							if(fileNames[i] == preReqs[numPreReqs-1])
 							{
 								associatedDispNames[numPreReqs-1] = displayNamesSmall[i];
-								//associatedDispNames[numPreReqs-1] = displayNames[i];
 								associatedUrls[numPreReqs-1] = urls[i];
 							}
 						numPreReqs++;
@@ -188,7 +187,6 @@ int main()
 							if(fileNames[i] == preReqs[numPreReqs-1])
 							{
 								associatedDispNames[numPreReqs-1] = displayNamesSmall[i];
-								//associatedDispNames[numPreReqs-1] = displayNames[i];
 								associatedUrls[numPreReqs-1] = urls[i];
 							}
 						allPreReqs = true;

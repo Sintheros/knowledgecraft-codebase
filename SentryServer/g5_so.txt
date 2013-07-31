@@ -1,0 +1,37 @@
+882 x 41@36162
+723 x 69@49887
+230 x 97@22310
+721 x 41@29561
+206 x 89@18334
+644 x 82@52808
+242 x 85@20570
+399 x 92@36708
+644 x 70@45080
+570 x 82@46740
+27600 divided by 92@300
+10682 divided by 49@218
+3933 divided by 23@171
+23520 divided by 98@240
+17954 divided by 94@191
+9504 divided by 66@144
+11109 divided by 69@161
+9752 divided by 53@184
+9922 divided by 82@121
+15561 divided by 91@171
+Simplify 7+(5-9x6)x1@-42
+Simplify 2+(90/10)@11
+Simplify 1/(10-9)@1
+Simplify 7+(4x1)@11
+Simplify 5x9+10x(8/1)@125
+Simplify 8+5x9@53
+Simplify 8x(6+3)@72
+Simplify (3+(7-4x3))x3@-6
+Simplify 7x(1+3)@28
+Simplify 9x7+8x(90/10)@135
+(5,-5) is in which quadrant?@4@IV@Q4@QIV@four
+(-10,-7) is in which quadrant?@3@III@Q3@QIII@three
+(-8,9) is in which quadrant?@2@II@Q2@QII@two
+(-1,6) is in which quadrant?@2@II@Q2@QII@two
+(10,12) is in which quadrant?@1@I@Q1@QI@one
+(5,0) is on the X-Axis. (True/False)@true@yes@t
+(0,-6) is on the X-Axis. (True/False)@false@no@f

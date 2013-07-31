@@ -1,0 +1,5 @@
+You raised $640 last year in a fund raiser, and earned 15% more this year than last year. How much money did you raise this year?@736
+If you have a book that costs $12.50+8% sales tax, what is the total cost of the book?@13.50
+Solve for y: 3(y+6)=5y+4@7
+If point B on a graph is located on the coordinates (x:7, y:2), what coordinates would the reflection of point B be?@(x:-7, y:2)
+What is the formula for the Pythagorean Theorem?@a^2+b^2=c^2

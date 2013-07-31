@@ -1,0 +1,9 @@
+Simplify the following expression 12ab+8ab+5ab@25ab
+Solve 9(x-5)=4x-5@8
+Simplify (x^2y^3)(x^4y^2)@x^6y^5
+True or false, 7x+12 is a trinomial@false
+True or false, 5x^3+3x^2-11 us a trinomial@true
+What is the name of the following expression: 2x^y-5x+3@polynomial
+What is the greatest common factor (GCF) of 12x and (3x^2+6x)?@3x
+What inequality represents the statement 'One more than 2 times n is greater than 21.'@2n+1>21
+If you receive a bill at a restraunt of $80, and pay a 15% tip, what was the cost of the tip?@12

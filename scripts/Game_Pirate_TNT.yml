@@ -20,8 +20,10 @@
         1:
             Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need TNT!
             Script:
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g4_so ELSE FLAG NPC qbank:g8_lv1
-              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT Yes"
+              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g4_so
+              - IF "<FLAG.G:qbank || 0>" == "G8" FLAG NPC qbank:g8_lv1
+              - IF "<FLAG.G:qbank || 0>" == "MedSci2013" FLAG NPC qbank:MedSci_Summer13m
+              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT Yes" 
               - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "1" RUN "TNT Yes"
               - IF "<FLAG.P:PirateRed || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "0" RUN "TNT No"
               - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT No"
@@ -38,10 +40,11 @@
             Trigger: The answer is /REGEX:.+/!
             Script:
                - ZAP 1
+               - FLAG NPC <player.name>_correct:0
                - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" CHAT "Correct! Have some TNT!" ELSE CHAT "Not quite. You'll have to try a new question! <gold>(Hi/Hello)<green>"
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" GIVE item:tnt qty:10
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG PLAYER "PirateTNT:+:10"
+               - IF "<FLAG.P:multiple>" > "0" RUNTASK "loop through" "context:AnswerGrabPirate|AList|player"
+               - IF "<FLAG.P:multiple>" == "0" && "<FLAG.N:<player.name>_answer>" == "<FLAG.P:A>" FLAG NPC <player.name>_correct:1
+               - IF "<FLAG.P:multiple>" == "0" RUN "TNT End"
       Proximity Trigger:
         exit:
           Script:
@@ -68,8 +71,10 @@
         1:
             Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need TNT!
             Script:
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g5_so ELSE FLAG NPC qbank:g8_lv2
-              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT Yes"
+              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g5_so
+              - IF "<FLAG.G:qbank || 0>" == "G8" FLAG NPC qbank:g8_lv2
+              - IF "<FLAG.G:qbank || 0>" == "MedSci2013" FLAG NPC qbank:MedSci_Summer13w
+              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT Yes" 
               - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "1" RUN "TNT Yes"
               - IF "<FLAG.P:PirateRed || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "0" RUN "TNT No"
               - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT No"
@@ -86,10 +91,11 @@
             Trigger: The answer is /REGEX:.+/!
             Script:
                - ZAP 1
+               - FLAG NPC <player.name>_correct:0
                - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" CHAT "Correct! Have some TNT!" ELSE CHAT "Not quite. You'll have to try a new question! <gold>(Hi/Hello)<green>"
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" GIVE item:tnt qty:10
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG PLAYER "PirateTNT:+:10"
+               - IF "<FLAG.P:multiple>" > "0" RUNTASK "loop through" "context:AnswerGrabPirate|AList|player"
+               - IF "<FLAG.P:multiple>" == "0" && "<FLAG.N:<player.name>_answer>" == "<FLAG.P:A>" FLAG NPC <player.name>_correct:1
+               - IF "<FLAG.P:multiple>" == "0" RUN "TNT End"
       Proximity Trigger:
         exit:
           Script:
@@ -116,8 +122,10 @@
         1:
             Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need TNT!
             Script:
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g6_numbersystem ELSE FLAG NPC qbank:g8_lv3
-              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT Yes"
+              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g6_numbersystem
+              - IF "<FLAG.G:qbank || 0>" == "G8" FLAG NPC qbank:g8_lv3
+              - IF "<FLAG.G:qbank || 0>" == "MedSci2013" FLAG NPC qbank:MedSci_Summer13w
+              - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT Yes" 
               - IF "<Flag.G:PirateInProgress || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "1" RUN "TNT Yes"
               - IF "<FLAG.P:PirateRed || 0>" == "0" && "<FLAG.P:PirateBlue || 0>" == "0" RUN "TNT No"
               - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateRed || 0>" == "1" RUN "TNT No"
@@ -134,23 +142,12 @@
             Trigger: The answer is /REGEX:.+/!
             Script:
                - ZAP 1
+               - FLAG NPC <player.name>_correct:0
                - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" CHAT "Correct! Have some TNT!" ELSE CHAT "Not quite. You'll have to try a new question! <gold>(Hi/Hello)<green>"
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" GIVE item:tnt qty:10
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG PLAYER "PirateTNT:+:10"
+               - IF "<FLAG.P:multiple>" > "0" RUNTASK "loop through" "context:AnswerGrabPirate|AList|player"
+               - IF "<FLAG.P:multiple>" == "0" && "<FLAG.N:<player.name>_answer>" == "<FLAG.P:A>" FLAG NPC <player.name>_correct:1
+               - IF "<FLAG.P:multiple>" == "0" RUN "TNT End"
       Proximity Trigger:
         exit:
           Script:
             - ZAP 1
-"TNT Yes":
-  Type: Task
-  Script:
-    - URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
-    - FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-    - FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
-    - WAIT 1
-    - CHAT "Then answer this!<&co> <red><FLAG.N:Q><green>"
-"TNT No":
-  Type: Task
-  Script:
-    - IF "<Flag.G:PirateInProgress || 0>" == "0" CHAT "The battle has not begun! I'm not handing out any explosives yet!" ELSE CHAT "You aren't a pirate! No explosives for you!"

@@ -53,7 +53,7 @@
               - ENGAGE
               - CHAT "Isn't it always?"
               - WAIT 1
-              - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "Your <dark_purple>ADMIN<green> flag has been toggled <aqua>ON<green>." ELSE CHAT "Your <white>ADMIN<green> flag has been toggled <red>OFF<green>."
+              - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "Your <dark_purple>ADMIN<green> flag has been toggled <aqua>ON<green>." ELSE CHAT "Your <dark_purple>ADMIN<green> flag has been toggled <red>OFF<green>."
               - IF "<FLAG.P:ADMIN || 0>" == "0" FLAG PLAYER ADMIN:1 ELSE FLAG PLAYER ADMIN:0
               - DISENGAGE
         5:
@@ -62,7 +62,12 @@
               - ENGAGE
               - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "I cannot. Only an <dark_purple>Admin<green> can toggle question banks."
               - IF "<FLAG.G:qbank || 0>" == "0" FLAG GLOBAL qbank:CC456
-              - IF "<FLAG.G:qbank>" == "CC456" && "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL qbank:G8 ELSE FLAG GLOBAL qbank:CC456
+              - IF "<FLAG.G:qbanki || 0>" == "0" FLAG GLOBAL qbanki:0
+              - IF "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL "qbanki:+:1"
+              - IF "<FLAG.P:ADMIN || 0>" == "1" && "<FLAG.G:qbanki>" > "2" FLAG GLOBAL qbanki:0
+              - IF "<FLAG.G:qbanki>" == "0" && "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL qbank:CC456
+              - IF "<FLAG.G:qbanki>" == "1" && "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL qbank:G8
+              - IF "<FLAG.G:qbanki>" == "2" && "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL qbank:MedSci2013
               - IF "<FLAG.P:ADMIN || 0>" == "1" CHAT "Question banks set to <dark_purple><FLAG.G:qbank><green>."
               - DISENGAGE
               

@@ -20,7 +20,6 @@
         1:
             Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, you look upset.
             Script: 
-              - ENGAGE
               - CHAT "I'm so glad you're here!"
               - WAIT 1 
               - CHAT "A creeper blew up my rollercoaster!"
@@ -34,16 +33,14 @@
               - CHAT "Careful though, you can only open the chests once before everything disappears."
               - WAIT 1
               - CHAT "Good luck, and happy building."
-              - DISENGAGE
       Proximity Trigger:
         entry:
             Script:
-              - IF "<FLAG.N:<player.name> || 0>" == "0" RUNTASK "Greet" ELSE DISENGAGE  
+              - IF "<FLAG.N:<player.name> || 0>" == "0" RUNTASK "Greet" 
 
 'Greet':
   Type: Task
   Script:
-    - ENGAGE
     - CHAT "I'm so glad you're here!"
     - WAIT 1 
     - CHAT "A creeper blew up my rollercoaster!"
@@ -58,5 +55,4 @@
     - WAIT 1
     - CHAT "Good luck, and happy building."
     - FLAG NPC <player.name>:1
-    - DISENGAGE
     

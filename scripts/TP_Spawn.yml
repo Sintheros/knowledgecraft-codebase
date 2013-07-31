@@ -3,6 +3,7 @@
   Type: Assignment
   Actions:
     On Assignment:
+      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
       - execute as_server "npc select <npc.id>"
       - execute as_server "npc lookclose"
   Interact Scripts:
@@ -21,3 +22,8 @@
               - WAIT 2
               - FLAG PLAYER respawn:spawn
               - TELEPORT location:l@<player.flag[respawn]>
+      Proximity Trigger:
+        entry:
+          Script:
+            - FLAG PLAYER respawn:spawn
+            - TELEPORT location:l@<player.flag[respawn]>

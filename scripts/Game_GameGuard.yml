@@ -1,0 +1,28 @@
+#Game Guard
+"AssignmentGame_GameGuard":
+  Type: Assignment
+  Actions:
+    On Assignment:
+      - execute as_server "npc select <npc.id>"
+      - execute as_server "npc lookclose"
+  Interact Scripts:
+  - 1 Greeting_GameGuard
+'Greeting_GameGuard':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+      Chat Trigger:
+        1:
+            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I made it!
+            Script:
+              - WAIT 1
+              - CHAT "Yes you did! You're welcome to enter the <white>game room<green> now! It's in the <white>basement of the castle<green>!"
+              - WAIT 2
+              - FEED
+              - SATURATE
+              - FLAG PLAYER GameGuard:1
+              - FLAG PLAYER respawn:spawn
+              - TELEPORT location:l@<player.flag[respawn]>
+              - execute as_server "denizen save"

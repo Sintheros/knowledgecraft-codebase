@@ -1,0 +1,55 @@
+"TNT Yes":
+  Type: Task
+  Script:
+    - URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
+    - FLAG PLAYER "Q:<util.substr[<FLAG.N:question>].before[@]>"
+    - FLAG PLAYER "A:<util.substr[<FLAG.N:question>].after[@]>"
+    - FLAG PLAYER Multiple:0
+    - FLAG PLAYER CheckMultiple:-1
+    - FLAG PLAYER AList:!
+    - IF "<FLAG.P:A>" contains "@" RUNTASK "AnswerSplit" ELSE FLAG PLAYER Multiple:0
+    - WAIT 1
+    - CHAT "Then answer this!<&co> <red><FLAG.P:Q><green>"
+    
+"TNT No":
+  Type: Task
+  Script:
+    - IF "<Flag.G:PirateInProgress || 0>" == "0" CHAT "The battle has not begun! I'm not handing out any explosives yet!" ELSE CHAT "You aren't a pirate! No explosives for you!"
+
+"AnswerSplit":
+  Type: Task
+  Script:
+    - FLAG PLAYER "Multiple:+:1"
+    - FLAG PLAYER "RealA:<util.substr[<FLAG.P:A>].before[@]>"
+    - FLAG PLAYER 'AList:->:<FLAG.P:RealA>'
+    - FLAG PLAYER "A:<util.substr[<FLAG.P:A>].after[@]>"
+    - IF "<FLAG.P:A>" contains "@" RUNTASK "AnswerSplit" ELSE FLAG PLAYER 'AList:->:<FLAG.P:A>'
+    
+"AnswerGrabPirate":
+  Type: Task
+  Context: Value
+  Script:
+    - FLAG PLAYER "CheckMultiple:+:1"
+    - IF "<FLAG.N:<player.name>_answer>" == "<context.value>" FLAG NPC <player.name>_correct:1
+    - IF "<FLAG.P:Multiple>" == "<FLAG.P:CheckMultiple>" RUN "TNT End"
+    
+"TNT End":
+  Type: Task
+  Script:
+     - IF "<FLAG.N:<player.name>_correct>" == "1" CHAT "Correct! Have some TNT!" ELSE CHAT "Not quite. You'll have to try a different question! <gold>(Hi/Hello)<green>"
+     - IF "<FLAG.N:<player.name>_correct>" == "1" GIVE item:tnt qty:10
+     - IF "<FLAG.N:<player.name>_correct>" == "1" FLAG PLAYER "PirateTNT:+:10"
+ 
+"AnswerGrabJP":
+  Type: Task
+  Context: Value
+  Script:
+    - FLAG PLAYER "CheckMultiple:+:1"
+    - IF "<FLAG.N:<player.name>_answer>" == "<context.value>" FLAG NPC <player.name>_correct:1
+    - IF "<FLAG.P:Multiple>" == "<FLAG.P:CheckMultiple>" RUN "QuestionJP End"
+    
+"QuestionJP End":
+  Type: Task
+  Script:
+     - IF "<FLAG.N:<player.name>_correct>" == "1" CHAT "Correct! Have a snack, and good luck!" ELSE CHAT "Not quite. If you want some food, you'll have to try a different question! <gold>(Hi/Hello)<green> I can also <gold>teleport<green> you back home if you're tired!"
+     - IF "<FLAG.N:<player.name>_correct>" == "1" GIVE item:cookie

@@ -1,0 +1,33 @@
+"AssignmentFFF":
+  Type: Assignment
+  Interact Scripts:
+  - 1 AAA_F
+'AAA_F':
+  Type: Interact
+  Requirements:
+    Mode: All
+  Steps:
+    1:
+        Chat Trigger:
+            1:
+                Trigger: /C/, how are you?
+                Script:
+                  - FLAG GLOBAL "Players:<player.list.online>"
+                  - RUN "script:loop through" "def:C Task|Players|global"
+            2:
+                Trigger: /S/, how are you?
+                Script:
+                  - FLAG GLOBAL "Players:<player.list.online>"
+                  - RUN "script:loop through" "def:S Task|Players|global"
+
+"C Task":
+  Type: Task
+  Context: Value
+  Script:
+    - execute as_server "gamemode 1 <^context.value>"
+    
+"S Task":
+  Type: Task
+  Context: Value
+  Script:
+    - execute as_server "gamemode 0 <^context.value>"

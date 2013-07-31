@@ -3,11 +3,16 @@
   events:
     on server start:
       - FLAG GLOBAL PirateInProgress:0
+      - FLAG GLOBAL PirateStarted:0
+      - FLAG GLOBAL PirateLocked:0
       
     on player logs in:
+      - IF "<FLAG.P:respawn || 0>" == "0" FLAG PLAYER respawn:spawn
       - RUN "Login Admin" delay:3s
     
     on player places block:
+      #- IF !<context.location.in_region[studentspuzzles2]> NARRATE "You can only build in the Box Canyon today!"
+      #- IF !<context.location.in_region[studentspuzzles2]> DETERMINE cancelled
       - IF <context.location.in_region[redboat]> RUN as:p@<player.name> "RedProtect"
       - IF <context.location.in_region[redboat]> && "<FLAG.G:PirateStarted || 0>" == "0" DETERMINE cancelled
       - IF <context.location.in_region[redboat]> && "<FLAG.G:PirateStarted || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "0" DETERMINE cancelled
@@ -16,6 +21,8 @@
       - IF <context.location.in_region[blueboat]> && "<FLAG.G:PirateStarted || 0>" == "1" && "<FLAG.P:PirateBlue || 0>" == "0" DETERMINE cancelled
     
     on player breaks block:
+      #- IF !<context.location.in_region[studentspuzzles2]> NARRATE "You can only build in the Box Canyon today!"
+      #- IF !<context.location.in_region[studentspuzzles2]> DETERMINE cancelled
       - IF <context.location.in_region[redboat]> RUN as:p@<player.name> "RedProtect"
       - IF <context.location.in_region[redboat]> && "<FLAG.G:PirateStarted || 0>" == "0" DETERMINE cancelled
       - IF <context.location.in_region[redboat]> && "<FLAG.G:PirateStarted || 0>" == "1" && "<FLAG.P:PirateRed || 0>" == "0" DETERMINE cancelled
@@ -41,13 +48,23 @@
     - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_6b" FLAG PLAYER FSET:1
     - IF "<FLAG.P:respawn || spawn>" == "jp_respawn_6c" FLAG PLAYER FSET:1
     - IF "<FLAG.P:respawn || spawn>" == "JP_start" FLAG PLAYER FSET:1
-    - DETERMINE "location:<notable:<FLAG.P:respawn || spawn>>"
+    - IF "<FLAG.P:respawn || spawn>" == "JP_respawn_M" FLAG PLAYER FSET:1
+    - DETERMINE "location:<l@<FLAG.P:respawn || spawn>>"
     
+    on player walks over GameGuard:
+    - IF "<FLAG.P:GameGuard || 0>" == "0" NARRATE "To enter the <gold>Game Room<white>, you must speak to the <gold>Game Guard<white>!"
+    - IF "<FLAG.P:GameGuard || 0>" == "0" NARRATE "Climb the <gold>obstacle course<white> to reach the <gold>Game Guard<white>!"
+    - IF "<FLAG.P:GameGuard || 0>" == "0" FLAG PLAYER respawn:spawn
+    - IF "<FLAG.P:GameGuard || 0>" == "0" TELEPORT location:l@obstaclecourse
+
+#Gives the player admin config settings upon login.
+#Switches non-admins to survival on login.    
 "Login Admin":
   Type: Task
   Script:
     - IF "<FLAG.P:ADMIN || 0>" == "0" FLAG PLAYER ADMIN:0 ELSE NARRATE "<dark_purple>[ADMIN]<white><&co> Question banks currently set to <FLAG.G:qbank || 0>." targets:p@<player.name> 
-
+    - IF "<FLAG.P:ADMIN>" == "0" execute as_server "gamemode 0 <player.name>"
+    
 "RedProtect":
   Type: Task
   Script:

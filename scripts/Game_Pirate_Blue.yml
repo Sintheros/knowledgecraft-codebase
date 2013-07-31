@@ -19,19 +19,18 @@
         1:
             Trigger: /Regex:hi|HI|Hi|hey|Hey|HEY|Hello|hello|HELLO/ there! Who are you?
             Script:
-              - ENGAGE
+              - IF "<FLAG.P:PirateBlue>" == "0" ZAP 2
               - IF "<FLAG.P:PirateBlue>" == "0" CHAT "Yarrrrr? I be Captain Cyan of the <aqua>Blue Brigands<green>, the most fearsome pirates on the pixilated sea!" ELSE CHAT "Yarrr? I be your captain, matey!"
               - WAIT 3
               - IF "<FLAG.P:PirateBlue>" == "0" CHAT "Me nemesis, Captain Redmond of the <red>Red Raiders<green> and I were in the middle of of a battle when we ran out of cannonballs! And crew!" ELSE CHAT "We still be preparin' for the battle, I hope 'yer ready for treasure and glory!"
               - WAIT 3
               - IF "<FLAG.P:PirateBlue>" == "0" CHAT "Ye be joining us, right? Thar be <white>treasure<green> in it for you if ye help me sink Redmond's ship! <gold>(Yes/No)" ELSE CHAT "If ye want to back out, speak with <white>Admiral Admiral<green>, but 'yer gonna be a huge help!"
-              - IF "<FLAG.P:PirateBlue>" == "0" ZAP 2
-              - DISENGAGE
         2:
             Trigger: /Regex:Yes|YES|yes/, I'll fight with you!
             Script:
-              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateBlue>" == "0" RUN "JoinBlue" 
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateBlue>" == "0" && "<FLAG.G:PirateLocked || 0>" == "0" RUN "JoinBlue" 
               - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.P:PirateBlue>" == "1" CHAT "Yer already on me team!"
+              - IF "<FLAG.G:PirateLocked || 0>" == "1" CHAT "Yarr! The teams be locked! Talk with an <dark_purple>admin<green>!" 
               - IF "<FLAG.G:PirateInProgress || 0>" == "1" CHAT "The battle has already started! No joinin' or changin' now!"
       Proximity Trigger:
         entry:
@@ -43,7 +42,8 @@
         1:
             Trigger: /Regex:Yes|YES|yes/, I'll fight with you!
             Script:
-              - IF "<FLAG.G:PirateInProgress || 0>" == "0" RUN "JoinBlue" ELSE CHAT "The battle has already started! No joinin' or changin' now!"
+              - IF "<FLAG.G:PirateLocked || 0>" == "1" CHAT "Yarr! The teams be locked! Talk with an <dark_purple>admin<green>!" 
+              - IF "<FLAG.G:PirateInProgress || 0>" == "0" && "<FLAG.G:PirateLocked || 0>" == "0" RUN "JoinBlue" ELSE CHAT "Yarr! Not at the moment!"
               - ZAP 1
         2:
             Trigger: /Regex:No|NO|no/, I won't join you!"
@@ -64,9 +64,9 @@
     - FLAG PLAYER PirateBlue:1
     - IF "<FLAG.P:PirateRed || 0>" == "1" FLAG GLOBAL "NumPiratesRed:+:-1"
     - FLAG PLAYER PirateRed:0
+    - DISENGAGE
+    - execute as_server "denizen save"
     - WAIT 1
     - CHAT "We're short on cannonballs, matey. There's a shop over in that village." 
     - WAIT 1
     - CHAT "They won't open until <white>Admiral Admiral<green> says, though, so stick around!"
-    - DISENGAGE
-    - execute as_server "denizen save"

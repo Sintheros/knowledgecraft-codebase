@@ -1,0 +1,10 @@
+What is the answer to question 1?@A@cyanobacteria
+What is the answer to question 2?@C@bacili
+What is the answer to question 3?@E@genetic mutation@geneticmutation
+What is the answer to question 4?@B@frontal
+What is the answer to question 5?@C@cerebellum
+What is the answer to question 6?@colony
+What is the answer to question 7@emg
+What is the answer to question 8?@motor unit@motorunit
+What is the answer to question 9?@reflex
+What is the answer to question 10?@nosocomial

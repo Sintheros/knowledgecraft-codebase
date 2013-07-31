@@ -4,7 +4,9 @@
     On Assignment:
       - TRIGGER NAME:Proximity TOGGLE:True Radius:5
       - execute as_server "npc select <npc.id>
-      - execute as_server "npc lookclose"  
+      - execute as_server "npc lookclose"
+    On Unavailable:
+      - CHAT "<white>Please let me finish speaking first!<green>"
   Interact Scripts: 
    - 1 MinecraftTutorial
 'MinecraftTutorial':
@@ -16,12 +18,12 @@
       Proximity Trigger:
         entry:
           Script:
-            - IF "<FLAG.N:<player.name> || 0>" == "0" RUNTASK 'StartTutorial' ELSE CHAT "Welcome back <player.name>!"
+            - FLAG PLAYER respawn:spawn
+            - IF "<FLAG.P:proftalk || 0>" == "0" RUNTASK 'StartTutorial' ELSE CHAT "Welcome back <player.name>!"
       Chat Trigger:
         1:
           Trigger: Teach me the /Regex:Controls|controls|CONTROLS/ please!
           Script:
-            - ENGAGE
             - CHAT "Let's start with the basic controls."
             - WAIT 5
             - CHAT "To <white>move<green>, use the <white>W,A,S,D keys<green>"
@@ -49,12 +51,10 @@
             - CHAT "From the <white>menu<green>, if you click on <white>options<green> and then <white>controls<green>, you can see and change all of the controls"
             - WAIT 5
             - CHAT "For all in game mechanics, you can go to <aqua>minecraftwiki.net<green>"
-            - WAIT 5
-            - DISENGAGE     
+            - WAIT 5   
         2:
           Trigger: /Regex:Yes|yes|YES/ please!
           Script:
-            - ENGAGE
             - WAIT 2
             - CHAT "Let's start with the basic controls."
             - WAIT 5
@@ -86,54 +86,45 @@
             - WAIT 5
             - CHAT "For all in game mechanics, you can go to <white>minecraftwiki.net<green>"
             - WAIT 5
-            - DISENGAGE
         3:
-          Trigger: I don't understand /Regex:.+/
+          Trigger: /Regex:.+/!
           Script:
-            - ENGAGE
+            - CHAT "That's not a phrase I know."
+            - WAIT 2
             - CHAT "Remember, to talk to an npc, type hi or hello."
-            - WAIT 3
+            - WAIT 2
             - CHAT "You can also interact with them using any word they say in <gold>gold<green>."
-            - DISENGAGE 
 
         4:
           Trigger: /Regex:Hi|hi|HI|hey|Hey|HEY|hello|Hello|HELLO/ again!
           Script:
-            - ENGAGE
             - RUNTASK 'StartTutorial'
-            - DISENGAGE
         5:
           Trigger: /Please reset my flag to 0 Sir Dancealot/
           Script:
-            - ENGAGE
             - CHAT "Hi! Congratulations on knowing this trigger!"
             - WAIT 2
             - CHAT "I can now annoy you by talking to you when you are near me"
             - WAIT 2
             - CHAT "Have a nice day!"
             - FLAG NPC <player.name>:0
-            - DISENGAGE
         6:
           Trigger: /Regex:no|NO|No/ thanks, I know the controls.
           Script:
-            - ENGAGE
             - CHAT "OK! Have a nice day!"
-            - DISENGAGE
         7:
           Trigger: /regex:gold|GOLD|Gold/
           Script:
-            - ENGAGE
             - CHAT "Very good! you're learning!"
             - WAIT 2
             - CHAT "Have a nice day!"
-            - DISENGAGE
         8:
             Trigger: The password is /REGEX:swordfish|Swordfish|SWORDFISH/.
             Script:
               - ENGAGE
               - CHAT "Isn't it always?"
               - WAIT 1
-              - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "Your <dark_purple>ADMIN<green> flag has been toggled <aqua>ON<green>." ELSE CHAT "Your <white>ADMIN<green> flag has been toggled <red>OFF<green>."
+              - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "Your <dark_purple>ADMIN<green> flag has been toggled <aqua>ON<green>." ELSE CHAT "Your <dark_purple>ADMIN<green> flag has been toggled <red>OFF<green>."
               - IF "<FLAG.P:ADMIN || 0>" == "0" FLAG PLAYER ADMIN:1 ELSE FLAG PLAYER ADMIN:0
               - execute as_server "denizens save"
               - DISENGAGE
@@ -143,21 +134,25 @@
               - ENGAGE
               - IF "<FLAG.P:ADMIN || 0>" == "0" CHAT "I cannot. Only an <dark_purple>Admin<green> can toggle question banks."
               - IF "<FLAG.G:qbank || 0>" == "0" FLAG GLOBAL qbank:CC456
-              - IF "<FLAG.G:qbank>" == "CC456" && "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL qbank:G8 ELSE FLAG GLOBAL qbank:CC456
+              - IF "<FLAG.G:qbanki || 0>" == "0" FLAG GLOBAL qbanki:0
+              - IF "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL "qbanki:+:1"
+              - IF "<FLAG.P:ADMIN || 0>" == "1" && "<FLAG.G:qbanki>" > "2" FLAG GLOBAL qbanki:0
+              - IF "<FLAG.G:qbanki>" == "0" && "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL qbank:CC456
+              - IF "<FLAG.G:qbanki>" == "1" && "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL qbank:G8
+              - IF "<FLAG.G:qbanki>" == "2" && "<FLAG.P:ADMIN || 0>" == "1" FLAG GLOBAL qbank:MedSci2013
               - IF "<FLAG.P:ADMIN || 0>" == "1" CHAT "Question banks set to <dark_purple><FLAG.G:qbank><green>."
-              - execute as_server "denizens save"
               - DISENGAGE
 'StartTutorial':
   Type: TASK
   Script:
-    - ENGAGE
+    - FLAG PLAYER proftalk:1
     - CHAT "Welcome to Learning Landscapes!"
     - WAIT 2
     - CHAT "I am Professor Rosseforp, the NPC! You can consider me your guide for the server."
     - WAIT 3
-    - CHAT "Around the server you will see non-player characters (NPCs) that look like players but are controlled by the computer."
+    - CHAT "Around the server you will see non-player characters (<white>NPCs<green>) that look like players but are controlled by the computer."
     - WAIT 4
-    - CHAT "They will warp you places and teach you everything you need to know if you greet them with <gold>hi<green> or <gold>hello<green>"
+    - CHAT "They will warp you places and teach you everything you need to know if you greet them with a friendly <gold>hi<green> or <gold>hello<green>!"
     - WAIT 4
     - CHAT "Any <white>white<green> text that an npc says is important."
     - WAIT 4
@@ -170,6 +165,4 @@
     - CHAT "If you ever need my help again you can just say <gold>hi<green> to me, or tell me <gold>controls<green> to re-learn the controls."
     - WAIT 4
     - NARRATE "You realize you must hit T to type anything or see old text."
-    - FLAG NPC <player.name>:1
-    - execute as_server "denizens save"
-    - DISENGAGE
+    - execute as_server "denizen save"

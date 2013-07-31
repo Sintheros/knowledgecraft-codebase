@@ -1,0 +1,39 @@
+Perimeter of a triangle with sides 6, 4, and 8@18
+Perimeter of a regular hexagon with side length 4@24
+Perimeter of a rectangle with sides 8 and 9@34
+Perimeter of a square with side length 7@28
+Perimeter of a regular octagon with side length 2@16
+Perimeter of a triangle with sides 5, 5, and 9@19
+Perimeter of a square with side length 9@36
+Perimeter of a triangle with sides 8, 5, and 8@23
+Perimeter of a  rectangle with sides 2 and 4@12
+Perimeter of a  rectangle with sides 3 and 4@14
+Area of a square with side length 6@36
+Area of a rectangle with sides 5 and 2@10
+Area of a rectangle with sides 6 and 3@18
+Area of a square with side length 9@81
+Area of a square with side length 3@9
+Area of a rectangle with sides 10 and 4@40
+Area of a rectangle with sides 4 and 7@28
+Area of a square with side length 6@36
+Area of a rectangle with sides 9 and 3@27
+Area of a square with side length 10@100
+The perimeter of a square is 28. Side length?@7
+The perimeter of a square is 16. Side length?@4
+The perimeter of a square is 24. Side length?@6
+A line has 0, 1, or 2 endpoints?@0
+A line segment has 0, 1, or 2 endpoints?@2
+A ray has 0, 1, or 2 endpoints?@1
+Is a 72 degree angle acute, right, or obtuse?@acute
+Is a 90 degree angle acute, right, or obtuse?@right
+Is an 136 degree angle acute, right, or obtuse?@obtuse
+Which type of angle is less than 90 degrees?@acute
+Which type of angle is greater than 90 degrees?@obtuse
+Which type of angle is exactly 90 degrees?@right
+The symbol by which right angles are represented is a@square
+Two line segments with the same length are@congruent
+A line segment from -4 to 1 has a length of@5
+A line segment from -3 to -1 has a length of@2
+A line segment from 2 to 6 has a length of@4
+An axis of symmetry can be drawn anywhere on a shape. (True/False)@false
+An angle becomes a line at how many degrees?@180

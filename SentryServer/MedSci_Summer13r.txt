@@ -1,0 +1,10 @@
+1. What is the answer to third quiz question 1?@C
+2. What is the answer to third quiz question 2?@E
+3. What is the answer to third quiz question 3?@B
+4. What is the answer to third quiz question 4?@A
+5. What is the answer to third quiz question 5?@C
+6. What is the answer to third quiz question 6?@diastole
+7. What is the answer to third quiz question 7?@coronary
+8. What is the answer to third quiz question 8?@aneurysm
+9. What is the answer to third quiz question 9?@electrocardiogram
+10. What is the answer to third quiz question 10?@hypertension

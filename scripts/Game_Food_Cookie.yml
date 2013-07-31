@@ -1,5 +1,5 @@
 #Cookie NPC
-"AssignmentGame_Food_CookieM":
+"AssignmentGame_Food_Cookie4":
   Type: Assignment
   Actions:
     On Assignment:
@@ -9,8 +9,8 @@
     On Unavailable:
       - CHAT "Just a moment, can't you see I'm busy?"
   Interact Scripts:
-  - 1 Greeting_Food_CookieM
-'Greeting_Food_CookieM':
+  - 1 Greeting_Food_Cookie4
+'Greeting_Food_Cookie4':
   Type: Interact
   Requirements:
     Mode: All
@@ -21,16 +21,17 @@
             Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need food!
             Script:
               - WAIT 1
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g4_so ELSE FLAG NPC qbank:g8_lv1
-              #- IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:MedSci_Summer2013 ELSE FLAG NPC qbank:g8_lv1
-              - IF "<FLAG.G:<player.name>_CookieM || 0>" == "1" CHAT "No more for you!" ELSE FLAG GLOBAL <player.name>_CookieM:0
-              - IF "<FLAG.G:<player.name>_CookieM>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
-              - IF "<FLAG.G:<player.name>_CookieM>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-              - IF "<FLAG.G:<player.name>_CookieM>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
-              - IF "<FLAG.G:<player.name>_CookieM>" == "0" CHAT "Oh? Then you'll have to solve my test! Behold!"
-              - IF "<FLAG.G:<player.name>_CookieM>" == "0" WAIT 2
-              - IF "<FLAG.G:<player.name>_CookieM>" == "0" CHAT "<red><FLAG.N:Q><green>"
-              - IF "<FLAG.G:<player.name>_CookieM>" == "0" ZAP 2
+              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g4_so
+              - IF "<FLAG.G:qbank || 0>" == "G8" FLAG NPC qbank:g8_lv1
+              - IF "<FLAG.G:qbank || 0>" == "MedSci2013" FLAG NPC qbank:MedSci_Summer13m
+              - RUN "TNT Yes"
+              - ZAP 2
+        2:
+            Trigger: /Regex:Teleport|teleport|TELEPORT/ me out of here!
+            Script:
+              - CHAT "As you wish! Come back any time!"
+              - FLAG PLAYER respawn:spawn
+              - TELEPORT location:l@<player.flag[respawn]>
     2:
       Chat Trigger:
         1:
@@ -38,23 +39,27 @@
             Script:
                - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
         2:
+            Trigger: /Regex:Teleport|teleport|TELEPORT/ me out of here!
+            Script:
+              - CHAT "As you wish! Come back any time!"
+              - FLAG PLAYER respawn:spawn
+              - TELEPORT location:l@<player.flag[respawn]>
+        3:
             Trigger: The answer is /REGEX:.+/!
             Script:
-               - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_CookieM:1
-               - IF "<FLAG.G:<player.name>_CookieM>" == "0" CHAT "Incorrect! Looks like all this food is mine!" ELSE CHAT "Correct! A tasty victory for you!"
-               - WAIT 1
-               - IF "<FLAG.G:<player.name>_CookieM>" == "0" NARRATE "You feel hungrier..." ELSE NARRATE "The crazed man throws some food at you."
-               - IF "<FLAG.G:<player.name>_CookieM>" == "1" GIVE item:cookie ELSE CAST hunger duration:30
                - ZAP 1
+               - FLAG NPC <player.name>_correct:0
+               - FLAG NPC <player.name>_answer:<player.chat_history>
+               - IF "<FLAG.P:multiple>" > "0" RUNTASK "loop through" "context:AnswerGrabJP|AList|player"
+               - IF "<FLAG.P:multiple>" == "0" && "<FLAG.N:<player.name>_answer>" == "<FLAG.P:A>" FLAG NPC <player.name>_correct:1
+               - IF "<FLAG.P:multiple>" == "0" RUN "QuestionJP End"
       Proximity Trigger:
         exit:
           Script:
-            - IF "<FLAG.G:<player.name>_CookieM>" == "0" CHAT "Giving up? More food for me!"
-            - IF "<FLAG.G:<player.name>_CookieM>" == "0" FLAG GLOBAL <player.name>_CookieM:1
             - ZAP 1
+            
 #Cookie NPC
-"AssignmentGame_Food_Cookie4A":
+"AssignmentGame_Food_Cookie5":
   Type: Assignment
   Actions:
     On Assignment:
@@ -64,8 +69,8 @@
     On Unavailable:
       - CHAT "Just a moment, can't you see I'm busy?"
   Interact Scripts:
-  - 1 Greeting_Food_Cookie4A
-'Greeting_Food_Cookie4A':
+  - 1 Greeting_Food_Cookie5
+'Greeting_Food_Cookie5':
   Type: Interact
   Requirements:
     Mode: All
@@ -76,15 +81,17 @@
             Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need food!
             Script:
               - WAIT 1
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g4_so ELSE FLAG NPC qbank:g8_lv1
-              - IF "<FLAG.G:<player.name>_Cookie4A || 0>" == "1" CHAT "No more for you!" ELSE FLAG GLOBAL <player.name>_Cookie4A:0
-              - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
-              - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" CHAT "Oh? Then you'll have to solve my test! Behold!"
-              - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" WAIT 2
-              - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" CHAT "<red><FLAG.N:Q><green>"
-              - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" ZAP 2
+              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g5_so
+              - IF "<FLAG.G:qbank || 0>" == "G8" FLAG NPC qbank:g8_lv2
+              - IF "<FLAG.G:qbank || 0>" == "MedSci2013" FLAG NPC qbank:MedSci_Summer13m
+              - RUN "TNT Yes"
+              - ZAP 2
+        2:
+            Trigger: /Regex:Teleport|teleport|TELEPORT/ me out of here!
+            Script:
+              - CHAT "As you wish! Come back any time!"
+              - FLAG PLAYER respawn:spawn
+              - TELEPORT location:l@<player.flag[respawn]>
     2:
       Chat Trigger:
         1:
@@ -92,23 +99,27 @@
             Script:
                - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
         2:
+            Trigger: /Regex:Teleport|teleport|TELEPORT/ me out of here!
+            Script:
+              - CHAT "As you wish! Come back any time!"
+              - FLAG PLAYER respawn:spawn
+              - TELEPORT location:l@<player.flag[respawn]>
+        3:
             Trigger: The answer is /REGEX:.+/!
             Script:
-               - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_Cookie4A:1
-               - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" CHAT "Incorrect! Looks like all this food is mine!" ELSE CHAT "Correct! A tasty victory for you!"
-               - WAIT 1
-               - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" NARRATE "You feel hungrier..." ELSE NARRATE "The crazed man throws some food at you."
-               - IF "<FLAG.G:<player.name>_Cookie4A>" == "1" GIVE item:cookie ELSE CAST hunger duration:30
                - ZAP 1
+               - FLAG NPC <player.name>_correct:0
+               - FLAG NPC <player.name>_answer:<player.chat_history>
+               - IF "<FLAG.P:multiple>" > "0" RUNTASK "loop through" "context:AnswerGrabJP|AList|player"
+               - IF "<FLAG.P:multiple>" == "0" && "<FLAG.N:<player.name>_answer>" == "<FLAG.P:A>" FLAG NPC <player.name>_correct:1
+               - IF "<FLAG.P:multiple>" == "0" RUN "QuestionJP End"
       Proximity Trigger:
         exit:
           Script:
-            - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" CHAT "Giving up? More food for me!"
-            - IF "<FLAG.G:<player.name>_Cookie4A>" == "0" FLAG GLOBAL <player.name>_Cookie4A:1
             - ZAP 1
-#Cookie NPC
-"AssignmentGame_Food_Cookie4B":
+            
+ #Cookie NPC
+"AssignmentGame_Food_Cookie6":
   Type: Assignment
   Actions:
     On Assignment:
@@ -118,8 +129,8 @@
     On Unavailable:
       - CHAT "Just a moment, can't you see I'm busy?"
   Interact Scripts:
-  - 1 Greeting_Food_Cookie4B
-'Greeting_Food_Cookie4B':
+  - 1 Greeting_Food_Cookie6
+'Greeting_Food_Cookie6':
   Type: Interact
   Requirements:
     Mode: All
@@ -130,15 +141,17 @@
             Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need food!
             Script:
               - WAIT 1
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g4_so ELSE FLAG NPC qbank:g8_lv1
-              - IF "<FLAG.G:<player.name>_Cookie4B || 0>" == "1" CHAT "No more for you!" ELSE FLAG GLOBAL <player.name>_Cookie4B:0
-              - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
-              - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" CHAT "Oh? Then you'll have to solve my test! Behold!"
-              - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" WAIT 2
-              - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" CHAT "<red><FLAG.N:Q><green>"
-              - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" ZAP 2
+              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g6_numbersystem
+              - IF "<FLAG.G:qbank || 0>" == "G8" FLAG NPC qbank:g8_lv3
+              - IF "<FLAG.G:qbank || 0>" == "MedSci2013" FLAG NPC qbank:MedSci_Summer13m
+              - RUN "TNT Yes"
+              - ZAP 2
+        2:
+            Trigger: /Regex:Teleport|teleport|TELEPORT/ me out of here!
+            Script:
+              - CHAT "As you wish! Come back any time!"
+              - FLAG PLAYER respawn:spawn
+              - TELEPORT location:l@<player.flag[respawn]>
     2:
       Chat Trigger:
         1:
@@ -146,342 +159,21 @@
             Script:
                - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
         2:
+            Trigger: /Regex:Teleport|teleport|TELEPORT/ me out of here!
+            Script:
+              - CHAT "As you wish! Come back any time!"
+              - FLAG PLAYER respawn:spawn
+              - TELEPORT location:l@<player.flag[respawn]>
+        3:
             Trigger: The answer is /REGEX:.+/!
             Script:
-               - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_Cookie4B:1
-               - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" CHAT "Incorrect! Looks like all this food is mine!" ELSE CHAT "Correct! A tasty victory for you!"
-               - WAIT 1
-               - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" NARRATE "You feel hungrier..." ELSE NARRATE "The crazed man throws some food at you."
-               - IF "<FLAG.G:<player.name>_Cookie4B>" == "1" GIVE item:cookie ELSE CAST hunger duration:30
                - ZAP 1
+               - FLAG NPC <player.name>_correct:0
+               - FLAG NPC <player.name>_answer:<player.chat_history>
+               - IF "<FLAG.P:multiple>" > "0" RUNTASK "loop through" "context:AnswerGrabJP|AList|player"
+               - IF "<FLAG.P:multiple>" == "0" && "<FLAG.N:<player.name>_answer>" == "<FLAG.P:A>" FLAG NPC <player.name>_correct:1
+               - IF "<FLAG.P:multiple>" == "0" RUN "QuestionJP End"
       Proximity Trigger:
         exit:
           Script:
-            - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" CHAT "Giving up? More food for me!"
-            - IF "<FLAG.G:<player.name>_Cookie4B>" == "0" FLAG GLOBAL <player.name>_Cookie4B:1
-            - ZAP 1
-#Cookie NPC
-"AssignmentGame_Food_Cookie4C":
-  Type: Assignment
-  Actions:
-    On Assignment:
-      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
-      - execute as_server "npc select <npc.id>"
-      - execute as_server "npc lookclose"
-    On Unavailable:
-      - CHAT "Just a moment, can't you see I'm busy?"
-  Interact Scripts:
-  - 1 Greeting_Food_Cookie4C
-'Greeting_Food_Cookie4C':
-  Type: Interact
-  Requirements:
-    Mode: All
-  Steps:
-    1:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need food!
-            Script:
-              - WAIT 1
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g4_so ELSE FLAG NPC qbank:g8_lv1
-              - IF "<FLAG.G:<player.name>_Cookie4C || 0>" == "1" CHAT "No more for you!" ELSE FLAG GLOBAL <player.name>_Cookie4C:0
-              - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
-              - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" CHAT "Oh? Then you'll have to solve my test! Behold!"
-              - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" WAIT 2
-              - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" CHAT "<red><FLAG.N:Q><green>"
-              - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" ZAP 2
-    2:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/!
-            Script:
-               - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
-        2:
-            Trigger: The answer is /REGEX:.+/!
-            Script:
-               - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_Cookie4C:1
-               - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" CHAT "Incorrect! Looks like all this food is mine!" ELSE CHAT "Correct! A tasty victory for you!"
-               - WAIT 1
-               - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" NARRATE "You feel hungrier..." ELSE NARRATE "The crazed man throws some food at you."
-               - IF "<FLAG.G:<player.name>_Cookie4C>" == "1" GIVE item:cookie ELSE CAST hunger duration:30
-               - ZAP 1
-      Proximity Trigger:
-        exit:
-          Script:
-            - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" CHAT "Giving up? More food for me!"
-            - IF "<FLAG.G:<player.name>_Cookie4C>" == "0" FLAG GLOBAL <player.name>_Cookie4C:1
-            - ZAP 1
-#Cookie NPC
-"AssignmentGame_Food_Cookie5A":
-  Type: Assignment
-  Actions:
-    On Assignment:
-      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
-      - execute as_server "npc select <npc.id>"
-      - execute as_server "npc lookclose"
-    On Unavailable:
-      - CHAT "Just a moment, can't you see I'm busy?"
-  Interact Scripts:
-  - 1 Greeting_Food_Cookie5A
-'Greeting_Food_Cookie5A':
-  Type: Interact
-  Requirements:
-    Mode: All
-  Steps:
-    1:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need food!
-            Script:
-              - WAIT 1
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g5_so ELSE FLAG NPC qbank:g8_lv2
-              - IF "<FLAG.G:<player.name>_Cookie5A || 0>" == "1" CHAT "No more for you!" ELSE FLAG GLOBAL <player.name>_Cookie5A:0
-              - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
-              - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" CHAT "Oh? Then you'll have to solve my test! Behold!"
-              - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" WAIT 2
-              - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" CHAT "<red><FLAG.N:Q><green>"
-              - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" ZAP 2
-    2:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/!
-            Script:
-               - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
-        2:
-            Trigger: The answer is /REGEX:.+/!
-            Script:
-               - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_Cookie5A:1
-               - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" CHAT "Incorrect! Looks like all this food is mine!" ELSE CHAT "Correct! A tasty victory for you!"
-               - WAIT 1
-               - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" NARRATE "You feel hungrier..." ELSE NARRATE "The crazed man throws some food at you."
-               - IF "<FLAG.G:<player.name>_Cookie5A>" == "1" GIVE item:cookie ELSE CAST hunger duration:30
-               - ZAP 1
-      Proximity Trigger:
-        exit:
-          Script:
-            - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" CHAT "Giving up? More food for me!"
-            - IF "<FLAG.G:<player.name>_Cookie5A>" == "0" FLAG GLOBAL <player.name>_Cookie5A:1
-            - ZAP 1
-#Cookie NPC
-"AssignmentGame_Food_Cookie5B":
-  Type: Assignment
-  Actions:
-    On Assignment:
-      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
-      - execute as_server "npc select <npc.id>"
-      - execute as_server "npc lookclose"
-    On Unavailable:
-      - CHAT "Just a moment, can't you see I'm busy?"
-  Interact Scripts:
-  - 1 Greeting_Food_Cookie5B
-'Greeting_Food_Cookie5B':
-  Type: Interact
-  Requirements:
-    Mode: All
-  Steps:
-    1:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need food!
-            Script:
-              - WAIT 1
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g5_so ELSE FLAG NPC qbank:g8_lv2
-              - IF "<FLAG.G:<player.name>_Cookie5B || 0>" == "1" CHAT "No more for you!" ELSE FLAG GLOBAL <player.name>_Cookie5B:0
-              - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
-              - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" CHAT "Oh? Then you'll have to solve my test! Behold!"
-              - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" WAIT 2
-              - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" CHAT "<red><FLAG.N:Q><green>"
-              - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" ZAP 2
-    2:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/!
-            Script:
-               - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
-        2:
-            Trigger: The answer is /REGEX:.+/!
-            Script:
-               - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_Cookie5B:1
-               - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" CHAT "Incorrect! Looks like all this food is mine!" ELSE CHAT "Correct! A tasty victory for you!"
-               - WAIT 1
-               - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" NARRATE "You feel hungrier..." ELSE NARRATE "The crazed man throws some food at you."
-               - IF "<FLAG.G:<player.name>_Cookie5B>" == "1" GIVE item:cookie ELSE CAST hunger duration:30
-               - ZAP 1
-      Proximity Trigger:
-        exit:
-          Script:
-            - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" CHAT "Giving up? More food for me!"
-            - IF "<FLAG.G:<player.name>_Cookie5B>" == "0" FLAG GLOBAL <player.name>_Cookie5B:1
-            - ZAP 1
-#Cookie NPC
-"AssignmentGame_Food_Cookie6A":
-  Type: Assignment
-  Actions:
-    On Assignment:
-      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
-      - execute as_server "npc select <npc.id>"
-      - execute as_server "npc lookclose"
-    On Unavailable:
-      - CHAT "Just a moment, can't you see I'm busy?"
-  Interact Scripts:
-  - 1 Greeting_Food_Cookie6A
-'Greeting_Food_Cookie6A':
-  Type: Interact
-  Requirements:
-    Mode: All
-  Steps:
-    1:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need food!
-            Script:
-              - WAIT 1
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g6_numbersystem ELSE FLAG NPC qbank:g8_lv3
-              - IF "<FLAG.G:<player.name>_Cookie6A || 0>" == "1" CHAT "No more for you!" ELSE FLAG GLOBAL <player.name>_Cookie6A:0
-              - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
-              - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" CHAT "Oh? Then you'll have to solve my test! Behold!"
-              - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" WAIT 2
-              - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" CHAT "<red><FLAG.N:Q><green>"
-              - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" ZAP 2
-    2:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/!
-            Script:
-               - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
-        2:
-            Trigger: The answer is /REGEX:.+/!
-            Script:
-               - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_Cookie6A:1
-               - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" CHAT "Incorrect! Looks like all this food is mine!" ELSE CHAT "Correct! A tasty victory for you!"
-               - WAIT 1
-               - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" NARRATE "You feel hungrier..." ELSE NARRATE "The crazed man throws some food at you."
-               - IF "<FLAG.G:<player.name>_Cookie6A>" == "1" GIVE item:cookie ELSE CAST hunger duration:30
-               - ZAP 1
-      Proximity Trigger:
-        exit:
-          Script:
-            - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" CHAT "Giving up? More food for me!"
-            - IF "<FLAG.G:<player.name>_Cookie6A>" == "0" FLAG GLOBAL <player.name>_Cookie6A:1
-            - ZAP 1
-#Cookie NPC
-"AssignmentGame_Food_Cookie6B":
-  Type: Assignment
-  Actions:
-    On Assignment:
-      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
-      - execute as_server "npc select <npc.id>"
-      - execute as_server "npc lookclose"
-    On Unavailable:
-      - CHAT "Just a moment, can't you see I'm busy?"
-  Interact Scripts:
-  - 1 Greeting_Food_Cookie6B
-'Greeting_Food_Cookie6B':
-  Type: Interact
-  Requirements:
-    Mode: All
-  Steps:
-    1:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need food!
-            Script:
-              - WAIT 1
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g6_numbersystem ELSE FLAG NPC qbank:g8_lv3
-              - IF "<FLAG.G:<player.name>_Cookie6B || 0>" == "1" CHAT "No more for you!" ELSE FLAG GLOBAL <player.name>_Cookie6B:0
-              - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
-              - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" CHAT "Oh? Then you'll have to solve my test! Behold!"
-              - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" WAIT 2
-              - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" CHAT "<red><FLAG.N:Q><green>"
-              - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" ZAP 2
-    2:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/!
-            Script:
-               - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
-        2:
-            Trigger: The answer is /REGEX:.+/!
-            Script:
-               - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_Cookie6B:1
-               - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" CHAT "Incorrect! Looks like all this food is mine!" ELSE CHAT "Correct! A tasty victory for you!"
-               - WAIT 1
-               - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" NARRATE "You feel hungrier..." ELSE NARRATE "The crazed man throws some food at you."
-               - IF "<FLAG.G:<player.name>_Cookie6B>" == "1" GIVE item:cookie ELSE CAST hunger duration:30
-               - ZAP 1
-      Proximity Trigger:
-        exit:
-          Script:
-            - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" CHAT "Giving up? More food for me!"
-            - IF "<FLAG.G:<player.name>_Cookie6B>" == "0" FLAG GLOBAL <player.name>_Cookie6B:1
-            - ZAP 1
-#Cookie NPC
-"AssignmentGame_Food_Cookie6C":
-  Type: Assignment
-  Actions:
-    On Assignment:
-      - TRIGGER NAME:Proximity TOGGLE:True RADIUS:8
-      - execute as_server "npc select <npc.id>"
-      - execute as_server "npc lookclose"
-    On Unavailable:
-      - CHAT "Just a moment, can't you see I'm busy?"
-  Interact Scripts:
-  - 1 Greeting_Food_Cookie6C
-'Greeting_Food_Cookie6C':
-  Type: Interact
-  Requirements:
-    Mode: All
-  Steps:
-    1:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/, I need food!
-            Script:
-              - WAIT 1
-              - IF "<FLAG.G:qbank || 0>" == "CC456" FLAG NPC qbank:g6_numbersystem ELSE FLAG NPC qbank:g8_lv3
-              - IF "<FLAG.G:<player.name>_Cookie6C || 0>" == "1" CHAT "No more for you!" ELSE FLAG GLOBAL <player.name>_Cookie6C:0
-              - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" URL "http://129.21.142.218:29876/RANDQ?qFile=<FLAG.N:qbank>.txt" question
-              - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" FLAG NPC "Q:<util.substr[<FLAG.N:question>].before[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" FLAG NPC "A:<util.substr[<FLAG.N:question>].after[@]>"
-              - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" CHAT "Oh? Then you'll have to solve my test! Behold!"
-              - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" WAIT 2
-              - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" CHAT "<red><FLAG.N:Q><green>"
-              - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" ZAP 2
-    2:
-      Chat Trigger:
-        1:
-            Trigger: /Regex:Hi|hi|Hello|hello|Hey|hey/!
-            Script:
-               - CHAT "The answer is not <player.chat_history>! You should really slow down. What's your real answer?"
-        2:
-            Trigger: The answer is /REGEX:.+/!
-            Script:
-               - FLAG NPC <player.name>_answer:<player.chat_history>
-               - IF "<FLAG.N:<player.name>_answer>" == "<FLAG.N:A>" FLAG GLOBAL <player.name>_Cookie6C:1
-               - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" CHAT "Incorrect! Looks like all this food is mine!" ELSE CHAT "Correct! A tasty victory for you!"
-               - WAIT 1
-               - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" NARRATE "You feel hungrier..." ELSE NARRATE "The crazed man throws some food at you."
-               - IF "<FLAG.G:<player.name>_Cookie6C>" == "1" GIVE item:cookie ELSE CAST hunger duration:30
-               - ZAP 1
-      Proximity Trigger:
-        exit:
-          Script:
-            - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" CHAT "Giving up? More food for me!"
-            - IF "<FLAG.G:<player.name>_Cookie6C>" == "0" FLAG GLOBAL <player.name>_Cookie6C:1
-            - ZAP 1
+            - ZAP 1           

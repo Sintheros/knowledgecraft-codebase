@@ -1,0 +1,8 @@
+Solve for x: 20x+5x-20+21x+4@6
+Which type of muffins cost the least? 12 blueberry muffins for $7.20, 8 chocolate muffins for $4.40, 6 rasin muffins for $4.50?@chocolate
+Solve y=2x+2 if x=-4@-6
+Solve y=2x+2 if x=-2@-2
+Solve y=2x+2 if x=0@2
+Solve y=2x+2 if x=1@4
+Solve y=2x+2 if x=3@8
+What is the sum of (x^2-3x+2) and (5x^2-3x-8)?@6x^2-6x-6
