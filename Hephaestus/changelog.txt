@@ -1,0 +1,35 @@
+Hephaestus Changelog
+by Sintheros
+
+//0.6.7
+-URL can no do PLAYER as well as NPC and GLOBAL flags.
+
+//0.6.5
+-URL can now do GLOBAL as well as NPC flags.
+
+//0.6
+-SATURATE command is modified FEED command that affects the hidden saturation level instead.
+
+//0.5.9
+Updated to Denizen 0.9.1
+
+//0.5.5
+-TWEET now actually posts the pre-compiled tweet.
+
+//0.5
+Implements -TWEET to open a browser with a pre-compiled tweet.
+
+//0.4
+Implements JSoup to parse HTML into plain text.
+Implements JarUtils by fletch_to_99 to allow JSoup to properly enable alongside DenizenKA.
+
+//0.3
+-URL takes a URL and a flag name and gives the NPC a flag.n with all content of the URL, including HTML.
+
+//0.2
+UrlCommand added.
+-URL takes a URL and a flag name and gives the NPC a flag.n with dummy text.
+
+//0.1
+Compiles and links to Denizen.
+Is currently a mimicked AnnounceCommand with no added functionality.

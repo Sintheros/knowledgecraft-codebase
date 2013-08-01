@@ -1,0 +1,4 @@
+name: Hephaestus
+main: com.gmail.sintheros.hephaestus.Hephaestus
+version: 0.6.7
+depend: [Denizen]
