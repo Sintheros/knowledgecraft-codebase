@@ -95,13 +95,13 @@ public class TweetCommand extends AbstractCommand {
     	
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-				.setOAuthConsumerKey("uIWTV4ExF57koc2zPLjog")
+				.setOAuthConsumerKey("FILL THIS IN")
 				.setOAuthConsumerSecret(
-						"FkzZs4WsuMQNG86uD6bOs5f1WewF051cJP8Rrdfg2KI")
+						"FILL THIS IN")
 				.setOAuthAccessToken(
-						"1482326880-TL8zVznYjbKRF0IMp8ylRp0UwkFYTk9ITiKN03t")
+						"FILL THIS IN")
 				.setOAuthAccessTokenSecret(
-						"tsMA7E0YOYohdVyXEHL2rsP7GdbKKyVtqi7I2iJBXDw");
+						"FILL THIS IN");
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
 		try {
