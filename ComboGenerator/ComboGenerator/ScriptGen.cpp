@@ -8,7 +8,7 @@
 
 using namespace std;
 
-//void Scriptifier();
+void Scriptifier();
 void populate(bool isMath);
 string truncURL(string url);
 void generateYML(string dispName, string fileName, string url, string dispUrl, double x, double y, double z, string subject, bool isMath, bool isReading, int numPreReqs, string preReqs[], string associatedDispNames[], string associatedUrls[]);
@@ -24,15 +24,15 @@ string urls[1000];
 
 ScriptGen::ScriptGen(void)
 {
-	//Scriptifier();
+	Scriptifier();
 }
 
 ScriptGen::~ScriptGen(void)
 {
 }
 
-//void Scriptifier()
-int main()
+void Scriptifier()
+//int main()
 {
 	string subject;
 	cout << "Enter subject (Math, Biology, etc. Don't put in spaces.): " << endl;
