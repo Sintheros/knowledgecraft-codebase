@@ -35,10 +35,10 @@ def login():
      
     try:
         # Force try using the first form found on a page.
-        formclear('1')
-        fv("1", "username", username)
-        fv("1", "password", password)
-        fv("1", "facility", facility)
+        formclear('2')
+        fv("2", "username", username)
+        fv("2", "password", password)
+        fv("2", "facility", facility)
         #fv("1", "csrfmiddlewaretoken", '3F1bMuIIM9ERzcp6ceEyFxlT51yJKsK6')
         submit('0')
         content = showSilently()
